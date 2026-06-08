@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nosotros | Droguerías Económicas</title>
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/estilos-pro.css">
+</head>
+<body>
+<div class="top-bar">
+  <span>🛵 <strong>Domicilio: $3.000</strong> · Gratis en pedidos +$50.000</span>
+  <span class="top-bar-sep">|</span>
+  <a href="tel:+573124213986">📞 312 421 3986</a>
+</div>
+<nav class="navbar" role="navigation">
+  <a class="navbar-logo" href="index.html">
+    <img src="img/icono.jpg" alt="Logo" onerror="this.style.display='none'">
+    <span>Droguerías <em>Económicas</em></span>
+  </a>
+  <ul class="navbar-links" id="navLinks">
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="productos.html">Productos</a></li>
+    <li><a href="nosotros.html" class="activo">Nosotros</a></li>
+    <li><a href="contacto.html">Contacto</a></li>
+  </ul>
+  <div class="navbar-actions">
+    <button class="btn-carrito" id="btnAbrirCarrito"><i class="fas fa-shopping-cart"></i> Carrito <span class="carrito-badge oculto">0</span></button>
+    <button class="navbar-toggle" id="navToggle"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<header class="page-hero">
+  <div class="breadcrumb"><a href="index.html">Inicio</a> › Nosotros</div>
+  <h1>Sobre Nosotros</h1>
+  <p>Pasión por la salud y el bienestar de tu familia</p>
+</header>
+<main>
+        <section class="contenedor sobre-nosotros">
+            <h2 class="titulo">¿Quiénes somos?</h2>
+            <div class="contenedor-sobre-nosotros">
+                <img src="img/img1.jpg" alt="Nuestra historia" class="imagen_about-us">
+                <div class="contenedor-texto">
+                    <h3><span>1</span> Compromiso con la comunidad</h3>
+                    <p>Desde nuestros inicios, en Droguerías Económicas nos enfocamos en brindar acceso a medicamentos y productos de calidad a precios justos. Estamos comprometidos con tu salud y bienestar.</p>
+                    
+                    <h3><span>2</span> Atención humana y profesional</h3>
+                    <p>Contamos con personal calificado que te orienta y asesora con responsabilidad y empatía. Más que una droguería, somos tu aliado en salud.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom">
+      <p>&copy; 2026 Droguerías Económicas. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
+<div class="modal-overlay" id="carritoModal">
+  <div class="carrito-panel">
+    <div class="carrito-header"><h2><i class="fas fa-shopping-cart"></i> Mi Carrito</h2><button class="btn-cerrar-carrito" id="btnCerrarCarrito">✕</button></div>
+    <div class="carrito-items" id="carritoItems"><div class="carrito-vacio"><i class="fas fa-shopping-basket"></i><p>Tu carrito está vacío</p></div></div>
+    <div class="carrito-footer">
+      <div class="carrito-resumen"><div class="carrito-resumen-fila"><span>Total</span><span id="carritoSubtotal">$0</span></div></div>
+      <div class="carrito-total-fila"><span>Total</span><span id="carritoTotal">$0</span></div>
+      <button class="btn-checkout" id="btnCheckout"><i class="fab fa-whatsapp"></i> Pedir</button>
+      <button class="btn-vaciar" id="btnVaciarCarrito">Vaciar</button>
+    </div>
+  </div>
+</div>
+<div class="whatsapp-float"><a href="https://wa.me/573124213986" target="_blank" rel="noopener" class="whatsapp-btn"><i class="fab fa-whatsapp"></i></a></div>
+<div id="toast" class="toast"></div>
+<script src="js/wa-config.js"></script>
+<script src="js/productos-data.js"></script>
+<script src="js/carrito.js"></script>
+<script>
+document.getElementById('navToggle')?.addEventListener('click', () => document.getElementById('navLinks')?.classList.toggle('activo'));
+</script>
+</body>
+</html>

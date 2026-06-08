@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programa de Afiliación | Droguerías Económicas</title>
+  <meta name="description" content="Únete a nuestro programa de afiliación y disfruta de descuentos exclusivos, puntos acumulables y promociones especiales para clientes fieles.">
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/afiliaciones.css">
+</head>
+<body>
+
+  <!-- ╔══════════════════════════════════════════╗
+       ║  HEADER / NAVBAR                           ║
+       ╚══════════════════════════════════════════╝ -->
+  <header class="header" role="banner">
+    <div class="top-bar">
+      <span>🚚 Domicilio 24/7 en Mosquera y Facatativá</span>
+      <span class="top-bar-sep">|</span>
+      <a href="tel:+573124213986">📞 312 421 3986</a>
+      <span class="top-bar-sep">|</span>
+      <a href="https://wa.me/573124213986" target="_blank">💬 WhatsApp</a>
+    </div>
+    <nav class="navbar" role="navigation" aria-label="Menú principal">
+      <div class="navbar-brand">
+        <a href="index.html">
+          <img src="img/icono.jpg" alt="Droguerías Económicas" onerror="this.style.display='none'">
+          <span>Droguerías Económicas</span>
+        </a>
+      </div>
+      <button class="navbar-toggle" id="navToggle" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+      <ul class="navbar-links" id="navLinks">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="productos.html">Productos</a></li>
+        <li><a href="promociones.html">Promociones</a></li>
+        <li><a href="afiliaciones.html" class="active">Afiliación</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+        <li><a href="#" onclick="abrirCarrito()" aria-label="Carrito de compras"><i class="fas fa-shopping-cart"></i> <span id="carrito-count">0</span></a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ╔══════════════════════════════════════════╗
+       ║  HERO                                     ║
+       ╚══════════════════════════════════════════╝ -->
+  <section class="afiliacion-hero">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">Inicio</a> - Afiliación
+      </div>
+      <h1>Programa de Afiliación</h1>
+      <p>Únete gratis y disfruta de beneficios exclusivos, descuentos especiales y puntos acumulables en cada compra.</p>
+      <a href="#afiliarse" class="btn-primario">
+        <i class="fas fa-star"></i> Afiliarme Ahora
+      </a>
+    </div>
+  </section>
+
+  <!-- ╔══════════════════════════════════════════╗
+       ║  BENEFICIOS                               ║
+       ╚══════════════════════════════════════════╝ -->
+  <section class="container">
+    <h2 style="text-align:center;margin:3rem 0 2rem;font-size:2rem;font-weight:800">¿Por qué afiliarte?</h2>
+    <div class="beneficios-grid">
+      <div class="beneficio-card">
+        <div class="beneficio-icon"><i class="fas fa-percent"></i></div>
+        <h3>Descuentos Exclusivos</h3>
+        <p>Accede a descuentos del 10-20% en productos seleccionados y promociones solo para afiliados.</p>
+      </div>
+      <div class="beneficio-card">
+        <div class="beneficio-icon"><i class="fas fa-coins"></i></div>
+        <h3>Puntos Acumulables</h3>
+        <p>Gana puntos en cada compra que puedes canjear por productos gratis o descuentos adicionales.</p>
+      </div>
+      <div class="beneficio-card">
+        <div class="beneficio-icon"><i class="fas fa-gift"></i></div>
+        <h3>Promociones Especiales</h3>
+        <p>Recibe ofertas exclusivas, cumpleaños gratis y acceso anticipado a nuevas promociones.</p>
+      </div>
+      <div class="beneficio-card">
+        <div class="beneficio-icon"><i class="fas fa-clock"></i></div>
+        <h3>Domicilio Prioritario</h3>
+        <p>Entrega rápida y gratuita en pedidos superiores a $40.000 para afiliados.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ╔══════════════════════════════════════════╗
+       ║  CÓMO AFILIARSE                          ║
+       ╚══════════════════════════════════════════╝ -->
+  <section class="afiliarse-section" id="afiliarse">
+    <div class="container">
+      <h2>¿Cómo afiliarte?</h2>
+      <div class="pasos-grid">
+        <div class="paso-card">
+          <div class="paso-numero">1</div>
+          <h4>Regístrate</h4>
+          <p>Visita nuestra tienda o llámanos para registrarte con tu cédula y datos básicos.</p>
+        </div>
+        <div class="paso-card">
+          <div class="paso-numero">2</div>
+          <h4>Recibe tu Tarjeta</h4>
+          <p>Obtén tu tarjeta de afiliado gratuita y comienza a acumular puntos inmediatamente.</p>
+        </div>
+        <div class="paso-card">
+          <div class="paso-numero">3</div>
+          <h4>Disfruta los Beneficios</h4>
+          <p>En cada compra, presenta tu tarjeta y accede a descuentos y promociones exclusivas.</p>
+        </div>
+      </div>
+      <div style="margin-top:3rem">
+        <a href="https://wa.me/573124213986?text=Hola%2C+quiero+afiliarme+al+programa"
+           target="_blank" class="btn-primario">
+          <i class="fab fa-whatsapp"></i> Afiliarme por WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ╔══════════════════════════════════════════╗
+       ║  PROMOCIONES EXCLUSIVAS                  ║
+       ╚══════════════════════════════════════════╝ -->
+  <section class="promos-exclusivas">
+    <div class="container">
+      <h2>Promociones Exclusivas para Afiliados</h2>
+      <div class="promo-exclusiva-card">
+        <h3>Descuento en Medicamentos Genéricos</h3>
+        <p>15% de descuento en todos los medicamentos genéricos para afiliados.</p>
+        <div class="promo-descuento">15% OFF</div>
+      </div>
+      <div class="promo-exclusiva-card">
+        <h3>Puntos Dobles en Belleza</h3>
+        <p>Acumula el doble de puntos en productos de belleza y cuidado personal.</p>
+        <div class="promo-descuento">2x PUNTOS</div>
+      </div>
+      <div class="promo-exclusiva-card">
+        <h3>Cumpleaños Especial</h3>
+        <p>Recibe un descuento del 20% en tu mes de cumpleaños en cualquier producto.</p>
+        <div class="promo-descuento">20% OFF</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ╔══════════════════════════════════════════╗
+       ║  FOOTER                                  ║
+       ╚══════════════════════════════════════════╝ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-marca">
+          <h3>Droguerías Económicas</h3>
+          <p>Tu salud, nuestro compromiso. Más de 10 años sirviendo con calidad y confianza a Mosquera, Facatativá y alrededores.</p>
+          <div style="margin-top:1rem">
+            <p style="font-size:.72rem;font-weight:800;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem">Aceptamos</p>
+            <div class="pagos-strip">
+              <span class="pago-chip"><span>🟢</span> Nequi</span>
+              <span class="pago-chip"><span>🔵</span> Daviplata</span>
+              <span class="pago-chip"><span>💰</span> Contraentrega</span>
+              <span class="pago-chip"><span>🏦</span> Bancolombia</span>
+              <span class="pago-chip"><span>💵</span> Efectivo</span>
+            </div>
+          </div>
+        </div>
+        <div class="footer-enlaces">
+          <h4>Enlaces Rápidos</h4>
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="productos.html">Productos</a></li>
+            <li><a href="promociones.html">Promociones</a></li>
+            <li><a href="afiliaciones.html">Afiliación</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer-contacto">
+          <h4>Contáctanos</h4>
+          <p><i class="fas fa-phone"></i> <a href="tel:+573124213986">312 421 3986</a></p>
+          <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/573124213986" target="_blank">WhatsApp</a></p>
+          <p><i class="fas fa-map-marker-alt"></i> Diagonal 5 Este 7D 7-06, Facatativá</p>
+          <p><i class="fas fa-clock"></i> Lun-Dom: 7am-10pm</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Droguerías Económicas. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+<!-- ╔══════════════════════════════════════════╗
+     ║  MODAL CARRITO                           ║
+     ╚══════════════════════════════════════════╝ -->
+<div class="modal-overlay" id="carritoModal" role="dialog" aria-modal="true" aria-label="Carrito de compras">
+  <div class="carrito-panel">
+    <div class="carrito-header">
+      <h2><i class="fas fa-shopping-cart"></i> Mi Carrito</h2>
+      <button class="btn-cerrar-carrito" id="btnCerrarCarrito" aria-label="Cerrar carrito">✕</button>
+    </div>
+
+    <div class="carrito-items" id="carritoItems">
+      <div class="carrito-vacio">
+        <i class="fas fa-shopping-basket"></i>
+        <p>Tu carrito está vacío</p>
+      </div>
+    </div>
+
+    <div class="carrito-footer">
+      <!-- DOMICILIO INFO -->
+      <div class="domicilio-info">
+        <i class="fas fa-motorcycle"></i>
+        <div>
+          <strong>🛵 Domicilio: $3.000</strong> · Mosquera &amp; Facatativá<br>
+          <span style="font-weight:600;font-size:.73rem">⏱️ Entrega estimada: 30–40 minutos</span>
+        </div>
+      </div>
+
+      <!-- RESUMEN -->
+      <div class="carrito-resumen">
+        <div class="carrito-resumen-fila">
+          <span>Subtotal</span><span id="carritoSubtotal">$0</span>
+        </div>
+        <div class="carrito-resumen-fila">
+          <span>Envío</span><span id="carritoEnvio">$0</span>
+        </div>
+        <!-- MENSAJE DINÁMICO ENVÍO GRATIS -->
+        <div id="carritoEnvioMsg">✅ Envío gratis en compras mayores a $50.000</div>
+      </div>
+
+      <div class="carrito-total-fila">
+        <span>Total</span><span id="carritoTotal">$0</span>
+      </div>
+
+      <!-- MÉTODOS DE PAGO -->
+      <div>
+        <div class="pagos-carrito-title">💳 Aceptamos:</div>
+        <div class="pagos-carrito">
+          <span class="pago-mini">🟢 Nequi</span>
+          <span class="pago-mini">🔵 Daviplata</span>
+          <span class="pago-mini">💰 Contraentrega</span>
+          <span class="pago-mini">🏦 Bancolombia</span>
+          <span class="pago-mini">💵 Efectivo</span>
+        </div>
+      </div>
+
+      <button class="btn-checkout" id="btnCheckout">
+        <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
+      </button>
+      <button class="btn-vaciar" id="btnVaciarCarrito">
+        <i class="fas fa-trash"></i> Vaciar carrito
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- WhatsApp flotante -->
+<div class="whatsapp-float">
+  <div class="whatsapp-tooltip">¡Escríbenos por WhatsApp!</div>
+  <a href="https://wa.me/573124213986?text=Hola%2C+quiero+información+sobre+sus+productos"
+     target="_blank" rel="noopener noreferrer"
+     class="whatsapp-btn" aria-label="Contactar por WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+</div>
+
+<!-- Toast -->
+<div id="toast" class="toast" aria-live="assertive"></div>
+
+  <!-- Scripts -->
+   <script src="js/wa-config.js"></script>
+  <script src="js/productos-data.js"></script>
+  <script src="js/laboratorio-precios.js"></script>
+  <script src="js/catalogo.js"></script>
+  <script src="js/carrito.js"></script>
+  <script src="js/pago.js"></script>
+  <script>
+    /* ── Navbar toggle ── */
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    if (navToggle && navLinks) {
+      navToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('activo');
+        navToggle.setAttribute('aria-expanded', navLinks.classList.contains('activo'));
+      });
+    }
+
+    /* ── Inicializar página ── */
+    document.addEventListener('DOMContentLoaded', function() {
+      // Inicializar carrito
+      actualizarContadorCarrito();
+    });
+  </script>
+
+</body>
+</html>

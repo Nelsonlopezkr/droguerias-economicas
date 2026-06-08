@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto | Droguerías Económicas — Mosquera · Cundinamarca</title>
+  <meta name="description" content="Contáctanos por WhatsApp, teléfono o visita nuestra droguería en Mosquera, Cundinamarca. Domicilios 24/7 en Mosquera y Funza.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Contacto — Droguerías Económicas">
+  <meta property="og:description" content="Estamos para atenderte. WhatsApp, teléfono y domicilios 24/7.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="img/icono.jpg">
+
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/estilos.css">
+
+  <style>
+    /* ══ TOP BAR ══ */
+    .top-bar{background:linear-gradient(90deg,#0d47a1,#1565C0);color:#fff;font-size:.78rem;font-weight:700;text-align:center;padding:.45rem 1rem;display:flex;align-items:center;justify-content:center;gap:1.5rem;flex-wrap:wrap}
+    .top-bar a{color:#FFD54F;text-decoration:none}
+    .top-bar-sep{opacity:.4}
+
+    /* ══ PAGE HERO CONTACTO ══ */
+    .contacto-hero {
+      background: linear-gradient(135deg, #0a2a6e 0%, #1565C0 55%, #1976D2 100%);
+      color: #fff;
+      padding: 5rem 1.5rem 7rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .contacto-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 70% 30%, rgba(255,255,255,.07) 0%, transparent 55%),
+                  radial-gradient(ellipse at 20% 80%, rgba(255,183,0,.06) 0%, transparent 50%);
+    }
+    .contacto-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0; right: 0;
+      height: 80px;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z' fill='%23f5f5f5'/%3E%3C/svg%3E") no-repeat bottom/cover;
+    }
+    .contacto-hero .breadcrumb {
+      position: relative;
+      font-size: .82rem;
+      opacity: .72;
+      margin-bottom: .9rem;
+    }
+    .contacto-hero .breadcrumb a { color: #fff; }
+    .contacto-hero h1 {
+      position: relative;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 900;
+      margin-bottom: .8rem;
+      letter-spacing: -.03em;
+    }
+    .contacto-hero h1 span { color: #FFD54F; }
+    .contacto-hero p {
+      position: relative;
+      opacity: .88;
+      font-size: 1.05rem;
+      max-width: 480px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+    .hero-canales {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 2.2rem;
+    }
+    .hero-canal-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .78rem 1.6rem;
+      border-radius: 50px;
+      font-family: inherit;
+      font-weight: 800;
+      font-size: .95rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .hero-canal-btn.wa {
+      background: #25D366;
+      color: #fff;
+      box-shadow: 0 4px 18px rgba(37,211,102,.4);
+    }
+    .hero-canal-btn.tel {
+      background: rgba(255,255,255,.15);
+      color: #fff;
+      border: 2px solid rgba(255,255,255,.4);
+      backdrop-filter: blur(8px);
+    }
+    .hero-canal-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,.2); }
+
+    /* ══ SECCIÓN PRINCIPAL ══ */
+    .contacto-main {
+      background: #f5f5f5;
+      padding: 3.5rem 0 4rem;
+    }
+
+    /* ══ GRID CONTACTO ══ */
+    .contacto-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+    @media(max-width:900px) { .contacto-grid { grid-template-columns: 1fr; } }
+
+    /* ══ TARJETAS DE INFORMACIÓN ══ */
+    .info-cards { display: flex; flex-direction: column; gap: 1rem; }
+    .info-card {
+      background: #fff;
+      border-radius: 18px;
+      padding: 1.3rem 1.4rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,.07);
+      border: 1.5px solid #eee;
+      transition: transform .22s, box-shadow .22s, border-color .22s;
+      text-decoration: none;
+      color: inherit;
+    }
+    .info-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(0,0,0,.12);
+      border-color: rgba(21,101,192,.3);
+    }
+    .info-card-icon {
+      width: 50px; height: 50px;
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+      color: #fff;
+    }
+    .ic-wa   { background: linear-gradient(135deg, #25D366, #128C7E); }
+    .ic-tel  { background: linear-gradient(135deg, #1565C0, #1976D2); }
+    .ic-addr { background: linear-gradient(135deg, #e65100, #F57C00); }
+    .ic-hora { background: linear-gradient(135deg, #2E7D32, #388E3C); }
+    .ic-email{ background: linear-gradient(135deg, #6A1B9A, #8E24AA); }
+
+    .info-card-body h4 {
+      font-size: .82rem;
+      font-weight: 800;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: .25rem;
+    }
+    .info-card-body p {
+      font-size: .96rem;
+      font-weight: 700;
+      color: #1a1a2e;
+      line-height: 1.4;
+      margin: 0;
+    }
+    .info-card-body small {
+      display: block;
+      font-size: .78rem;
+      color: #888;
+      margin-top: .2rem;
+      font-weight: 500;
+    }
+
+    /* ══ FORMAS DE PAGO ══ */
+    .pagos-contacto {
+      background: linear-gradient(135deg, #0d47a1, #1565C0);
+      border-radius: 18px;
+      padding: 1.4rem 1.5rem;
+      color: #fff;
+      margin-top: .5rem;
+    }
+    .pagos-contacto h4 {
+      font-size: .82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      opacity: .65;
+      margin-bottom: .8rem;
+    }
+    .pagos-chips { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .pago-ch {
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 8px;
+      padding: .3rem .8rem;
+      font-size: .76rem;
+      font-weight: 700;
+      color: rgba(255,255,255,.9);
+    }
+
+    /* ══ FORMULARIO ══ */
+    .form-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 2rem 2.2rem;
+      box-shadow: 0 4px 28px rgba(0,0,0,.09);
+      border: 1.5px solid #eee;
+    }
+    .form-card h3 {
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: #1a1a2e;
+      margin-bottom: .35rem;
+      letter-spacing: -.02em;
+    }
+    .form-card .form-subtitulo {
+      font-size: .88rem;
+      color: #888;
+      margin-bottom: 1.8rem;
+      line-height: 1.5;
+    }
+    .form-fila { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media(max-width:600px) { .form-fila { grid-template-columns: 1fr; } .form-card { padding: 1.5rem 1.2rem; } }
+    .campo { margin-bottom: 1rem; }
+    .campo label {
+      display: block;
+      font-size: .78rem;
+      font-weight: 800;
+      color: #444;
+      margin-bottom: .4rem;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+    .campo label .req { color: #e53935; margin-left: 2px; }
+    .campo input,
+    .campo textarea,
+    .campo select {
+      width: 100%;
+      padding: .82rem 1.1rem;
+      border: 2px solid #e8e8e8;
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: .95rem;
+      color: #333;
+      background: #fafafa;
+      outline: none;
+      transition: border-color .22s, box-shadow .22s, background .22s;
+      box-sizing: border-box;
+    }
+    .campo input:focus,
+    .campo textarea:focus,
+    .campo select:focus {
+      border-color: #1565C0;
+      background: #fff;
+      box-shadow: 0 0 0 4px rgba(21,101,192,.1);
+    }
+    .campo textarea { resize: vertical; min-height: 110px; }
+    .campo.error input,
+    .campo.error textarea { border-color: #e53935; }
+    .campo-error-msg {
+      display: none;
+      font-size: .75rem;
+      color: #e53935;
+      margin-top: .3rem;
+      font-weight: 600;
+    }
+    .campo.error .campo-error-msg { display: block; }
+
+    /* ══ BOTÓN ENVIAR ══ */
+    .btn-enviar-form {
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(135deg, #1565C0, #1976D2);
+      color: #fff;
+      border: none;
+      border-radius: 14px;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 900;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .55rem;
+      transition: transform .2s, box-shadow .2s, background .2s;
+      box-shadow: 0 3px 14px rgba(21,101,192,.3);
+      margin-top: .5rem;
+    }
+    .btn-enviar-form:hover {
+      background: linear-gradient(135deg, #0d47a1, #1565C0);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 22px rgba(21,101,192,.4);
+    }
+    .btn-enviar-form:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+
+    /* ══ MENSAJE DE ÉXITO ══ */
+    .form-exito {
+      display: none;
+      text-align: center;
+      padding: 2.5rem 1rem;
+      animation: fadeInUp .5s ease;
+    }
+    .form-exito.visible { display: block; }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .form-exito .exito-icono {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .form-exito h4 { font-size: 1.3rem; font-weight: 900; margin-bottom: .5rem; }
+    .form-exito p  { color: #666; font-size: .95rem; line-height: 1.6; }
+
+    /* ══ MAPA / UBICACIÓN ══ */
+    .ubicacion-section {
+      padding: 3.5rem 0;
+      background: #fff;
+    }
+    .mapa-wrap {
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 28px rgba(0,0,0,.1);
+      border: 1.5px solid #eee;
+      margin-top: 1.5rem;
+    }
+    .mapa-wrap iframe {
+      width: 100%;
+      height: 380px;
+      border: 0;
+      display: block;
+    }
+    .mapa-info {
+      background: linear-gradient(135deg, #e3f2fd, #fff);
+      padding: 1.2rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      border-top: 1.5px solid #e3f2fd;
+    }
+    .mapa-info-txt { flex: 1; }
+    .mapa-info-txt strong { display: block; font-size: .95rem; font-weight: 800; color: #1a1a2e; }
+    .mapa-info-txt span  { font-size: .82rem; color: #666; }
+    .btn-maps {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      padding: .62rem 1.2rem;
+      background: #1565C0;
+      color: #fff;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: .85rem;
+      text-decoration: none;
+      transition: background .2s, transform .2s;
+      white-space: nowrap;
+    }
+    .btn-maps:hover { background: #0d47a1; transform: translateY(-2px); }
+
+    /* ══ REDES / FAQ ══ */
+    .redes-faq {
+      background: #f5f5f5;
+      padding: 3.5rem 0;
+    }
+    .redes-faq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 2.5rem;
+    }
+    @media(max-width:768px) { .redes-faq-grid { grid-template-columns: 1fr; } }
+
+    /* Redes sociales */
+    .redes-box h3 { font-size: 1.2rem; font-weight: 900; margin-bottom: 1.2rem; }
+    .red-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.2rem;
+      background: #fff;
+      border-radius: 14px;
+      border: 1.5px solid #eee;
+      margin-bottom: .8rem;
+      text-decoration: none;
+      color: inherit;
+      transition: transform .2s, box-shadow .2s, border-color .2s;
+    }
+    .red-card:hover { transform: translateX(6px); box-shadow: 0 4px 18px rgba(0,0,0,.1); border-color: #ccc; }
+    .red-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .red-fb  { background: linear-gradient(135deg, #1877F2, #166FE5); }
+    .red-ig  { background: linear-gradient(135deg, #E1306C, #833AB4, #F77737); }
+    .red-wa  { background: linear-gradient(135deg, #25D366, #128C7E); }
+    .red-info strong { display: block; font-weight: 800; font-size: .9rem; }
+    .red-info span   { font-size: .78rem; color: #888; }
+
+    /* FAQ */
+    .faq-box h3 { font-size: 1.2rem; font-weight: 900; margin-bottom: 1.2rem; }
+    .faq-item {
+      background: #fff;
+      border-radius: 14px;
+      border: 1.5px solid #eee;
+      margin-bottom: .7rem;
+      overflow: hidden;
+    }
+    .faq-pregunta {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 1rem 1.2rem;
+      font-family: inherit;
+      font-size: .92rem;
+      font-weight: 800;
+      color: #1a1a2e;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: .5rem;
+      transition: background .2s;
+    }
+    .faq-pregunta:hover { background: #f8f9ff; }
+    .faq-pregunta i {
+      font-size: .8rem;
+      color: #1565C0;
+      transition: transform .3s;
+      flex-shrink: 0;
+    }
+    .faq-item.abierto .faq-pregunta i { transform: rotate(180deg); }
+    .faq-respuesta {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s ease, padding .35s;
+      font-size: .88rem;
+      color: #555;
+      line-height: 1.65;
+      padding: 0 1.2rem;
+    }
+    .faq-item.abierto .faq-respuesta {
+      max-height: 300px;
+      padding: 0 1.2rem 1rem;
+    }
+
+    /* ══ MODAL CARRITO (compartido) ══ */
+    #carritoEnvioMsg { font-size: .75rem; font-weight: 700; color: var(--verde); margin-top: .2rem; }
+    .pagos-carrito-title { font-size: .73rem; font-weight: 700; color: var(--gris-700); margin-bottom: .4rem; }
+    .pagos-carrito { display: flex; flex-wrap: wrap; gap: .35rem; }
+    .pago-mini { background: var(--gris-100); border-radius: 6px; padding: .22rem .6rem; font-size: .7rem; font-weight: 700; color: var(--gris-700); }
+
+    /* ══ BOTTOM NAV ══ */
+    .bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:1100;background:#fff;border-top:1px solid var(--gris-200);padding:.5rem 0 env(safe-area-inset-bottom,.5rem);box-shadow:0 -4px 16px rgba(0,0,0,.08)}
+    .bottom-nav-inner{display:flex;justify-content:space-around;align-items:center}
+    .bn-item{display:flex;flex-direction:column;align-items:center;gap:.18rem;text-decoration:none;color:var(--gris-500);font-size:.62rem;font-weight:700;padding:.3rem .5rem;border-radius:10px;transition:color .2s;cursor:pointer;border:none;background:none;font-family:inherit}
+    .bn-item.activo,.bn-item:hover{color:var(--azul)}
+    .bn-item i{font-size:1.25rem}
+    .bn-badge{position:relative;display:flex;flex-direction:column;align-items:center}
+    .bn-count{position:absolute;top:-5px;right:-8px;background:var(--naranja);color:#fff;font-size:.55rem;font-weight:900;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1.5px solid #fff}
+    .bn-count.oculto{display:none}
+    @media(max-width:768px){.bottom-nav{display:block}body{padding-bottom:68px}.whatsapp-float{bottom:5.5rem}}
+  </style>
+</head>
+<body>
+
+<!-- ══ PROMO DÍA ══ -->
+<div class="promo-dia-bar" id="promoDiaBar" aria-label="Promoción del día"></div>
+
+<!-- ══ TOP BAR ══ -->
+<div class="top-bar">
+  <span>🛵 <strong>Domicilio: $3.000</strong> · Gratis en pedidos +$50.000</span>
+  <span class="top-bar-sep">|</span>
+  <span>🕐 Lun–Dom: 7 am – 10 pm</span>
+  <span class="top-bar-sep">|</span>
+  <a href="tel:+573118719476">📞 311 871 9476</a>
+  <span class="top-bar-sep">|</span>
+  <span>📍 Mosquera · Cundinamarca</span>
+</div>
+
+<!-- ══ NAVBAR ══ -->
+<nav class="navbar" role="navigation" aria-label="Navegación principal">
+  <a class="navbar-logo" href="index.html">
+    <img src="img/icono.jpg" alt="Logo Droguerías Económicas" onerror="this.style.display='none'">
+    <span>Droguerías <em>Económicas</em></span>
+  </a>
+  <ul class="navbar-links" id="navLinks" role="list">
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="productos.html">Productos</a></li>
+    <li><a href="promociones.html">Promociones</a></li>
+    <li><a href="afiliaciones.html">Afiliación</a></li>
+    <li><a href="contacto.html" class="activo">Contacto</a></li>
+    <a href="politica-datos.html">Política de Datos</a>
+  </ul>
+  <div class="navbar-actions">
+    <button class="btn-carrito" id="btnAbrirCarrito" aria-label="Abrir carrito">
+      <i class="fas fa-shopping-cart"></i> Carrito
+      <span class="carrito-badge oculto" aria-live="polite">0</span>
+    </button>
+    <button class="navbar-toggle" id="navToggle" aria-label="Menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<header class="contacto-hero" role="banner">
+  <div class="breadcrumb"><a href="index.html">Inicio</a> › Contacto</div>
+  <h1>Estamos aquí para <span>ayudarte</span></h1>
+  <p>Escríbenos por WhatsApp, llámanos o visítanos. Tu salud no puede esperar.</p>
+  <div class="hero-canales">
+    <a href="https://wa.me/573118719476?text=Hola%2C+quiero+hacer+un+pedido" target="_blank" rel="noopener" class="hero-canal-btn wa">
+      <i class="fab fa-whatsapp"></i> Escribir por WhatsApp
+    </a>
+    <a href="tel:+573118719476" class="hero-canal-btn tel">
+      <i class="fas fa-phone-alt"></i> 311 871 9476
+    </a>
+  </div>
+</header>
+
+<!-- ══ MAIN ══ -->
+<main class="contacto-main">
+  <div class="container">
+    <div class="contacto-grid">
+
+      <!-- COLUMNA IZQUIERDA: INFO + PAGOS -->
+      <div>
+        <h2 class="titulo-seccion" style="text-align:left;margin-bottom:1.2rem">Información de contacto</h2>
+
+        <div class="info-cards">
+
+          <a href="https://wa.me/573118719476?text=Hola%2C+quiero+hacer+un+pedido"
+             target="_blank" rel="noopener" class="info-card">
+            <div class="info-card-icon ic-wa"><i class="fab fa-whatsapp"></i></div>
+            <div class="info-card-body">
+              <h4>WhatsApp</h4>
+              <p>312 421 3986</p>
+              <small>Respuesta inmediata · Pedidos al instante</small>
+            </div>
+          </a>
+
+          <a href="tel:+573124213986" class="info-card">
+            <div class="info-card-icon ic-tel"><i class="fas fa-phone-alt"></i></div>
+            <div class="info-card-body">
+              <h4>Teléfono</h4>
+              <p>311 871 94 76 · 826 5832</p>
+              <small>Lunes a Domingo · 7 am – 10 pm</small>
+            </div>
+          </a>
+
+          <a href="mailto:contacto@drogeriaseconomicas.com" class="info-card">
+            <div class="info-card-icon ic-email"><i class="fas fa-envelope"></i></div>
+            <div class="info-card-body">
+              <h4>Correo electrónico</h4>
+              <p>contacto@drogeriaseconomicas.com</p>
+              <small>Respuesta en máximo 24 horas</small>
+            </div>
+          </a>
+
+          <div class="info-card" style="cursor:default">
+            <div class="info-card-icon ic-addr"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="info-card-body">
+              <h4>Dirección</h4>
+              <p></p>Calle 10 #16b 21 Barrio el  Poblado, Mosquera</p>
+              <small>Mosquera, Cundinamarca · Colombia</small>
+            </div>
+          </div>
+
+          <div class="info-card" style="cursor:default">
+            <div class="info-card-icon ic-hora"><i class="fas fa-clock"></i></div>
+            <div class="info-card-body">
+              <h4>Horario de atención</h4>
+              <p>Lunes a Domingo: 7 am – 10 pm</p>
+              <small>Domicilios hasta las 10 pm · Urgencias: WhatsApp</small>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Métodos de pago -->
+        <div class="pagos-contacto" style="margin-top:1.2rem">
+          <h4>Aceptamos</h4>
+          <div class="pagos-chips">
+            <span class="pago-ch">🟢 Nequi</span>
+            <span class="pago-ch">🔵 Daviplata</span>
+            <span class="pago-ch">🏦 Bancolombia</span>
+            <span class="pago-ch">💵 Efectivo</span>
+            <span class="pago-ch">💰 Contraentrega</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMNA DERECHA: FORMULARIO -->
+      <div>
+        <div class="form-card">
+          <h3>Envíanos un mensaje</h3>
+          <p class="form-subtitulo">¿Tienes una pregunta, sugerencia o necesitas un producto específico? Escríbenos y te respondemos pronto.</p>
+
+          <!-- Formulario visible -->
+          <form id="formContacto" novalidate>
+
+            <div class="form-fila">
+              <div class="campo" id="campNombre">
+                <label for="fNombre">Nombre <span class="req">*</span></label>
+                <input type="text" id="fNombre" placeholder="Tu nombre completo" autocomplete="name">
+                <div class="campo-error-msg">Por favor ingresa tu nombre.</div>
+              </div>
+              <div class="campo" id="campTelefono">
+                <label for="fTelefono">Teléfono <span class="req">*</span></label>
+                <input type="tel" id="fTelefono" placeholder="3XX XXX XXXX" maxlength="10" autocomplete="tel">
+                <div class="campo-error-msg">Ingresa un teléfono válido.</div>
+              </div>
+            </div>
+
+            <div class="campo" id="campEmail">
+              <label for="fEmail">Correo electrónico</label>
+              <input type="email" id="fEmail" placeholder="tu@correo.com" autocomplete="email">
+              <div class="campo-error-msg">Ingresa un correo válido.</div>
+            </div>
+
+            <div class="campo" id="campAsunto">
+              <label for="fAsunto">Asunto <span class="req">*</span></label>
+              <select id="fAsunto">
+                <option value="">— Selecciona una opción —</option>
+                <option value="Pedido">Hacer un pedido</option>
+                <option value="Consulta de precio">Consulta de precio</option>
+                <option value="Disponibilidad">Disponibilidad de producto</option>
+                <option value="Domicilio">Información de domicilio</option>
+                <option value="Devolución">Devolución / cambio</option>
+                <option value="Afiliación">Programa de afiliación</option>
+                <option value="Otro">Otro</option>
+              </select>
+              <div class="campo-error-msg">Selecciona un asunto.</div>
+            </div>
+
+            <div class="campo" id="campMensaje">
+              <label for="fMensaje">Mensaje <span class="req">*</span></label>
+              <textarea id="fMensaje" placeholder="Escribe tu consulta aquí. Si es un pedido, incluye el nombre del producto y la cantidad..."></textarea>
+              <div class="campo-error-msg">Por favor escribe tu mensaje.</div>
+            </div>
+
+            <button type="submit" class="btn-enviar-form" id="btnEnviarForm">
+              <i class="fas fa-paper-plane"></i> Enviar mensaje
+            </button>
+
+          </form>
+
+          <!-- Mensaje de éxito -->
+          <div class="form-exito" id="formExito">
+            <span class="exito-icono">✅</span>
+            <h4>¡Mensaje enviado!</h4>
+            <p>Gracias por contactarnos. Te responderemos en el menor tiempo posible.<br>
+            También puedes escribirnos directamente por
+            <a href="https://wa.me/573118719476" target="_blank" style="color:#1565C0;font-weight:700">WhatsApp</a>
+            para una respuesta inmediata.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<!-- ══ MAPA ══ -->
+<section class="ubicacion-section" aria-labelledby="tit-ubicacion">
+  <div class="container">
+    <h2 class="titulo-seccion" id="tit-ubicacion">¿Dónde estamos?</h2>
+    <p style="text-align:center;color:#666;margin-top:-.8rem;margin-bottom:0">
+      Visítanos en Mosquera o pide tu domicilio sin salir de casa.
+    </p>
+    <div class="mapa-wrap">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.5!2d-74.3557!3d4.8143!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zRHJvZ3VlcsOtYXMgRWNvbsOzbWljYXM!5e0!3m2!1ses!2sco!4v1"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Ubicación Droguerías Económicas en Mosquera"
+        aria-label="Mapa de Droguerías Económicas">
+      </iframe>
+      <div class="mapa-info">
+        <div class="mapa-info-txt">
+          <strong><i class="fas fa-map-marker-alt" style="color:#e65100;margin-right:.4rem"></i>Calle 10 #16b 21, Mosquera</strong>
+          <span>Cundinamarca, Colombia · Cobertura: Mosquera,  y Funza</span>
+        </div>
+        <a href="https://maps.google.com/?q=Droguerías+Económicas+Mosquera" target="_blank" rel="noopener" class="btn-maps">
+          <i class="fas fa-directions"></i> Cómo llegar
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ REDES Y FAQ ══ -->
+<section class="redes-faq" aria-label="Redes y preguntas frecuentes">
+  <div class="container">
+    <div class="redes-faq-grid">
+
+      <!-- Redes -->
+      <div class="redes-box">
+        <h3>Síguenos en redes sociales</h3>
+        <a href="#" class="red-card" aria-label="Facebook">
+          <div class="red-icon red-fb"><i class="fab fa-facebook-f"></i></div>
+          <div class="red-info">
+            <strong>Facebook</strong>
+            <span>@DrogeriasEconomicas · Ofertas y novedades</span>
+          </div>
+          <i class="fas fa-chevron-right" style="color:#ccc;margin-left:auto"></i>
+        </a>
+        <a href="#" class="red-card" aria-label="Instagram">
+          <div class="red-icon red-ig"><i class="fab fa-instagram"></i></div>
+          <div class="red-info">
+            <strong>Instagram</strong>
+            <span>@DrogeriasEconomicas · Tips de salud y bienestar</span>
+          </div>
+          <i class="fas fa-chevron-right" style="color:#ccc;margin-left:auto"></i>
+        </a>
+        <a href="https://wa.me/573124213986" target="_blank" rel="noopener" class="red-card" aria-label="WhatsApp">
+          <div class="red-icon red-wa"><i class="fab fa-whatsapp"></i></div>
+          <div class="red-info">
+            <strong>WhatsApp</strong>
+            <span>311 871 94 76 · Pedidos y consultas</span>
+          </div>
+          <i class="fas fa-chevron-right" style="color:#ccc;margin-left:auto"></i>
+        </a>
+      </div>
+
+      <!-- FAQ -->
+      <div class="faq-box">
+        <h3>Preguntas frecuentes</h3>
+
+        <div class="faq-item">
+          <button class="faq-pregunta" onclick="toggleFaq(this)" aria-expanded="false">
+            ¿Cuánto tarda el domicilio?
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-respuesta">
+            La entrega estimada es de <strong>30 a 40 minutos</strong> dentro de Mosquera y Funza. En horas pico puede tomar un poco más. Te confirmamos el tiempo exacto al tomar tu pedido.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-pregunta" onclick="toggleFaq(this)" aria-expanded="false">
+            ¿Cuánto cuesta el domicilio?
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-respuesta">
+            El domicilio tiene un costo de <strong>$3.000</strong>. Si tu pedido supera los <strong>$50.000</strong> el envío es completamente gratis.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-pregunta" onclick="toggleFaq(this)" aria-expanded="false">
+            ¿Qué formas de pago aceptan?
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-respuesta">
+            Aceptamos <strong>Nequi, Daviplata, Bancolombia, transferencia bancaria, efectivo y pago contra entrega</strong>. El pago contra entrega está disponible en todo el área de cobertura.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-pregunta" onclick="toggleFaq(this)" aria-expanded="false">
+            ¿Necesito fórmula médica para comprar medicamentos?
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-respuesta">
+            Los medicamentos de venta libre no requieren fórmula. Los antibióticos, medicamentos de control especial y algunos otros <strong>sí requieren fórmula médica vigente</strong> según la regulación del INVIMA. Nuestro equipo te indicará en cada caso.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-pregunta" onclick="toggleFaq(this)" aria-expanded="false">
+            ¿Puedo hacer devoluciones?
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-respuesta">
+            Sí. Si el producto llega en mal estado o incorrecto, lo cambiamos en <strong>24 horas</strong>. Llámanos al 311 871 94 76 o escríbenos por WhatsApp con la foto del producto.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-pregunta" onclick="toggleFaq(this)" aria-expanded="false">
+            ¿Tienen servicio de inyectología?
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-respuesta">
+            Sí, contamos con servicio de <strong>inyectología profesional</strong>. Trae tu fórmula médica y aplicamos tus medicamentos de forma segura. Consulta disponibilidad por WhatsApp.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-marca">
+        <h3>Droguerías Económicas</h3>
+        <p>Tu salud, nuestro compromiso. Más de 10 años sirviendo con calidad y confianza a Mosquera, Funza y alrededores.</p>
+        <div style="margin-top:1rem">
+          <p style="font-size:.72rem;font-weight:800;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem">Aceptamos</p>
+          <div class="pagos-strip">
+            <span class="pago-chip"><span>🟢</span> Nequi</span>
+            <span class="pago-chip"><span>🔵</span> Daviplata</span>
+            <span class="pago-chip"><span>💰</span> Contraentrega</span>
+            <span class="pago-chip"><span>🏦</span> Bancolombia</span>
+            <span class="pago-chip"><span>💵</span> Efectivo</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="productos.html">Productos</a></li>
+          <li><a href="promociones.html">Promociones</a></li>
+          <li><a href="afiliaciones.html">Afiliación</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Categorías</h4>
+        <ul>
+          <li><a href="productos.html?cat=Medicamentos">Medicamentos</a></li>
+          <li><a href="productos.html?cat=Belleza">Belleza</a></li>
+          <li><a href="productos.html?cat=Cuidado%20Personal">Cuidado Personal</a></li>
+          <li><a href="productos.html?cat=Beb%C3%A9%20y%20Mam%C3%A1">Bebé &amp; Mamá</a></li>
+          <li><a href="productos.html?cat=Mercado%20y%20Hogar">Mercado y Hogar</a></li>
+          <li><a href="productos.html?cat=Marcas%20Propias">Marcas DE</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <div class="footer-contacto">
+          <div class="footer-contacto-item"><i class="fas fa-phone-alt"></i><span><a href="tel:+573118719476" style="color:inherit">311 871 94 76</a></span></div>
+          <div class="footer-contacto-item"><i class="fab fa-whatsapp"></i><a href="https://wa.me/573118719476" target="_blank" style="color:inherit">WhatsApp</a></div>
+          <div class="footer-contacto-item"><i class="fas fa-envelope"></i><span>contacto@drogeriaseconomicas.com</span></div>
+          <div class="footer-contacto-item"><i class="fas fa-map-marker-alt"></i><span>Calle 10 #16b 21, Mosquera</span></div>
+          <div class="footer-contacto-item"><i class="fas fa-clock"></i><span>Lun – Dom: 7 am – 10 pm</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Droguerías Económicas — Desarrollado por Nelson Lopez. Todos los derechos reservados.</p>
+      <div class="footer-redes">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/573118719476" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ══ MODAL CARRITO ══ -->
+<div class="modal-overlay" id="carritoModal" role="dialog" aria-modal="true" aria-label="Carrito de compras">
+  <div class="carrito-panel">
+    <div class="carrito-header">
+      <h2><i class="fas fa-shopping-cart"></i> Mi Carrito</h2>
+      <button class="btn-cerrar-carrito" id="btnCerrarCarrito" aria-label="Cerrar carrito">✕</button>
+    </div>
+    <div class="carrito-items" id="carritoItems">
+      <div class="carrito-vacio"><i class="fas fa-shopping-basket"></i><p>Tu carrito está vacío</p></div>
+    </div>
+    <div class="carrito-footer">
+      <div class="domicilio-info">
+        <i class="fas fa-motorcycle"></i>
+        <div><strong>🛵 Domicilio: $3.000</strong> · Mosquera &amp; Funza<br>
+        <span style="font-weight:600;font-size:.73rem">⏱️ Entrega estimada: 30–40 minutos</span></div>
+      </div>
+      <div class="carrito-resumen">
+        <div class="carrito-resumen-fila"><span>Subtotal</span><span id="carritoSubtotal">$0</span></div>
+        <div class="carrito-resumen-fila"><span>Envío</span><span id="carritoEnvio">$0</span></div>
+        <div id="carritoEnvioMsg">✅ Envío gratis en compras mayores a $50.000</div>
+      </div>
+      <div class="carrito-total-fila"><span>Total</span><span id="carritoTotal">$0</span></div>
+      <div>
+        <div class="pagos-carrito-title">💳 Aceptamos:</div>
+        <div class="pagos-carrito">
+          <span class="pago-mini">🟢 Nequi</span>
+          <span class="pago-mini">🔵 Daviplata</span>
+          <span class="pago-mini">💰 Contraentrega</span>
+          <span class="pago-mini">🏦 Bancolombia</span>
+          <span class="pago-mini">💵 Efectivo</span>
+        </div>
+      </div>
+      <button class="btn-checkout" id="btnCheckout"><i class="fab fa-whatsapp"></i> Pedir por WhatsApp</button>
+      <button class="btn-vaciar" id="btnVaciarCarrito"><i class="fas fa-trash"></i> Vaciar carrito</button>
+    </div>
+  </div>
+</div>
+
+<!-- WhatsApp flotante -->
+<div class="whatsapp-float">
+  <div class="whatsapp-tooltip">¡Escríbenos por WhatsApp!</div>
+  <a href="https://wa.me/573118719476?text=Hola%2C+quiero+información+sobre+sus+productos"
+     target="_blank" rel="noopener noreferrer" class="whatsapp-btn" aria-label="Contactar por WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+</div>
+
+<div id="toast" class="toast" aria-live="assertive"></div>
+
+<!-- ══ BOTTOM NAV ══ -->
+<nav class="bottom-nav" aria-label="Navegación rápida móvil">
+  <div class="bottom-nav-inner">
+    <a href="index.html" class="bn-item"><i class="fas fa-home"></i><span>Inicio</span></a>
+    <a href="productos.html" class="bn-item"><i class="fas fa-store"></i><span>Productos</span></a>
+    <button class="bn-item" id="btnAbrirCarritoMobile">
+      <div class="bn-badge"><i class="fas fa-shopping-cart"></i><span class="bn-count oculto" id="bnCount">0</span></div>
+      <span>Carrito</span>
+    </button>
+    <a href="https://wa.me/573118719476" target="_blank" rel="noopener" class="bn-item">
+      <i class="fab fa-whatsapp"></i><span>WhatsApp</span>
+    </a>
+  </div>
+</nav>
+
+<!-- Scripts -->
+ <script src="js/wa-config.js"></script>
+<script src="js/productos-data.js"></script>
+<script src="js/carrito.js"></script>
+<script src="js/pago.js"></script>
+
+<script>
+/* ── Navbar toggle ── */
+const navToggle = document.getElementById('navToggle');
+const navLinks  = document.getElementById('navLinks');
+if (navToggle) navToggle.addEventListener('click', () => {
+  navLinks.classList.toggle('activo');
+  navToggle.setAttribute('aria-expanded', navLinks.classList.contains('activo'));
+});
+
+/* ── Bottom nav carrito ── */
+document.getElementById('btnAbrirCarritoMobile')?.addEventListener('click', () => {
+  document.getElementById('carritoModal')?.classList.add('activo');
+});
+
+/* ── Sync badge bottom nav ── */
+const mainBadge = document.querySelector('.carrito-badge');
+if (mainBadge) {
+  new MutationObserver(() => {
+    const bnCount = document.getElementById('bnCount');
+    if (bnCount) {
+      bnCount.textContent = mainBadge.textContent.trim();
+      bnCount.classList.toggle('oculto', mainBadge.classList.contains('oculto'));
+    }
+  }).observe(mainBadge, { childList: true, attributes: true });
+}
+
+/* ── Promo del día ── */
+(function() {
+  const promos = [
+    '🌟 HOY DOMINGO — Electrolit 3 por el precio de 2. <strong>¡Solo hoy!</strong>',
+    '🌟 HOY LUNES — Acetaminofén MK 100 tab a <strong>$16.000</strong>',
+    '🌟 HOY MARTES — Loratadina 2×1 · ¡Anti-alergia!',
+    '🌟 HOY MIÉRCOLES — Vitamina C efervescente x10 a <strong>$4.500</strong>',
+    '🌟 HOY JUEVES — Omeprazol 20mg x30 a <strong>$9.800</strong>',
+    '🌟 HOY VIERNES — Crema Bepanthen 30g a <strong>$15.000</strong>',
+    '🌟 HOY SÁBADO — Pañales Pampers talla 2 x40 a <strong>$24.500</strong>',
+  ];
+  const bar = document.getElementById('promoDiaBar');
+  if (bar) bar.innerHTML = promos[new Date().getDay()];
+})();
+
+/* ── FAQ accordion ── */
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const estaAbierto = item.classList.contains('abierto');
+  // Cerrar todos
+  document.querySelectorAll('.faq-item.abierto').forEach(i => {
+    i.classList.remove('abierto');
+    i.querySelector('.faq-pregunta').setAttribute('aria-expanded', 'false');
+  });
+  // Abrir el actual si estaba cerrado
+  if (!estaAbierto) {
+    item.classList.add('abierto');
+    btn.setAttribute('aria-expanded', 'true');
+  }
+}
+
+/* ── Validación y envío del formulario ── */
+document.getElementById('formContacto').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const nombre   = document.getElementById('fNombre');
+  const telefono = document.getElementById('fTelefono');
+  const email    = document.getElementById('fEmail');
+  const asunto   = document.getElementById('fAsunto');
+  const mensaje  = document.getElementById('fMensaje');
+  let valido = true;
+
+  // Limpiar errores
+  ['campNombre','campTelefono','campEmail','campAsunto','campMensaje'].forEach(id => {
+    document.getElementById(id).classList.remove('error');
+  });
+
+  if (!nombre.value.trim()) {
+    document.getElementById('campNombre').classList.add('error'); valido = false;
+  }
+  if (!telefono.value.trim() || telefono.value.replace(/\D/g,'').length < 7) {
+    document.getElementById('campTelefono').classList.add('error'); valido = false;
+  }
+  if (email.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+    document.getElementById('campEmail').classList.add('error'); valido = false;
+  }
+  if (!asunto.value) {
+    document.getElementById('campAsunto').classList.add('error'); valido = false;
+  }
+  if (!mensaje.value.trim() || mensaje.value.trim().length < 10) {
+    document.getElementById('campMensaje').classList.add('error'); valido = false;
+  }
+
+  if (!valido) return;
+
+  // Enviar por WhatsApp
+  const btn = document.getElementById('btnEnviarForm');
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+
+  const msg = encodeURIComponent(
+    '📩 *Mensaje desde el sitio web*\n\n' +
+    '👤 *Nombre:* ' + nombre.value.trim() + '\n' +
+    '📱 *Teléfono:* ' + telefono.value.trim() + '\n' +
+    (email.value ? '📧 *Email:* ' + email.value.trim() + '\n' : '') +
+    '📋 *Asunto:* ' + asunto.value + '\n\n' +
+    '💬 *Mensaje:*\n' + mensaje.value.trim()
+  );
+
+  setTimeout(() => {
+    window.open('https://wa.me/573118719476?text=' + msg, '_blank');
+    document.getElementById('formContacto').style.display = 'none';
+    document.getElementById('formExito').classList.add('visible');
+  }, 800);
+});
+</script>
+
+</body>
+</html>

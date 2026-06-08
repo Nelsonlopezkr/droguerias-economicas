@@ -1,0 +1,13 @@
+# robots.txt — Droguerías Económicas
+# https://drogeriaseconomicas.com/
+
+User-agent: *
+Allow: /
+
+# Evitar indexar páginas de error o auxiliares
+Disallow: /pagina_404.html
+Disallow: /cgi-bin/
+Disallow: /tmp/
+
+# Sitemap
+Sitemap: https://drogeriaseconomicas.com/sitemap.xml

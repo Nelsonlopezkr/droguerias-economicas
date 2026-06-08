@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medicamentos | Droguerías Económicas</title>
+  <meta name="description" content="Medicamentos analgésicos, antibióticos, antigripales, vitaminas y más. Precios económicos en Mosquera–Facatativá.">
+  <!-- Redirect automático al catálogo con filtro preactivado -->
+  <meta http-equiv="refresh" content="0;url=productos.html?cat=Medicamentos">
+
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/estilos.css">
+  <style>
+    body { display:flex; align-items:center; justify-content:center; min-height:100vh; background:#e3f2fd; }
+    .redir-box {
+      background: #fff; border-radius: 20px; padding: 3rem 2.5rem;
+      text-align: center; box-shadow: 0 8px 32px rgba(21,101,192,.15);
+      max-width: 400px;
+    }
+    .redir-box i { font-size: 3rem; color: #1565C0; margin-bottom: 1rem; display: block; }
+    .redir-box h1 { font-size: 1.3rem; font-weight: 900; color: #1a1a2e; margin-bottom: .5rem; }
+    .redir-box p  { color: #666; font-size: .9rem; margin-bottom: 1.5rem; }
+    .redir-box a  {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: #1565C0; color: #fff; border-radius: 12px;
+      padding: .75rem 1.5rem; font-weight: 800; font-size: .95rem;
+      text-decoration: none; transition: background .2s;
+    }
+    .redir-box a:hover { background: #0d47a1; }
+  </style>
+</head>
+<body>
+  <div class="redir-box">
+    <i class="fas fa-pills"></i>
+    <h1>Medicamentos</h1>
+    <p>Te llevamos al catálogo completo con todos los medicamentos disponibles...</p>
+    <a href="productos.html?cat=Medicamentos">
+      <i class="fas fa-arrow-right"></i> Ver Medicamentos
+    </a>
+  </div>
+  <script>
+    // Redirect inmediato por JS como respaldo
+    window.location.replace('productos.html?cat=Medicamentos');
+  </script>
+</body>
+</html>

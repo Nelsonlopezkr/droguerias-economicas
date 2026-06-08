@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Droguerías Económicas | Tu salud, nuestro compromiso – Mosquera, Cundinamarca</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Droguerías Económicas en Mosquera-Funza, Cundinamarca. Medicamentos, belleza, cuidado personal y más. Servicio a domicilio 24/7. Llama al 311 8719476.">
+  <meta name="keywords" content="droguería Mosquera, droguería Funza, medicamentos, belleza, cuidado personal, domicilio farmacia Cundinamarca">
+
+  <!-- Open Graph (WhatsApp, Facebook) -->
+  <meta property="og:title" content="Droguerías Económicas | Mosquera – cundinamarca">
+  <meta property="og:description" content="Tu salud, nuestro compromiso. Domicilio 24/7, +300 productos. Nequi · Daviplata · Contraentrega.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="img/icono.jpg">
+  <meta property="og:url" content="https://drogeriaseconomicas.com/">
+  <meta property="og:locale" content="es_CO">
+
+  <!-- Schema.org Pharmacy -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Pharmacy",
+    "name": "Droguerías Económicas",
+    "telephone": "+573118719476",
+    "openingHours": "Mo-Su 07:00-22:00",
+    "priceRange": "$",
+    "url": "https://drogeriaseconomicas.com/",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Calle 10 #16b 21",
+      "addressLocality": "Mosquera",
+      "addressRegion": "Cundinamarca",
+      "addressCountry": "CO"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 4.8143,
+      "longitude": -74.3557
+    },
+    "servesCuisine": "Pharmacy",
+    "hasMap": "https://maps.google.com/?q=Droguerías+Económicas+Mosquera"
+  }
+  </script>
+
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Íconos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/mejoras.css">
+<link rel="stylesheet" href="css/imagenes-fix.css">
+
+  <!-- MEJORAS CSS DIAGNÓSTICO -->
+  <style>
+    /* ══ BARRA DE DOMICILIO (top-bar) ══ */
+    .top-bar {
+      background: linear-gradient(90deg, #0d47a1, #1565C0);
+      color: #fff;
+      font-size: .78rem;
+      font-weight: 700;
+      text-align: center;
+      padding: .45rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      letter-spacing: .01em;
+    }
+    .top-bar a { color: #FFD54F; text-decoration: none; }
+    .top-bar-sep { opacity: .4; }
+
+    /* ══ MÉTODOS DE PAGO en footer ══ */
+    .pagos-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin-top: .9rem;
+    }
+    .pago-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 8px;
+      padding: .28rem .7rem;
+      font-size: .73rem;
+      font-weight: 700;
+      color: rgba(255,255,255,.82);
+      white-space: nowrap;
+    }
+    .pago-chip span { font-size: .95rem; }
+
+    /* ══ SECCIÓN TESTIMONIOS ══ */
+    .testimonios-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 1.2rem;
+    }
+    .testimonio-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 1.4rem 1.5rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,.07);
+      border: 1.5px solid var(--gris-200);
+      position: relative;
+      transition: transform .22s ease, box-shadow .22s ease;
+    }
+    .testimonio-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 28px rgba(0,0,0,.11);
+    }
+    .testimonio-card::before {
+      content: '"';
+      position: absolute;
+      top: .5rem;
+      right: 1.2rem;
+      font-size: 4rem;
+      color: var(--azul-50);
+      font-family: Georgia, serif;
+      line-height: 1;
+      pointer-events: none;
+    }
+    .test-estrellas { color: #FFA000; font-size: .85rem; margin-bottom: .6rem; }
+    .test-texto { font-size: .88rem; color: var(--gris-700); line-height: 1.6; margin-bottom: .9rem; font-style: italic; }
+    .test-autor { display: flex; align-items: center; gap: .65rem; }
+    .test-avatar {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--azul), var(--azul-light));
+      color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900; font-size: .95rem;
+      flex-shrink: 0;
+    }
+    .test-nombre { font-weight: 800; font-size: .88rem; }
+    .test-barrio { font-size: .75rem; color: var(--gris-500); }
+
+    /* ══ BANNER MÁS VENDIDOS ══ */
+    .mas-vendidos-strip {
+      overflow-x: auto;
+      display: flex;
+      gap: .8rem;
+      padding: .4rem 0 1rem;
+      scrollbar-width: thin;
+    }
+    .mv-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: #fff;
+      border: 1.5px solid var(--gris-200);
+      border-radius: 50px;
+      padding: .42rem 1rem;
+      font-size: .8rem;
+      font-weight: 700;
+      white-space: nowrap;
+      cursor: pointer;
+      box-shadow: 0 1px 4px rgba(0,0,0,.06);
+      transition: border-color .2s, transform .2s;
+    }
+    .mv-chip:hover { border-color: var(--azul); transform: translateY(-2px); }
+    .mv-chip .mv-precio { color: var(--azul); font-weight: 900; }
+    .mv-label {
+      background: #e65100;
+      color: #fff;
+      font-size: .6rem;
+      font-weight: 900;
+      padding: .06rem .4rem;
+      border-radius: 50px;
+      letter-spacing: .04em;
+    }
+
+    /* ══ POLÍTICA DOMICILIO en carrito footer ══ */
+    .domicilio-info {
+      background: linear-gradient(135deg, var(--azul-50), #fff);
+      border: 1.5px solid rgba(21,101,192,.15);
+      border-radius: 12px;
+      padding: .8rem 1rem;
+      font-size: .8rem;
+      color: var(--azul);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+    }
+    .domicilio-info i { font-size: 1.1rem; flex-shrink: 0; }
+
+    /* ══ MÉTODOS PAGO en carrito footer ══ */
+    .pagos-carrito {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+      margin-top: .2rem;
+    }
+    .pagos-carrito-title {
+      font-size: .73rem;
+      font-weight: 700;
+      color: var(--gris-700);
+      margin-bottom: .4rem;
+    }
+    .pago-mini {
+      background: var(--gris-100);
+      border-radius: 6px;
+      padding: .22rem .6rem;
+      font-size: .7rem;
+      font-weight: 700;
+      color: var(--gris-700);
+    }
+
+    /* ══ ENVÍO GRATIS DINÁMICO ══ */
+    #carritoEnvioMsg {
+      font-size: .75rem;
+      font-weight: 700;
+      color: var(--verde);
+      margin-top: .2rem;
+      min-height: 1.1em;
+      transition: color .3s;
+    }
+
+    /* ══ BOTTOM NAV (solo móvil) ══ */
+    .bottom-nav {
+      display: none;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 1100;
+      background: #fff;
+      border-top: 1px solid var(--gris-200);
+      padding: .5rem 0 env(safe-area-inset-bottom, .5rem);
+      box-shadow: 0 -4px 16px rgba(0,0,0,.08);
+    }
+    .bottom-nav-inner {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+    .bn-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .18rem;
+      text-decoration: none;
+      color: var(--gris-500);
+      font-size: .62rem;
+      font-weight: 700;
+      padding: .3rem .5rem;
+      border-radius: 10px;
+      transition: color .2s;
+      cursor: pointer;
+      border: none;
+      background: none;
+      font-family: inherit;
+    }
+    .bn-item.activo, .bn-item:hover { color: var(--azul); }
+    .bn-item i { font-size: 1.25rem; }
+    .bn-badge {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .bn-count {
+      position: absolute;
+      top: -5px; right: -8px;
+      background: var(--naranja);
+      color: #fff;
+      font-size: .55rem;
+      font-weight: 900;
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      border: 1.5px solid #fff;
+    }
+    .bn-count.oculto { display: none; }
+    @media (max-width: 768px) {
+      .bottom-nav { display: block; }
+      body { padding-bottom: 68px; }
+      .whatsapp-float { bottom: 5.5rem; }
+    }
+
+    /* ══ POLÍTICA DEVOLUCIONES en footer ══ */
+    .garantias-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .6rem;
+      margin-top: 1rem;
+      justify-content: center;
+    }
+    .garantia-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 8px;
+      padding: .32rem .8rem;
+      font-size: .75rem;
+      color: rgba(255,255,255,.72);
+      font-weight: 600;
+    }
+
+    /* ══ BADGE PROMO en tarjetas ══ */
+    .prod-promo-badge {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      background: linear-gradient(90deg, #e65100, #ff6d00);
+      color: #fff;
+      font-size: .62rem;
+      font-weight: 900;
+      text-align: center;
+      padding: .2rem;
+      z-index: 4;
+      letter-spacing: .05em;
+    }
+
+    /* ══ TOOLTIP FÓRMULA MÉDICA ══ */
+    .badge-formula {
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem;
+      background: #FFF3E0;
+      color: #e65100;
+      border: 1px solid #FFB74D;
+      border-radius: 6px;
+      font-size: .66rem;
+      font-weight: 800;
+      padding: .15rem .5rem;
+      margin-top: .3rem;
+    }
+
+    /* ══ PROMO DEL DÍA top-bar extra ══ */
+    .promo-dia-bar {
+      background: linear-gradient(90deg, #e65100, #FF6D00);
+      color: #fff;
+      text-align: center;
+      padding: .4rem 1rem;
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .02em;
+    }
+    .promo-dia-bar strong { color: #FFD54F; }
+
+    /* ══ SECCIÓN GARANTÍAS COMPRA ══ */
+    .garantias-compra {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .garantia-card {
+      display: flex;
+      align-items: flex-start;
+      gap: .8rem;
+      padding: 1rem 1.1rem;
+      background: #fff;
+      border-radius: 14px;
+      border: 1.5px solid var(--gris-200);
+      box-shadow: 0 1px 6px rgba(0,0,0,.05);
+    }
+    .garantia-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      margin-top: .1rem;
+    }
+    .garantia-card h4 { font-size: .88rem; font-weight: 800; margin-bottom: .2rem; }
+    .garantia-card p  { font-size: .76rem; color: var(--gris-700); line-height: 1.5; }
+  </style>
+</head>
+
+
+<body>
+
+<!-- ╔══════════════════════════════════════════╗
+     ║  PROMO DEL DÍA (rotación por día)       ║
+     ╚══════════════════════════════════════════╝ -->
+<div class="promo-dia-bar" id="promoDiaBar" aria-label="Promoción del día"></div>
+
+<!-- ╔══════════════════════════════════════════╗
+     ║  TOP BAR — DOMICILIO + TELÉFONO         ║
+     ╚══════════════════════════════════════════╝ -->
+<div class="top-bar" role="banner">
+  <span>🛵 <strong>Domicilio: $3.000</strong> · Gratis en pedidos +$50.000</span>
+  <span class="top-bar-sep">|</span>
+  <span>🕐 Lun–Dom: 7 am – 10 pm</span>
+  <span class="top-bar-sep">|</span>
+  <a href="tel:+573118719476">📞 311 871 94 76</a>
+  <span class="top-bar-sep">|</span>
+  <span>📍 Mosquera · Cundinamarca</span>
+</div>
+
+<!-- ╔══════════════════════════════════════════╗
+     ║  NAVBAR                                  ║
+     ╚══════════════════════════════════════════╝ -->
+<nav class="navbar" role="navigation" aria-label="Navegación principal">
+  <a class="navbar-logo" href="index.html">
+    <img src="img/icono.jpg" alt="Logo Droguerías Económicas" onerror="this.style.display='none'">
+    <span>Droguerías <em>Económicas</em></span>
+  </a>
+
+  <ul class="navbar-links" id="navLinks" role="list">
+    <li><a href="index.html" class="activo">Inicio</a></li>
+    <li><a href="productos.html">Productos</a></li>
+    <li><a href="promociones.html">Promociones</a></li>
+    <li><a href="afiliaciones.html">Afiliación</a></li>
+    <li><a href="contacto.html">Contacto</a></li>
+  </ul>
+
+  <div class="navbar-actions">
+    <a href="tel:+573124213986" class="btn-tel-nav" style="display:none;color:var(--azul);font-weight:800;font-size:.85rem;padding:.4rem .7rem;border-radius:10px;background:var(--azul-50)" id="btnTelNav">
+      <i class="fas fa-phone-alt"></i>
+    </a>
+    <button class="btn-carrito" id="btnAbrirCarrito" aria-label="Abrir carrito de compras">
+      <i class="fas fa-shopping-cart"></i> Carrito
+      <span class="carrito-badge oculto" aria-live="polite">0</span>
+    </button>
+    <button class="navbar-toggle" id="navToggle" aria-label="Menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ╔══════════════════════════════════════════╗
+     ║  HERO                                    ║
+     ╚══════════════════════════════════════════╝ -->
+<header class="hero" id="inicio" role="banner">
+  <div class="hero-badge">🏥 Mosquera , Cundinamarca</div>
+  <h1>Tu salud merece lo <span>mejor</span></h1>
+  <p>Medicamentos, belleza y cuidado personal al mejor precio. Servicio a domicilio 24/7 en Mosquera y Funza.</p>
+  <div class="hero-btns">
+    <a href="productos.html" class="btn-primario">
+      <i class="fas fa-box-open"></i> Ver Catálogo
+    </a>
+    <a href="https://wa.me/573124213986?text=Hola%2C+quiero+hacer+un+pedido" target="_blank" rel="noopener" class="btn-secundario">
+      <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
+    </a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">300+</div><div class="stat-label">Productos</div></div>
+    <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">Domicilios</div></div>
+    <div class="stat"><div class="stat-num">10+</div><div class="stat-label">Años</div></div>
+    <div class="stat"><div class="stat-num">5★</div><div class="stat-label">Calificación</div></div>
+  </div>
+  <div class="hero-wave" aria-hidden="true">
+    <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#ffffff"/>
+    </svg>
+  </div>
+</header>
+
+<!-- ╔══════════════════════════════════════════╗
+     ║  MÁS PEDIDOS ESTA SEMANA                ║
+     ╚══════════════════════════════════════════╝ -->
+<section style="padding:1.5rem 0 0" aria-label="Más pedidos esta semana">
+  <div class="container">
+    <p style="font-size:.78rem;font-weight:800;color:var(--gris-500);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.6rem">
+      🔥 100+ pedidos esta semana
+    </p>
+    <div class="mas-vendidos-strip" id="masVendidosStrip" role="list"></div>
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════════════════╗
+     ║  PRODUCTOS DESTACADOS                    ║
+     ╚══════════════════════════════════════════╝ -->
+<section id="productos" aria-labelledby="tit-productos">
+  <div class="container">
+    <h2 class="titulo-seccion" id="tit-productos">Productos Destacados</h2>
+
+    <div class="categorias-grid" id="categoriasGrid" role="group" aria-label="Filtrar por categoría" style="margin-bottom:2rem"></div>
+
+    <div class="productos-header">
+      <span class="productos-count" id="productosCount"></span>
+      <input type="search" class="busqueda-input" id="busquedaInput"
+             placeholder="🔍 Buscar producto..." aria-label="Buscar producto">
+    </div>
+
+    <div class="productos-grid" id="productosGrid" role="list" aria-live="polite"></div>
+
+    <div style="text-align:center;margin-top:2rem">
+      <a href="productos.html" class="btn-primario">
+        <i class="fas fa-store"></i> Ver todos los productos
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════════════════╗
+     ║  TESTIMONIOS                             ║
+     ╚══════════════════════════════════════════╝ -->
+<section id="testimonios" style="background:var(--gris-100)" aria-labelledby="tit-testimonios">
+  <div class="container">
+    <h2 class="titulo-seccion" id="tit-testimonios">Lo que dicen nuestros clientes</h2>
+    <div class="testimonios-grid">
+
+      <article class="testimonio-card">
+        <div class="test-estrellas">★★★★★</div>
+        <p class="test-texto">Pedí a domicilio y llegó en menos de 30 minutos. El acetaminofén estaba completo y el precio es el más económico del sector.</p>
+        <div class="test-autor">
+          <div class="test-avatar">M</div>
+          <div><div class="test-nombre">María C.</div><div class="test-barrio">📍 Mosquera centro</div></div>
+        </div>
+      </article>
+
+      <article class="testimonio-card">
+        <div class="test-estrellas">★★★★★</div>
+        <p class="test-texto">Los medicamentos son originales y de buena calidad. Me ayudaron a conseguir el Enalapril que necesitaba mi papá al mejor precio.</p>
+        <div class="test-autor">
+          <div class="test-avatar">C</div>
+          <div><div class="test-nombre">Carlos R.</div><div class="test-barrio">📍 Funza</div></div>
+        </div>
+      </article>
+
+      <article class="testimonio-card">
+        <div class="test-estrellas">★★★★★</div>
+        <p class="test-texto">Excelente asesoría farmacéutica. El personal es muy profesional y me ayudaron con mis medicamentos. Vuelvo cada mes con confianza.</p>
+        <div class="test-autor">
+          <div class="test-avatar">L</div>
+          <div><div class="test-nombre">Lorena M.</div><div class="test-barrio">📍 Mosquera occidental</div></div>
+        </div>
+      </article>
+
+      <article class="testimonio-card">
+        <div class="test-estrellas">★★★★★</div>
+        <p class="test-texto">Me solucionaron un pañal de emergencia a las 9 PM y pagué con Nequi desde la app. Rapidísimo y sin complicaciones.</p>
+        <div class="test-autor">
+          <div class="test-avatar">A</div>
+          <div><div class="test-nombre">Andrés P.</div><div class="test-barrio">📍 Funza</div></div>
+        </div>
+      </article>
+
+      <article class="testimonio-card">
+        <div class="test-estrellas">★★★★★</div>
+        <p class="test-texto">Muy buena variedad de productos de belleza. Me recomendaron la crema Cetaphil para mi piel sensible y funcionó perfecto.</p>
+        <div class="test-autor">
+          <div class="test-avatar">S</div>
+          <div><div class="test-nombre">Sofía V.</div><div class="test-barrio">📍 Mosquera sur</div></div>
+        </div>
+      </article>
+
+      <article class="testimonio-card">
+        <div class="test-estrellas">★★★★★</div>
+        <p class="test-texto">Llevo 3 años comprando mis medicamentos aquí. La atención farmacéutica es excelente y siempre tienen el genérico más barato disponible.</p>
+        <div class="test-autor">
+          <div class="test-avatar">R</div>
+          <div><div class="test-nombre">Roberto H.</div><div class="test-barrio">📍 Mosquera</div></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════════════════╗
+     ║  GARANTÍAS DE COMPRA                     ║
+     ╚══════════════════════════════════════════╝ -->
+<section aria-labelledby="tit-garantias" style="padding-top:2.5rem;padding-bottom:2.5rem">
+  <div class="container">
+    <h2 class="titulo-seccion" id="tit-garantias">Compra con total confianza</h2>
+    <div class="garantias-compra">
+
+      <div class="garantia-card">
+        <div class="garantia-icon">🛵</div>
+        <div>
+          <h4>Domicilio rápido 24/7</h4>
+          <p>Entrega en 30–40 min. Gratis en pedidos +$50.000. Cobertura: Mosquera y Funza.</p>
+        </div>
+      </div>
+
+      <div class="garantia-card">
+        <div class="garantia-icon">🔄</div>
+        <div>
+          <h4>Política de devoluciones</h4>
+          <p>¿Producto en mal estado? Lo cambiamos en 24h. Llámanos al <a href="tel:+573118719476" style="color:var(--azul)">3118719476</a>. Sin preguntas.</p>
+        </div>
+      </div>
+
+      <div class="garantia-card">
+        <div class="garantia-icon">✅</div>
+        <div>
+          <h4>Productos 100% originales</h4>
+          <p>Solo trabajamos con laboratorios certificados INVIMA. Establecimiento registrado y regulado.</p>
+        </div>
+      </div>
+
+      <div class="garantia-card">
+        <div class="garantia-icon">💳</div>
+        <div>
+          <h4>Múltiples formas de pago</h4>
+          <p>Nequi · Daviplata · Contraentrega · Bancolombia · Efectivo. Elige la que más te convenga.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════════════════╗
+     ║  NOSOTROS                                ║
+     ╚══════════════════════════════════════════╝ -->
+<section id="nosotros" style="background:var(--gris-100)" aria-labelledby="tit-nosotros">
+  <div class="container">
+    <div class="nosotros-grid">
+      <div class="nosotros-img">
+        <img src="img/img1.jpg" alt="Equipo de Droguerías Económicas"
+             onerror="this.src='https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&q=80'">
+      </div>
+      <div class="nosotros-texto">
+        <h2 id="tit-nosotros">¿Por qué elegirnos?</h2>
+        <p>En <strong>Droguerías Económicas</strong> llevamos más de 10 años cuidando la salud de las familias de Mosquera y Funza con los mejores productos al precio más justo.</p>
+        <div class="nosotros-items">
+          <div class="nosotros-item">
+            <div class="nosotros-item-icon"><i class="fas fa-medal"></i></div>
+            <div>
+              <h4>Calidad Garantizada</h4>
+              <p>Solo trabajamos con laboratorios certificados y marcas de confianza. Registro INVIMA vigente.</p>
+            </div>
+          </div>
+          <div class="nosotros-item">
+            <div class="nosotros-item-icon"><i class="fas fa-tags"></i></div>
+            <div>
+              <h4>Mejores Precios</h4>
+              <p>Precios competitivos, genéricos de calidad y promociones semanales para nuestros clientes.</p>
+            </div>
+          </div>
+          <div class="nosotros-item">
+            <div class="nosotros-item-icon"><i class="fas fa-user-md"></i></div>
+            <div>
+              <h4>Asesoría Farmacéutica</h4>
+              <p>Nuestro equipo te orienta sobre medicamentos, dosis y alternativas de forma personalizada.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════════════════╗
+     ║  SERVICIOS                               ║
+     ╚══════════════════════════════════════════╝ -->
+<section id="servicios" class="servicios-bg" aria-labelledby="tit-servicios">
+  <div class="container">
+    <h2 class="titulo-seccion" id="tit-servicios">Nuestros Servicios</h2>
+    <div class="servicios-grid">
+
+      <article class="servicio-card">
+        <div class="servicio-icono"><i class="fas fa-motorcycle"></i></div>
+        <h3>Domicilio 24/7</h3>
+        <p>Entrega en 30–40 min. <strong>$3.000</strong> domicilio — <strong>GRATIS</strong> en pedidos +$50.000. Llámanos: <a href="tel:+573118719476" style="color:var(--azul);font-weight:800">311 871 94 76</a></p>
+      </article>
+
+      <article class="servicio-card">
+        <div class="servicio-icono"><i class="fas fa-heartbeat"></i></div>
+        <h3>Medición de Signos Vitales</h3>
+        <p>Medición gratuita de presión arterial, temperatura y glucosa para monitoreo de salud básico.</p>
+      </article>
+
+      <article class="servicio-card">
+        <div class="servicio-icono"><i class="fas fa-stethoscope"></i></div>
+        <h3>Asesoría Farmacéutica</h3>
+        <p>Revisión de medicamentos, planificación de dosis y educación en enfermedades crónicas sin costo.</p>
+      </article>
+
+      <article class="servicio-card">
+        <div class="servicio-icono"><i class="fas fa-percent"></i></div>
+        <h3>Programa de Descuentos</h3>
+        <p>Afíliate gratis y accede a descuentos exclusivos, puntos acumulables y promociones semanales.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════════════════╗
+     ║  PROMOCIONES                             ║
+     ╚══════════════════════════════════════════╝ -->
+<section id="promociones" aria-labelledby="tit-promos">
+  <div class="container">
+    <h2 class="titulo-seccion" id="tit-promos">Promociones Especiales</h2>
+    <div class="promos-grid">
+
+      <article class="promo-card">
+        <img src="img/promo1.jpg" alt="Descuento en vitaminas"
+             onerror="this.src='https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=600&q=80'">
+        <div class="promo-body">
+          <span class="promo-descuento">30% OFF</span>
+          <h3>Descuento en Vitaminas</h3>
+          <p>Toda la línea de vitaminas y suplementos con 30% de descuento este mes.</p>
+        </div>
+      </article>
+
+      <article class="promo-card">
+        <img src="img/promo2.jpg" alt="Descuento medicamentos"
+             onerror="this.src='https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&q=80'">
+        <div class="promo-body">
+          <span class="promo-descuento">20% en compras +$50.000</span>
+          <h3>Descuento en Medicamentos</h3>
+          <p>Por compras mayores a $50.000 llevas el 20% de descuento en tu compra total.</p>
+        </div>
+      </article>
+
+      <article class="promo-card">
+        <img src="img/promo3.jpg" alt="Paga 1 lleva 2"
+             onerror="this.src='https://images.unsplash.com/photo-1622484212850-eb596d769edc?w=600&q=80'">
+        <div class="promo-body">
+          <span class="promo-descuento">2×1</span>
+          <h3>Paga 1 Lleva 2</h3>
+          <p>Compra una caja de Electrolit Maracuyá 600 ml y lleva otra totalmente gratis.</p>
+        </div>
+      </article>
+
+    </div>
+    <div style="text-align:center;margin-top:2rem">
+      <a href="promociones.html" class="btn-primario">
+        <i class="fas fa-fire"></i> Ver todas las promociones
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════════════════╗
+     ║  FOOTER                                  ║
+     ╚══════════════════════════════════════════╝ -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+
+      <div class="footer-marca">
+        <h3>Droguerías Económicas</h3>
+        <p>Tu salud, nuestro compromiso. Más de 10 años sirviendo con calidad y confianza a Mosquera, Funza y alrededores.</p>
+        <!-- MÉTODOS DE PAGO -->
+        <div style="margin-top:1rem">
+          <p style="font-size:.72rem;font-weight:800;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem">Aceptamos</p>
+          <div class="pagos-strip">
+            <span class="pago-chip"><span>🟢</span> Nequi</span>
+            <span class="pago-chip"><span>🔵</span> Daviplata</span>
+            <span class="pago-chip"><span>💰</span> Contraentrega</span>
+            <span class="pago-chip"><span>🏦</span> Bancolombia</span>
+            <span class="pago-chip"><span>💵</span> Efectivo</span>
+          </div>
+        </div>
+        <!-- GARANTÍAS -->
+        <div class="garantias-strip" style="justify-content:flex-start;margin-top:.8rem">
+          <span class="garantia-chip"><i class="fas fa-shield-alt"></i> Reg. INVIMA</span>
+          <span class="garantia-chip"><i class="fas fa-rotate-left"></i> Devoluciones 24h</span>
+          <span class="garantia-chip"><i class="fas fa-lock"></i> Compra segura</span>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="productos.html">Productos</a></li>
+          <li><a href="promociones.html">Promociones</a></li>
+          <li><a href="afiliaciones.html">Afiliación</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Categorías</h4>
+        <ul>
+          <li><a href="productos.html?cat=Medicamentos">Medicamentos</a></li>
+          <li><a href="productos.html?cat=Belleza">Belleza</a></li>
+          <li><a href="productos.html?cat=Cuidado%20Personal">Cuidado Personal</a></li>
+          <li><a href="productos.html?cat=Beb%C3%A9%20y%20Mam%C3%A1">Bebé &amp; Mamá</a></li>
+          <li><a href="productos.html?cat=Mercado%20y%20Hogar">Mercado y Hogar</a></li>
+          <li><a href="productos.html?cat=Marcas%20Propias">Marcas DE (Económicas)</a></li>
+          <a href="politica-datos.html">Política de Datos</a>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <div class="footer-contacto">
+          <div class="footer-contacto-item">
+            <i class="fas fa-phone-alt"></i>
+
+            <span><a href="tel:+573118719476" style="color:inherit">311 871 94 76</a> · <a href="tel:+573118719476" style="color:inherit"></a></span>
+          </div>
+          <div class="footer-contacto-item">
+            <i class="fab fa-whatsapp"></i>
+            <a href="https://wa.me/573118719476" target="_blank" style="color:inherit">311 871 94 76 (WhatsApp)</a>
+          </div>
+          <div class="footer-contacto-item">
+            <i class="fas fa-envelope"></i>
+            <span>contacto@drogeriaseconomicas.com</span>
+          </div>
+          <div class="footer-contacto-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Calle 10 #16b 21, Mosquera, Cundinamarca</span>
+          </div>
+          <div class="footer-contacto-item">
+            <i class="fas fa-clock"></i>
+            <span>Lun – Dom: 7 am – 10 pm</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Droguerías Económicas . Todos los derechos reservados.</p>
+      <div class="footer-redes">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/573118719476" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ╔══════════════════════════════════════════╗
+     ║  MODAL CARRITO                           ║
+     ╚══════════════════════════════════════════╝ -->
+<div class="modal-overlay" id="carritoModal" role="dialog" aria-modal="true" aria-label="Carrito de compras">
+  <div class="carrito-panel">
+    <div class="carrito-header">
+      <h2><i class="fas fa-shopping-cart"></i> Mi Carrito</h2>
+      <button class="btn-cerrar-carrito" id="btnCerrarCarrito" aria-label="Cerrar carrito">✕</button>
+    </div>
+
+    <div class="carrito-items" id="carritoItems">
+      <div class="carrito-vacio">
+        <i class="fas fa-shopping-basket"></i>
+        <p>Tu carrito está vacío</p>
+      </div>
+    </div>
+
+    <div class="carrito-footer">
+      <!-- DOMICILIO INFO -->
+      <div class="domicilio-info">
+        <i class="fas fa-motorcycle"></i>
+        <div>
+          <strong>🛵 Domicilio: $3.000</strong> · Mosquera &amp; Funza<br>
+          <span style="font-weight:600;font-size:.73rem">⏱️ Entrega estimada: 30–40 minutos</span>
+        </div>
+      </div>
+
+      <!-- RESUMEN -->
+      <div class="carrito-resumen">
+        <div class="carrito-resumen-fila">
+          <span>Subtotal</span><span id="carritoSubtotal">$0</span>
+        </div>
+        <div class="carrito-resumen-fila">
+          <span>Envío</span><span id="carritoEnvio">$0</span>
+        </div>
+        <!-- MENSAJE DINÁMICO ENVÍO GRATIS -->
+        <div id="carritoEnvioMsg">✅ Envío gratis en compras mayores a $50.000</div>
+      </div>
+
+      <div class="carrito-total-fila">
+        <span>Total</span><span id="carritoTotal">$0</span>
+      </div>
+
+      <!-- MÉTODOS DE PAGO -->
+      <div>
+        <div class="pagos-carrito-title">💳 Aceptamos:</div>
+        <div class="pagos-carrito">
+          <span class="pago-mini">🟢 Nequi  </span>
+          <span class="pago-mini">🔵 Daviplata</span>
+          <span class="pago-mini">💰 Contraentrega</span>
+          <span class="pago-mini">🏦 Bancolombia</span>
+          <span class="pago-mini">💵 Efectivo</span>
+        </div>
+      </div>
+
+      <button class="btn-checkout" id="btnCheckout">
+        <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
+      </button>
+      <button class="btn-vaciar" id="btnVaciarCarrito">
+        <i class="fas fa-trash"></i> Vaciar carrito
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- WhatsApp flotante -->
+<div class="whatsapp-float">
+  <div class="whatsapp-tooltip">¡Escríbenos por WhatsApp!</div>
+  <a href="https://wa.me/573118719476?text=Hola%2C+quiero+información+sobre+sus+productos"
+     target="_blank" rel="noopener noreferrer"
+     class="whatsapp-btn" aria-label="Contactar por WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+</div>
+
+<!-- Toast -->
+<div id="toast" class="toast" aria-live="assertive"></div>
+
+<!-- ╔══════════════════════════════════════════╗
+     ║  BOTTOM NAVIGATION (solo móvil)          ║
+     ╚══════════════════════════════════════════╝ -->
+<nav class="bottom-nav" aria-label="Navegación rápida móvil">
+  <div class="bottom-nav-inner">
+    <a href="index.html" class="bn-item activo">
+      <i class="fas fa-home"></i>
+      <span>Inicio</span>
+    </a>
+    <a href="productos.html" class="bn-item">
+      <i class="fas fa-store"></i>
+      <span>Productos</span>
+    </a>
+    <button class="bn-item" id="btnAbrirCarritoMobile" aria-label="Carrito">
+      <div class="bn-badge">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="bn-count oculto" id="bnCount">0</span>
+      </div>
+      <span>Carrito</span>
+    </button>
+    <a href="https://wa.me/573118719476?text=Hola%2C+quiero+información" target="_blank" rel="noopener" class="bn-item">
+      <i class="fab fa-whatsapp"></i>
+      <span>WhatsApp</span>
+    </a>
+  </div>
+</nav>
+
+<!-- Scripts -->
+ <script src="js/wa-config.js"></script>
+<script src="js/productos-data.js"></script>
+<script src="js/laboratorio-precios.js"></script>
+<script src="js/catalogo.js"></script>
+<script src="js/carrito.js"></script>
+
+<script>
+/* ══════════════════════════════════════════════
+   MEJORAS DEL DIAGNÓSTICO — Scripts inline
+   ══════════════════════════════════════════════ */
+
+/* 1. NAVBAR TOGGLE */
+const navToggle = document.getElementById('navToggle');
+const navLinks  = document.getElementById('navLinks');
+if (navToggle) navToggle.addEventListener('click', () => {
+  navLinks.classList.toggle('activo');
+  navToggle.setAttribute('aria-expanded', navLinks.classList.contains('activo'));
+});
+
+/* 2. BOTTOM NAV — sincronizar badge con carrito */
+const btnAbrirCarritoMobile = document.getElementById('btnAbrirCarritoMobile');
+if (btnAbrirCarritoMobile) {
+  btnAbrirCarritoMobile.addEventListener('click', () => {
+    const modal = document.getElementById('carritoModal');
+    if (modal) modal.classList.add('activo');
+  });
+}
+
+/* 3. SINCRONIZAR badge bottom nav con carrito principal */
+function syncBnBadge() {
+  const mainBadge = document.querySelector('.carrito-badge');
+  const bnCount   = document.getElementById('bnCount');
+  if (!mainBadge || !bnCount) return;
+  const n = mainBadge.textContent.trim();
+  const oculto = mainBadge.classList.contains('oculto');
+  bnCount.textContent = n;
+  bnCount.classList.toggle('oculto', oculto);
+}
+const badgeObserver = new MutationObserver(syncBnBadge);
+const mainBadge = document.querySelector('.carrito-badge');
+if (mainBadge) badgeObserver.observe(mainBadge, { childList: true, attributes: true });
+
+/* 4. MENSAJE DINÁMICO ENVÍO GRATIS */
+function actualizarMensajeEnvio() {
+  const subtotalEl = document.getElementById('carritoSubtotal');
+  const msgEl      = document.getElementById('carritoEnvioMsg');
+  if (!subtotalEl || !msgEl) return;
+  const raw      = subtotalEl.textContent.replace(/[^0-9]/g, '');
+  const subtotal = parseInt(raw, 10) || 0;
+  const umbral   = 50000;
+  if (subtotal === 0) {
+    msgEl.textContent = '✅ Envío gratis en compras mayores a $50.000';
+    msgEl.style.color = 'var(--verde)';
+  } else if (subtotal >= umbral) {
+    msgEl.textContent = '🎉 ¡Envío gratis aplicado!';
+    msgEl.style.color = 'var(--verde)';
+  } else {
+    const falta = (umbral - subtotal).toLocaleString('es-CO');
+    msgEl.textContent = `🎁 ¡Solo te faltan $${falta} para envío gratis!`;
+    msgEl.style.color = 'var(--naranja)';
+  }
+}
+const subtotalEl = document.getElementById('carritoSubtotal');
+if (subtotalEl) new MutationObserver(actualizarMensajeEnvio).observe(subtotalEl, { childList: true });
+
+/* 5. PROMO DEL DÍA (rotación por día de la semana) */
+(function() {
+  const promasDia = [
+    { texto: '🌟 HOY DOMINGO — Electrolit 3 por el precio de 2. <strong>¡Solo hoy!</strong>' },
+    { texto: '🌟 HOY LUNES — Acetaminofén MK 100 tab a <strong>$16.000</strong> (normal $18.000)' },
+    { texto: '🌟 HOY MARTES — Loratadina 2×1 · Paga 1 lleva 2 · ¡Anti-alergia!' },
+    { texto: '🌟 HOY MIÉRCOLES — Vitamina C efervescente x10 a <strong>$4.500</strong>' },
+    { texto: '🌟 HOY JUEVES — Omeprazol 20mg x30 cáps a <strong>$9.800</strong>' },
+    { texto: '🌟 HOY VIERNES — Crema Bepanthen 30g a <strong>$15.000</strong> (normal $18.000)' },
+    { texto: '🌟 HOY SÁBADO — Pañales Pampers talla 2 x40 a <strong>$24.500</strong>' },
+  ];
+  const bar = document.getElementById('promoDiaBar');
+  if (bar) bar.innerHTML = promasDia[new Date().getDay()].texto;
+})();
+
+/* 6. MÁS VENDIDOS STRIP */
+document.addEventListener('DOMContentLoaded', () => {
+  if (typeof CATALOGO === 'undefined') return;
+  const strip = document.getElementById('masVendidosStrip');
+  if (!strip) return;
+  const vendidos = CATALOGO
+    .filter(p => p.tags && p.tags.some(t => t.label === 'Más vendido'))
+    .slice(0, 8);
+  strip.innerHTML = vendidos.map(p => {
+    const precio = p.variantes[0].precio;
+    return `<div class="mv-chip" role="listitem" onclick="location.href='productos.html'">
+      <span class="mv-label">TOP</span>
+      <span>${p.nombre}</span>
+      <span class="mv-precio">$${precio.toLocaleString('es-CO')}</span>
+    </div>`;
+  }).join('');
+});
+
+/* 7. URL PARAMS — pre-filtrar categoría desde enlaces footer */
+/* (manejado en productos.html con URLSearchParams) */
+
+/* 8. CATEGORÍAS FOOTER — redirigir a productos.html con filtro */
+document.querySelectorAll('a[href*="productos.html?cat="]').forEach(a => {
+  a.addEventListener('click', e => {
+    /* el href ya tiene el param, productos.html lo lee */
+  });
+});
+
+/* 9. TELÉFONO en navbar móvil */
+function mostrarTelMovil() {
+  const btn = document.getElementById('btnTelNav');
+  if (btn && window.innerWidth < 600) btn.style.display = 'flex';
+}
+mostrarTelMovil();
+window.addEventListener('resize', mostrarTelMovil);
+</script>
+
+</body>
+</html>
