@@ -210,7 +210,7 @@ const CATALOGO = [
       bcn_medical_s_a: {
         nombre: 'BCN MEDICAl S.A',
         nombreProducto: 'KLAFEDOL IBUPROFENO 5 % PORCENTAJE GEL 50 GRAMOS B',
-        imagen: 'img/productos/Ibuprofeno 400mg.jpg',
+        imagen: 'img/productos/KLAFEDOL IBUPROFENO 5 % PORCENTAJE GEL 50 GRAMOS B,jpg',
         precios: {
           caja: { label: 'Caja', precio: 19800 },
         },
@@ -218,7 +218,7 @@ const CATALOGO = [
       genomma_lab_colombia: {
         nombre: 'GENOMMA LAB.COLOMBIA',
         nombreProducto: 'NEXT GL IBUPROFENO 200 MG MILIGRAMO(S) CAPSULA DE',
-        imagen: 'img/productos/Ibuprofeno 400mg.jpg',
+        imagen: 'img/productos/NEXT GL IBUPROFENO 200 MG MILIGRAMO(S) CAPSULA DE.jpg',
         precios: {
           caja: { label: 'Caja', precio: 12800 },
           unidad: { label: 'Unidad', precio: 1800 },
@@ -227,7 +227,7 @@ const CATALOGO = [
       icom: {
         nombre: 'ICOM',
         nombreProducto: 'LEGRIP IBUPROFENO 200 MG MILIGRAMO(S) CAPSULA DE G',
-        imagen: 'img/productos/Ibuprofeno 400mg.jpg',
+        imagen: 'img/productos/LEGRIP IBUPROFENO 200 MG MILIGRAMO(S) CAPSULA DE G.jpg',
         precios: {
           blister: { label: 'Blíster', precio: 9500 },
           caja: { label: 'Caja', precio: 90000 },
@@ -237,7 +237,7 @@ const CATALOGO = [
       pfizer_s_a_s: {
         nombre: 'PFIZER S.A.S',
         nombreProducto: 'ADVIL ULTRA IBUPROFENO FSCO X 20 CAPS',
-        imagen: 'img/productos/Advil Max x72 cáps.jpg',
+        imagen: 'img/productos/ADVIL ULTRA IBUPROFENO FSCO X 20 CAPS.jpg',
         precios: {
           caja: { label: 'Caja', precio: 41000 },
         },
@@ -245,7 +245,7 @@ const CATALOGO = [
       generico: {
         nombre: 'Genérico',
         nombreProducto: 'DOLISTAN  IBUPROFENO JARABE  120 ML',
-        imagen: 'img/productos/Ibuprofeno 400mg.jpg',
+        imagen: 'img/productos/DOLISTAN  IBUPROFENO JARABE  120 ML.jpg',
         precios: {
           caja: { label: 'Caja', precio: 16900 },
         },
@@ -253,7 +253,7 @@ const CATALOGO = [
       tecnoquimicas_s_a: {
         nombre: 'TECNOQUIMICAS S.A.',
         nombreProducto: 'IBUPROFENO 800 MG 30 CAPSULAS BLANDAS MK TECNOQUIM',
-        imagen: 'img/productos/MK 400mg x10.jpg',
+        imagen: 'img/productos/IBUPROFENO 800 MG 30 CAPSULAS BLANDAS MK TECNOQUIM.jpg',
         precios: {
           blister: { label: 'Blíster', precio: 6400 },
           caja: { label: 'Caja', precio: 37000 },
