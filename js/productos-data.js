@@ -121,7 +121,7 @@ const CATALOGO = [
       genfar_s_a: {
         nombre: 'GENFAR S.A.',
         nombreProducto: 'ACETAMINOFEN 500MG + CAFEINA 65MG X 48 TAB',
-        imagen: 'img/productos/Genfar Jarabe 120ml.jpg',
+        imagen: 'img/productos/ACETAMINOFEN 500MG + CAFEINA 65MG X 48 TAB.jpg',
         precios: {
           blister: { label: 'Blíster', precio: 6000 },
           caja: { label: 'Caja', precio: 33000 },
@@ -141,7 +141,7 @@ const CATALOGO = [
       quimica_patric_ltda: {
         nombre: 'QUIMICA PATRIC LTDA',
         nombreProducto: 'PLURIGRAM CIPROFLOZACINA 500MG 10 TAB',
-        imagen: 'img/productos/Acetaminofén 500mg.jpg',
+        imagen: 'img/productos/PLURIGRAM CIPROFLOZACINA 500MG 10 TAB.jpg',
         precios: {
           caja: { label: 'Caja', precio: 23500 },
         },
@@ -149,7 +149,7 @@ const CATALOGO = [
       la_sante: {
         nombre: 'LA SANTE',
         nombreProducto: 'ACETAMINOFEN 150 MG JARABE 90 ML LS',
-        imagen: 'img/productos/Acetaminofén 500mg.jpg',
+        imagen: 'img/productos/ACETAMINOFEN 150 MG JARABE 90 ML LS.jpg',
         precios: {
           frasco: { label: 'Frasco', precio: 8500 },
         },
@@ -184,7 +184,7 @@ const CATALOGO = [
       laboratorios_coaspha: {
         nombre: 'LABORATORIOS COASPHARMA S.A.S',
         nombreProducto: 'IBUPROFENO 400MG X60 TAB COASPHARMA',
-        imagen: 'img/productos/Ibuprofeno 400mg.jpg',
+        imagen: 'img/productos/IBUPROFENO 400MG X60 TAB COASPHARMA.jpg',
         precios: {
           blister: { label: 'Blíster', precio: 2000 },
           caja: { label: 'Caja', precio: 12000 },
@@ -202,7 +202,7 @@ const CATALOGO = [
       lafrancol_s_a: {
         nombre: 'LAFRANCOL S.A.',
         nombreProducto: 'IBUPROFENO SUSPENSION 120 ML AG',
-        imagen: 'img/productos/Laproff 400mg x300 tab recub.jpg',
+        imagen: 'img/productos/IBUPROFENO SUSPENSION 120 ML AG.jpg',
         precios: {
           frasco: { label: 'Frasco', precio: 9300 },
         },
