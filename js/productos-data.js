@@ -543,6 +543,7 @@ const CATALOGO = [
         },
       },
       capsuland_colombia_s: {
+        imagen: 'img/productos/COLAGENO SUPL DIET 500MG X 30 CAPS.jpg',
         nombre: 'Capsuland Colombia SAS',
         nombreProducto: 'COLAGENO SUPL DIET 500MG X 30 CAPS',
         precios: {
@@ -552,7 +553,7 @@ const CATALOGO = [
       generico: {
         nombre: 'Genérico',
         nombreProducto: 'COLAGENO HIDROLIZADO 500MG X30 CAPS',
-        imagen: 'img/productos/Naproxeno 500mg x300 tab.jpg',
+        imagen: 'img/productos/COLAGENO HIDROLIZADO 500MG X30 CAPS.jpg',
         precios: {
           caja: { label: 'Caja', precio: 32000 },
           blister: { label: 'Blíster', precio: 18000 },
@@ -580,15 +581,15 @@ const CATALOGO = [
       generico: {
         nombre: 'Genérico',
         nombreProducto: 'PERCLUSONE NAPROXENO 250MG  X 10 TAB',
-        imagen: 'img/productos/Naproxeno 250mg x300 tab.jpg',
+        imagen: 'img/productos/PERCLUSONE NAPROXENO 250MG  X 10 TAB.jpg',
         precios: {
           caja: { label: 'Caja', precio: 11900 },
         },
       },
       laproff: {
         nombre: 'LAPROFF',
-        nombreProducto: 'NAPROXENO 500MG CAJA X 300 TABLETAS',
-        imagen: 'img/productos/Naproxeno 250mg x300 tab.jpg',
+        nombreProducto: 'NAPROXENO 250MG CAJA X 300 TABLETAS',
+        imagen: 'img/productos/NAPROXENO 250MG CAJA X 300 TABLETAS.jpg',
         precios: {
           blister: { label: 'Blíster', precio: 4500 },
           caja: { label: 'Caja', precio: 130000 },
@@ -598,21 +599,16 @@ const CATALOGO = [
       bioquifar_pharmaceut: {
         nombre: 'BIOQUIFAR PHARMACEUTICA S.A.',
         nombreProducto: 'EUMOXINA AMOXICILINA  250MG / 5 ML SUSP X 100 ML',
+        imagen: 'img/productos/EUMOXINA AMOXICILINA  250MG 5 ML SUSP X 100 ML.jpg',
         precios: {
           frasco: { label: 'Frasco', precio: 23900 },
         },
-      },
-      laboratorios_coaspha: {
-        nombre: 'LABORATORIOS COASPHARMA S.A.S',
-        nombreProducto: 'NAPROXENO SODICO 125MG/5ML',
-        precios: {
-          caja: { label: 'Caja', precio: 12500 },
-          frasco: { label: 'Frasco', precio: 7900 },
-        },
+     
       },
       lafrancol_s_a: {
         nombre: 'LAFRANCOL S.A.',
-        nombreProducto: 'NAPROXENO 500 MG 10 TABLETAS AG',
+        nombreProducto: 'NAPROXENO 250 MG 10 TABLETAS AG',
+        imagen: 'img/productos/NAPROXENO 250 MG 10 TABLETAS AG.jpg',
         precios: {
           caja: { label: 'Caja', precio: 5000 },
         },
@@ -620,14 +616,15 @@ const CATALOGO = [
       novamed_s_a: {
         nombre: 'NOVAMED S.A.',
         nombreProducto: 'FLEMOXIN  SUSP  CARBOCISTEINA  250MG/5ML   X 120ML',
+        imagen: 'img/productos/FLEMOXIN  SUSP  CARBOCISTEINA  250MG5ML   X 120ML.jpg',
         precios: {
           caja: { label: 'Caja', precio: 15600 },
         },
       },
       genfar_s_a: {
         nombre: 'GENFAR S.A.',
-        nombreProducto: 'NAPROXENO 500 MG MILIGRAMO(S) TABLETA GENFAR S.A.',
-        imagen: 'img/productos/Naproxeno 250mg x300 tab.jpg',
+        nombreProducto: 'NAPROXENO 250 MG MILIGRAMO(S) TABLETA GENFAR S.A.',
+        imagen: 'img/productos/NAPROXENO 250 MG MILIGRAMO(S) TABLETA GENFAR S.A.jpg',
         precios: {
           caja: { label: 'Caja', precio: 5800 },
         },
@@ -651,7 +648,7 @@ const CATALOGO = [
     nombre: 'Advil Ultra',
     laboratorios: {
       pfizer_s_a_s: {
-        imagen: 'img/productos/Advil Ultra x72 cáps.jpg',
+        imagen: 'img/productos/ADVIL ULTRA X 40 CAPS.jpg',
         nombre: 'PFIZER S.A.S',
         nombreProducto: 'ADVIL ULTRA X 40 CAPS',
         precios: {
