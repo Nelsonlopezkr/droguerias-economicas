@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="assets/css/style.css">
 
   <style>
     :root {
@@ -364,6 +365,7 @@
     <li><a href="contacto.html">Contacto</a></li>
   </ul>
   <div class="navbar-actions">
+    <button class="btn-dark-mode" id="btnDarkMode" aria-label="Activar modo oscuro" title="Modo oscuro"><i class="fas fa-moon"></i></button>
     <button class="btn-carrito" id="btnAbrirCarrito" aria-label="Abrir carrito">
       <i class="fas fa-shopping-cart"></i> Carrito
       <span class="carrito-badge oculto">0</span>
@@ -856,6 +858,7 @@
   </a>
 </div>
 
+<script src="assets/js/app.js"></script>
 <script>
 (function() {
   var navToggle = document.getElementById('navToggle');

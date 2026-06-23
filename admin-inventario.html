@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Panel de Inventario (interno) | Droguerías Económicas</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="css/estilos.css">
+<link rel="stylesheet" href="css/mejoras.css">
+<style>
+  body{ background:var(--gris-100,#f5f5f5); }
+  .admin-wrap{ max-width:1280px; margin:0 auto; padding:1.5rem 1.2rem 4rem; }
+  .admin-aviso{
+    background:#FFF3E0; border:1.5px solid #FFB74D; color:#e65100; font-weight:700;
+    font-size:.8rem; border-radius:10px; padding:.7rem 1rem; margin-bottom:1.3rem;
+    display:flex; align-items:center; gap:.6rem;
+  }
+  .admin-header{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:.8rem; margin-bottom:1.5rem; }
+  .admin-header h1{ font-size:1.4rem; font-weight:900; color:var(--azul,#1565C0); margin:0; display:flex; align-items:center; gap:.5rem; }
+  .admin-meta{ font-size:.75rem; color:var(--gris-500,#888); }
+
+  .kpi-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:.9rem; margin-bottom:1.8rem; }
+  .kpi-card{ background:#fff; border-radius:14px; padding:1.1rem 1.2rem; box-shadow:0 2px 10px rgba(0,0,0,.06); border:1.5px solid var(--gris-200,#e8e8e8); }
+  .kpi-card .kpi-label{ font-size:.68rem; font-weight:800; text-transform:uppercase; letter-spacing:.05em; color:var(--gris-500,#888); margin-bottom:.35rem; }
+  .kpi-card .kpi-valor{ font-size:1.55rem; font-weight:900; color:#1a1a2e; line-height:1.1; }
+  .kpi-card.alerta .kpi-valor{ color:#c62828; }
+  .kpi-card.ok .kpi-valor{ color:#2E7D32; }
+  .kpi-card .kpi-sub{ font-size:.7rem; color:var(--gris-500,#888); margin-top:.25rem; }
+
+  .panel{ background:#fff; border-radius:16px; padding:1.3rem 1.4rem; margin-bottom:1.5rem; box-shadow:0 2px 10px rgba(0,0,0,.06); border:1.5px solid var(--gris-200,#e8e8e8); }
+  .panel h2{ font-size:1rem; font-weight:800; margin:0 0 1rem; display:flex; align-items:center; gap:.5rem; color:#1a1a2e; }
+
+  .cat-bar-row{ display:flex; align-items:center; gap:.7rem; margin-bottom:.6rem; font-size:.8rem; }
+  .cat-bar-label{ width:160px; flex-shrink:0; font-weight:700; color:var(--gris-700,#555); }
+  .cat-bar-track{ flex:1; height:10px; background:var(--gris-100,#f0f0f0); border-radius:6px; overflow:hidden; }
+  .cat-bar-fill{ height:100%; background:linear-gradient(90deg,var(--azul,#1565C0),#42A5F5); border-radius:6px; }
+  .cat-bar-num{ width:50px; text-align:right; font-weight:800; color:#1a1a2e; }
+
+  table.admin-tabla{ width:100%; border-collapse:collapse; font-size:.78rem; }
+  table.admin-tabla th{ text-align:left; padding:.55rem .6rem; background:var(--gris-100,#f5f5f5); color:var(--gris-700,#555); font-weight:800; font-size:.68rem; text-transform:uppercase; letter-spacing:.04em; position:sticky; top:0; }
+  table.admin-tabla td{ padding:.5rem .6rem; border-bottom:1px solid var(--gris-100,#f0f0f0); }
+  table.admin-tabla tr:hover td{ background:#FAFCFF; }
+  .pill{ display:inline-block; padding:.12rem .5rem; border-radius:50px; font-size:.66rem; font-weight:800; }
+  .pill-agotado{ background:#FFEBEE; color:#c62828; }
+  .pill-bajo{ background:#FFF3E0; color:#e65100; }
+  .pill-ok{ background:#E8F5E9; color:#2E7D32; }
+
+  .tabla-wrap{ max-height:560px; overflow:auto; border:1px solid var(--gris-200,#e8e8e8); border-radius:10px; }
+
+  .admin-controles{ display:flex; flex-wrap:wrap; gap:.7rem; margin-bottom:1rem; align-items:center; }
+  .admin-input, .admin-select{ font-family:inherit; font-size:.8rem; padding:.45rem .7rem; border:1.5px solid var(--gris-300,#ccc); border-radius:8px; }
+  .admin-input{ flex:1; min-width:200px; }
+  .admin-paginacion{ display:flex; gap:.5rem; align-items:center; justify-content:center; margin-top:.8rem; font-size:.78rem; }
+  .admin-paginacion button{ border:1.5px solid var(--gris-300,#ccc); background:#fff; border-radius:8px; padding:.3rem .7rem; cursor:pointer; font-family:inherit; font-weight:700; }
+  .admin-paginacion button:disabled{ opacity:.4; cursor:default; }
+  th.sortable{ cursor:pointer; user-select:none; }
+  th.sortable:hover{ color:var(--azul,#1565C0); }
+</style>
+</head>
+<body>
+
+<div class="admin-wrap">
+
+  <div class="admin-aviso">
+    <i class="fas fa-lock"></i>
+    Panel interno — sin autenticación propia. Esta página NO debe enlazarse desde el sitio público.
+    Protégela con usuario/clave a nivel de servidor (ver <code>.htaccess</code> sugerido entregado aparte) o
+    súbela a una ruta que no compartas.
+  </div>
+
+  <div class="admin-header">
+    <h1><i class="fas fa-chart-pie"></i> Panel de Inventario</h1>
+    <span class="admin-meta" id="metaActualizacion"></span>
+  </div>
+
+  <div class="kpi-grid" id="kpiGrid"></div>
+
+  <div class="panel">
+    <h2><i class="fas fa-layer-group"></i> Distribución por categoría</h2>
+    <div id="catBars"></div>
+  </div>
+
+  <div class="panel">
+    <h2><i class="fas fa-triangle-exclamation"></i> Alertas de stock bajo (≤ 5 unidades, sin contar agotados)</h2>
+    <div class="tabla-wrap" id="alertasWrap" style="max-height:320px"></div>
+  </div>
+
+  <div class="panel">
+    <h2><i class="fas fa-box-open"></i> Inventario completo</h2>
+    <div class="admin-controles">
+      <input type="search" class="admin-input" id="buscarTabla" placeholder="🔍 Buscar por nombre, marca o categoría…">
+      <select class="admin-select" id="filtroCategoriaTabla">
+        <option value="">Todas las categorías</option>
+      </select>
+      <select class="admin-select" id="filtroEstadoTabla">
+        <option value="">Todos los estados</option>
+        <option value="agotado">Agotado</option>
+        <option value="bajo">Stock bajo</option>
+        <option value="ok">Disponible</option>
+      </select>
+    </div>
+    <div class="tabla-wrap" id="tablaWrap"></div>
+    <div class="admin-paginacion" id="paginacion"></div>
+  </div>
+
+</div>
+
+<script src="js/admin-inventario-data.js"></script>
+<script>
+(function() {
+  if (typeof INVENTARIO_ADMIN === 'undefined') {
+    document.querySelector('.admin-wrap').innerHTML =
+      '<p style="color:#c62828;font-weight:700">No se pudo cargar admin-inventario-data.js</p>';
+    return;
+  }
+
+  var DATA = INVENTARIO_ADMIN;
+  var UMBRAL_BAJO = 5;
+  var cop = function(n) { return '$' + Math.round(n).toLocaleString('es-CO'); };
+
+  function estadoDe(p) {
+    if (p.existencias === 0) return 'agotado';
+    if (p.existencias <= UMBRAL_BAJO) return 'bajo';
+    return 'ok';
+  }
+
+  /* ── KPIs ── */
+  var totalProductos   = DATA.length;
+  var categorias       = Array.from(new Set(DATA.map(function(p){ return p.categoria; })));
+  var agotados         = DATA.filter(function(p){ return p.existencias === 0; });
+  var bajoStock         = DATA.filter(function(p){ return p.existencias > 0 && p.existencias <= UMBRAL_BAJO; });
+  var valorCosto        = DATA.reduce(function(a,p){ return a + (p.costoUnitario||0) * p.existencias; }, 0);
+  var valorVentaPotencial = DATA.reduce(function(a,p){ return a + p.pvp * p.existencias; }, 0);
+  var margenPromedio = (function(){
+    var conCosto = DATA.filter(function(p){ return p.costoUnitario > 0; });
+    if (!conCosto.length) return 0;
+    var suma = conCosto.reduce(function(a,p){ return a + (p.pvp - p.costoUnitario) / p.pvp; }, 0);
+    return (suma / conCosto.length) * 100;
+  })();
+
+  var kpis = [
+    { label:'Total productos', valor: totalProductos.toLocaleString('es-CO'), clase:'' },
+    { label:'Categorías', valor: categorias.length, clase:'' },
+    { label:'Agotados', valor: agotados.length, clase: agotados.length ? 'alerta' : 'ok', sub: agotados.length ? 'requieren reposición' : 'sin agotados 🎉' },
+    { label:'Stock bajo (≤' + UMBRAL_BAJO + ')', valor: bajoStock.length, clase: bajoStock.length ? 'alerta':'ok' },
+    { label:'Inventario a costo', valor: cop(valorCosto), clase:'' },
+    { label:'Valor potencial de venta', valor: cop(valorVentaPotencial), clase:'ok' },
+    { label:'Margen bruto promedio', valor: margenPromedio.toFixed(1) + '%', clase: margenPromedio < 15 ? 'alerta' : 'ok' },
+  ];
+  document.getElementById('kpiGrid').innerHTML = kpis.map(function(k) {
+    return '<div class="kpi-card ' + k.clase + '">' +
+      '<div class="kpi-label">' + k.label + '</div>' +
+      '<div class="kpi-valor">' + k.valor + '</div>' +
+      (k.sub ? '<div class="kpi-sub">' + k.sub + '</div>' : '') +
+    '</div>';
+  }).join('');
+
+  document.getElementById('metaActualizacion').textContent =
+    'Generado a partir del último inventario importado · ' + totalProductos + ' SKU activos';
+
+  /* ── Distribución por categoría ── */
+  var porCategoria = {};
+  DATA.forEach(function(p) { porCategoria[p.categoria] = (porCategoria[p.categoria]||0) + 1; });
+  var maxCat = Math.max.apply(null, Object.values(porCategoria));
+  document.getElementById('catBars').innerHTML = Object.keys(porCategoria)
+    .sort(function(a,b){ return porCategoria[b]-porCategoria[a]; })
+    .map(function(c) {
+      var n = porCategoria[c];
+      var pct = Math.round((n/maxCat)*100);
+      return '<div class="cat-bar-row">' +
+        '<span class="cat-bar-label">' + c + '</span>' +
+        '<span class="cat-bar-track"><span class="cat-bar-fill" style="width:' + pct + '%"></span></span>' +
+        '<span class="cat-bar-num">' + n + '</span>' +
+      '</div>';
+    }).join('');
+
+  /* ── Alertas de stock bajo (se limita la vista a los más críticos; el resto
+        sigue disponible filtrando "Stock bajo" en la tabla completa de abajo) ── */
+  var LIMITE_ALERTAS = 200;
+  var alertasOrdenadas = bajoStock.slice().sort(function(a,b){ return a.existencias - b.existencias; });
+  var alertasVisibles  = alertasOrdenadas.slice(0, LIMITE_ALERTAS);
+  var notaAlertas = alertasOrdenadas.length > LIMITE_ALERTAS
+    ? '<p style="padding:.6rem 1rem 0;font-size:.72rem;color:var(--gris-500)">Mostrando los ' + LIMITE_ALERTAS +
+      ' más críticos de ' + alertasOrdenadas.length + '. Usa el filtro "Stock bajo" en la tabla de abajo para ver el resto.</p>'
+    : '';
+  document.getElementById('alertasWrap').innerHTML = !alertasVisibles.length
+    ? '<p style="padding:1rem;color:var(--gris-500)">No hay productos con stock bajo en este momento.</p>'
+    : '<table class="admin-tabla"><thead><tr><th>Producto</th><th>Categoría</th><th>Marca</th><th>Existencias</th></tr></thead><tbody>' +
+      alertasVisibles.map(function(p) {
+        return '<tr><td>' + p.nombre + '</td><td>' + p.categoria + '</td><td>' + p.marca + '</td>' +
+          '<td><span class="pill pill-bajo">' + p.existencias + ' und.</span></td></tr>';
+      }).join('') + '</tbody></table>' + notaAlertas;
+
+  /* ── Selector de categoría para la tabla principal ── */
+  var selCat = document.getElementById('filtroCategoriaTabla');
+  categorias.sort().forEach(function(c) {
+    var opt = document.createElement('option');
+    opt.value = c; opt.textContent = c;
+    selCat.appendChild(opt);
+  });
+
+  /* ── Tabla completa con búsqueda + filtros + orden + paginación ── */
+  var POR_PAGINA = 50;
+  var pagina = 1;
+  var ordenCampo = 'existencias';
+  var ordenAsc = true;
+
+  function datosFiltrados() {
+    var q = document.getElementById('buscarTabla').value.trim().toLowerCase();
+    var cat = selCat.value;
+    var estado = document.getElementById('filtroEstadoTabla').value;
+    return DATA.filter(function(p) {
+      if (q && !(p.nombre.toLowerCase().includes(q) || p.marca.toLowerCase().includes(q) || p.categoria.toLowerCase().includes(q))) return false;
+      if (cat && p.categoria !== cat) return false;
+      if (estado && estadoDe(p) !== estado) return false;
+      return true;
+    }).sort(function(a,b) {
+      var va = a[ordenCampo], vb = b[ordenCampo];
+      if (typeof va === 'string') { va = va.toLowerCase(); vb = vb.toLowerCase(); }
+      if (va < vb) return ordenAsc ? -1 : 1;
+      if (va > vb) return ordenAsc ? 1 : -1;
+      return 0;
+    });
+  }
+
+  function renderTabla() {
+    var datos = datosFiltrados();
+    var totalPag = Math.max(1, Math.ceil(datos.length / POR_PAGINA));
+    pagina = Math.min(pagina, totalPag);
+    var pageData = datos.slice((pagina-1)*POR_PAGINA, pagina*POR_PAGINA);
+
+    var flecha = function(campo) { return ordenCampo === campo ? (ordenAsc ? ' ▲' : ' ▼') : ''; };
+
+    document.getElementById('tablaWrap').innerHTML =
+      '<table class="admin-tabla"><thead><tr>' +
+        '<th class="sortable" data-campo="id">ID' + flecha('id') + '</th>' +
+        '<th class="sortable" data-campo="nombre">Producto' + flecha('nombre') + '</th>' +
+        '<th class="sortable" data-campo="categoria">Categoría' + flecha('categoria') + '</th>' +
+        '<th class="sortable" data-campo="marca">Marca' + flecha('marca') + '</th>' +
+        '<th class="sortable" data-campo="pvp">PVP' + flecha('pvp') + '</th>' +
+        '<th class="sortable" data-campo="costoUnitario">Costo' + flecha('costoUnitario') + '</th>' +
+        '<th class="sortable" data-campo="existencias">Existencias' + flecha('existencias') + '</th>' +
+        '<th>Estado</th>' +
+      '</tr></thead><tbody>' +
+      pageData.map(function(p) {
+        var est = estadoDe(p);
+        var pillClase = est === 'agotado' ? 'pill-agotado' : (est === 'bajo' ? 'pill-bajo' : 'pill-ok');
+        var pillTxt = est === 'agotado' ? 'Agotado' : (est === 'bajo' ? 'Stock bajo' : 'Disponible');
+        return '<tr><td>' + p.id + '</td><td>' + p.nombre + '</td><td>' + p.categoria + '</td><td>' + (p.marca||'—') + '</td>' +
+          '<td>' + cop(p.pvp) + '</td><td>' + cop(p.costoUnitario||0) + '</td><td>' + p.existencias + '</td>' +
+          '<td><span class="pill ' + pillClase + '">' + pillTxt + '</span></td></tr>';
+      }).join('') +
+      '</tbody></table>';
+
+    document.querySelectorAll('th.sortable').forEach(function(th) {
+      th.addEventListener('click', function() {
+        var campo = th.dataset.campo;
+        if (ordenCampo === campo) { ordenAsc = !ordenAsc; } else { ordenCampo = campo; ordenAsc = true; }
+        renderTabla();
+      });
+    });
+
+    document.getElementById('paginacion').innerHTML =
+      '<button id="pgPrev" ' + (pagina<=1?'disabled':'') + '>← Anterior</button>' +
+      '<span>Página ' + pagina + ' de ' + totalPag + ' · ' + datos.length + ' productos</span>' +
+      '<button id="pgNext" ' + (pagina>=totalPag?'disabled':'') + '>Siguiente →</button>';
+    var prev = document.getElementById('pgPrev'), next = document.getElementById('pgNext');
+    if (prev) prev.addEventListener('click', function(){ pagina--; renderTabla(); });
+    if (next) next.addEventListener('click', function(){ pagina++; renderTabla(); });
+  }
+
+  document.getElementById('buscarTabla').addEventListener('input', function(){ pagina = 1; renderTabla(); });
+  selCat.addEventListener('change', function(){ pagina = 1; renderTabla(); });
+  document.getElementById('filtroEstadoTabla').addEventListener('change', function(){ pagina = 1; renderTabla(); });
+
+  renderTabla();
+})();
+</script>
+</body>
+</html>

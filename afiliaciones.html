@@ -2,6 +2,16 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <!-- Anti-FOUC: aplica tema ANTES de pintar — sin parpadeo -->
+  <script>
+    (function(){
+      try {
+        var t = localStorage.getItem('tema');
+        if (!t) t = (window.matchMedia && window.matchMedia('(prefers-color-scheme:dark)').matches) ? 'dark' : 'light';
+        if (t === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+      } catch(e) {}
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Programa de Afiliación | Droguerías Económicas</title>
   <meta name="description" content="Únete a nuestro programa de afiliación y disfruta de descuentos exclusivos, puntos acumulables y promociones especiales para clientes fieles.">
@@ -20,11 +30,11 @@
        ╚══════════════════════════════════════════╝ -->
   <header class="header" role="banner">
     <div class="top-bar">
-      <span>🚚 Domicilio 24/7 en Mosquera y Facatativá</span>
+      <span>🚚 Domicilio 24/7 en Mosquera y Funza</span>
       <span class="top-bar-sep">|</span>
-      <a href="tel:+573124213986">📞 312 421 3986</a>
+      <a href="tel:+573118719476">📞 311 871 94 76</a>
       <span class="top-bar-sep">|</span>
-      <a href="https://wa.me/573124213986" target="_blank">💬 WhatsApp</a>
+      <a href="https://wa.me/573118719476" target="_blank">💬 WhatsApp</a>
     </div>
     <nav class="navbar" role="navigation" aria-label="Menú principal">
       <div class="navbar-brand">
@@ -43,7 +53,12 @@
         <li><a href="afiliaciones.html" class="active">Afiliación</a></li>
         <li><a href="contacto.html">Contacto</a></li>
         <li><a href="#" onclick="abrirCarrito()" aria-label="Carrito de compras"><i class="fas fa-shopping-cart"></i> <span id="carrito-count">0</span></a></li>
-      </ul>
+    </ul>
+    <div style="display:flex;align-items:center;gap:.6rem;margin-left:auto">
+      <button class="btn-tema" id="btnTema" onclick="toggleTema()" aria-label="Cambiar tema" title="Cambiar tema" style="flex-shrink:0">
+        <i class="fas fa-moon"></i>
+      </button>
+    </div>
     </nav>
   </header>
 
@@ -116,7 +131,7 @@
         </div>
       </div>
       <div style="margin-top:3rem">
-        <a href="https://wa.me/573124213986?text=Hola%2C+quiero+afiliarme+al+programa"
+        <a href="https://wa.me/573118719476?text=Hola%2C+quiero+afiliarme+al+programa"
            target="_blank" class="btn-primario">
           <i class="fab fa-whatsapp"></i> Afiliarme por WhatsApp
         </a>
@@ -156,7 +171,7 @@
       <div class="footer-grid">
         <div class="footer-marca">
           <h3>Droguerías Económicas</h3>
-          <p>Tu salud, nuestro compromiso. Más de 10 años sirviendo con calidad y confianza a Mosquera, Facatativá y alrededores.</p>
+          <p>Tu salud, nuestro compromiso. Más de 10 años sirviendo con calidad y confianza a Mosquera y Funza y alrededores.</p>
           <div style="margin-top:1rem">
             <p style="font-size:.72rem;font-weight:800;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem">Aceptamos</p>
             <div class="pagos-strip">
@@ -180,9 +195,9 @@
         </div>
         <div class="footer-contacto">
           <h4>Contáctanos</h4>
-          <p><i class="fas fa-phone"></i> <a href="tel:+573124213986">312 421 3986</a></p>
-          <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/573124213986" target="_blank">WhatsApp</a></p>
-          <p><i class="fas fa-map-marker-alt"></i> Diagonal 5 Este 7D 7-06, Facatativá</p>
+          <p><i class="fas fa-phone"></i> <a href="tel:+573118719476">311 871 94 76</a></p>
+          <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/573118719476" target="_blank">WhatsApp</a></p>
+          <p><i class="fas fa-map-marker-alt"></i> Calle 10 #16b 21, Mosquera</p>
           <p><i class="fas fa-clock"></i> Lun-Dom: 7am-10pm</p>
         </div>
       </div>
@@ -214,7 +229,7 @@
       <div class="domicilio-info">
         <i class="fas fa-motorcycle"></i>
         <div>
-          <strong>🛵 Domicilio: $3.000</strong> · Mosquera &amp; Facatativá<br>
+          <strong>🛵 domicilio GRATIS</strong> · Mosquera y Funza<br>
           <span style="font-weight:600;font-size:.73rem">⏱️ Entrega estimada: 30–40 minutos</span>
         </div>
       </div>
@@ -260,7 +275,7 @@
 <!-- WhatsApp flotante -->
 <div class="whatsapp-float">
   <div class="whatsapp-tooltip">¡Escríbenos por WhatsApp!</div>
-  <a href="https://wa.me/573124213986?text=Hola%2C+quiero+información+sobre+sus+productos"
+  <a href="https://wa.me/573118719476?text=Hola%2C+quiero+información+sobre+sus+productos"
      target="_blank" rel="noopener noreferrer"
      class="whatsapp-btn" aria-label="Contactar por WhatsApp">
     <i class="fab fa-whatsapp"></i>
@@ -296,5 +311,6 @@
     });
   </script>
 
+<script src="js/theme.js"></script>
 </body>
 </html>

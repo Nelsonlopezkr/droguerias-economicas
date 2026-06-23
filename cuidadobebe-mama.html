@@ -4,18 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bebé y Mamá | Droguerías Económicas</title>
-  <meta name="description" content="Confianza y protección para los más pequeños. Los mejores precios en Mosquera y Facatativá, Cundinamarca.">
+  <meta name="description" content="Pañales, leches de fórmula, cremas para bebé, ropa y productos para la mamá. Los mejores precios con domicilio 24/7 en Mosquera y Facatativá.">
+  <meta property="og:title" content="Bebé y Mamá — Droguerías Económicas">
+  <meta property="og:description" content="Pañales, leches, cremas y más para el bebé y la mamá. Los mejores precios con domicilio 24/7.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="img/icono.jpg">
   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="css/estilos.css">
-  <link rel="stylesheet" href="css/estilos-pro.css">
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-
-<!-- TOP BAR -->
 <div class="top-bar">
   <span>🛵 <strong>Domicilio: $3.000</strong> · Gratis en pedidos +$50.000</span>
   <span class="top-bar-sep">|</span>
@@ -23,121 +25,102 @@
   <span class="top-bar-sep">|</span>
   <span>🕐 Lun–Dom: 7 am – 10 pm</span>
 </div>
-
-<!-- NAVBAR -->
 <nav class="navbar" role="navigation" aria-label="Navegación principal">
   <a class="navbar-logo" href="index.html">
     <img src="img/icono.jpg" alt="Logo Droguerías Económicas" onerror="this.style.display='none'">
     <span>Droguerías <em>Económicas</em></span>
   </a>
-  <ul class="navbar-links" id="navLinks" role="list">
+  <ul class="navbar-links" id="navLinks">
     <li><a href="index.html">Inicio</a></li>
-    <li><a href="productos.html">Productos</a></li>
+    <li><a href="productos.html" class="activo">Productos</a></li>
     <li><a href="promociones.html">Promociones</a></li>
-    <li><a href="afiliaciones.html">Afiliación</a></li>
     <li><a href="contacto.html">Contacto</a></li>
   </ul>
   <div class="navbar-actions">
+    <button class="btn-dark-mode" id="btnDarkMode" aria-label="Activar modo oscuro" title="Modo oscuro">
+      <i class="fas fa-moon"></i>
+    </button>
     <button class="btn-carrito" id="btnAbrirCarrito" aria-label="Abrir carrito">
       <i class="fas fa-shopping-cart"></i> Carrito
-      <span class="carrito-badge oculto" aria-live="polite">0</span>
+      <span class="carrito-badge oculto">0</span>
     </button>
     <button class="navbar-toggle" id="navToggle" aria-label="Menú" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
 </nav>
-
-<!-- PAGE HERO -->
 <header class="page-hero" role="banner">
   <div class="breadcrumb">
-    <a href="index.html">Inicio</a> › <a href="productos.html">Productos</a> › Cuidado Bebé & Mamá
+    <a href="index.html">Inicio</a> - <a href="productos.html">Productos</a> - Bebé y Mamá
   </div>
-  <h1>Cuidado Bebé & Mamá</h1>
-  <p>Confianza y protección para los más pequeños</p>
+  <h1><i class="fas fa-baby"></i> Bebé y Mamá</h1>
+  <p>Pañales, leches de fórmula, cremas y todo lo que necesitan bebé y mamá</p>
 </header>
-
-<section class="detalle-categoria">
-        <div class="contenedor">
-            <h2 class="titulo">Productos para Bebé & Mamá</h2>
-            <div class="productos-grid">
-                <div class="producto-card">
-                    <img src="img/bebe1.jpg" alt="Pañales Huggies">
-                    <h3>Pañales Huggies Etapa 3</h3>
-                    <p>Suavidad y absorción para tu bebé.</p>
-                    <span class="precio">$49.900</span>
-                </div>
-                <div class="producto-card">
-                    <img src="img/bebe2.jpg" alt="Toallitas Húmedas">
-                    <h3>Toallitas Húmedas Johnson’s</h3>
-                    <p>Cuida la piel delicada del bebé.</p>
-                    <span class="precio">$12.500</span>
-                </div>
-                <div class="producto-card">
-                    <img src="img/bebe3.jpg" alt="Leche NAN 1">
-                    <h3>Fórmula NAN 1 400g</h3>
-                    <p>Nutrición completa desde el primer día.</p>
-                    <span class="precio">$39.800</span>
-                </div>
-                <div class="producto-card">
-                    <img src="img/bebe4.jpg" alt="Aceite Corporal">
-                    <h3>Aceite Corporal Baby Dove</h3>
-                    <p>Hidratación para la piel del bebé.</p>
-                    <span class="precio">$17.900</span>
-                </div>
-                <div class="producto-card">
-                    <img src="img/bebe5.jpg" alt="Multivitamínico Maternal">
-                    <h3>Multivitamínico Materna</h3>
-                    <p>Apoyo nutricional para mamá.</p>
-                    <span class="precio">$25.000</span>
-                </div>
-            </div>
+<section aria-label="Catálogo bebé y mamá">
+  <div class="container">
+    <h2 class="titulo-seccion" style="margin-bottom:1.5rem">Bebé y Mamá</h2>
+    <div class="categorias-grid" id="categoriasGrid" role="group" aria-label="Filtrar categoría"></div>
+    <div class="filtros-avanzados" style="margin-top:1.5rem">
+      <div class="filtro-grupo">
+        <label>💰 Precio máximo: <span id="precioMaxLabel">$200.000</span></label>
+        <div class="filtro-rango">
+          <span style="font-size:.72rem;color:var(--gris-500)">$0</span>
+          <input type="range" id="filtroPrecio" min="1000" max="200000" step="1000" value="200000">
+          <span style="font-size:.72rem;color:var(--gris-500)">$200k</span>
         </div>
-    </section>
-
-<!-- FOOTER -->
+      </div>
+      <div class="filtro-grupo">
+        <label>🏷️ Filtrar por</label>
+        <div class="filtro-tag-wrap">
+          <button class="filtro-tag" data-tag="Oferta">🔴 Ofertas</button>
+          <button class="filtro-tag" data-tag="Más vendido">🔥 Más vendido</button>
+          <button class="filtro-tag" data-tag="Nuevo">🟢 Nuevo</button>
+        </div>
+      </div>
+      <button class="btn-limpiar-filtros" id="btnLimpiarFiltros"><i class="fas fa-redo"></i> Limpiar</button>
+    </div>
+    <div class="productos-header">
+      <span class="productos-count" id="productosCount"></span>
+      <input type="search" class="busqueda-input" id="busquedaInput" placeholder="🔍 Buscar en Bebé y Mamá..." aria-label="Buscar producto">
+    </div>
+    <div class="productos-grid" id="productosGrid" role="list" aria-live="polite"></div>
+  </div>
+</section>
+<section style="background:var(--gris-100);padding:3rem 0">
+  <div class="container" style="max-width:640px;text-align:center">
+    <div style="background:linear-gradient(135deg,#4a148c,#7b1fa2 60%,#e65100);border-radius:20px;padding:2rem;color:#fff">
+      <p style="font-size:.72rem;font-weight:800;opacity:.65;text-transform:uppercase;letter-spacing:.1em;margin:0 0 .4rem">Droguerías Económicas</p>
+      <h2 style="font-size:1.5rem;font-weight:900;margin:0 0 .5rem">¿No encontraste lo que necesitas para tu bebé?</h2>
+      <p style="opacity:.88;margin:0 0 1.2rem;line-height:1.6;font-size:.9rem">Solicítalo y te lo conseguimos <strong style="color:#FFD54F">sin costo adicional</strong>.</p>
+      <a href="productos.html#solicitar-producto" style="background:#fff;color:#4a148c;font-weight:800;padding:.8rem 2rem;border-radius:50px;display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;font-size:.9rem">
+        <i class="fas fa-search-plus"></i> Solicitar un producto
+      </a>
+    </div>
+  </div>
+</section>
 <footer class="footer" role="contentinfo">
   <div class="container">
     <div class="footer-grid">
       <div class="footer-marca">
         <h3>Droguerías Económicas</h3>
-        <p>Tu salud, nuestro compromiso. Más de 10 años sirviendo con calidad y confianza a Mosquera, Facatativá y alrededores.</p>
-        <div style="margin-top:1rem">
+        <p>Tu salud, nuestro compromiso. Domicilio 24/7 en Mosquera y Facatativá.</p>
+        <div style="margin-top:.9rem">
           <p style="font-size:.72rem;font-weight:800;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem">Aceptamos</p>
-          <div class="pagos-strip">
-            <span class="pago-chip"><span>🟢</span> Nequi</span>
-            <span class="pago-chip"><span>🔵</span> Daviplata</span>
-            <span class="pago-chip"><span>💰</span> Contraentrega</span>
-            <span class="pago-chip"><span>🏦</span> Bancolombia</span>
-            <span class="pago-chip"><span>💵</span> Efectivo</span>
+          <div style="display:flex;flex-wrap:wrap;gap:.4rem">
+            <span style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:8px;padding:.25rem .65rem;font-size:.72rem;font-weight:700;color:rgba(255,255,255,.8)">🟢 Nequi</span>
+            <span style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:8px;padding:.25rem .65rem;font-size:.72rem;font-weight:700;color:rgba(255,255,255,.8)">🔵 Daviplata</span>
+            <span style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:8px;padding:.25rem .65rem;font-size:.72rem;font-weight:700;color:rgba(255,255,255,.8)">💰 Contraentrega</span>
+            <span style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:8px;padding:.25rem .65rem;font-size:.72rem;font-weight:700;color:rgba(255,255,255,.8)">💵 Efectivo</span>
           </div>
         </div>
       </div>
-      <div class="footer-col">
-        <h4>Navegación</h4>
-        <ul>
-          <li><a href="index.html">Inicio</a></li>
-          <li><a href="productos.html">Productos</a></li>
-          <li><a href="promociones.html">Promociones</a></li>
-          <li><a href="afiliaciones.html">Afiliación</a></li>
-          <li><a href="contacto.html">Contacto</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Categorías</h4>
-        <ul>
-          <li><a href="productos.html?cat=Medicamentos">Medicamentos</a></li>
-          <li><a href="productos.html?cat=Belleza">Belleza</a></li>
-          <li><a href="productos.html?cat=Cuidado%20Personal">Cuidado Personal</a></li>
-          <li><a href="productos.html?cat=Beb%C3%A9%20y%20Mam%C3%A1">Bebé &amp; Mamá</a></li>
-          <li><a href="productos.html?cat=Mercado%20y%20Hogar">Mercado y Hogar</a></li>
-        </ul>
-      </div>
+      <div class="footer-col"><h4>Navegación</h4><ul><li><a href="index.html">Inicio</a></li><li><a href="productos.html">Todos los productos</a></li><li><a href="promociones.html">Promociones</a></li><li><a href="contacto.html">Contacto</a></li></ul></div>
+      <div class="footer-col"><h4>Categorías</h4><ul><li><a href="medicamentos.html">Medicamentos</a></li><li><a href="belleza.html">Belleza</a></li><li><a href="cuidado-personal.html">Cuidado Personal</a></li><li><a href="cuidadobebe-mama.html">Bebé y Mamá</a></li><li><a href="mercado.html">Mercado y Hogar</a></li><li><a href="marcas.html">Marcas DE</a></li></ul></div>
       <div class="footer-col">
         <h4>Contacto</h4>
         <div class="footer-contacto">
           <div class="footer-contacto-item"><i class="fas fa-phone-alt"></i><span><a href="tel:+573124213986" style="color:inherit">312 421 3986</a></span></div>
-          <div class="footer-contacto-item"><i class="fab fa-whatsapp"></i><a href="https://wa.me/573124213986" target="_blank" style="color:inherit">WhatsApp</a></div>
+          <div class="footer-contacto-item"><i class="fas fa-envelope"></i><span>contacto@drogeriaseconomicas.com</span></div>
           <div class="footer-contacto-item"><i class="fas fa-map-marker-alt"></i><span>Facatativá, Cundinamarca</span></div>
           <div class="footer-contacto-item"><i class="fas fa-clock"></i><span>Lun – Dom: 7 am – 10 pm</span></div>
         </div>
@@ -153,56 +136,75 @@
     </div>
   </div>
 </footer>
-
-<!-- MODAL CARRITO -->
-<div class="modal-overlay" id="carritoModal" role="dialog" aria-modal="true" aria-label="Carrito de compras">
+<div class="modal-overlay" id="carritoModal" role="dialog" aria-modal="true" aria-label="Carrito">
   <div class="carrito-panel">
-    <div class="carrito-header">
-      <h2><i class="fas fa-shopping-cart"></i> Mi Carrito</h2>
-      <button class="btn-cerrar-carrito" id="btnCerrarCarrito" aria-label="Cerrar carrito">✕</button>
-    </div>
-    <div class="carrito-items" id="carritoItems">
-      <div class="carrito-vacio"><i class="fas fa-shopping-basket"></i><p>Tu carrito está vacío</p></div>
-    </div>
+    <div class="carrito-header"><h2><i class="fas fa-shopping-cart"></i> Mi Carrito</h2><button class="btn-cerrar-carrito" id="btnCerrarCarrito" aria-label="Cerrar">✕</button></div>
+    <div class="carrito-items" id="carritoItems"><div class="carrito-vacio"><i class="fas fa-shopping-basket"></i><p>Tu carrito está vacío</p></div></div>
     <div class="carrito-footer">
-      <div class="domicilio-info">
-        <i class="fas fa-motorcycle"></i>
-        <div><strong>🛵 Domicilio: $3.000</strong> · Mosquera &amp; Facatativá<br>
-        <span style="font-weight:600;font-size:.73rem">⏱️ Entrega estimada: 30–40 minutos</span></div>
-      </div>
+      <div class="domicilio-info"><i class="fas fa-motorcycle"></i><div><strong>🛵 Domicilio: $3.000</strong> · Mosquera &amp; Facatativá<br><span style="font-weight:600;font-size:.73rem">⏱️ Entrega estimada: 30–40 minutos</span></div></div>
       <div class="carrito-resumen">
         <div class="carrito-resumen-fila"><span>Subtotal</span><span id="carritoSubtotal">$0</span></div>
         <div class="carrito-resumen-fila"><span>Envío</span><span id="carritoEnvio">$0</span></div>
         <div id="carritoEnvioMsg">✅ Envío gratis en compras mayores a $50.000</div>
       </div>
       <div class="carrito-total-fila"><span>Total</span><span id="carritoTotal">$0</span></div>
+      <div><div class="pagos-carrito-title">💳 Aceptamos:</div><div class="pagos-carrito"><span class="pago-mini">🟢 Nequi</span><span class="pago-mini">🔵 Daviplata</span><span class="pago-mini">💰 Contraentrega</span><span class="pago-mini">🏦 Bancolombia</span><span class="pago-mini">💵 Efectivo</span></div></div>
       <button class="btn-checkout" id="btnCheckout"><i class="fab fa-whatsapp"></i> Pedir por WhatsApp</button>
       <button class="btn-vaciar" id="btnVaciarCarrito"><i class="fas fa-trash"></i> Vaciar carrito</button>
     </div>
   </div>
 </div>
-
-<!-- WhatsApp flotante -->
-<div class="whatsapp-float">
-  <div class="whatsapp-tooltip">¡Escríbenos por WhatsApp!</div>
-  <a href="https://wa.me/573124213986?text=Hola%2C+quiero+información" target="_blank" rel="noopener noreferrer" class="whatsapp-btn" aria-label="WhatsApp">
-    <i class="fab fa-whatsapp"></i>
-  </a>
-</div>
-
+<div class="whatsapp-float"><div class="whatsapp-tooltip">¡Escríbenos!</div><a href="https://wa.me/573124213986?text=Hola%2C+quiero+información+sobre+productos+para+bebé" target="_blank" rel="noopener" class="whatsapp-btn" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a></div>
 <div id="toast" class="toast" aria-live="assertive"></div>
-
+<nav class="bottom-nav" aria-label="Navegación rápida móvil">
+  <div class="bottom-nav-inner">
+    <a href="index.html" class="bn-item"><i class="fas fa-home"></i><span>Inicio</span></a>
+    <a href="productos.html" class="bn-item activo"><i class="fas fa-store"></i><span>Productos</span></a>
+    <button class="bn-item" id="btnAbrirCarritoMobile"><div class="bn-badge"><i class="fas fa-shopping-cart"></i><span class="bn-count oculto" id="bnCount">0</span></div><span>Carrito</span></button>
+    <a href="https://wa.me/573124213986?text=Hola" target="_blank" rel="noopener" class="bn-item"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></a>
+  </div>
+</nav>
+<script src="js/wa-config.js"></script>
 <script src="js/productos-data.js"></script>
+<script src="js/laboratorio-precios.js"></script>
+<script src="js/catalogo.js"></script>
 <script src="js/carrito.js"></script>
 <script src="js/pago.js"></script>
-<script src="js/app.js"></script>
 <script>
-const navToggle = document.getElementById('navToggle');
-const navLinks  = document.getElementById('navLinks');
-if (navToggle) navToggle.addEventListener('click', () => {
-  navLinks.classList.toggle('activo');
-  navToggle.setAttribute('aria-expanded', navLinks.classList.contains('activo'));
+var _CAT = 'Bebé y Mamá';
+document.addEventListener('DOMContentLoaded', function() {
+  setTimeout(function() { if (typeof filtrarCategoria === 'function') filtrarCategoria(_CAT); }, 150);
 });
+document.addEventListener('DOMContentLoaded', function() {
+  var sl = document.getElementById('filtroPrecio'), lb = document.getElementById('precioMaxLabel');
+  if (sl) sl.addEventListener('input', function() { lb.textContent = '$' + parseInt(sl.value).toLocaleString('es-CO'); _filtrar(); });
+  document.querySelectorAll('.filtro-tag').forEach(function(b) { b.addEventListener('click', function() { b.classList.toggle('activo'); _filtrar(); }); });
+  var btn = document.getElementById('btnLimpiarFiltros');
+  if (btn) btn.addEventListener('click', function() {
+    if (sl) { sl.value = 200000; lb.textContent = '$200.000'; }
+    document.querySelectorAll('.filtro-tag.activo').forEach(function(b) { b.classList.remove('activo'); });
+    if (typeof limpiarFiltros === 'function') limpiarFiltros();
+    setTimeout(function() { if (typeof filtrarCategoria === 'function') filtrarCategoria(_CAT); }, 100);
+  });
+});
+function _filtrar() {
+  if (typeof CATALOGO === 'undefined' || typeof ESTADO === 'undefined') return;
+  var pm = parseInt(document.getElementById('filtroPrecio')?.value || 200000);
+  var ta = Array.from(document.querySelectorAll('.filtro-tag.activo')).map(function(b) { return b.dataset.tag; });
+  ESTADO.filtros.precioMax = pm; ESTADO.filtros.tagsActivos = ta;
+  var r = CATALOGO.filter(function(p) {
+    if (p.categoria !== _CAT) return false;
+    if (p.variantes[0].precio > pm) return false;
+    if (ta.length && !ta.some(function(t) { return p.tags?.some(function(pt) { return pt.label === t; }); })) return false;
+    var q = (ESTADO.filtros.busqueda || '').toLowerCase();
+    return !q || p.nombre.toLowerCase().includes(q);
+  });
+  ESTADO.resultados = r; ESTADO.pagina = 1;
+  if (typeof renderGrilla === 'function') renderGrilla();
+  var c = document.getElementById('productosCount');
+  if (c) c.textContent = r.length + ' producto' + (r.length !== 1 ? 's' : '') + ' encontrado' + (r.length !== 1 ? 's' : '');
+}
 </script>
+<script src="assets/js/app.js"></script>
 </body>
 </html>

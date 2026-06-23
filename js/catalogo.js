@@ -17,7 +17,7 @@
 'use strict';
 
 /* ─── WhatsApp ─── */
-var WA_NUM = '573124213986';
+var WA_NUM = '573118719476';
 
 var CFG = {
   DESTACADOS: 10,
@@ -42,6 +42,96 @@ var ES_INDEX = false;
 
 /* ID del producto actualmente abierto en el modal */
 var modalProductoId = null;
+
+/* ══════════════════════════════════════════════════════════════════
+   SISTEMA DE IMÁGENES DEL CATÁLOGO
+   ──────────────────────────────────────────────────────────────────
+   Prioridad de resolución de imagen (de mayor a menor):
+   1. laboratorio.imagen  (imagen específica del lab activo)
+   2. variante.imagen     (imagen de la variante activa)
+   3. producto.imagen     (imagen base del producto)
+   4. /img/productos/{slug}.webp  (carpeta local, se agrega sin tocar datos)
+   5. /img/productos/{slug}.jpg   (fallback jpg)
+   6. /img/categorias/{categoria}.svg  (ícono de categoría)
+   7. Placeholder SVG inline elegante (nunca Picsum)
+
+   Para agregar la imagen de un producto:
+   Basta con subir el archivo a /img/productos/ con el nombre slug del producto.
+   Ejemplo: "Dolex Forte" → /img/productos/dolex-forte.webp
+   ══════════════════════════════════════════════════════════════════ */
+
+var IMG_BASE = 'img/productos/';
+var IMG_CATS = {
+  'Medicamentos':     'img/categorias/medicamentos.svg',
+  'Belleza':          'img/categorias/belleza.svg',
+  'Cuidado Personal': 'img/categorias/cuidado-personal.svg',
+  'Bebé y Mamá':      'img/categorias/bebe-mama.svg',
+  'Mercado y Hogar':  'img/categorias/mercado-hogar.svg',
+  'Marcas Propias':   'img/categorias/marcas-propias.svg',
+};
+
+function slugProducto(nombre) {
+  return nombre.toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+function resolverImagen(p, fallbackSeed) {
+  /* Retorna la mejor URL de imagen disponible.
+     El llamador debe añadir onerror para manejar 404. */
+  if (p._imgResuelta) return p._imgResuelta;
+
+  // Primero: imagen base del producto (si ya tiene una asignada en los datos)
+  if (p.imagen && !p.imagen.includes('picsum')) return p.imagen;
+
+  // Segundo: ruta local por slug
+  var slug = slugProducto(p.nombre);
+  p._slugImg = slug;
+  return IMG_BASE + slug + '.webp';
+}
+
+function onImgError(img, p, size) {
+  // size: 0='md' (card), 1='lg' (modal), 2='sm' (autocomplete), o string
+  if (size === 0) size = 'md';
+  if (size === 1) size = 'lg';
+  if (size === 2) size = 'sm';
+  /* Cadena de fallback cuando la imagen no existe en disco.
+     Orden: .webp → .jpg → icono de categoría SVG → placeholder inline */
+  var src = img.src;
+  var slug = p ? (p._slugImg || slugProducto(p.nombre)) : '';
+  var cat = p ? (p.categoria || '') : '';
+
+  if (src.includes('.webp') && slug) {
+    img.src = IMG_BASE + slug + '.jpg';
+  } else if (IMG_CATS[cat]) {
+    img.src = IMG_CATS[cat];
+    img.style.padding = size === 'sm' ? '8px' : '24px';
+    img.style.objectFit = 'contain';
+    img.style.background = 'var(--gris-50)';
+    img.style.opacity = '.6';
+  } else {
+    img.src = _placeholderSVG(cat, size);
+  }
+  img.onerror = null; // evitar bucle infinito
+}
+
+function _placeholderSVG(cat, size) {
+  var meta = CAT_VISUAL[cat] || { icon: 'fa-box', accent: '#1565C0' };
+  var sz = size === 'sm' ? 24 : 48;
+  // SVG simple con la inicial de la categoría como fallback ultimalinea
+  var letter = (cat || '?')[0].toUpperCase();
+  var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="' + sz*4 + '" height="' + sz*4 + '" viewBox="0 0 100 100">' +
+    '<rect width="100" height="100" fill="#E3F2FD" rx="12"/>' +
+    '<text x="50" y="62" text-anchor="middle" font-size="44" font-family="sans-serif" fill="#1565C0" opacity=".4">' + letter + '</text>' +
+    '</svg>';
+  return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+}
+
+window.slugProducto     = slugProducto;
+window.resolverImagen   = resolverImagen;
+window.onImgError       = onImgError;
+
 
 try { variantesActivas      = JSON.parse(localStorage.getItem('de_variantes')      || '{}'); } catch(e) { variantesActivas      = {}; }
 try { presentacionesActivas = JSON.parse(localStorage.getItem('de_presentaciones') || '{}'); } catch(e) { presentacionesActivas = {}; }
@@ -180,9 +270,9 @@ function renderTarjeta(p) {
     var _labKey0   = laboratoriosActivos[p.id] || _labKeys0[0];
     if (!p.laboratorios[_labKey0]) _labKey0 = _labKeys0[0];
     imagenSrc = _imagenParaLab(p, _labKey0);
-    if (!imagenSrc) imagenSrc = p.imagen || ('https://picsum.photos/seed/' + seed + '/400/400');
+    if (!imagenSrc) imagenSrc = resolverImagen(p, seed);
   } else {
-    imagenSrc = vari.imagen || p.imagen || ('https://picsum.photos/seed/' + seed + '/400/400');
+    imagenSrc = vari.imagen || resolverImagen(p, seed);
   }
 
   /* Tags */
@@ -379,7 +469,7 @@ function renderTarjeta(p) {
 
     '<div class="prod-img-wrap">' +
       '<img src="' + imagenSrc + '" alt="' + p.nombre + '" loading="lazy"' +
-        ' onerror="this.onerror=null;this.src=\'https://picsum.photos/seed/' + seed + '/400/400\'">' +
+        ' onerror=\"onImgError(this,p,0)\">' +
       '<div class="prod-tags">' + tagsHTML + '</div>' +
       '<span class="prod-cat-badge" style="background:' + meta.accent + '22;color:' + meta.accent + '">' +
         meta.emoji + ' ' + p.categoria +
@@ -596,7 +686,7 @@ function selLaboratorio(id, labKey) {
         imgEl.src = nuevaImg;
         imgEl.onerror = function() {
           this.onerror = null;
-          this.src = 'https://picsum.photos/seed/' + encodeURIComponent(p.nombre) + '/400/400';
+          this.src = resolverImagen(p, seed);
         };
       }
     }
@@ -766,6 +856,13 @@ function abrirModalProducto(id) {
   overlay.classList.add('activo');
   document.body.style.overflow = 'hidden';
 
+  /* El botón de tema del modal se crea con ícono de luna por defecto;
+     si ya estamos en modo oscuro, lo dejamos en sol para que coincida. */
+  if (document.documentElement.getAttribute('data-theme') === 'dark') {
+    var iconoTemaModal = overlay.querySelector('.btn-tema i');
+    if (iconoTemaModal) iconoTemaModal.className = 'fas fa-sun';
+  }
+
   overlay._escHandler = function(e) { if (e.key === 'Escape') cerrarModalProducto(); };
   document.addEventListener('keydown', overlay._escHandler);
 }
@@ -780,9 +877,9 @@ function _construirHTMLModal(p, meta) {
   if (tieneLaboratorios(p)) {
     var _mLabKey = modalLabActivo || laboratoriosActivos[p.id] || Object.keys(p.laboratorios)[0];
     imagenSrc = _imagenParaLab(p, _mLabKey);
-    if (!imagenSrc) imagenSrc = p.imagen || ('https://picsum.photos/seed/' + seed + '/600/600');
+    if (!imagenSrc) imagenSrc = resolverImagen(p, seed);
   } else {
-    imagenSrc = vari.imagen || p.imagen || ('https://picsum.photos/seed/' + seed + '/600/600');
+    imagenSrc = vari.imagen || resolverImagen(p, seed);
   }
 
   /* Tags */
@@ -937,11 +1034,15 @@ function _construirHTMLModal(p, meta) {
     /* ── Imagen lado izquierdo ── */
     '<div class="modal-prod-img-side">' +
       '<img id="modalProdImg" src="' + imagenSrc + '" alt="' + p.nombre + '"' +
-        ' onerror="this.src=\'https://picsum.photos/seed/' + seed + '/600/600\'">' +
+        ' onerror=\"onImgError(this,p,1)\">' +
     '</div>' +
 
     /* ── Información lado derecho ── */
     '<div class="modal-prod-info">' +
+
+      '<button class="btn-tema" onclick="toggleTema()" aria-label="Cambiar tema claro/oscuro" title="Cambiar tema">' +
+        '<i class="fas fa-moon"></i>' +
+      '</button>' +
 
       '<button class="modal-close" onclick="cerrarModalProducto()" aria-label="Cerrar">' +
         '<i class="fas fa-times"></i>' +
@@ -991,7 +1092,8 @@ function _construirHTMLModal(p, meta) {
 
       /* 8. Info extra */
       '<div class="modal-info-extra">' +
-        '<div class="modal-info-item"><i class="fas fa-motorcycle"></i><span>Domicilio <strong>$3.000</strong> · Gratis en compras +$50.000</span></div>' +
+        '<div class="modal-info-item"><i class="fas fa-motorcycle"></i><span>🚚 <strong>Domicilio GRATIS</strong> en Mosquera y Funza</span></div>' +
+        '<div class="modal-info-item"><i class="fas fa-mobile-alt"></i><span>💳 Pagos: Nequi/Daviplata al <strong>323 249 7559</strong></span></div>' +
         '<div class="modal-info-item"><i class="fas fa-shield-alt"></i><span>Productos 100% originales y verificados</span></div>' +
         '<div class="modal-info-item"><i class="fas fa-clock"></i><span>Entrega estimada <strong>30–40 min</strong></span></div>' +
       '</div>' +
@@ -1032,7 +1134,7 @@ function selVarianteModal(prodId, vi) {
   /* Imagen con transición */
   var imgEl = document.getElementById('modalProdImg');
   if (imgEl) {
-    var nuevaSrc = v.imagen || p.imagen || ('https://picsum.photos/seed/' + encodeURIComponent(p.nombre) + '/600/600');
+    var nuevaSrc = v.imagen || p.imagen || (resolverImagen(p, seed));
     imgEl.style.opacity = '0';
     setTimeout(function() { imgEl.src = nuevaSrc; imgEl.style.opacity = '1'; }, 150);
   }
@@ -1109,7 +1211,7 @@ function selLabModal(prodId, labKey) {
         imgModal.src = nuevaImgModal;
         imgModal.onerror = function() {
           this.onerror = null;
-          this.src = 'https://picsum.photos/seed/' + encodeURIComponent(p.nombre) + '/600/600';
+          this.src = resolverImagen(p, seed);
         };
         imgModal.style.opacity = '1';
       }, 150);
@@ -1343,6 +1445,24 @@ function inyectarEstilosModal() {
     '.variante-select{width:100%;padding:.35rem .5rem;border:1.5px solid #e0e0e0;border-radius:8px;font-family:inherit;font-size:.75rem;font-weight:600;color:#333;background:#fff;cursor:pointer;margin:.2rem 0}',
   ].join('');
   document.head.appendChild(s);
+}
+
+/* ════════════════════════════════════════════════════════
+   CATEGORÍAS PRESENTES EN EL CATÁLOGO
+   Devuelve solo las categorías que tienen al menos 1 producto,
+   en el orden definido en CAT_VISUAL (y cualquier categoría nueva
+   que no esté en CAT_VISUAL se agrega al final, por seguridad).
+   ════════════════════════════════════════════════════════ */
+function getCategorias() {
+  var presentes = {};
+  CATALOGO.forEach(function(p) {
+    if (p.categoria) presentes[p.categoria] = true;
+  });
+  var ordenadas = Object.keys(CAT_VISUAL).filter(function(c) { return presentes[c]; });
+  Object.keys(presentes).forEach(function(c) {
+    if (ordenadas.indexOf(c) === -1) ordenadas.push(c);
+  });
+  return ordenadas;
 }
 
 /* ════════════════════════════════════════════════════════
@@ -1631,7 +1751,7 @@ function mostrarAutocomplete(q, dropdown) {
     var v0    = p.variantes[0] || {};
     var precio = _precioCard(p, 0);
     var seed   = encodeURIComponent(p.nombre);
-    var img    = v0.imagen || p.imagen || ('https://picsum.photos/seed/' + seed + '/60/60');
+    var img = v0.imagen || resolverImagen(p, seed);
     var nombre = p.nombre.replace(
       new RegExp('(' + q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi'),
       '<mark>$1</mark>'
@@ -1641,7 +1761,7 @@ function mostrarAutocomplete(q, dropdown) {
       : '';
     return '<div class="ac-item" onclick="seleccionarSugerencia(\'' + p.nombre.replace(/'/g, "\\'") + '\', ' + p.id + ')">' +
       '<img class="ac-img" src="' + img + '" alt="' + p.nombre + '"' +
-        ' onerror="this.src=\'https://picsum.photos/seed/' + seed + '/60/60\'"' +
+        ' onerror=\"onImgError(this,p,2)\"' +
         ' style="width:40px;height:40px;object-fit:contain;background:#f5f5f5;border-radius:8px;flex-shrink:0;padding:3px">' +
       '<div class="ac-texto" style="flex:1;min-width:0">' +
         '<span class="ac-nombre">' + nombre + ' ' + uniTag + '</span>' +
@@ -1783,6 +1903,13 @@ document.addEventListener('DOMContentLoaded', function() {
   var params   = new URLSearchParams(window.location.search);
   var catParam = params.get('cat');
   if (catParam) ESTADO.filtros.categoria = decodeURIComponent(catParam);
+  var buscarParam = params.get('buscar');
+  if (buscarParam) {
+    ESTADO.filtros.busqueda = decodeURIComponent(buscarParam);
+    /* Reflejar en el input del catálogo si existe */
+    var busqInput = document.getElementById('busquedaInput');
+    if (busqInput) busqInput.value = ESTADO.filtros.busqueda;
+  }
 
   if (ES_INDEX) {
     requestAnimationFrame(function() {

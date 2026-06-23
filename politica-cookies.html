@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="assets/css/style.css">
   <style>
     .top-bar{background:linear-gradient(90deg,#0d47a1,#1565C0);color:#fff;font-size:.78rem;font-weight:700;padding:.45rem 1rem;display:flex;align-items:center;justify-content:center;gap:1.5rem;flex-wrap:wrap}
     .top-bar a{color:#FFD54F;text-decoration:none}
@@ -54,6 +55,7 @@
     <li><a href="contacto.html">Contacto</a></li>
   </ul>
   <div class="navbar-actions">
+    <button class="btn-dark-mode" id="btnDarkMode" aria-label="Activar modo oscuro" title="Modo oscuro"><i class="fas fa-moon"></i></button>
     <button class="navbar-toggle" id="navToggle" aria-label="Menú"><span></span><span></span><span></span></button>
   </div>
 </nav>
@@ -149,5 +151,6 @@ document.getElementById('navToggle')?.addEventListener('click', () => {
   document.getElementById('navLinks')?.classList.toggle('activo');
 });
 </script>
+<script src="assets/js/app.js"></script>
 </body>
 </html>

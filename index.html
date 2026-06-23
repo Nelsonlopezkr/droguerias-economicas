@@ -6,7 +6,7 @@
   <title>Droguerías Económicas | Tu salud, nuestro compromiso – Mosquera, Cundinamarca</title>
 
   <!-- SEO -->
-  <meta name="description" content="Droguerías Económicas en Mosquera-Funza, Cundinamarca. Medicamentos, belleza, cuidado personal y más. Servicio a domicilio 24/7. Llama al 311 8719476.">
+  <meta name="description" content="Droguerías Económicas en Mosquera y Funza. 🚚 Domicilio GRATIS. Medicamentos al mejor precio. WhatsApp: 311 871 94 76.">
   <meta name="keywords" content="droguería Mosquera, droguería Funza, medicamentos, belleza, cuidado personal, domicilio farmacia Cundinamarca">
 
   <!-- Open Graph (WhatsApp, Facebook) -->
@@ -53,331 +53,27 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+  <!-- Anti-FOUC: aplica tema ANTES de pintar — evita parpadeo claro→oscuro -->
+  <script>
+    (function(){
+      try {
+        var t = localStorage.getItem('tema');
+        if (!t) {
+          t = (window.matchMedia && window.matchMedia('(prefers-color-scheme:dark)').matches)
+              ? 'dark' : 'light';
+        }
+        if (t === 'dark') {
+          document.documentElement.setAttribute('data-theme', 'dark');
+          /* body aún no existe en este punto, lo maneja theme.js */
+        }
+      } catch(e) {}
+    })();
+  </script>
   <!-- Íconos -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-  <!-- Estilos -->
+  <!-- Estilos — un solo archivo unificado -->
   <link rel="stylesheet" href="css/estilos.css">
-  <link rel="stylesheet" href="css/mejoras.css">
-  <link rel="stylesheet" href="css/laboratorios-modal-premium.css">
-<link rel="stylesheet" href="css/imagenes-fix.css">
-
-  <!-- MEJORAS CSS DIAGNÓSTICO -->
-  <style>
-    /* ══ BARRA DE DOMICILIO (top-bar) ══ */
-    .top-bar {
-      background: linear-gradient(90deg, #0d47a1, #1565C0);
-      color: #fff;
-      font-size: .78rem;
-      font-weight: 700;
-      text-align: center;
-      padding: .45rem 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-      letter-spacing: .01em;
-    }
-    .top-bar a { color: #FFD54F; text-decoration: none; }
-    .top-bar-sep { opacity: .4; }
-
-    /* ══ MÉTODOS DE PAGO en footer ══ */
-    .pagos-strip {
-      display: flex;
-      flex-wrap: wrap;
-      gap: .5rem;
-      margin-top: .9rem;
-    }
-    .pago-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: .35rem;
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.14);
-      border-radius: 8px;
-      padding: .28rem .7rem;
-      font-size: .73rem;
-      font-weight: 700;
-      color: rgba(255,255,255,.82);
-      white-space: nowrap;
-    }
-    .pago-chip span { font-size: .95rem; }
-
-    /* ══ SECCIÓN TESTIMONIOS ══ */
-    .testimonios-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-      gap: 1.2rem;
-    }
-    .testimonio-card {
-      background: #fff;
-      border-radius: 16px;
-      padding: 1.4rem 1.5rem;
-      box-shadow: 0 2px 12px rgba(0,0,0,.07);
-      border: 1.5px solid var(--gris-200);
-      position: relative;
-      transition: transform .22s ease, box-shadow .22s ease;
-    }
-    .testimonio-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 28px rgba(0,0,0,.11);
-    }
-    .testimonio-card::before {
-      content: '"';
-      position: absolute;
-      top: .5rem;
-      right: 1.2rem;
-      font-size: 4rem;
-      color: var(--azul-50);
-      font-family: Georgia, serif;
-      line-height: 1;
-      pointer-events: none;
-    }
-    .test-estrellas { color: #FFA000; font-size: .85rem; margin-bottom: .6rem; }
-    .test-texto { font-size: .88rem; color: var(--gris-700); line-height: 1.6; margin-bottom: .9rem; font-style: italic; }
-    .test-autor { display: flex; align-items: center; gap: .65rem; }
-    .test-avatar {
-      width: 38px; height: 38px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--azul), var(--azul-light));
-      color: #fff;
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 900; font-size: .95rem;
-      flex-shrink: 0;
-    }
-    .test-nombre { font-weight: 800; font-size: .88rem; }
-    .test-barrio { font-size: .75rem; color: var(--gris-500); }
-
-    /* ══ BANNER MÁS VENDIDOS ══ */
-    .mas-vendidos-strip {
-      overflow-x: auto;
-      display: flex;
-      gap: .8rem;
-      padding: .4rem 0 1rem;
-      scrollbar-width: thin;
-    }
-    .mv-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: .5rem;
-      background: #fff;
-      border: 1.5px solid var(--gris-200);
-      border-radius: 50px;
-      padding: .42rem 1rem;
-      font-size: .8rem;
-      font-weight: 700;
-      white-space: nowrap;
-      cursor: pointer;
-      box-shadow: 0 1px 4px rgba(0,0,0,.06);
-      transition: border-color .2s, transform .2s;
-    }
-    .mv-chip:hover { border-color: var(--azul); transform: translateY(-2px); }
-    .mv-chip .mv-precio { color: var(--azul); font-weight: 900; }
-    .mv-label {
-      background: #e65100;
-      color: #fff;
-      font-size: .6rem;
-      font-weight: 900;
-      padding: .06rem .4rem;
-      border-radius: 50px;
-      letter-spacing: .04em;
-    }
-
-    /* ══ POLÍTICA DOMICILIO en carrito footer ══ */
-    .domicilio-info {
-      background: linear-gradient(135deg, var(--azul-50), #fff);
-      border: 1.5px solid rgba(21,101,192,.15);
-      border-radius: 12px;
-      padding: .8rem 1rem;
-      font-size: .8rem;
-      color: var(--azul);
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: .6rem;
-    }
-    .domicilio-info i { font-size: 1.1rem; flex-shrink: 0; }
-
-    /* ══ MÉTODOS PAGO en carrito footer ══ */
-    .pagos-carrito {
-      display: flex;
-      flex-wrap: wrap;
-      gap: .4rem;
-      margin-top: .2rem;
-    }
-    .pagos-carrito-title {
-      font-size: .73rem;
-      font-weight: 700;
-      color: var(--gris-700);
-      margin-bottom: .4rem;
-    }
-    .pago-mini {
-      background: var(--gris-100);
-      border-radius: 6px;
-      padding: .22rem .6rem;
-      font-size: .7rem;
-      font-weight: 700;
-      color: var(--gris-700);
-    }
-
-    /* ══ ENVÍO GRATIS DINÁMICO ══ */
-    #carritoEnvioMsg {
-      font-size: .75rem;
-      font-weight: 700;
-      color: var(--verde);
-      margin-top: .2rem;
-      min-height: 1.1em;
-      transition: color .3s;
-    }
-
-    /* ══ BOTTOM NAV (solo móvil) ══ */
-    .bottom-nav {
-      display: none;
-      position: fixed;
-      bottom: 0; left: 0; right: 0;
-      z-index: 1100;
-      background: #fff;
-      border-top: 1px solid var(--gris-200);
-      padding: .5rem 0 env(safe-area-inset-bottom, .5rem);
-      box-shadow: 0 -4px 16px rgba(0,0,0,.08);
-    }
-    .bottom-nav-inner {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-    }
-    .bn-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: .18rem;
-      text-decoration: none;
-      color: var(--gris-500);
-      font-size: .62rem;
-      font-weight: 700;
-      padding: .3rem .5rem;
-      border-radius: 10px;
-      transition: color .2s;
-      cursor: pointer;
-      border: none;
-      background: none;
-      font-family: inherit;
-    }
-    .bn-item.activo, .bn-item:hover { color: var(--azul); }
-    .bn-item i { font-size: 1.25rem; }
-    .bn-badge {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .bn-count {
-      position: absolute;
-      top: -5px; right: -8px;
-      background: var(--naranja);
-      color: #fff;
-      font-size: .55rem;
-      font-weight: 900;
-      width: 16px; height: 16px;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      border: 1.5px solid #fff;
-    }
-    .bn-count.oculto { display: none; }
-    @media (max-width: 768px) {
-      .bottom-nav { display: block; }
-      body { padding-bottom: 68px; }
-      .whatsapp-float { bottom: 5.5rem; }
-    }
-
-    /* ══ POLÍTICA DEVOLUCIONES en footer ══ */
-    .garantias-strip {
-      display: flex;
-      flex-wrap: wrap;
-      gap: .6rem;
-      margin-top: 1rem;
-      justify-content: center;
-    }
-    .garantia-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: .4rem;
-      background: rgba(255,255,255,.07);
-      border: 1px solid rgba(255,255,255,.1);
-      border-radius: 8px;
-      padding: .32rem .8rem;
-      font-size: .75rem;
-      color: rgba(255,255,255,.72);
-      font-weight: 600;
-    }
-
-    /* ══ BADGE PROMO en tarjetas ══ */
-    .prod-promo-badge {
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      background: linear-gradient(90deg, #e65100, #ff6d00);
-      color: #fff;
-      font-size: .62rem;
-      font-weight: 900;
-      text-align: center;
-      padding: .2rem;
-      z-index: 4;
-      letter-spacing: .05em;
-    }
-
-    /* ══ TOOLTIP FÓRMULA MÉDICA ══ */
-    .badge-formula {
-      display: inline-flex;
-      align-items: center;
-      gap: .3rem;
-      background: #FFF3E0;
-      color: #e65100;
-      border: 1px solid #FFB74D;
-      border-radius: 6px;
-      font-size: .66rem;
-      font-weight: 800;
-      padding: .15rem .5rem;
-      margin-top: .3rem;
-    }
-
-    /* ══ PROMO DEL DÍA top-bar extra ══ */
-    .promo-dia-bar {
-      background: linear-gradient(90deg, #e65100, #FF6D00);
-      color: #fff;
-      text-align: center;
-      padding: .4rem 1rem;
-      font-size: .78rem;
-      font-weight: 800;
-      letter-spacing: .02em;
-    }
-    .promo-dia-bar strong { color: #FFD54F; }
-
-    /* ══ SECCIÓN GARANTÍAS COMPRA ══ */
-    .garantias-compra {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-    .garantia-card {
-      display: flex;
-      align-items: flex-start;
-      gap: .8rem;
-      padding: 1rem 1.1rem;
-      background: #fff;
-      border-radius: 14px;
-      border: 1.5px solid var(--gris-200);
-      box-shadow: 0 1px 6px rgba(0,0,0,.05);
-    }
-    .garantia-icon {
-      font-size: 1.5rem;
-      flex-shrink: 0;
-      margin-top: .1rem;
-    }
-    .garantia-card h4 { font-size: .88rem; font-weight: 800; margin-bottom: .2rem; }
-    .garantia-card p  { font-size: .76rem; color: var(--gris-700); line-height: 1.5; }
-  </style>
+  <link rel="canonical" href="https://drogeriaseconomicas.com/">
 </head>
 
 
@@ -392,7 +88,7 @@
      ║  TOP BAR — DOMICILIO + TELÉFONO         ║
      ╚══════════════════════════════════════════╝ -->
 <div class="top-bar" role="banner">
-  <span>🛵 <strong>Domicilio: $3.000</strong> · Gratis en pedidos +$50.000</span>
+  <span>🚚 <strong>Domicilio GRATIS</strong> · Mosquera y Funza</span>
   <span class="top-bar-sep">|</span>
   <span>🕐 Lun–Dom: 7 am – 10 pm</span>
   <span class="top-bar-sep">|</span>
@@ -419,9 +115,13 @@
   </ul>
 
   <div class="navbar-actions">
-    <a href="tel:+573124213986" class="btn-tel-nav" style="display:none;color:var(--azul);font-weight:800;font-size:.85rem;padding:.4rem .7rem;border-radius:10px;background:var(--azul-50)" id="btnTelNav">
+    <a href="tel:+573118719476" class="btn-tel-nav" style="display:none;color:var(--azul);font-weight:800;font-size:.85rem;padding:.4rem .7rem;border-radius:10px;background:var(--azul-50)" id="btnTelNav">
       <i class="fas fa-phone-alt"></i>
     </a>
+    <!-- Toggle Dark Mode -->
+    <button class="btn-tema" id="btnTema" onclick="toggleTema()" aria-label="Cambiar tema" title="Cambiar tema">
+      <i class="fas fa-moon"></i>
+    </button>
     <button class="btn-carrito" id="btnAbrirCarrito" aria-label="Abrir carrito de compras">
       <i class="fas fa-shopping-cart"></i> Carrito
       <span class="carrito-badge oculto" aria-live="polite">0</span>
@@ -436,39 +136,209 @@
      ║  HERO                                    ║
      ╚══════════════════════════════════════════╝ -->
 <header class="hero" id="inicio" role="banner">
-  <div class="hero-badge">🏥 Mosquera , Cundinamarca</div>
-  <h1>Tu salud merece lo <span>mejor</span></h1>
-  <p>Medicamentos, belleza y cuidado personal al mejor precio. Servicio a domicilio 24/7 en Mosquera y Funza.</p>
-  <div class="hero-btns">
-    <a href="productos.html" class="btn-primario">
-      <i class="fas fa-box-open"></i> Ver Catálogo
-    </a>
-    <a href="https://wa.me/573124213986?text=Hola%2C+quiero+hacer+un+pedido" target="_blank" rel="noopener" class="btn-secundario">
-      <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
-    </a>
+
+  <div class="hero-bg-deco" aria-hidden="true">
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
   </div>
-  <div class="hero-stats">
-    <div class="stat"><div class="stat-num">300+</div><div class="stat-label">Productos</div></div>
-    <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">Domicilios</div></div>
-    <div class="stat"><div class="stat-num">10+</div><div class="stat-label">Años</div></div>
-    <div class="stat"><div class="stat-num">5★</div><div class="stat-label">Calificación</div></div>
+
+  <div class="hero-inner container">
+
+    <div class="hero-visual" aria-hidden="true">
+      <div class="hero-cruz-bg">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <rect x="75" y="10" width="50" height="180" rx="14" fill="rgba(255,255,255,.13)"/>
+          <rect x="10" y="75" width="180" height="50" rx="14" fill="rgba(255,255,255,.13)"/>
+        </svg>
+      </div>
+      <div class="hero-brand-card">
+        <div class="hero-brand-logo">
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="16" y="4" width="12" height="36" rx="4" fill="#1565C0"/>
+            <rect x="4" y="16" width="36" height="12" rx="4" fill="#1565C0"/>
+            <circle cx="30" cy="28" r="9" fill="#E65100"/>
+            <circle cx="30" cy="28" r="5.5" fill="#FF6D00"/>
+          </svg>
+        </div>
+        <div class="hero-brand-text">
+          <span class="hero-brand-name">DROGUERÍAS</span>
+          <span class="hero-brand-name hero-brand-naranja">ECONÓMICAS</span>
+          <span class="hero-brand-slogan">Tu salud, nuestro compromiso</span>
+        </div>
+      </div>
+      <div class="hero-float-card hero-float-izq">
+        <i class="fas fa-pills"></i>
+        <div><strong>2,028+</strong><span>Productos</span></div>
+      </div>
+      <div class="hero-float-card hero-float-der">
+        <i class="fas fa-motorcycle"></i>
+        <div><strong>GRATIS</strong><span>Domicilio</span></div>
+      </div>
+      <div class="hero-pill hero-pill-1">
+        <div class="pill-half pill-a"></div><div class="pill-half pill-b"></div>
+      </div>
+      <div class="hero-pill hero-pill-2">
+        <div class="pill-half pill-a"></div><div class="pill-half pill-b"></div>
+      </div>
+      <div class="hero-years-badge">
+        <span class="hero-years-num">10+</span>
+        <span class="hero-years-txt">años<br>de experiencia</span>
+      </div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-badge">🏥 Mosquera · Funza, Cundinamarca</div>
+      <h1>Medicamentos<br><span>al mejor precio</span></h1>
+      <p>🚚 <strong>Domicilio GRATIS</strong> en Mosquera y Funza. Calidad, confianza y ahorro para ti y tu familia.</p>
+
+      <div class="hero-benefits">
+        <div class="hero-benefit">
+          <div class="hero-benefit-icon"><i class="fas fa-shipping-fast"></i></div>
+          <span>Entrega rápida<br>30–40 min</span>
+        </div>
+        <div class="hero-benefit">
+          <div class="hero-benefit-icon"><i class="fas fa-shield-alt"></i></div>
+          <span>Productos<br>100% confiables</span>
+        </div>
+        <div class="hero-benefit">
+          <div class="hero-benefit-icon"><i class="fas fa-mobile-alt"></i></div>
+          <span>Pagos Nequi<br>323 249 7559</span>
+        </div>
+      </div>
+
+      <div class="hero-search" id="heroSearchWrap" role="search">
+        <div class="hero-search-inner">
+          <i class="fas fa-search hero-search-icon" aria-hidden="true"></i>
+          <input type="search" id="heroBuscadorInput" class="hero-search-input"
+            placeholder="Busca un medicamento, marca o categoría…"
+            autocomplete="off" aria-label="Buscar producto" aria-controls="heroDropdown">
+          <button class="hero-search-btn" onclick="heroIrACatalogo()" aria-label="Buscar">Buscar</button>
+        </div>
+        <div class="hero-search-dropdown" id="heroDropdown" role="listbox"></div>
+        <div class="hero-search-chips">
+          <span class="hero-chip-label">Popular:</span>
+          <button class="hero-chip" onclick="heroSetQ('Acetaminofén')">Acetaminofén</button>
+          <button class="hero-chip" onclick="heroSetQ('Ibuprofeno')">Ibuprofeno</button>
+          <button class="hero-chip" onclick="heroSetQ('Vitamina C')">Vitamina C</button>
+          <button class="hero-chip" onclick="heroSetQ('Electrolit')">Electrolit</button>
+        </div>
+      </div>
+
+      <div class="hero-btns">
+        <a href="productos.html" class="btn-primario">
+          <i class="fas fa-box-open"></i> Ver Catálogo
+        </a>
+        <a href="https://wa.me/573118719476?text=Hola%2C+quiero+hacer+un+pedido" target="_blank" rel="noopener" class="btn-secundario">
+          <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
+        </a>
+      </div>
+    </div>
   </div>
+
+  <div class="hero-bottom-strip">
+    <div class="container">
+      <div class="hero-strip-items">
+        <div class="hero-strip-item"><i class="fas fa-certificate"></i><span>Medicamentos<br><strong>originales</strong></span></div>
+        <div class="hero-strip-sep"></div>
+        <div class="hero-strip-item"><i class="fas fa-tag"></i><span>Precios<br><strong>económicos</strong></span></div>
+        <div class="hero-strip-sep"></div>
+        <div class="hero-strip-item"><i class="fas fa-lock"></i><span>Compra<br><strong>segura en línea</strong></span></div>
+        <div class="hero-strip-cta"><i class="fas fa-shopping-cart"></i><span>¡Compra fácil,<br>seguro y económico!</span></div>
+      </div>
+    </div>
+  </div>
+
   <div class="hero-wave" aria-hidden="true">
-    <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-      <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#ffffff"/>
+    <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#ffffff"/>
     </svg>
   </div>
 </header>
 
-<!-- ╔══════════════════════════════════════════╗
-     ║  MÁS PEDIDOS ESTA SEMANA                ║
-     ╚══════════════════════════════════════════╝ -->
-<section style="padding:1.5rem 0 0" aria-label="Más pedidos esta semana">
+<!-- Banda de confianza -->
+<section class="confianza-strip" aria-label="Por qué elegirnos">
   <div class="container">
-    <p style="font-size:.78rem;font-weight:800;color:var(--gris-500);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.6rem">
-      🔥 100+ pedidos esta semana
-    </p>
-    <div class="mas-vendidos-strip" id="masVendidosStrip" role="list"></div>
+    <div class="confianza-items">
+      <div class="confianza-item"><i class="fas fa-shipping-fast confianza-icon"></i><div><strong>Domicilio Gratis</strong><span>Mosquera y Funza</span></div></div>
+      <div class="confianza-sep"></div>
+      <div class="confianza-item"><i class="fab fa-whatsapp confianza-icon" style="color:#25D366"></i><div><strong>Pedidos WhatsApp</strong><span>311 871 94 76</span></div></div>
+      <div class="confianza-sep"></div>
+      <div class="confianza-item"><i class="fas fa-mobile-alt confianza-icon" style="color:#1B5E20"></i><div><strong>Pagos Nequi</strong><span>323 249 7559</span></div></div>
+      <div class="confianza-sep"></div>
+      <div class="confianza-item"><i class="fas fa-bolt confianza-icon" style="color:#E65100"></i><div><strong>Entrega Rápida</strong><span>30–40 minutos</span></div></div>
+      <div class="confianza-sep"></div>
+      <div class="confianza-item"><i class="fas fa-map-marker-alt confianza-icon"></i><div><strong>Cobertura</strong><span>Mosquera y Funza</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════════════════╗
+     ║  CATEGORÍAS HERO — Compra por categoría  ║
+     ╚══════════════════════════════════════════╝ -->
+<section class="categorias-hero" aria-labelledby="tit-cat-hero">
+  <div class="container">
+    <h2 class="titulo-seccion" id="tit-cat-hero">Compra por Categoría</h2>
+    <div class="cat-hero-grid">
+
+      <a href="productos.html?cat=Medicamentos" class="cat-hero-card" data-cat="Medicamentos">
+        <div class="cat-hero-icon"><i class="fas fa-pills"></i></div>
+        <span class="cat-hero-label">Medicamentos</span>
+        <span class="cat-hero-count"></span>
+      </a>
+
+      <a href="productos.html?cat=Belleza" class="cat-hero-card" data-cat="Belleza">
+        <div class="cat-hero-icon"><i class="fas fa-spa"></i></div>
+        <span class="cat-hero-label">Belleza</span>
+        <span class="cat-hero-count"></span>
+      </a>
+
+      <a href="productos.html?cat=Cuidado%20Personal" class="cat-hero-card" data-cat="Cuidado Personal">
+        <div class="cat-hero-icon"><i class="fas fa-hand-holding-heart"></i></div>
+        <span class="cat-hero-label">Cuidado Personal</span>
+        <span class="cat-hero-count"></span>
+      </a>
+
+      <a href="productos.html?cat=Beb%C3%A9%20y%20Mam%C3%A1" class="cat-hero-card" data-cat="Bebé y Mamá">
+        <div class="cat-hero-icon"><i class="fas fa-baby"></i></div>
+        <span class="cat-hero-label">Bebé y Mamá</span>
+        <span class="cat-hero-count"></span>
+      </a>
+
+      <a href="productos.html?cat=Mercado%20y%20Hogar" class="cat-hero-card" data-cat="Mercado y Hogar">
+        <div class="cat-hero-icon"><i class="fas fa-shopping-basket"></i></div>
+        <span class="cat-hero-label">Mercado y Hogar</span>
+        <span class="cat-hero-count"></span>
+      </a>
+
+      <a href="productos.html?cat=Marcas%20Propias" class="cat-hero-card" data-cat="Marcas Propias">
+        <div class="cat-hero-icon"><i class="fas fa-star"></i></div>
+        <span class="cat-hero-label">Marcas DE</span>
+        <span class="cat-hero-count"></span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════════════════╗
+     ║  TOP VENTAS — LO QUE MÁS COMPRAN        ║
+     ╚══════════════════════════════════════════╝ -->
+<section id="top-ventas" aria-labelledby="tit-top-ventas" style="padding:1.8rem 0 0">
+  <div class="container">
+    <h2 class="titulo-seccion" id="tit-top-ventas">🔥 Lo Que Más Compran Nuestros Clientes</h2>
+    <p class="tv-subtitulo">🏆 Ranking de nuestras <strong>300 referencias</strong> más vendidas — datos reales</p>
+
+    <div class="tv-grid" id="topVentasGrid" role="list"></div>
+
+    <!-- Paginación -->
+    <div class="tv-paginacion" id="tvPaginacion" role="navigation" aria-label="Paginación de productos más vendidos"></div>
+
+    <div style="text-align:center;margin-top:1.2rem">
+      <button type="button" class="tv-ver-mas" id="btnVerMasTop">
+        Ver los 300 más vendidos <i class="fas fa-chevron-down"></i>
+      </button>
+    </div>
   </div>
 </section>
 
@@ -575,7 +445,7 @@
         <div class="garantia-icon">🛵</div>
         <div>
           <h4>Domicilio rápido 24/7</h4>
-          <p>Entrega en 30–40 min. Gratis en pedidos +$50.000. Cobertura: Mosquera y Funza.</p>
+          <p>Entrega en 30–40 min. Domicilio GRATIS en Mosquera y Funza.</p>
         </div>
       </div>
 
@@ -659,7 +529,7 @@
       <article class="servicio-card">
         <div class="servicio-icono"><i class="fas fa-motorcycle"></i></div>
         <h3>Domicilio 24/7</h3>
-        <p>Entrega en 30–40 min. <strong>$3.000</strong> domicilio — <strong>GRATIS</strong> en pedidos +$50.000. Llámanos: <a href="tel:+573118719476" style="color:var(--azul);font-weight:800">311 871 94 76</a></p>
+        <p>Entrega en 30–40 min. <strong>Domicilio GRATIS</strong> en Mosquera y Funza. Llámanos: <a href="tel:+573118719476" style="color:var(--azul);font-weight:800">311 871 94 76</a></p>
       </article>
 
       <article class="servicio-card">
@@ -845,7 +715,7 @@
       <div class="domicilio-info">
         <i class="fas fa-motorcycle"></i>
         <div>
-          <strong>🛵 Domicilio: $3.000</strong> · Mosquera &amp; Funza<br>
+          <strong>🚚 Domicilio GRATIS</strong> · Mosquera &amp; Funza<br>
           <span style="font-weight:600;font-size:.73rem">⏱️ Entrega estimada: 30–40 minutos</span>
         </div>
       </div>
@@ -928,123 +798,237 @@
   </div>
 </nav>
 
-<!-- Scripts -->
- <script src="js/wa-config.js"></script>
+<!-- Scripts de datos y lógica (no modificar) -->
+<script src="js/wa-config.js"></script>
 <script src="js/productos-data.js"></script>
+<script src="js/top-ventas-data.js"></script>
 <script src="js/laboratorio-precios.js"></script>
 <script src="js/catalogo.js"></script>
 <script src="js/carrito.js"></script>
 
+<!-- Top Ventas — render con paginación -->
 <script>
-/* ══════════════════════════════════════════════
-   MEJORAS DEL DIAGNÓSTICO — Scripts inline
-   ══════════════════════════════════════════════ */
-
-/* 1. NAVBAR TOGGLE */
-const navToggle = document.getElementById('navToggle');
-const navLinks  = document.getElementById('navLinks');
-if (navToggle) navToggle.addEventListener('click', () => {
-  navLinks.classList.toggle('activo');
-  navToggle.setAttribute('aria-expanded', navLinks.classList.contains('activo'));
-});
-
-/* 2. BOTTOM NAV — sincronizar badge con carrito */
-const btnAbrirCarritoMobile = document.getElementById('btnAbrirCarritoMobile');
-if (btnAbrirCarritoMobile) {
-  btnAbrirCarritoMobile.addEventListener('click', () => {
-    const modal = document.getElementById('carritoModal');
-    if (modal) modal.classList.add('activo');
-  });
-}
-
-/* 3. SINCRONIZAR badge bottom nav con carrito principal */
-function syncBnBadge() {
-  const mainBadge = document.querySelector('.carrito-badge');
-  const bnCount   = document.getElementById('bnCount');
-  if (!mainBadge || !bnCount) return;
-  const n = mainBadge.textContent.trim();
-  const oculto = mainBadge.classList.contains('oculto');
-  bnCount.textContent = n;
-  bnCount.classList.toggle('oculto', oculto);
-}
-const badgeObserver = new MutationObserver(syncBnBadge);
-const mainBadge = document.querySelector('.carrito-badge');
-if (mainBadge) badgeObserver.observe(mainBadge, { childList: true, attributes: true });
-
-/* 4. MENSAJE DINÁMICO ENVÍO GRATIS */
-function actualizarMensajeEnvio() {
-  const subtotalEl = document.getElementById('carritoSubtotal');
-  const msgEl      = document.getElementById('carritoEnvioMsg');
-  if (!subtotalEl || !msgEl) return;
-  const raw      = subtotalEl.textContent.replace(/[^0-9]/g, '');
-  const subtotal = parseInt(raw, 10) || 0;
-  const umbral   = 50000;
-  if (subtotal === 0) {
-    msgEl.textContent = '✅ Envío gratis en compras mayores a $50.000';
-    msgEl.style.color = 'var(--verde)';
-  } else if (subtotal >= umbral) {
-    msgEl.textContent = '🎉 ¡Envío gratis aplicado!';
-    msgEl.style.color = 'var(--verde)';
-  } else {
-    const falta = (umbral - subtotal).toLocaleString('es-CO');
-    msgEl.textContent = `🎁 ¡Solo te faltan $${falta} para envío gratis!`;
-    msgEl.style.color = 'var(--naranja)';
-  }
-}
-const subtotalEl = document.getElementById('carritoSubtotal');
-if (subtotalEl) new MutationObserver(actualizarMensajeEnvio).observe(subtotalEl, { childList: true });
-
-/* 5. PROMO DEL DÍA (rotación por día de la semana) */
 (function() {
-  const promasDia = [
-    { texto: '🌟 HOY DOMINGO — Electrolit 3 por el precio de 2. <strong>¡Solo hoy!</strong>' },
-    { texto: '🌟 HOY LUNES — Acetaminofén MK 100 tab a <strong>$16.000</strong> (normal $18.000)' },
-    { texto: '🌟 HOY MARTES — Loratadina 2×1 · Paga 1 lleva 2 · ¡Anti-alergia!' },
-    { texto: '🌟 HOY MIÉRCOLES — Vitamina C efervescente x10 a <strong>$4.500</strong>' },
-    { texto: '🌟 HOY JUEVES — Omeprazol 20mg x30 cáps a <strong>$9.800</strong>' },
-    { texto: '🌟 HOY VIERNES — Crema Bepanthen 30g a <strong>$15.000</strong> (normal $18.000)' },
-    { texto: '🌟 HOY SÁBADO — Pañales Pampers talla 2 x40 a <strong>$24.500</strong>' },
-  ];
-  const bar = document.getElementById('promoDiaBar');
-  if (bar) bar.innerHTML = promasDia[new Date().getDay()].texto;
-})();
+  'use strict';
+  var LIMITE_INICIAL = 8;
+  var POR_PAGINA    = LIMITE_INICIAL;
+  var mostrandoTodos = false;
+  var paginaActual   = 1;
 
-/* 6. MÁS VENDIDOS STRIP */
-document.addEventListener('DOMContentLoaded', () => {
-  if (typeof CATALOGO === 'undefined') return;
-  const strip = document.getElementById('masVendidosStrip');
-  if (!strip) return;
-  const vendidos = CATALOGO
-    .filter(p => p.tags && p.tags.some(t => t.label === 'Más vendido'))
-    .slice(0, 8);
-  strip.innerHTML = vendidos.map(p => {
-    const precio = p.variantes[0].precio;
-    return `<div class="mv-chip" role="listitem" onclick="location.href='productos.html'">
-      <span class="mv-label">TOP</span>
-      <span>${p.nombre}</span>
-      <span class="mv-precio">$${precio.toLocaleString('es-CO')}</span>
-    </div>`;
-  }).join('');
-});
+  function medalla(r) {
+    if (r === 1) return 'oro';
+    if (r === 2) return 'plata';
+    if (r === 3) return 'bronce';
+    if (r <= 10) return 'top10';
+    return '';
+  }
+  function rankLabel(r) {
+    if (r === 1) return '🥇 #1 más vendido';
+    if (r === 2) return '🥈 #2 más vendido';
+    if (r === 3) return '🥉 #3 más vendido';
+    return '#' + r + ' más vendido';
+  }
 
-/* 7. URL PARAMS — pre-filtrar categoría desde enlaces footer */
-/* (manejado en productos.html con URLSearchParams) */
+  function renderTopVentas() {
+    var grid = document.getElementById('topVentasGrid');
+    if (!grid || typeof TOP_VENTAS === 'undefined') return;
+    var num  = '573118719476';
+    var lista = mostrandoTodos
+      ? TOP_VENTAS
+      : TOP_VENTAS.slice((paginaActual - 1) * POR_PAGINA, paginaActual * POR_PAGINA);
 
-/* 8. CATEGORÍAS FOOTER — redirigir a productos.html con filtro */
-document.querySelectorAll('a[href*="productos.html?cat="]').forEach(a => {
-  a.addEventListener('click', e => {
-    /* el href ya tiene el param, productos.html lo lee */
+    grid.innerHTML = lista.map(function(p) {
+      var msg  = encodeURIComponent('Hola! Vi que ' + p.nombre + ' es de los más vendidos 🔥 ¿Tienen disponibilidad?');
+      var badge = p.ranking <= 3
+        ? '<span class="tv-badge-top">TOP ' + p.ranking + '</span>'
+        : (p.ranking <= 10 ? '<span class="tv-badge-10">Top 10</span>' : '');
+      return '<div class="tv-card" role="listitem">' +
+        '<div class="tv-card-head">' +
+          '<span class="tv-rank ' + medalla(p.ranking) + '">' + rankLabel(p.ranking) + '</span>' +
+          badge +
+        '</div>' +
+        '<span class="tv-icono">' + p.icono + '</span>' +
+        '<span class="tv-nombre">' + p.nombre + '</span>' +
+        '<span class="tv-presentacion">' + p.presentacion + '</span>' +
+        '<div class="tv-precio-row">' +
+          '<span class="tv-precio">$' + p.precio.toLocaleString('es-CO') + '</span>' +
+          '<span class="tv-vendidos"><i class="fas fa-fire"></i> ' + p.vendidos.toLocaleString() + ' vend.</span>' +
+        '</div>' +
+        '<a class="tv-btn-wsp" href="https://wa.me/' + num + '?text=' + msg + '" target="_blank" rel="noopener">' +
+          '<i class="fab fa-whatsapp"></i> Pedir — 🚚 GRATIS' +
+        '</a>' +
+      '</div>';
+    }).join('');
+
+    renderPaginacion();
+  }
+
+  function renderPaginacion() {
+    var pag = document.getElementById('tvPaginacion');
+    if (!pag) return;
+    if (mostrandoTodos) { pag.style.display = 'none'; return; }
+    pag.style.display = 'flex';
+    var totalPags = Math.ceil(TOP_VENTAS.length / POR_PAGINA);
+    var ini = Math.max(1, paginaActual - 2);
+    var fin = Math.min(totalPags, ini + 4);
+    var html = '';
+    html += '<button class="tv-pag-btn" ' + (paginaActual===1?'disabled':'') + ' onclick="tvIrPag(' + (paginaActual-1) + ')"><i class="fas fa-chevron-left"></i></button>';
+    for (var i = ini; i <= fin; i++)
+      html += '<button class="tv-pag-btn' + (i===paginaActual?' activo':'') + '" onclick="tvIrPag(' + i + ')">' + i + '</button>';
+    html += '<button class="tv-pag-btn" ' + (paginaActual===totalPags?'disabled':'') + ' onclick="tvIrPag(' + (paginaActual+1) + ')"><i class="fas fa-chevron-right"></i></button>';
+    html += '<span class="tv-pag-info">Página ' + paginaActual + ' / ' + totalPags + '</span>';
+    pag.innerHTML = html;
+  }
+
+  window.tvIrPag = function(pg) {
+    var totalPags = Math.ceil(TOP_VENTAS.length / POR_PAGINA);
+    if (pg < 1 || pg > totalPags) return;
+    paginaActual = pg;
+    renderTopVentas();
+    var sec = document.getElementById('top-ventas');
+    if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  document.addEventListener('DOMContentLoaded', function() {
+    renderTopVentas();
+
+    // Rellenar conteo de productos por categoría
+    if (typeof CATALOGO !== 'undefined') {
+      var counts = {};
+      CATALOGO.forEach(function(p) { counts[p.categoria] = (counts[p.categoria]||0)+1; });
+      document.querySelectorAll('.cat-hero-card').forEach(function(card) {
+        var el = card.querySelector('.cat-hero-count');
+        if (el && counts[card.dataset.cat]) el.textContent = counts[card.dataset.cat].toLocaleString() + ' productos';
+      });
+    }
+
+    var btn = document.getElementById('btnVerMasTop');
+    if (!btn) return;
+    btn.addEventListener('click', function() {
+      mostrandoTodos = !mostrandoTodos;
+      paginaActual   = 1;
+      btn.innerHTML  = mostrandoTodos
+        ? '<i class="fas fa-compress-alt"></i> Ver menos'
+        : 'Ver los 300 más vendidos <i class="fas fa-chevron-down"></i>';
+      renderTopVentas();
+    });
   });
-});
-
-/* 9. TELÉFONO en navbar móvil */
-function mostrarTelMovil() {
-  const btn = document.getElementById('btnTelNav');
-  if (btn && window.innerWidth < 600) btn.style.display = 'flex';
-}
-mostrarTelMovil();
-window.addEventListener('resize', mostrarTelMovil);
+})();
 </script>
 
+<script src="js/theme.js"></script>
+<script>
+/* ── Buscador del hero ── */
+(function () {
+  var WA_HERO = '573118719476';
+  var timer;
+
+  /* Escapar caracteres especiales de RegExp */
+  function escaparRE(s) {
+    return s.replace(/[-.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  window.heroSetQ = function (q) {
+    var inp = document.getElementById('heroBuscadorInput');
+    if (inp) { inp.value = q; inp.focus(); heroBuscar(q); }
+  };
+
+  window.heroIrACatalogo = function () {
+    var inp = document.getElementById('heroBuscadorInput');
+    var q = inp ? inp.value.trim() : '';
+    window.location.href = q
+      ? 'productos.html?buscar=' + encodeURIComponent(q)
+      : 'productos.html';
+  };
+
+  function heroBuscar(q) {
+    var dd = document.getElementById('heroDropdown');
+    if (!dd) return;
+    if (!q || q.length < 2) {
+      dd.innerHTML = '';
+      dd.classList.remove('activo');
+      return;
+    }
+
+    var ql = q.toLowerCase();
+    var catalogo = window.CATALOGO || [];
+    var res = catalogo.filter(function (p) {
+      return (p.nombre    && p.nombre.toLowerCase().includes(ql))
+          || (p.categoria && p.categoria.toLowerCase().includes(ql))
+          || (p.marca     && p.marca.toLowerCase().includes(ql));
+    }).slice(0, 7);
+
+    if (!res.length) {
+      dd.innerHTML =
+        '<div class="hero-ac-empty">' +
+          '<i class="fas fa-search-minus"></i>' +
+          '<span>Sin resultados para <strong>&ldquo;' + q + '&rdquo;</strong></span>' +
+          '<a class="hero-ac-wa" href="https://wa.me/' + WA_HERO +
+            '?text=' + encodeURIComponent('Hola, ¿tienen ' + q + '?') +
+            '" target="_blank" rel="noopener">' +
+            '<i class="fab fa-whatsapp"></i> Preguntar por WhatsApp' +
+          '</a>' +
+        '</div>';
+      dd.classList.add('activo');
+      return;
+    }
+
+    /* Resaltado del término buscado */
+    var reStr = escaparRE(q);
+    var re = new RegExp('(' + reStr + ')', 'gi');
+
+    dd.innerHTML = res.map(function (p) {
+      var v0     = (p.variantes && p.variantes[0]) || {};
+      var precio = v0.precio || 0;
+      var slug   = encodeURIComponent(p.nombre);
+      var img    = v0.imagen || p.imagen || ('https://picsum.photos/seed/' + slug + '/60/60');
+      var nombre = p.nombre.replace(re, '<mark>$1</mark>');
+      var meta   = (p.categoria || '') + (precio ? ' · $' + precio.toLocaleString('es-CO') : '');
+      var destino = encodeURIComponent(p.nombre);
+
+      return '<button class="hero-ac-item"' +
+               ' onclick="window.location.href=\'productos.html?buscar=' + destino + '\'"' +
+               ' role="option">' +
+               '<img src="' + img + '" alt=""' +
+                 ' onerror="this.src=\'https://picsum.photos/seed/' + slug + '/60/60\'">' +
+               '<span class="hero-ac-info">' +
+                 '<span class="hero-ac-nombre">' + nombre + '</span>' +
+                 '<span class="hero-ac-meta">' + meta + '</span>' +
+               '</span>' +
+               '<i class="fas fa-chevron-right"></i>' +
+             '</button>';
+    }).join('');
+
+    dd.classList.add('activo');
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var inp = document.getElementById('heroBuscadorInput');
+    if (!inp) return;
+
+    inp.addEventListener('input', function () {
+      clearTimeout(timer);
+      timer = setTimeout(function () { heroBuscar(inp.value.trim()); }, 220);
+    });
+
+    inp.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter')  { e.preventDefault(); heroIrACatalogo(); }
+      if (e.key === 'Escape') {
+        inp.value = '';
+        var dd = document.getElementById('heroDropdown');
+        if (dd) { dd.innerHTML = ''; dd.classList.remove('activo'); }
+      }
+    });
+
+    document.addEventListener('click', function (e) {
+      var wrap = document.getElementById('heroSearchWrap');
+      if (wrap && !wrap.contains(e.target)) {
+        var dd = document.getElementById('heroDropdown');
+        if (dd) { dd.innerHTML = ''; dd.classList.remove('activo'); }
+      }
+    });
+  });
+})();
+</script>
 </body>
 </html>

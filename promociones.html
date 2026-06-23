@@ -1,10 +1,19 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8">  <!-- Anti-FOUC: aplica tema ANTES de pintar — sin parpadeo -->
+  <script>
+    (function(){
+      try {
+        var t = localStorage.getItem('tema');
+        if (!t) t = (window.matchMedia && window.matchMedia('(prefers-color-scheme:dark)').matches) ? 'dark' : 'light';
+        if (t === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+      } catch(e) {}
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Promociones y Ofertas | Droguerías Económicas – Mosquera, Cundinamarca</title>
-  <meta name="description" content="Las mejores promociones en medicamentos, vitaminas, belleza, bebé y hogar. Descuentos reales hasta 50% OFF. Domicilio gratis en pedidos +$50.000. Mosquera y Facatativá, Cundinamarca.">
+  <meta name="description" content="Las mejores promociones en medicamentos, vitaminas, belleza, bebé y hogar. Descuentos reales hasta 50% OFF. Domicilio GRATIS en Mosquera y Funza. Mosquera y Funza, Cundinamarca.">
   <meta name="keywords" content="promociones droguería Mosquera, ofertas farmacia Cundinamarca, descuentos medicamentos, vitaminas oferta, belleza descuento">
   <meta property="og:title" content="Promociones | Droguerías Económicas">
   <meta property="og:description" content="Descuentos reales hasta 50% OFF en medicamentos, vitaminas y más. Domicilio gratis +$50.000.">
@@ -17,842 +26,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="css/estilos.css">
-
-  <style>
-    /* ═══════════════════════════════════════════════
-       VARIABLES & BASE
-    ═══════════════════════════════════════════════ */
-    :root {
-      --azul:        #1565C0;
-      --azul-dark:   #0d47a1;
-      --azul-light:  #1976D2;
-      --azul-50:     #e3f2fd;
-      --naranja:     #e65100;
-      --naranja-50:  #fff3e0;
-      --verde:       #2E7D32;
-      --verde-wa:    #25D366;
-      --rojo:        #c62828;
-      --morado:      #6A1B9A;
-      --cyan:        #00838F;
-      --gris-50:     #fafafa;
-      --gris-100:    #f5f5f5;
-      --gris-200:    #eeeeee;
-      --gris-300:    #e0e0e0;
-      --gris-500:    #9e9e9e;
-      --gris-700:    #616161;
-      --texto:       #1a1a2e;
-      --sombra-sm:   0 2px 8px rgba(0,0,0,.08);
-      --sombra-md:   0 4px 20px rgba(0,0,0,.12);
-      --sombra-lg:   0 8px 32px rgba(0,0,0,.15);
-      --sombra-xl:   0 16px 48px rgba(0,0,0,.18);
-      --radio:       16px;
-      --trans:       .22s ease;
-    }
-
-    /* ═══════════════════════════════════════════════
-       TOP BAR
-    ═══════════════════════════════════════════════ */
-    .top-bar {
-      background: linear-gradient(90deg, #0d47a1, #1565C0);
-      color: #fff; font-size: .78rem; font-weight: 700;
-      text-align: center; padding: .45rem 1rem;
-      display: flex; align-items: center; justify-content: center;
-      gap: 1.5rem; flex-wrap: wrap; letter-spacing: .01em;
-    }
-    .top-bar a { color: #FFD54F; text-decoration: none; }
-    .top-bar-sep { opacity: .4; }
-
-    /* ═══════════════════════════════════════════════
-       PROMO DÍA BAR
-    ═══════════════════════════════════════════════ */
-    .promo-dia-bar {
-      background: linear-gradient(90deg, var(--naranja), #FF6D00);
-      color: #fff; text-align: center; padding: .45rem 1rem;
-      font-size: .8rem; font-weight: 800; letter-spacing: .02em;
-    }
-    .promo-dia-bar strong { color: #FFD54F; }
-
-    /* ═══════════════════════════════════════════════
-       HERO PRINCIPAL
-    ═══════════════════════════════════════════════ */
-    .promo-hero {
-      position: relative;
-      background: linear-gradient(135deg, #0d47a1 0%, #1565C0 40%, #c62828 100%);
-      color: #fff;
-      padding: 5rem 1.5rem 7rem;
-      text-align: center;
-      overflow: hidden;
-    }
-    .promo-hero::before {
-      content: '';
-      position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse at 10% 50%, rgba(255,255,255,.08) 0%, transparent 50%),
-        radial-gradient(ellipse at 90% 20%, rgba(255,165,0,.12) 0%, transparent 45%),
-        radial-gradient(ellipse at 50% 100%, rgba(0,0,0,.15) 0%, transparent 50%);
-    }
-    /* partículas decorativas */
-    .hero-particle {
-      position: absolute;
-      border-radius: 50%;
-      opacity: .12;
-      animation: particleFloat 6s ease-in-out infinite;
-    }
-    .hero-particle:nth-child(1)  { width:180px;height:180px;background:#fff;top:-40px;left:-60px;animation-delay:0s; }
-    .hero-particle:nth-child(2)  { width:120px;height:120px;background:#FFD54F;top:30%;right:-30px;animation-delay:1.5s; }
-    .hero-particle:nth-child(3)  { width:80px;height:80px;background:#fff;bottom:20%;left:5%;animation-delay:3s; }
-    .hero-particle:nth-child(4)  { width:60px;height:60px;background:#FF8A65;bottom:10%;right:10%;animation-delay:4.5s; }
-    @keyframes particleFloat {
-      0%,100% { transform: translateY(0) scale(1); }
-      50%      { transform: translateY(-20px) scale(1.05); }
-    }
-    .promo-hero::after {
-      content: '';
-      position: absolute; bottom: -1px; left: 0; right: 0; height: 80px;
-      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z' fill='%23f5f5f5'/%3E%3C/svg%3E") no-repeat bottom/cover;
-    }
-    .promo-hero-inner { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; }
-    .breadcrumb-hero { font-size: .8rem; opacity: .65; margin-bottom: 1.2rem; }
-    .breadcrumb-hero a { color: #fff; text-decoration: none; }
-    .breadcrumb-hero a:hover { text-decoration: underline; }
-    .promo-hero-badge {
-      display: inline-flex; align-items: center; gap: .45rem;
-      background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.3);
-      border-radius: 50px; padding: .4rem 1.2rem;
-      font-size: .82rem; font-weight: 700;
-      backdrop-filter: blur(8px); margin-bottom: 1.4rem;
-      animation: badgePulse 2.5s ease-in-out infinite;
-    }
-    @keyframes badgePulse {
-      0%,100% { box-shadow: 0 0 0 0 rgba(255,255,255,.2); }
-      50%      { box-shadow: 0 0 0 8px rgba(255,255,255,0); }
-    }
-    .promo-hero h1 {
-      font-size: clamp(2rem, 5.5vw, 3.4rem);
-      font-weight: 900; line-height: 1.12;
-      margin-bottom: .9rem; letter-spacing: -.025em;
-    }
-    .promo-hero h1 em { font-style: normal; color: #FFD54F; }
-    .promo-hero p {
-      font-size: 1.1rem; opacity: .9; max-width: 560px;
-      margin: 0 auto 2.2rem; line-height: 1.7;
-    }
-    .promo-hero-btns {
-      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
-    }
-    .btn-hero-primary {
-      display: inline-flex; align-items: center; gap: .55rem;
-      background: var(--naranja); color: #fff; border: none;
-      border-radius: 14px; padding: .95rem 2rem;
-      font-family: inherit; font-weight: 800; font-size: 1rem;
-      cursor: pointer; text-decoration: none;
-      box-shadow: 0 4px 18px rgba(230,81,0,.45);
-      transition: all .22s ease;
-    }
-    .btn-hero-primary:hover { background: #bf360c; transform: translateY(-3px); box-shadow: 0 8px 26px rgba(230,81,0,.5); }
-    .btn-hero-secondary {
-      display: inline-flex; align-items: center; gap: .55rem;
-      background: rgba(255,255,255,.15); color: #fff;
-      border: 2px solid rgba(255,255,255,.5);
-      border-radius: 14px; padding: .93rem 2rem;
-      font-family: inherit; font-weight: 800; font-size: 1rem;
-      cursor: pointer; text-decoration: none;
-      backdrop-filter: blur(4px);
-      transition: all .22s ease;
-    }
-    .btn-hero-secondary:hover { background: rgba(255,255,255,.25); border-color: #fff; transform: translateY(-3px); }
-    .promo-hero-stats {
-      display: flex; gap: 2.5rem; justify-content: center; flex-wrap: wrap;
-      margin-top: 3rem; padding-top: 2rem;
-      border-top: 1px solid rgba(255,255,255,.18);
-    }
-    .ph-stat { text-align: center; }
-    .ph-stat-num { font-size: 2rem; font-weight: 900; line-height: 1; }
-    .ph-stat-label { font-size: .78rem; opacity: .72; font-weight: 600; margin-top: .2rem; }
-
-    /* ═══════════════════════════════════════════════
-       COUNTDOWN
-    ═══════════════════════════════════════════════ */
-    .countdown-strip {
-      background: #1a1a2e;
-      padding: .9rem 1.5rem;
-    }
-    .countdown-strip-inner {
-      max-width: 860px; margin: 0 auto;
-      display: flex; align-items: center; justify-content: center;
-      gap: 2rem; flex-wrap: wrap;
-    }
-    .countdown-label {
-      color: #FFD54F; font-weight: 800; font-size: .9rem;
-      display: flex; align-items: center; gap: .5rem;
-      white-space: nowrap;
-    }
-    .countdown-label i { animation: fireShake .8s ease-in-out infinite alternate; }
-    @keyframes fireShake {
-      from { transform: rotate(-8deg); }
-      to   { transform: rotate(8deg); }
-    }
-    .countdown-timer { display: flex; gap: .6rem; align-items: center; }
-    .countdown-unit {
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.14);
-      border-radius: 12px; padding: .65rem 1rem;
-      text-align: center; min-width: 68px;
-    }
-    .countdown-num {
-      display: block; font-size: 1.7rem; font-weight: 900;
-      color: #fff; line-height: 1; letter-spacing: -.02em;
-      font-variant-numeric: tabular-nums;
-    }
-    .countdown-text {
-      display: block; font-size: .62rem; color: rgba(255,255,255,.5);
-      font-weight: 700; text-transform: uppercase; letter-spacing: .07em; margin-top: .2rem;
-    }
-    .countdown-sep { color: rgba(255,255,255,.4); font-size: 1.4rem; font-weight: 900; }
-
-    /* ═══════════════════════════════════════════════
-       CARRUSEL HERO DE PROMOS
-    ═══════════════════════════════════════════════ */
-    .carousel-section { background: var(--gris-100); padding: 2.5rem 0 2rem; }
-    .carousel-wrap { position: relative; overflow: hidden; border-radius: 22px; }
-    .carousel-track {
-      display: flex;
-      transition: transform .5s cubic-bezier(.4,0,.2,1);
-    }
-    .carousel-slide {
-      min-width: 100%;
-      border-radius: 22px;
-      overflow: hidden;
-      position: relative;
-      min-height: 260px;
-      display: flex; align-items: center;
-      padding: 2.5rem 3rem;
-    }
-    .carousel-slide:nth-child(1) { background: linear-gradient(135deg, #0d47a1, #1976D2); }
-    .carousel-slide:nth-child(2) { background: linear-gradient(135deg, #b71c1c, #e53935); }
-    .carousel-slide:nth-child(3) { background: linear-gradient(135deg, #1B5E20, #2E7D32); }
-    .carousel-slide:nth-child(4) { background: linear-gradient(135deg, #4A148C, #7B1FA2); }
-    .carousel-slide-bg {
-      position: absolute; inset: 0; opacity: .1;
-      background-image: radial-gradient(circle at 80% 50%, rgba(255,255,255,.4) 0%, transparent 60%);
-    }
-    .carousel-slide-content { position: relative; z-index: 2; color: #fff; max-width: 540px; }
-    .carousel-slide-tag {
-      display: inline-flex; align-items: center; gap: .4rem;
-      background: rgba(255,255,255,.2); border-radius: 50px;
-      padding: .28rem .9rem; font-size: .75rem; font-weight: 800;
-      margin-bottom: .9rem; letter-spacing: .04em;
-    }
-    .carousel-slide-content h2 {
-      font-size: clamp(1.5rem, 3.5vw, 2.2rem);
-      font-weight: 900; line-height: 1.2; margin-bottom: .5rem;
-    }
-    .carousel-slide-content h2 em { font-style: normal; color: #FFD54F; }
-    .carousel-slide-content p { opacity: .88; font-size: .95rem; line-height: 1.6; margin-bottom: 1.4rem; }
-    .carousel-slide-actions { display: flex; gap: .8rem; flex-wrap: wrap; }
-    .btn-slide-wa {
-      display: inline-flex; align-items: center; gap: .45rem;
-      background: #25D366; color: #fff; border-radius: 11px;
-      padding: .7rem 1.4rem; font-weight: 800; font-size: .88rem;
-      text-decoration: none; transition: all .2s;
-      box-shadow: 0 3px 12px rgba(37,211,102,.35);
-    }
-    .btn-slide-wa:hover { background: #1EB358; transform: translateY(-2px); }
-    .btn-slide-ghost {
-      display: inline-flex; align-items: center; gap: .45rem;
-      background: rgba(255,255,255,.15); color: #fff;
-      border: 1.5px solid rgba(255,255,255,.4);
-      border-radius: 11px; padding: .7rem 1.4rem;
-      font-weight: 800; font-size: .88rem; text-decoration: none;
-      transition: all .2s;
-    }
-    .btn-slide-ghost:hover { background: rgba(255,255,255,.25); }
-    .carousel-slide-badge {
-      position: absolute; right: 3rem; top: 50%; transform: translateY(-50%);
-      background: rgba(255,255,255,.12); border: 2px solid rgba(255,255,255,.25);
-      border-radius: 20px; padding: 1.4rem 1.8rem;
-      text-align: center; color: #fff;
-      backdrop-filter: blur(8px);
-    }
-    .carousel-slide-badge .big { font-size: 2.8rem; font-weight: 900; line-height: 1; }
-    .carousel-slide-badge .small { font-size: .78rem; font-weight: 700; opacity: .85; margin-top: .3rem; }
-    .carousel-controls {
-      display: flex; align-items: center; justify-content: center;
-      gap: 1rem; margin-top: 1.2rem;
-    }
-    .carousel-btn {
-      width: 40px; height: 40px;
-      background: #fff; border: 2px solid var(--gris-200);
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      cursor: pointer; font-size: .9rem; color: var(--gris-700);
-      transition: all .2s; box-shadow: var(--sombra-sm);
-    }
-    .carousel-btn:hover { background: var(--azul); color: #fff; border-color: var(--azul); }
-    .carousel-dots { display: flex; gap: .4rem; }
-    .carousel-dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: var(--gris-300); cursor: pointer;
-      transition: all .3s;
-    }
-    .carousel-dot.activo { background: var(--azul); width: 24px; border-radius: 4px; }
-    @media(max-width:768px) {
-      .carousel-slide-badge { display: none; }
-      .carousel-slide { padding: 2rem 1.5rem; min-height: 220px; }
-    }
-
-    /* ═══════════════════════════════════════════════
-       MÁS VENDIDOS STRIP
-    ═══════════════════════════════════════════════ */
-    .mv-section { background: #fff; padding: 1.5rem 0; border-bottom: 1px solid var(--gris-200); }
-    .mv-header { display: flex; align-items: center; gap: .75rem; margin-bottom: .8rem; }
-    .mv-header span { font-size: .75rem; font-weight: 800; color: var(--gris-500); text-transform: uppercase; letter-spacing: .08em; }
-    .mas-vendidos-strip {
-      display: flex; gap: .75rem; overflow-x: auto;
-      padding: .3rem 0 .6rem; scrollbar-width: none;
-    }
-    .mas-vendidos-strip::-webkit-scrollbar { display: none; }
-    .mv-chip {
-      display: inline-flex; align-items: center; gap: .5rem;
-      background: #fff; border: 1.5px solid var(--gris-200);
-      border-radius: 50px; padding: .45rem 1rem;
-      font-size: .82rem; font-weight: 700; white-space: nowrap;
-      cursor: pointer; text-decoration: none; color: var(--texto);
-      box-shadow: 0 1px 4px rgba(0,0,0,.05);
-      transition: all .2s;
-    }
-    .mv-chip:hover { border-color: var(--azul); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,.1); }
-    .mv-precio { color: var(--azul); font-weight: 900; }
-    .mv-label {
-      background: var(--naranja); color: #fff;
-      font-size: .6rem; font-weight: 900;
-      padding: .06rem .4rem; border-radius: 50px;
-    }
-
-    /* ═══════════════════════════════════════════════
-       SECCIÓN FILTROS + GRID PROMOS
-    ═══════════════════════════════════════════════ */
-    .promos-section { background: var(--gris-100); padding: 3rem 0 4rem; }
-
-    /* Filtros */
-    .filtros-row {
-      display: flex; flex-wrap: wrap; gap: .5rem;
-      justify-content: center; margin-bottom: 2rem;
-    }
-    .filtro-btn {
-      display: inline-flex; align-items: center; gap: .4rem;
-      padding: .52rem 1.2rem;
-      border: 2px solid var(--gris-200); border-radius: 50px;
-      background: #fff; color: var(--gris-700);
-      font-family: inherit; font-size: .84rem; font-weight: 700;
-      cursor: pointer; transition: all .22s; white-space: nowrap;
-    }
-    .filtro-btn:hover { border-color: var(--azul); color: var(--azul); transform: translateY(-1px); }
-    .filtro-btn.activo {
-      background: var(--azul); color: #fff; border-color: var(--azul);
-      box-shadow: 0 3px 10px rgba(21,101,192,.3);
-    }
-    .filtro-count {
-      background: rgba(0,0,0,.1); border-radius: 50px;
-      padding: .05rem .45rem; font-size: .72rem;
-    }
-    .filtro-btn.activo .filtro-count { background: rgba(255,255,255,.2); }
-
-    /* Promo destacada */
-    .promo-featured-wrap {
-      background: linear-gradient(135deg, var(--azul-dark) 0%, var(--azul) 55%, #1976D2 100%);
-      border-radius: 24px; padding: 2.4rem 2.8rem;
-      display: grid; grid-template-columns: auto 1fr auto;
-      align-items: center; gap: 2rem;
-      margin-bottom: 2.5rem; color: #fff;
-      box-shadow: 0 10px 40px rgba(21,101,192,.3);
-      position: relative; overflow: hidden;
-    }
-    .promo-featured-wrap::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 80% 50%, rgba(255,255,255,.07) 0%, transparent 60%);
-    }
-    .pf-discount {
-      background: var(--naranja);
-      border-radius: 18px; padding: 1.2rem 1.6rem;
-      text-align: center; font-size: 2.4rem; font-weight: 900;
-      line-height: 1; min-width: 130px; flex-shrink: 0;
-      box-shadow: 0 4px 18px rgba(0,0,0,.2);
-      position: relative; z-index: 1;
-    }
-    .pf-discount small { display: block; font-size: .72rem; font-weight: 700; opacity: .88; margin-top: .4rem; }
-    .pf-info { position: relative; z-index: 1; }
-    .pf-info h3 { font-size: clamp(1.3rem, 2.5vw, 1.8rem); font-weight: 900; margin-bottom: .5rem; }
-    .pf-info p { opacity: .88; font-size: .95rem; line-height: 1.65; margin-bottom: 1.2rem; max-width: 560px; }
-    .pf-btns { display: flex; gap: .75rem; flex-wrap: wrap; }
-    .btn-pf-blanco {
-      display: inline-flex; align-items: center; gap: .45rem;
-      background: #fff; color: var(--azul-dark); border-radius: 11px;
-      padding: .72rem 1.5rem; font-family: inherit; font-weight: 800; font-size: .9rem;
-      text-decoration: none; transition: all .2s;
-      box-shadow: 0 2px 10px rgba(0,0,0,.15);
-    }
-    .btn-pf-blanco:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,.2); }
-    .btn-pf-wa {
-      display: inline-flex; align-items: center; gap: .45rem;
-      background: #25D366; color: #fff; border-radius: 11px;
-      padding: .72rem 1.5rem; font-family: inherit; font-weight: 800; font-size: .9rem;
-      text-decoration: none; transition: all .2s;
-      box-shadow: 0 2px 10px rgba(37,211,102,.3);
-    }
-    .btn-pf-wa:hover { background: #1EB358; transform: translateY(-2px); }
-    .pf-vigencia {
-      position: relative; z-index: 1; flex-shrink: 0;
-      text-align: center; opacity: .8;
-    }
-    .pf-vigencia .pf-vig-icon { font-size: 2rem; margin-bottom: .4rem; }
-    .pf-vigencia span { font-size: .8rem; font-weight: 700; display: block; }
-    @media(max-width:900px) {
-      .promo-featured-wrap { grid-template-columns: 1fr; text-align: center; padding: 1.8rem; }
-      .pf-discount { display: none; }
-      .pf-vigencia { display: none; }
-      .pf-btns { justify-content: center; }
-    }
-
-    /* Grid de tarjetas */
-    .promos-grid-main {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.5rem;
-    }
-
-    /* Tarjeta promo */
-    .promo-card-v2 {
-      background: #fff; border-radius: 20px; overflow: hidden;
-      box-shadow: 0 2px 14px rgba(0,0,0,.07);
-      border: 1.5px solid var(--gris-200);
-      display: flex; flex-direction: column;
-      transition: transform .28s cubic-bezier(.4,0,.2,1), box-shadow .28s;
-      position: relative;
-    }
-    .promo-card-v2:hover { transform: translateY(-7px); box-shadow: 0 14px 40px rgba(0,0,0,.14); }
-    .promo-card-v2[data-hidden="true"] { display: none; }
-
-    /* Imagen */
-    .pcard-img {
-      position: relative; height: 215px; overflow: hidden;
-      background: var(--gris-100);
-    }
-    .pcard-img img {
-      width: 100%; height: 100%; object-fit: cover;
-      transition: transform .55s ease;
-      display: block;
-    }
-    .promo-card-v2:hover .pcard-img img { transform: scale(1.07); }
-    .pcard-badges {
-      position: absolute; top: 12px; left: 12px;
-      display: flex; flex-direction: column; gap: 5px;
-      z-index: 2;
-    }
-    .pcard-badge {
-      display: inline-flex; align-items: center; gap: .3rem;
-      color: #fff; font-size: .7rem; font-weight: 900;
-      padding: .28rem .8rem; border-radius: 50px;
-      letter-spacing: .04em; box-shadow: 0 2px 8px rgba(0,0,0,.2);
-      white-space: nowrap;
-    }
-    .badge-naranja  { background: #e65100; }
-    .badge-azul     { background: #1565C0; }
-    .badge-verde    { background: #2E7D32; }
-    .badge-morado   { background: #6A1B9A; }
-    .badge-rojo     { background: #c62828; }
-    .badge-cyan     { background: #00838F; }
-    .badge-dorado   { background: linear-gradient(135deg, #F57F17, #F9A825); }
-    .badge-nuevo    { background: linear-gradient(135deg, #00695C, #00897B); }
-    .pcard-cat-tag {
-      position: absolute; top: 12px; right: 12px;
-      background: rgba(0,0,0,.55); color: #fff;
-      font-size: .66rem; font-weight: 700;
-      padding: .22rem .65rem; border-radius: 50px;
-      backdrop-filter: blur(4px); z-index: 2;
-    }
-
-    /* Cuerpo tarjeta */
-    .pcard-body { padding: 1.4rem 1.5rem; flex: 1; display: flex; flex-direction: column; gap: .55rem; }
-    .pcard-body h3 {
-      font-size: 1.05rem; font-weight: 900; color: var(--texto);
-      margin: 0; line-height: 1.3;
-    }
-    .pcard-body p { font-size: .87rem; color: #666; line-height: 1.65; margin: 0; flex: 1; }
-    .pcard-vigencia {
-      display: inline-flex; align-items: center; gap: .35rem;
-      font-size: .75rem; color: #888; font-weight: 600;
-      background: var(--gris-100); border-radius: 6px; padding: .25rem .7rem;
-      align-self: flex-start;
-    }
-
-    /* Precios */
-    .pcard-precios {
-      display: flex; align-items: center; gap: .75rem; flex-wrap: wrap;
-    }
-    .pcard-precio-antes {
-      font-size: .9rem; color: var(--gris-500);
-      text-decoration: line-through; font-weight: 600;
-    }
-    .pcard-precio-ahora {
-      font-size: 1.2rem; font-weight: 900; color: var(--naranja);
-    }
-    .pcard-ahorro {
-      font-size: .75rem; font-weight: 800; color: var(--verde);
-      background: #e8f5e9; border-radius: 6px; padding: .2rem .6rem;
-    }
-
-    /* Footer tarjeta */
-    .pcard-footer {
-      padding: 1rem 1.5rem;
-      border-top: 1px solid var(--gris-100);
-      display: flex; align-items: center; justify-content: space-between; gap: .75rem;
-    }
-    .btn-pcard {
-      display: inline-flex; align-items: center; gap: .4rem;
-      padding: .62rem 1.2rem; border-radius: 10px;
-      background: #25D366; color: #fff;
-      font-family: inherit; font-weight: 800; font-size: .84rem;
-      text-decoration: none; border: none; cursor: pointer;
-      transition: all .2s; white-space: nowrap;
-    }
-    .btn-pcard:hover { background: #1EB358; transform: translateY(-1px); }
-
-    /* Estado vacío filtros */
-    .promos-empty {
-      grid-column: 1/-1; text-align: center;
-      padding: 4rem 1rem; display: none;
-    }
-    .promos-empty.visible { display: block; }
-    .promos-empty-icon { font-size: 3.5rem; margin-bottom: 1rem; }
-    .promos-empty h3 { font-size: 1.2rem; font-weight: 800; margin-bottom: .5rem; }
-    .promos-empty p { color: var(--gris-700); }
-
-    /* ═══════════════════════════════════════════════
-       SECCIÓN CUPONES
-    ═══════════════════════════════════════════════ */
-    .cupones-section { background: #fff; padding: 3.5rem 0; }
-    .cupones-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.2rem; margin-top: 2rem;
-    }
-    .cupon-card {
-      border-radius: 18px; overflow: hidden;
-      box-shadow: 0 4px 18px rgba(0,0,0,.1);
-      display: flex; flex-direction: column;
-      transition: transform .25s, box-shadow .25s;
-      position: relative;
-    }
-    .cupon-card:hover { transform: translateY(-5px); box-shadow: 0 12px 32px rgba(0,0,0,.15); }
-    .cupon-header {
-      padding: 1.6rem 1.8rem 1.2rem;
-      color: #fff; position: relative; overflow: hidden;
-    }
-    .cupon-header::after {
-      content: '';
-      position: absolute; bottom: -18px; left: 0; right: 0; height: 35px;
-      background: inherit;
-      clip-path: ellipse(55% 100% at 50% 0%);
-    }
-    .cupon-dots {
-      position: absolute; top: 50%; right: -12px;
-      width: 24px; height: 24px; background: var(--gris-100);
-      border-radius: 50%; transform: translateY(-50%);
-      box-shadow: 0 0 0 4px var(--gris-100);
-    }
-    .cupon-dots::before {
-      content: '';
-      position: absolute; top: 50%; left: -36px;
-      width: 24px; height: 24px; background: var(--gris-100);
-      border-radius: 50%; transform: translateY(-50%);
-    }
-    .cupon-discount-label {
-      font-size: .78rem; font-weight: 700; opacity: .85; margin-bottom: .4rem;
-      text-transform: uppercase; letter-spacing: .06em;
-    }
-    .cupon-discount-val { font-size: 2.4rem; font-weight: 900; line-height: 1; }
-    .cupon-discount-val small { font-size: 1rem; font-weight: 700; }
-    .cupon-desc { font-size: .85rem; opacity: .88; margin-top: .3rem; }
-    .cupon-body { padding: 1.8rem 1.8rem 1.5rem; background: #fff; flex: 1; }
-    .cupon-code-label { font-size: .72rem; font-weight: 700; color: var(--gris-700); text-transform: uppercase; letter-spacing: .06em; margin-bottom: .55rem; }
-    .cupon-code-box {
-      display: flex; align-items: center; gap: .5rem;
-      background: var(--gris-100); border: 2px dashed var(--gris-300);
-      border-radius: 10px; padding: .75rem 1rem;
-    }
-    .cupon-code {
-      flex: 1; font-size: 1.15rem; font-weight: 900;
-      letter-spacing: .12em; color: var(--texto);
-      font-family: 'Courier New', monospace;
-    }
-    .btn-copiar {
-      display: flex; align-items: center; gap: .3rem;
-      background: var(--azul); color: #fff; border: none;
-      border-radius: 8px; padding: .42rem .9rem;
-      font-family: inherit; font-size: .76rem; font-weight: 800;
-      cursor: pointer; transition: all .2s; white-space: nowrap;
-    }
-    .btn-copiar:hover { background: var(--azul-dark); }
-    .btn-copiar.copiado { background: var(--verde); }
-    .cupon-condiciones {
-      margin-top: .9rem; font-size: .76rem; color: var(--gris-500);
-      line-height: 1.5;
-    }
-    .cupon-footer {
-      padding: 1rem 1.8rem; background: var(--gris-50);
-      border-top: 1px solid var(--gris-100);
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .cupon-usos { font-size: .78rem; font-weight: 700; color: var(--gris-700); }
-    .cupon-badge {
-      font-size: .68rem; font-weight: 900;
-      padding: .18rem .65rem; border-radius: 50px; color: #fff;
-    }
-
-    /* ═══════════════════════════════════════════════
-       SECCIÓN BENEFICIOS
-    ═══════════════════════════════════════════════ */
-    .beneficios-section { background: var(--gris-100); padding: 3rem 0; }
-    .beneficios-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 1.2rem;
-    }
-    .beneficio-card {
-      background: #fff; border-radius: var(--radio);
-      padding: 1.8rem 1.4rem;
-      text-align: center;
-      border: 1.5px solid var(--gris-200);
-      box-shadow: var(--sombra-sm);
-      transition: transform .25s, box-shadow .25s, border-color .25s;
-      position: relative; overflow: hidden;
-    }
-    .beneficio-card::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 3px;
-      background: linear-gradient(90deg, var(--azul), var(--naranja));
-      transform: scaleX(0); transform-origin: left;
-      transition: transform .3s;
-    }
-    .beneficio-card:hover { transform: translateY(-5px); box-shadow: var(--sombra-lg); border-color: rgba(21,101,192,.2); }
-    .beneficio-card:hover::before { transform: scaleX(1); }
-    .beneficio-icono {
-      width: 62px; height: 62px;
-      background: linear-gradient(135deg, var(--azul), var(--azul-light));
-      color: #fff; border-radius: 16px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.5rem; margin: 0 auto 1.2rem;
-      box-shadow: 0 4px 14px rgba(21,101,192,.3);
-    }
-    .beneficio-card h3 { font-size: .98rem; font-weight: 800; margin-bottom: .4rem; }
-    .beneficio-card p  { font-size: .82rem; color: var(--gris-700); line-height: 1.55; }
-
-    /* ═══════════════════════════════════════════════
-       MEDICAMENTOS CONTROLADOS
-    ═══════════════════════════════════════════════ */
-    .controlados-section {
-      background: linear-gradient(135deg, #1a1a2e 0%, #2d2d5e 100%);
-      padding: 3rem 0;
-    }
-    .controlados-inner {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 2.5rem; align-items: center;
-    }
-    .controlados-texto { color: #fff; }
-    .ctrl-badge-top {
-      display: inline-flex; align-items: center; gap: .4rem;
-      background: rgba(198,40,40,.2); border: 1px solid rgba(198,40,40,.4);
-      color: #ff8a80; border-radius: 50px;
-      padding: .3rem .9rem; font-size: .75rem; font-weight: 700;
-      margin-bottom: 1rem;
-    }
-    .controlados-texto h2 { font-size: 1.55rem; font-weight: 900; margin-bottom: .65rem; }
-    .controlados-texto p { opacity: .78; font-size: .9rem; line-height: 1.65; margin-bottom: 1.2rem; }
-    .ctrl-items { display: flex; flex-direction: column; gap: .65rem; }
-    .ctrl-item {
-      display: flex; align-items: flex-start; gap: .7rem;
-      font-size: .85rem; color: rgba(255,255,255,.82); font-weight: 600;
-    }
-    .ctrl-item i { color: #FFD54F; margin-top: .12rem; flex-shrink: 0; }
-    .controlados-card {
-      background: rgba(255,255,255,.07);
-      border: 1.5px solid rgba(255,255,255,.12);
-      border-radius: 18px; padding: 1.7rem; color: #fff;
-    }
-    .controlados-card h4 { font-size: 1rem; font-weight: 800; margin-bottom: 1rem; opacity: .9; }
-    .ctrl-pill {
-      display: inline-block;
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.15);
-      border-radius: 8px; padding: .3rem .75rem;
-      font-size: .78rem; font-weight: 700; margin: .2rem;
-      color: rgba(255,255,255,.85);
-    }
-    .ctrl-nota {
-      margin-top: 1.2rem; padding-top: 1rem;
-      border-top: 1px solid rgba(255,255,255,.1);
-      font-size: .75rem; color: rgba(255,255,255,.5); line-height: 1.5;
-    }
-    @media(max-width:768px) { .controlados-inner { grid-template-columns: 1fr; } }
-
-    /* ═══════════════════════════════════════════════
-       NEWSLETTER
-    ═══════════════════════════════════════════════ */
-    .newsletter-section {
-      background: linear-gradient(135deg, #e3f2fd, #e8f5e9);
-      padding: 3rem 1.5rem;
-    }
-    .newsletter-inner { max-width: 560px; margin: 0 auto; text-align: center; }
-    .newsletter-inner h2 { font-size: 1.55rem; font-weight: 900; margin-bottom: .5rem; color: var(--texto); }
-    .newsletter-inner p { color: var(--gris-700); margin-bottom: 1.5rem; font-size: .95rem; }
-    .newsletter-form { display: flex; gap: .6rem; flex-wrap: wrap; justify-content: center; }
-    .newsletter-form input {
-      flex: 1; min-width: 200px; padding: .9rem 1.1rem;
-      border: 2px solid var(--gris-200); border-radius: 12px;
-      font-family: inherit; font-size: .95rem; outline: none;
-      transition: border-color .2s; background: #fff;
-    }
-    .newsletter-form input:focus { border-color: #25D366; box-shadow: 0 0 0 4px rgba(37,211,102,.1); }
-    .newsletter-form button {
-      padding: .9rem 1.5rem; background: #25D366; color: #fff; border: none;
-      border-radius: 12px; font-family: inherit; font-weight: 800; font-size: .92rem;
-      cursor: pointer; display: flex; align-items: center; gap: .45rem;
-      transition: all .2s; box-shadow: 0 3px 12px rgba(37,211,102,.3);
-    }
-    .newsletter-form button:hover { background: #1EB358; transform: translateY(-1px); }
-
-    /* ═══════════════════════════════════════════════
-       CTA FINAL
-    ═══════════════════════════════════════════════ */
-    .cta-section {
-      background: linear-gradient(135deg, var(--azul-dark), var(--azul-light));
-      color: #fff; text-align: center; padding: 3.5rem 1.5rem;
-      position: relative; overflow: hidden;
-    }
-    .cta-section::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 50% 50%, rgba(255,255,255,.06) 0%, transparent 60%);
-    }
-    .cta-section h2 { position: relative; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 900; margin-bottom: .6rem; }
-    .cta-section p { position: relative; opacity: .85; margin-bottom: 1.8rem; font-size: .98rem; }
-    .cta-btns { position: relative; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-
-    /* ═══════════════════════════════════════════════
-       FOOTER
-    ═══════════════════════════════════════════════ */
-    .pagos-strip { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .9rem; }
-    .pago-chip {
-      display: inline-flex; align-items: center; gap: .35rem;
-      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14);
-      border-radius: 8px; padding: .28rem .7rem;
-      font-size: .73rem; font-weight: 700; color: rgba(255,255,255,.82); white-space: nowrap;
-    }
-    .footer-legal {
-      display: flex; flex-wrap: wrap; gap: .8rem;
-      justify-content: center; padding-top: .8rem;
-      border-top: 1px solid rgba(255,255,255,.08); margin-top: 1rem;
-    }
-    .footer-legal a { font-size: .75rem; color: rgba(255,255,255,.45); text-decoration: none; transition: color .2s; }
-    .footer-legal a:hover { color: rgba(255,255,255,.8); text-decoration: underline; }
-    .footer-legal-sep { color: rgba(255,255,255,.2); font-size: .75rem; }
-
-    /* ═══════════════════════════════════════════════
-       BOTTOM NAV
-    ═══════════════════════════════════════════════ */
-    .bottom-nav { display: none; position: fixed; bottom: 0; left: 0; right: 0;
-      z-index: 1100; background: #fff; border-top: 1px solid var(--gris-200);
-      padding: .5rem 0 env(safe-area-inset-bottom,.5rem); box-shadow: 0 -4px 16px rgba(0,0,0,.08); }
-    .bottom-nav-inner { display: flex; justify-content: space-around; align-items: center; }
-    .bn-item { display: flex; flex-direction: column; align-items: center; gap: .18rem;
-      text-decoration: none; color: var(--gris-500); font-size: .62rem; font-weight: 700;
-      padding: .3rem .5rem; border-radius: 10px; transition: color .2s;
-      cursor: pointer; border: none; background: none; font-family: inherit; }
-    .bn-item.activo, .bn-item:hover { color: var(--azul); }
-    .bn-item i { font-size: 1.25rem; }
-    .bn-badge { position: relative; display: flex; flex-direction: column; align-items: center; }
-    .bn-count { position: absolute; top: -5px; right: -8px;
-      background: var(--naranja); color: #fff; font-size: .55rem; font-weight: 900;
-      width: 16px; height: 16px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center; border: 1.5px solid #fff; }
-    .bn-count.oculto { display: none; }
-    @media(max-width:768px) {
-      .bottom-nav { display: block; }
-      body { padding-bottom: 68px; }
-      .whatsapp-float { bottom: 5.5rem; }
-    }
-
-    /* ═══════════════════════════════════════════════
-       DOMICILIO INFO + CARRITO EXTRAS
-    ═══════════════════════════════════════════════ */
-    .domicilio-info {
-      background: linear-gradient(135deg, var(--azul-50), #fff);
-      border: 1.5px solid rgba(21,101,192,.15);
-      border-radius: 12px; padding: .8rem 1rem;
-      font-size: .8rem; color: var(--azul); font-weight: 700;
-      display: flex; align-items: center; gap: .6rem;
-    }
-    .domicilio-info i { font-size: 1.1rem; flex-shrink: 0; }
-    .pagos-carrito { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .2rem; }
-    .pagos-carrito-title { font-size: .73rem; font-weight: 700; color: var(--gris-700); margin-bottom: .4rem; }
-    .pago-mini { background: var(--gris-100); border-radius: 6px; padding: .22rem .6rem; font-size: .7rem; font-weight: 700; color: var(--gris-700); }
-    #carritoEnvioMsg { font-size: .75rem; font-weight: 700; color: var(--verde); margin-top: .2rem; min-height: 1.1em; transition: color .3s; }
-
-    /* ═══════════════════════════════════════════════
-       SCROLL REVEAL
-    ═══════════════════════════════════════════════ */
-    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .55s ease, transform .55s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-delay-1 { transition-delay: .1s; }
-    .reveal-delay-2 { transition-delay: .2s; }
-    .reveal-delay-3 { transition-delay: .3s; }
-
-    /* ═══════════════════════════════════════════════
-       TÍTULO SECCIÓN
-    ═══════════════════════════════════════════════ */
-    .titulo-seccion {
-      font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 900;
-      text-align: center; color: var(--texto);
-      margin-bottom: .5rem; letter-spacing: -.02em;
-    }
-    .titulo-seccion-sub {
-      text-align: center; color: var(--gris-700);
-      font-size: .95rem; margin-bottom: 2rem;
-    }
-    .titulo-seccion::after {
-      content: ''; display: block; width: 40px; height: 4px;
-      background: linear-gradient(90deg, var(--azul), var(--naranja));
-      border-radius: 4px; margin: .65rem auto 0;
-    }
-
-    /* ═══════════════════════════════════════════════
-       RESPONSIVE
-    ═══════════════════════════════════════════════ */
-    @media(max-width:768px) {
-      .promo-hero { padding: 4rem 1rem 6rem; }
-      .promo-hero h1 { font-size: 1.85rem; }
-      .promo-hero-stats { gap: 1.2rem; }
-      .promos-grid-main { grid-template-columns: 1fr; }
-      .cupones-grid { grid-template-columns: 1fr; }
-      .carousel-slide h2 { font-size: 1.3rem; }
-    }
-    @media(max-width:480px) {
-      .promo-hero-btns { flex-direction: column; align-items: center; }
-      .promos-grid-main { grid-template-columns: 1fr; }
-    }
-  </style>
+  <!-- Estilos migrados a css/estilos.css (sección 6: PÁGINA PROMOCIONES.HTML) -->
 </head>
-<body>
+<body class="pagina-promociones">
 
 <!-- PROMO DÍA -->
 <div class="promo-dia-bar" id="promoDiaBar"></div>
 
 <!-- TOP BAR -->
 <div class="top-bar">
-  <span>🛵 <strong>Domicilio: $3.000</strong> · Gratis en pedidos +$50.000</span>
+  <span>🛵 <strong>🚚 Domicilio GRATIS</strong> · Mosquera y Funza</span>
   <span class="top-bar-sep">|</span>
-  <a href="tel:+573124213986">📞 312 421 3986</a>
+  <a href="tel:+573118719476">📞 311 871 94 76</a>
   <span class="top-bar-sep">|</span>
   <span>🕐 Lun–Dom: 7 am – 10 pm</span>
 </div>
@@ -876,6 +61,10 @@
       <i class="fas fa-shopping-cart"></i> Carrito
       <span class="carrito-badge oculto" aria-live="polite">0</span>
     </button>
+    <button class="btn-tema" id="btnTema" onclick="toggleTema()" aria-label="Cambiar tema claro/oscuro" title="Cambiar tema">
+      <i class="fas fa-moon"></i>
+    </button>
+
     <button class="navbar-toggle" id="navToggle" aria-label="Menú" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -972,7 +161,7 @@
             <h2>20% OFF en <em>toda la tienda</em></h2>
             <p>Por compras mayores a $50.000. ¡El descuento más solicitado del mes! Aplica en medicamentos, belleza y más.</p>
             <div class="carousel-slide-actions">
-              <a href="https://wa.me/573124213986?text=Hola%2C+quiero+el+20%25+de+descuento" target="_blank" rel="noopener" class="btn-slide-wa">
+              <a href="https://wa.me/573118719476?text=Hola%2C+quiero+el+20%25+de+descuento" target="_blank" rel="noopener" class="btn-slide-wa">
                 <i class="fab fa-whatsapp"></i> Pedir ahora
               </a>
               <a href="productos.html" class="btn-slide-ghost">
@@ -997,7 +186,7 @@
             <h2>2×1 en <em>Antigripales</em></h2>
             <p>Lleva 2 cajas de Antigripal Genfar al precio de 1. Prepárate para la temporada y ahorra $4.700.</p>
             <div class="carousel-slide-actions">
-              <a href="https://wa.me/573124213986?text=Hola%2C+quiero+el+2x1+en+antigripales" target="_blank" rel="noopener" class="btn-slide-wa">
+              <a href="https://wa.me/573118719476?text=Hola%2C+quiero+el+2x1+en+antigripales" target="_blank" rel="noopener" class="btn-slide-wa">
                 <i class="fab fa-whatsapp"></i> Pedir ahora
               </a>
               <a href="productos.html?cat=Medicamentos" class="btn-slide-ghost">
@@ -1022,7 +211,7 @@
             <h2>30% OFF en <em>Vitaminas</em></h2>
             <p>Toda la línea de vitaminas, minerales y suplementos. Vitamina C, D3, Omega 3, multivitamínicos y más.</p>
             <div class="carousel-slide-actions">
-              <a href="https://wa.me/573124213986?text=Hola%2C+quiero+el+30%25+en+vitaminas" target="_blank" rel="noopener" class="btn-slide-wa">
+              <a href="https://wa.me/573118719476?text=Hola%2C+quiero+el+30%25+en+vitaminas" target="_blank" rel="noopener" class="btn-slide-wa">
                 <i class="fab fa-whatsapp"></i> Pedir ahora
               </a>
               <a href="productos.html?cat=Vitaminas" class="btn-slide-ghost">
@@ -1047,7 +236,7 @@
             <h2>Doble Puntos en <em>Belleza</em></h2>
             <p>Afíliate gratis y gana el doble de puntos en productos de belleza y cuidado personal. Canjéalos por descuentos.</p>
             <div class="carousel-slide-actions">
-              <a href="https://wa.me/573124213986?text=Hola%2C+quiero+afiliarme" target="_blank" rel="noopener" class="btn-slide-wa">
+              <a href="https://wa.me/573118719476?text=Hola%2C+quiero+afiliarme" target="_blank" rel="noopener" class="btn-slide-wa">
                 <i class="fab fa-whatsapp"></i> Afiliarme gratis
               </a>
               <a href="afiliaciones.html" class="btn-slide-ghost">
@@ -1102,7 +291,7 @@
       <article class="beneficio-card reveal reveal-delay-1">
         <div class="beneficio-icono" aria-hidden="true"><i class="fas fa-motorcycle"></i></div>
         <h3>✅ Entrega Rápida</h3>
-        <p>Domicilio en 30–40 min. Gratis en pedidos mayores a $50.000. Cobertura en Mosquera y Facatativá.</p>
+        <p>Domicilio GRATIS en Mosquera y Funza. Entrega en 30–40 min.</p>
       </article>
       <article class="beneficio-card reveal reveal-delay-2">
         <div class="beneficio-icono" aria-hidden="true"><i class="fas fa-shield-alt"></i></div>
@@ -1172,7 +361,7 @@
           <a href="productos.html" class="btn-pf-blanco">
             <i class="fas fa-store"></i> Ir al catálogo
           </a>
-          <a href="https://wa.me/573124213986?text=Hola%2C+quiero+aprovechar+el+20%25+de+descuento" target="_blank" rel="noopener" class="btn-pf-wa">
+          <a href="https://wa.me/573118719476?text=Hola%2C+quiero+aprovechar+el+20%25+de+descuento" target="_blank" rel="noopener" class="btn-pf-wa">
             <i class="fab fa-whatsapp"></i> Pedir ahora
           </a>
         </div>
@@ -1212,7 +401,7 @@
         </div>
         <div class="pcard-footer">
           <span style="font-size:.8rem;color:var(--gris-700);font-weight:600"><i class="fas fa-box" style="color:var(--verde)"></i> En stock</span>
-          <a href="https://wa.me/573124213986?text=Hola%2C+quiero+el+30%25+en+vitaminas" target="_blank" rel="noopener" class="btn-pcard" aria-label="Pedir vitaminas por WhatsApp">
+          <a href="https://wa.me/573118719476?text=Hola%2C+quiero+el+30%25+en+vitaminas" target="_blank" rel="noopener" class="btn-pcard" aria-label="Pedir vitaminas por WhatsApp">
             <i class="fab fa-whatsapp"></i> Pedir
           </a>
         </div>
@@ -1243,7 +432,7 @@
         </div>
         <div class="pcard-footer">
           <span style="font-size:.8rem;color:var(--naranja);font-weight:700"><i class="fas fa-fire"></i> Últimas unidades</span>
-          <a href="https://wa.me/573124213986?text=Hola%2C+quiero+el+3x2+de+Electrolit" target="_blank" rel="noopener" class="btn-pcard">
+          <a href="https://wa.me/573118719476?text=Hola%2C+quiero+el+3x2+de+Electrolit" target="_blank" rel="noopener" class="btn-pcard">
             <i class="fab fa-whatsapp"></i> Pedir
           </a>
         </div>
@@ -1273,7 +462,7 @@
         </div>
         <div class="pcard-footer">
           <span style="font-size:.8rem;color:var(--gris-700);font-weight:600"><i class="fas fa-box" style="color:var(--verde)"></i> En stock</span>
-          <a href="https://wa.me/573124213986?text=Hola%2C+me+interesa+el+combo+bebé+esencial" target="_blank" rel="noopener" class="btn-pcard">
+          <a href="https://wa.me/573118719476?text=Hola%2C+me+interesa+el+combo+bebé+esencial" target="_blank" rel="noopener" class="btn-pcard">
             <i class="fab fa-whatsapp"></i> Pedir
           </a>
         </div>
@@ -1303,7 +492,7 @@
         </div>
         <div class="pcard-footer">
           <span style="font-size:.8rem;color:var(--gris-700);font-weight:600"><i class="fas fa-box" style="color:var(--verde)"></i> En stock</span>
-          <a href="https://wa.me/573124213986?text=Hola%2C+quiero+descuento+en+belleza" target="_blank" rel="noopener" class="btn-pcard">
+          <a href="https://wa.me/573118719476?text=Hola%2C+quiero+descuento+en+belleza" target="_blank" rel="noopener" class="btn-pcard">
             <i class="fab fa-whatsapp"></i> Pedir
           </a>
         </div>
@@ -1334,7 +523,7 @@
         </div>
         <div class="pcard-footer">
           <span style="font-size:.8rem;color:var(--naranja);font-weight:700"><i class="fas fa-fire"></i> Últimas unidades</span>
-          <a href="https://wa.me/573124213986?text=Hola%2C+quiero+el+2x1+en+antigripales" target="_blank" rel="noopener" class="btn-pcard">
+          <a href="https://wa.me/573118719476?text=Hola%2C+quiero+el+2x1+en+antigripales" target="_blank" rel="noopener" class="btn-pcard">
             <i class="fab fa-whatsapp"></i> Pedir
           </a>
         </div>
@@ -1364,7 +553,7 @@
         </div>
         <div class="pcard-footer">
           <span style="font-size:.8rem;color:var(--gris-700);font-weight:600"><i class="fas fa-box" style="color:var(--verde)"></i> En stock</span>
-          <a href="https://wa.me/573124213986?text=Hola%2C+quiero+el+kit+limpieza+hogar" target="_blank" rel="noopener" class="btn-pcard">
+          <a href="https://wa.me/573118719476?text=Hola%2C+quiero+el+kit+limpieza+hogar" target="_blank" rel="noopener" class="btn-pcard">
             <i class="fab fa-whatsapp"></i> Pedir
           </a>
         </div>
@@ -1395,7 +584,7 @@
         </div>
         <div class="pcard-footer">
           <span style="font-size:.8rem;color:var(--gris-700);font-weight:600"><i class="fas fa-box" style="color:var(--verde)"></i> En stock</span>
-          <a href="https://wa.me/573124213986?text=Hola%2C+quiero+el+pack+corazón+sano" target="_blank" rel="noopener" class="btn-pcard">
+          <a href="https://wa.me/573118719476?text=Hola%2C+quiero+el+pack+corazón+sano" target="_blank" rel="noopener" class="btn-pcard">
             <i class="fab fa-whatsapp"></i> Pedir
           </a>
         </div>
@@ -1423,7 +612,7 @@
         </div>
         <div class="pcard-footer">
           <span style="font-size:.8rem;color:var(--gris-700);font-weight:600">Afiliación gratuita</span>
-          <a href="https://wa.me/573124213986?text=Hola%2C+quiero+afiliarme+al+programa+de+puntos" target="_blank" rel="noopener" class="btn-pcard">
+          <a href="https://wa.me/573118719476?text=Hola%2C+quiero+afiliarme+al+programa+de+puntos" target="_blank" rel="noopener" class="btn-pcard">
             <i class="fab fa-whatsapp"></i> Afiliarme
           </a>
         </div>
@@ -1557,7 +746,7 @@
           <span class="ctrl-pill">Tramadol</span>
         </div>
         <div class="ctrl-nota">⚠️ Lista orientativa. Nuestro equipo te indicará con precisión qué medicamentos requieren fórmula médica.</div>
-        <a href="https://wa.me/573124213986?text=Hola%2C+quiero+información+sobre+medicamentos+con+fórmula+médica"
+        <a href="https://wa.me/573118719476?text=Hola%2C+quiero+información+sobre+medicamentos+con+fórmula+médica"
            target="_blank" rel="noopener"
            style="display:inline-flex;align-items:center;gap:.45rem;margin-top:1.2rem;padding:.7rem 1.3rem;background:#25D366;color:#fff;border-radius:10px;font-weight:800;font-size:.88rem;text-decoration:none;transition:background .2s"
            aria-label="Consultar sobre medicamentos por WhatsApp">
@@ -1592,7 +781,7 @@
   <h2 id="tit-cta">¿Quieres una promoción personalizada?</h2>
   <p>Escríbenos con lo que necesitas y te ofrecemos el mejor precio disponible.</p>
   <div class="cta-btns">
-    <a href="https://wa.me/573124213986?text=Hola%2C+quiero+conocer+las+promociones+disponibles"
+    <a href="https://wa.me/573118719476?text=Hola%2C+quiero+conocer+las+promociones+disponibles"
        target="_blank" rel="noopener"
        style="display:inline-flex;align-items:center;gap:.5rem;background:#25D366;color:#fff;border-radius:14px;padding:.95rem 2rem;font-weight:800;font-size:1rem;text-decoration:none;box-shadow:0 4px 18px rgba(37,211,102,.4);transition:all .2s"
        aria-label="Escribir por WhatsApp para promoción personalizada">
@@ -1614,7 +803,7 @@
     <div class="footer-grid">
       <div class="footer-marca">
         <h3>Droguerías Económicas</h3>
-        <p>Tu salud, nuestro compromiso. Más de 10 años sirviendo con calidad y confianza a Mosquera, Facatativá y alrededores.</p>
+        <p>Tu salud, nuestro compromiso. Más de 10 años sirviendo con calidad y confianza a Mosquera y Funza y alrededores.</p>
         <div style="margin-top:1rem">
           <p style="font-size:.72rem;font-weight:800;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem">Aceptamos</p>
           <div class="pagos-strip">
@@ -1649,9 +838,9 @@
       <div class="footer-col">
         <h4>Contacto</h4>
         <div class="footer-contacto">
-          <div class="footer-contacto-item"><i class="fas fa-phone-alt"></i><a href="tel:+573124213986" style="color:inherit">312 421 3986</a></div>
-          <div class="footer-contacto-item"><i class="fab fa-whatsapp"></i><a href="https://wa.me/573124213986" target="_blank" style="color:inherit">WhatsApp</a></div>
-          <div class="footer-contacto-item"><i class="fas fa-map-marker-alt"></i><span>Facatativá, Cundinamarca</span></div>
+          <div class="footer-contacto-item"><i class="fas fa-phone-alt"></i><a href="tel:+573118719476" style="color:inherit">311 871 94 76</a></div>
+          <div class="footer-contacto-item"><i class="fab fa-whatsapp"></i><a href="https://wa.me/573118719476" target="_blank" style="color:inherit">WhatsApp</a></div>
+          <div class="footer-contacto-item"><i class="fas fa-map-marker-alt"></i><span>Mosquera, Cundinamarca</span></div>
           <div class="footer-contacto-item"><i class="fas fa-clock"></i><span>Lun – Dom: 7 am – 10 pm</span></div>
         </div>
       </div>
@@ -1666,7 +855,7 @@
       <div class="footer-redes">
         <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
         <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://wa.me/573124213986" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://wa.me/573118719476" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
       </div>
     </div>
   </div>
@@ -1685,7 +874,7 @@
     <div class="carrito-footer">
       <div class="domicilio-info">
         <i class="fas fa-motorcycle"></i>
-        <div><strong>🛵 Domicilio: $3.000</strong> · Mosquera &amp; Facatativá<br>
+        <div><strong>🛵 domicilio GRATIS</strong> · Mosquera y Funza<br>
         <span style="font-weight:600;font-size:.73rem">⏱️ Entrega estimada: 30–40 minutos</span></div>
       </div>
       <div class="carrito-resumen">
@@ -1713,7 +902,7 @@
 <!-- WhatsApp flotante -->
 <div class="whatsapp-float">
   <div class="whatsapp-tooltip">¡Escríbenos por WhatsApp!</div>
-  <a href="https://wa.me/573124213986?text=Hola%2C+quiero+información+sobre+sus+promociones"
+  <a href="https://wa.me/573118719476?text=Hola%2C+quiero+información+sobre+sus+promociones"
      target="_blank" rel="noopener noreferrer"
      class="whatsapp-btn" aria-label="Contactar por WhatsApp">
     <i class="fab fa-whatsapp"></i>
@@ -1731,14 +920,15 @@
       <div class="bn-badge"><i class="fas fa-shopping-cart"></i><span class="bn-count oculto" id="bnCount">0</span></div>
       <span>Carrito</span>
     </button>
-    <a href="https://wa.me/573124213986" target="_blank" rel="noopener" class="bn-item">
+    <a href="https://wa.me/573118719476" target="_blank" rel="noopener" class="bn-item">
       <i class="fab fa-whatsapp"></i><span>WhatsApp</span>
     </a>
   </div>
 </nav>
 
 <!-- ════════════════ SCRIPTS ════════════════ -->
- <script src="js/wa-config.js"></script>
+ <script src="js/theme.js"></script>
+<script src="js/wa-config.js"></script>
 <script src="js/productos-data.js"></script>
 <script src="js/laboratorio-precios.js"></script>
 <script src="js/catalogo.js"></script>
@@ -1937,7 +1127,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function suscribirWhatsapp() {
   const num = document.getElementById('waInput').value.trim().replace(/\D/g,'');
   if (num.length < 7) { alert('Por favor ingresa un número de WhatsApp válido.'); return; }
-  window.open('https://wa.me/573124213986?text=Hola%2C+quiero+recibir+las+promociones.+Mi+número+es+' + num, '_blank');
+  window.open('https://wa.me/573118719476?text=Hola%2C+quiero+recibir+las+promociones.+Mi+número+es+' + num, '_blank');
 }
 
 /* ═══ SCROLL REVEAL ═══ */
@@ -1966,8 +1156,6 @@ if (subtotalEl) new MutationObserver(actualizarEnvio).observe(subtotalEl, { chil
 </script>
 
 <!-- Screen-reader only helper -->
-<style>
-  .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
-</style>
+  <!-- Estilos migrados a css/estilos.css (sección 6: PÁGINA PROMOCIONES.HTML) -->
 </body>
 </html>

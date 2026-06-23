@@ -4,81 +4,361 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nosotros | Droguerías Económicas</title>
+  <meta name="description" content="Conoce la historia de Droguerías Económicas. Más de 10 años sirviendo con calidad y precios justos en Mosquera y Facatativá, Cundinamarca.">
+  <meta property="og:title" content="Nosotros — Droguerías Económicas">
+  <meta property="og:description" content="Farmacia de confianza con domicilio 24/7. Salud y bienestar para toda la familia.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="img/icono.jpg">
   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="css/estilos.css">
-  <link rel="stylesheet" href="css/estilos-pro.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <style>
+    /* ── Estilos específicos de nosotros.html ── */
+    .sn-hero-stat { text-align:center; }
+    .sn-hero-stat strong { display:block; font-size:2.2rem; font-weight:900; color:#FFD54F; line-height:1; }
+    .sn-hero-stat span { font-size:.82rem; opacity:.8; }
+
+    .sn-mision-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-top:2.5rem; }
+    .sn-card { background:#fff; border:1.5px solid var(--gris-200); border-radius:20px; padding:2rem 1.75rem; position:relative; overflow:hidden; }
+    .sn-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; border-radius:20px 20px 0 0; }
+    .sn-card.mision::before { background:linear-gradient(90deg,var(--azul),var(--azul-light)); }
+    .sn-card.vision::before { background:linear-gradient(90deg,var(--naranja),#FFD54F); }
+    .sn-card-icon { width:52px; height:52px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:1.4rem; margin-bottom:1rem; }
+    .sn-card.mision .sn-card-icon { background:var(--azul-50); color:var(--azul); }
+    .sn-card.vision .sn-card-icon { background:#fff3e0; color:var(--naranja); }
+    .sn-card h3 { font-size:1.1rem; font-weight:800; color:var(--texto); margin:0 0 .6rem; }
+    .sn-card p { font-size:.9rem; color:var(--texto-2); line-height:1.7; margin:0; }
+
+    .sn-values-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem; margin-top:2.5rem; }
+    .sn-value { background:#fff; border:1.5px solid var(--gris-200); border-radius:16px; padding:1.5rem 1.25rem; text-align:center; transition:transform .2s, box-shadow .2s; }
+    .sn-value:hover { transform:translateY(-4px); box-shadow:var(--sombra-md); }
+    .sn-value-icon { font-size:1.8rem; margin-bottom:.6rem; display:block; }
+    .sn-value h4 { font-size:.92rem; font-weight:800; color:var(--texto); margin:0 0 .35rem; }
+    .sn-value p { font-size:.78rem; color:var(--texto-2); margin:0; line-height:1.6; }
+
+    .sn-timeline { position:relative; padding-left:2.5rem; margin-top:2.5rem; }
+    .sn-timeline::before { content:''; position:absolute; left:12px; top:8px; bottom:8px; width:2px; background:linear-gradient(to bottom,var(--azul),var(--naranja)); border-radius:2px; }
+    .sn-tl-item { position:relative; margin-bottom:2rem; }
+    .sn-tl-item:last-child { margin-bottom:0; }
+    .sn-tl-dot { position:absolute; left:-2.5rem; top:4px; width:24px; height:24px; border-radius:50%; background:var(--azul); border:3px solid #fff; box-shadow:0 0 0 2px var(--azul); display:flex; align-items:center; justify-content:center; }
+    .sn-tl-dot i { font-size:.6rem; color:#fff; }
+    .sn-tl-year { font-size:.72rem; font-weight:800; color:var(--azul); text-transform:uppercase; letter-spacing:.08em; margin-bottom:.2rem; }
+    .sn-tl-title { font-size:.95rem; font-weight:800; color:var(--texto); margin-bottom:.2rem; }
+    .sn-tl-desc { font-size:.83rem; color:var(--texto-2); line-height:1.6; }
+
+    .sn-cta { background:linear-gradient(135deg,#0d47a1 0%,#1565C0 60%,#e65100 100%); border-radius:24px; padding:3rem 2rem; text-align:center; position:relative; overflow:hidden; }
+    .sn-cta::before { content:''; position:absolute; top:-60px; right:-60px; width:200px; height:200px; border-radius:50%; background:rgba(255,255,255,.05); }
+
+    /* Dark mode overrides */
+    [data-theme="dark"] .sn-card,
+    [data-theme="dark"] .sn-value { background:var(--gris-200); border-color:var(--gris-300); }
+    [data-theme="dark"] .sn-tl-dot { border-color:var(--gris-100); }
+
+    @media (max-width:700px) {
+      .sn-mision-grid { grid-template-columns:1fr; }
+      .sn-values-grid { grid-template-columns:1fr 1fr; }
+    }
+    @media (max-width:480px) {
+      .sn-values-grid { grid-template-columns:1fr; }
+    }
+  </style>
 </head>
 <body>
+
 <div class="top-bar">
   <span>🛵 <strong>Domicilio: $3.000</strong> · Gratis en pedidos +$50.000</span>
   <span class="top-bar-sep">|</span>
   <a href="tel:+573124213986">📞 312 421 3986</a>
+  <span class="top-bar-sep">|</span>
+  <span>🕐 Lun–Dom: 7 am – 10 pm</span>
 </div>
-<nav class="navbar" role="navigation">
+
+<nav class="navbar" role="navigation" aria-label="Navegación principal">
   <a class="navbar-logo" href="index.html">
-    <img src="img/icono.jpg" alt="Logo" onerror="this.style.display='none'">
+    <img src="img/icono.jpg" alt="Logo Droguerías Económicas" onerror="this.style.display='none'">
     <span>Droguerías <em>Económicas</em></span>
   </a>
   <ul class="navbar-links" id="navLinks">
     <li><a href="index.html">Inicio</a></li>
     <li><a href="productos.html">Productos</a></li>
     <li><a href="nosotros.html" class="activo">Nosotros</a></li>
+    <li><a href="promociones.html">Promociones</a></li>
     <li><a href="contacto.html">Contacto</a></li>
   </ul>
   <div class="navbar-actions">
-    <button class="btn-carrito" id="btnAbrirCarrito"><i class="fas fa-shopping-cart"></i> Carrito <span class="carrito-badge oculto">0</span></button>
-    <button class="navbar-toggle" id="navToggle"><span></span><span></span><span></span></button>
+    <button class="btn-dark-mode" id="btnDarkMode" aria-label="Activar modo oscuro" title="Modo oscuro">
+      <i class="fas fa-moon"></i>
+    </button>
+    <button class="btn-carrito" id="btnAbrirCarrito" aria-label="Abrir carrito">
+      <i class="fas fa-shopping-cart"></i> Carrito
+      <span class="carrito-badge oculto">0</span>
+    </button>
+    <button class="navbar-toggle" id="navToggle" aria-label="Menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
-<header class="page-hero">
-  <div class="breadcrumb"><a href="index.html">Inicio</a> › Nosotros</div>
-  <h1>Sobre Nosotros</h1>
-  <p>Pasión por la salud y el bienestar de tu familia</p>
+
+<!-- PAGE HERO -->
+<header class="page-hero" role="banner">
+  <div class="breadcrumb"><a href="index.html">Inicio</a> - Nosotros</div>
+  <h1><i class="fas fa-heart"></i> Nuestra Historia</h1>
+  <p>Más de 10 años cuidando la salud y el bienestar de tu familia</p>
+  <div style="display:flex;justify-content:center;gap:3rem;margin-top:2rem;flex-wrap:wrap">
+    <div class="sn-hero-stat"><strong>10+</strong><span>Años de experiencia</span></div>
+    <div class="sn-hero-stat"><strong>2.000+</strong><span>Productos disponibles</span></div>
+    <div class="sn-hero-stat"><strong>24/7</strong><span>Domicilio disponible</span></div>
+    <div class="sn-hero-stat"><strong>2</strong><span>Sedes activas</span></div>
+  </div>
 </header>
-<main>
-        <section class="contenedor sobre-nosotros">
-            <h2 class="titulo">¿Quiénes somos?</h2>
-            <div class="contenedor-sobre-nosotros">
-                <img src="img/img1.jpg" alt="Nuestra historia" class="imagen_about-us">
-                <div class="contenedor-texto">
-                    <h3><span>1</span> Compromiso con la comunidad</h3>
-                    <p>Desde nuestros inicios, en Droguerías Económicas nos enfocamos en brindar acceso a medicamentos y productos de calidad a precios justos. Estamos comprometidos con tu salud y bienestar.</p>
-                    
-                    <h3><span>2</span> Atención humana y profesional</h3>
-                    <p>Contamos con personal calificado que te orienta y asesora con responsabilidad y empatía. Más que una droguería, somos tu aliado en salud.</p>
-                </div>
-            </div>
-        </section>
-    </main>
-<footer class="footer">
+
+<!-- QUIÉNES SOMOS -->
+<section style="padding:4rem 0">
   <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center">
+      <div>
+        <p style="font-size:.72rem;font-weight:800;color:var(--azul);text-transform:uppercase;letter-spacing:.1em;margin:0 0 .5rem">Nuestra esencia</p>
+        <h2 style="font-size:2rem;font-weight:900;color:var(--texto);margin:0 0 1rem;line-height:1.2">¿Quiénes somos?</h2>
+        <p style="font-size:1rem;color:var(--texto-2);line-height:1.8;margin:0 0 1rem">Droguerías Económicas nació con una misión clara: hacer que el acceso a medicamentos y productos de salud sea posible para todas las familias, sin importar su situación económica.</p>
+        <p style="font-size:1rem;color:var(--texto-2);line-height:1.8;margin:0 0 1.5rem">Hoy somos una cadena local en Mosquera y Facatativá, con un equipo comprometido, precios competitivos y domicilio disponible todos los días del año.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:.6rem">
+          <span style="display:inline-flex;align-items:center;gap:.4rem;background:var(--azul-50);color:var(--azul);border-radius:50px;padding:.4rem .9rem;font-size:.78rem;font-weight:700"><i class="fas fa-map-marker-alt"></i> Mosquera, Cundinamarca</span>
+          <span style="display:inline-flex;align-items:center;gap:.4rem;background:var(--azul-50);color:var(--azul);border-radius:50px;padding:.4rem .9rem;font-size:.78rem;font-weight:700"><i class="fas fa-map-marker-alt"></i> Facatativá, Cundinamarca</span>
+          <span style="display:inline-flex;align-items:center;gap:.4rem;background:#fff3e0;color:var(--naranja);border-radius:50px;padding:.4rem .9rem;font-size:.78rem;font-weight:700"><i class="fas fa-star"></i> Registro INVIMA</span>
+        </div>
+      </div>
+      <div style="background:linear-gradient(135deg,var(--azul-50),var(--gris-100));border-radius:24px;padding:2.5rem;text-align:center">
+        <i class="fas fa-clinic-medical" style="font-size:5rem;color:var(--azul);opacity:.6;margin-bottom:1.5rem;display:block"></i>
+        <p style="font-size:1.1rem;font-weight:800;color:var(--texto);margin:0 0 .5rem">Tu farmacia de confianza</p>
+        <p style="font-size:.85rem;color:var(--texto-2);margin:0;line-height:1.7">Personal calificado · Precios justos · Domicilio 24/7</p>
+        <div style="margin-top:1.5rem;display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+          <a href="productos.html" class="btn-primario" style="padding:.7rem 1.5rem;font-size:.85rem">Ver productos</a>
+          <a href="contacto.html" style="display:inline-flex;align-items:center;gap:.4rem;background:transparent;border:2px solid var(--azul);color:var(--azul);border-radius:50px;padding:.7rem 1.5rem;font-size:.85rem;font-weight:700;text-decoration:none">Contáctanos</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISIÓN Y VISIÓN -->
+<section style="background:var(--gris-50);padding:4rem 0">
+  <div class="container">
+    <p style="font-size:.72rem;font-weight:800;color:var(--azul);text-transform:uppercase;letter-spacing:.1em;text-align:center;margin:0 0 .4rem">Lo que nos mueve</p>
+    <h2 class="titulo-seccion" style="text-align:center;margin-bottom:0">Misión y Visión</h2>
+    <div class="sn-mision-grid">
+      <div class="sn-card mision">
+        <div class="sn-card-icon"><i class="fas fa-bullseye"></i></div>
+        <h3>Nuestra Misión</h3>
+        <p>Proveer medicamentos, productos de salud y bienestar con calidad garantizada, precios justos y un servicio cercano que genere confianza en cada familia de nuestra comunidad. Hacemos que la salud sea accesible para todos.</p>
+      </div>
+      <div class="sn-card vision">
+        <div class="sn-card-icon"><i class="fas fa-eye"></i></div>
+        <h3>Nuestra Visión</h3>
+        <p>Ser la farmacia de referencia en Cundinamarca, reconocida por su excelencia en atención, innovación en servicio a domicilio y por ser un aliado indispensable en la salud y el bienestar de las familias de la región.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALORES -->
+<section style="padding:4rem 0">
+  <div class="container">
+    <p style="font-size:.72rem;font-weight:800;color:var(--azul);text-transform:uppercase;letter-spacing:.1em;text-align:center;margin:0 0 .4rem">Cómo trabajamos</p>
+    <h2 class="titulo-seccion" style="text-align:center;margin-bottom:0">Nuestros Valores</h2>
+    <div class="sn-values-grid">
+      <div class="sn-value">
+        <span class="sn-value-icon">🤝</span>
+        <h4>Confianza</h4>
+        <p>Honestidad y transparencia en cada interacción con nuestros clientes y proveedores.</p>
+      </div>
+      <div class="sn-value">
+        <span class="sn-value-icon">💊</span>
+        <h4>Calidad</h4>
+        <p>Solo manejamos productos con registro INVIMA y de laboratorios certificados.</p>
+      </div>
+      <div class="sn-value">
+        <span class="sn-value-icon">💰</span>
+        <h4>Precio Justo</h4>
+        <p>Precios accesibles para que la salud no sea un privilegio sino un derecho.</p>
+      </div>
+      <div class="sn-value">
+        <span class="sn-value-icon">🛵</span>
+        <h4>Puntualidad</h4>
+        <p>Domicilios en 30–40 minutos para que recibas lo que necesitas cuando lo necesitas.</p>
+      </div>
+      <div class="sn-value">
+        <span class="sn-value-icon">❤️</span>
+        <h4>Calidez</h4>
+        <p>Atención humana y empática, porque detrás de cada compra hay una persona.</p>
+      </div>
+      <div class="sn-value">
+        <span class="sn-value-icon">🌱</span>
+        <h4>Comunidad</h4>
+        <p>Comprometidos con el bienestar local y el crecimiento de Mosquera y Facatativá.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HISTORIA / TIMELINE -->
+<section style="background:var(--gris-50);padding:4rem 0">
+  <div class="container" style="max-width:680px">
+    <p style="font-size:.72rem;font-weight:800;color:var(--azul);text-transform:uppercase;letter-spacing:.1em;text-align:center;margin:0 0 .4rem">Nuestra trayectoria</p>
+    <h2 class="titulo-seccion" style="text-align:center;margin-bottom:0">Cómo hemos crecido</h2>
+    <div class="sn-timeline">
+      <div class="sn-tl-item">
+        <div class="sn-tl-dot"><i class="fas fa-store"></i></div>
+        <div class="sn-tl-year">2014 — Fundación</div>
+        <div class="sn-tl-title">Primera sede en Facatativá</div>
+        <div class="sn-tl-desc">Abrimos nuestra primera droguería con el sueño de ofrecer salud a precios accesibles en la región.</div>
+      </div>
+      <div class="sn-tl-item">
+        <div class="sn-tl-dot"><i class="fas fa-expand-alt"></i></div>
+        <div class="sn-tl-year">2017 — Expansión</div>
+        <div class="sn-tl-title">Segunda sede en Mosquera</div>
+        <div class="sn-tl-desc">La confianza de nuestros clientes nos permitió abrir una segunda sede para llegar a más familias de la sabana.</div>
+      </div>
+      <div class="sn-tl-item">
+        <div class="sn-tl-dot"><i class="fas fa-motorcycle"></i></div>
+        <div class="sn-tl-year">2020 — Innovación</div>
+        <div class="sn-tl-title">Lanzamiento de domicilio 24/7</div>
+        <div class="sn-tl-desc">Implementamos servicio de domicilio los 365 días del año para que nunca te falte lo que necesitas.</div>
+      </div>
+      <div class="sn-tl-item">
+        <div class="sn-tl-dot"><i class="fas fa-globe"></i></div>
+        <div class="sn-tl-year">2023 — Digital</div>
+        <div class="sn-tl-title">Tienda virtual y catálogo online</div>
+        <div class="sn-tl-desc">Lanzamos nuestro catálogo digital con más de 2.000 productos y la posibilidad de pedir por WhatsApp con un clic.</div>
+      </div>
+      <div class="sn-tl-item">
+        <div class="sn-tl-dot"><i class="fas fa-star"></i></div>
+        <div class="sn-tl-year">2024–2026 — Hoy</div>
+        <div class="sn-tl-title">Marcas propias y más servicios</div>
+        <div class="sn-tl-desc">Lanzamos línea de marcas propias DE y continuamos creciendo para servir mejor a nuestra comunidad.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section style="padding:4rem 0">
+  <div class="container" style="max-width:700px">
+    <div class="sn-cta">
+      <p style="font-size:.72rem;font-weight:800;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.1em;margin:0 0 .5rem">¿Listo para empezar?</p>
+      <h2 style="font-size:2rem;font-weight:900;color:#fff;margin:0 0 .75rem;line-height:1.2">Cuídate con nosotros</h2>
+      <p style="color:rgba(255,255,255,.85);margin:0 0 2rem;line-height:1.7;font-size:.95rem">Tu salud y la de tu familia están en las mejores manos. Explora nuestro catálogo o escríbenos ahora.</p>
+      <div style="display:flex;justify-content:center;gap:.8rem;flex-wrap:wrap">
+        <a href="productos.html" class="btn-primario" style="background:#fff;color:#0d47a1;font-weight:800;padding:.9rem 2rem;border-radius:50px;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;font-size:.95rem">
+          <i class="fas fa-store"></i> Ver productos
+        </a>
+        <a href="https://wa.me/573124213986?text=Hola%2C+quiero+información" target="_blank" style="background:#25D366;color:#fff;font-weight:800;padding:.9rem 2rem;border-radius:50px;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;font-size:.95rem">
+          <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-marca">
+        <h3>Droguerías Económicas</h3>
+        <p>Tu salud, nuestro compromiso. Domicilio 24/7 en Mosquera y Facatativá.</p>
+        <div style="margin-top:.9rem">
+          <p style="font-size:.72rem;font-weight:800;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem">Aceptamos</p>
+          <div style="display:flex;flex-wrap:wrap;gap:.4rem">
+            <span style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:8px;padding:.25rem .65rem;font-size:.72rem;font-weight:700;color:rgba(255,255,255,.8)">🟢 Nequi</span>
+            <span style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:8px;padding:.25rem .65rem;font-size:.72rem;font-weight:700;color:rgba(255,255,255,.8)">🔵 Daviplata</span>
+            <span style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:8px;padding:.25rem .65rem;font-size:.72rem;font-weight:700;color:rgba(255,255,255,.8)">💰 Contraentrega</span>
+            <span style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:8px;padding:.25rem .65rem;font-size:.72rem;font-weight:700;color:rgba(255,255,255,.8)">💵 Efectivo</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="productos.html">Productos</a></li>
+          <li><a href="nosotros.html">Nosotros</a></li>
+          <li><a href="promociones.html">Promociones</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Categorías</h4>
+        <ul>
+          <li><a href="medicamentos.html">Medicamentos</a></li>
+          <li><a href="belleza.html">Belleza</a></li>
+          <li><a href="cuidado-personal.html">Cuidado Personal</a></li>
+          <li><a href="cuidadobebe-mama.html">Bebé y Mamá</a></li>
+          <li><a href="mercado.html">Mercado y Hogar</a></li>
+          <li><a href="marcas.html">Marcas DE</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <div class="footer-contacto">
+          <div class="footer-contacto-item"><i class="fas fa-phone-alt"></i><span><a href="tel:+573124213986" style="color:inherit">312 421 3986</a></span></div>
+          <div class="footer-contacto-item"><i class="fas fa-envelope"></i><span>contacto@drogeriaseconomicas.com</span></div>
+          <div class="footer-contacto-item"><i class="fas fa-map-marker-alt"></i><span>Facatativá, Cundinamarca</span></div>
+          <div class="footer-contacto-item"><i class="fas fa-clock"></i><span>Lun – Dom: 7 am – 10 pm</span></div>
+        </div>
+      </div>
+    </div>
     <div class="footer-bottom">
       <p>&copy; 2026 Droguerías Económicas. Todos los derechos reservados.</p>
+      <div class="footer-redes">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/573124213986" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      </div>
     </div>
   </div>
 </footer>
-<div class="modal-overlay" id="carritoModal">
+
+<!-- MODAL CARRITO -->
+<div class="modal-overlay" id="carritoModal" role="dialog" aria-modal="true" aria-label="Carrito">
   <div class="carrito-panel">
-    <div class="carrito-header"><h2><i class="fas fa-shopping-cart"></i> Mi Carrito</h2><button class="btn-cerrar-carrito" id="btnCerrarCarrito">✕</button></div>
+    <div class="carrito-header"><h2><i class="fas fa-shopping-cart"></i> Mi Carrito</h2><button class="btn-cerrar-carrito" id="btnCerrarCarrito" aria-label="Cerrar">✕</button></div>
     <div class="carrito-items" id="carritoItems"><div class="carrito-vacio"><i class="fas fa-shopping-basket"></i><p>Tu carrito está vacío</p></div></div>
     <div class="carrito-footer">
-      <div class="carrito-resumen"><div class="carrito-resumen-fila"><span>Total</span><span id="carritoSubtotal">$0</span></div></div>
+      <div class="domicilio-info"><i class="fas fa-motorcycle"></i><div><strong>🛵 Domicilio: $3.000</strong> · Mosquera &amp; Facatativá<br><span style="font-weight:600;font-size:.73rem">⏱️ Entrega estimada: 30–40 minutos</span></div></div>
+      <div class="carrito-resumen">
+        <div class="carrito-resumen-fila"><span>Subtotal</span><span id="carritoSubtotal">$0</span></div>
+        <div class="carrito-resumen-fila"><span>Envío</span><span id="carritoEnvio">$0</span></div>
+        <div id="carritoEnvioMsg">✅ Envío gratis en compras mayores a $50.000</div>
+      </div>
       <div class="carrito-total-fila"><span>Total</span><span id="carritoTotal">$0</span></div>
-      <button class="btn-checkout" id="btnCheckout"><i class="fab fa-whatsapp"></i> Pedir</button>
-      <button class="btn-vaciar" id="btnVaciarCarrito">Vaciar</button>
+      <div><div class="pagos-carrito-title">💳 Aceptamos:</div><div class="pagos-carrito"><span class="pago-mini">🟢 Nequi</span><span class="pago-mini">🔵 Daviplata</span><span class="pago-mini">💰 Contraentrega</span><span class="pago-mini">🏦 Bancolombia</span><span class="pago-mini">💵 Efectivo</span></div></div>
+      <button class="btn-checkout" id="btnCheckout"><i class="fab fa-whatsapp"></i> Pedir por WhatsApp</button>
+      <button class="btn-vaciar" id="btnVaciarCarrito"><i class="fas fa-trash"></i> Vaciar carrito</button>
     </div>
   </div>
 </div>
-<div class="whatsapp-float"><a href="https://wa.me/573124213986" target="_blank" rel="noopener" class="whatsapp-btn"><i class="fab fa-whatsapp"></i></a></div>
-<div id="toast" class="toast"></div>
+
+<div class="whatsapp-float"><div class="whatsapp-tooltip">¡Escríbenos!</div><a href="https://wa.me/573124213986?text=Hola%2C+quiero+información+sobre+Droguerías+Económicas" target="_blank" rel="noopener" class="whatsapp-btn" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a></div>
+<div id="toast" class="toast" aria-live="assertive"></div>
+
+<nav class="bottom-nav" aria-label="Navegación rápida móvil">
+  <div class="bottom-nav-inner">
+    <a href="index.html" class="bn-item"><i class="fas fa-home"></i><span>Inicio</span></a>
+    <a href="productos.html" class="bn-item"><i class="fas fa-store"></i><span>Productos</span></a>
+    <button class="bn-item" id="btnAbrirCarritoMobile"><div class="bn-badge"><i class="fas fa-shopping-cart"></i><span class="bn-count oculto" id="bnCount">0</span></div><span>Carrito</span></button>
+    <a href="https://wa.me/573124213986?text=Hola" target="_blank" rel="noopener" class="bn-item"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></a>
+  </div>
+</nav>
+
 <script src="js/wa-config.js"></script>
 <script src="js/productos-data.js"></script>
 <script src="js/carrito.js"></script>
-<script>
-document.getElementById('navToggle')?.addEventListener('click', () => document.getElementById('navLinks')?.classList.toggle('activo'));
-</script>
+<script src="js/pago.js"></script>
+<script src="assets/js/app.js"></script>
 </body>
 </html>

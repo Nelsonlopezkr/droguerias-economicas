@@ -1,10 +1,19 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8">  <!-- Anti-FOUC: aplica tema ANTES de pintar — sin parpadeo -->
+  <script>
+    (function(){
+      try {
+        var t = localStorage.getItem('tema');
+        if (!t) t = (window.matchMedia && window.matchMedia('(prefers-color-scheme:dark)').matches) ? 'dark' : 'light';
+        if (t === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+      } catch(e) {}
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Catálogo de Productos | Droguerías Económicas</title>
-  <meta name="description" content="Explora nuestro catálogo: medicamentos, belleza, cuidado personal, bebé y mamá, y más. Los mejores precios en Mosquera–Facatativá, Cundinamarca.">
+  <meta name="description" content="Explora nuestro catálogo: medicamentos, belleza, cuidado personal, bebé y mamá, y más. Los mejores precios en Mosquera y Funza, Cundinamarca.">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Catálogo — Droguerías Económicas">
@@ -17,128 +26,18 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Estilos (archivo único unificado, reemplaza estilos.css + mejoras.css + laboratorios-modal-premium.css + imagenes-fix.css) -->
   <link rel="stylesheet" href="css/estilos.css">
-  <link rel="stylesheet" href="css/mejoras.css">
-<link rel="stylesheet" href="css/imagenes-fix.css">
-  <link rel="stylesheet" href="css/laboratorios-modal-premium.css">
-</head>
-
-  <style>
-    /* TOP BAR */
-    .top-bar {
-      background: linear-gradient(90deg, #0d47a1, #1565C0);
-      color: #fff;
-      font-size: .78rem;
-      font-weight: 700;
-      text-align: center;
-      padding: .45rem 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-    }
-    .top-bar a { color: #FFD54F; text-decoration: none; }
-    .top-bar-sep { opacity: .4; }
-
-    /* Métodos de pago en carrito */
-    .domicilio-info {
-      background: linear-gradient(135deg, #e3f2fd, #fff);
-      border: 1.5px solid rgba(21,101,192,.15);
-      border-radius: 12px;
-      padding: .8rem 1rem;
-      font-size: .8rem;
-      color: var(--azul);
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: .6rem;
-    }
-    .domicilio-info i { font-size: 1.1rem; flex-shrink: 0; }
-    .pagos-carrito { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .2rem; }
-    .pagos-carrito-title { font-size: .73rem; font-weight: 700; color: var(--gris-700); margin-bottom: .4rem; }
-    .pago-mini { background: var(--gris-100); border-radius: 6px; padding: .22rem .6rem; font-size: .7rem; font-weight: 700; color: var(--gris-700); }
-    #carritoEnvioMsg { font-size: .75rem; font-weight: 700; color: var(--verde); margin-top: .2rem; min-height: 1.1em; transition: color .3s; }
-
-    /* BOTTOM NAV */
-    .bottom-nav {
-      display: none;
-      position: fixed;
-      bottom: 0; left: 0; right: 0;
-      z-index: 1100;
-      background: #fff;
-      border-top: 1px solid var(--gris-200);
-      padding: .5rem 0 env(safe-area-inset-bottom, .5rem);
-      box-shadow: 0 -4px 16px rgba(0,0,0,.08);
-    }
-    .bottom-nav-inner { display: flex; justify-content: space-around; align-items: center; }
-    .bn-item {
-      display: flex; flex-direction: column; align-items: center; gap: .18rem;
-      text-decoration: none; color: var(--gris-500); font-size: .62rem; font-weight: 700;
-      padding: .3rem .5rem; border-radius: 10px; transition: color .2s;
-      cursor: pointer; border: none; background: none; font-family: inherit;
-    }
-    .bn-item.activo, .bn-item:hover { color: var(--azul); }
-    .bn-item i { font-size: 1.25rem; }
-    .bn-badge { position: relative; display: flex; flex-direction: column; align-items: center; }
-    .bn-count {
-      position: absolute; top: -5px; right: -8px;
-      background: var(--naranja); color: #fff;
-      font-size: .55rem; font-weight: 900;
-      width: 16px; height: 16px;
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      border: 1.5px solid #fff;
-    }
-    .bn-count.oculto { display: none; }
-    @media (max-width: 768px) {
-      .bottom-nav { display: block; }
-      body { padding-bottom: 68px; }
-      .whatsapp-float { bottom: 5.5rem; }
-    }
-
-    /* FILTRO AVANZADO */
-    .filtros-avanzados {
-      background: var(--gris-50);
-      border: 1.5px solid var(--gris-200);
-      border-radius: var(--radio);
-      padding: 1rem 1.2rem;
-      margin-bottom: 1.5rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      align-items: center;
-    }
-    .filtro-grupo { display: flex; flex-direction: column; gap: .3rem; flex: 1; min-width: 160px; }
-    .filtro-grupo label { font-size: .72rem; font-weight: 800; color: var(--gris-700); text-transform: uppercase; letter-spacing: .06em; }
-    .filtro-rango { display: flex; align-items: center; gap: .5rem; font-size: .82rem; }
-    .filtro-rango input[type="range"] { flex: 1; accent-color: var(--azul); }
-    .filtro-tag-wrap { display: flex; flex-wrap: wrap; gap: .3rem; }
-    .filtro-tag {
-      display: inline-flex; align-items: center; gap: .25rem;
-      padding: .22rem .65rem; border: 1.5px solid var(--gris-200);
-      border-radius: 50px; font-size: .72rem; font-weight: 700;
-      cursor: pointer; transition: all .2s; background: #fff;
-      color: var(--gris-700);
-    }
-    .filtro-tag.activo { background: var(--azul); color: #fff; border-color: var(--azul); }
-    .filtro-tag:hover:not(.activo) { border-color: var(--azul); color: var(--azul); }
-    .btn-limpiar-filtros {
-      padding: .42rem 1rem; border: 1.5px solid var(--gris-300);
-      border-radius: 8px; background: #fff; font-family: inherit;
-      font-size: .78rem; font-weight: 700; color: var(--gris-700);
-      cursor: pointer; transition: all .2s;
-    }
-    .btn-limpiar-filtros:hover { border-color: var(--azul); color: var(--azul); }
-  </style>
+  <!-- Estilos migrados a css/estilos.css (sección 8: PÁGINA PRODUCTOS.HTML) -->
 </head>
 
 <body>
 
 <!-- TOP BAR -->
 <div class="top-bar">
-  <span>🛵 <strong>Domicilio: $3.000</strong> · Gratis en pedidos +$50.000</span>
+  <span>🛵 <strong>🚚 Domicilio GRATIS</strong> · Mosquera y Funza</span>
   <span class="top-bar-sep">|</span>
-  <a href="tel:+573124213986">📞 312 421 3986</a>
+  <a href="tel:+573118719476">📞 311 871 94 76</a>
   <span class="top-bar-sep">|</span>
   <span>🕐 Lun–Dom: 7 am – 10 pm</span>
 </div>
@@ -160,6 +59,10 @@
       <i class="fas fa-shopping-cart"></i> Carrito
       <span class="carrito-badge oculto">0</span>
     </button>
+    <button class="btn-tema" id="btnTema" onclick="toggleTema()" aria-label="Cambiar tema claro/oscuro" title="Cambiar tema">
+      <i class="fas fa-moon"></i>
+    </button>
+
     <button class="navbar-toggle" id="navToggle" aria-label="Menú">
       <span></span><span></span><span></span>
     </button>
@@ -360,91 +263,11 @@
 
   </div>
 </section>
-
-<style>
-/* ── Solicitud de producto ── */
-.sp-label {
-  display:block;
-  font-size:.72rem;
-  font-weight:700;
-  color:var(--gris-700);
-  margin-bottom:.3rem;
-}
-.sp-input {
-  width:100%;
-  font-family:inherit;
-  font-size:.88rem;
-  padding:.6rem .85rem;
-  border:1.5px solid var(--gris-300);
-  border-radius:10px;
-  background:var(--gris-50);
-  color:var(--texto);
-  outline:none;
-  box-sizing:border-box;
-  transition:border-color .18s, background .18s;
-}
-.sp-input:focus { border-color:var(--azul); background:#fff; }
-textarea.sp-input { resize:vertical; line-height:1.55; }
-select.sp-input { cursor:pointer; }
-.sp-error {
-  display:none;
-  font-size:.7rem;
-  color:#c62828;
-  font-weight:700;
-  margin-top:.2rem;
-}
-.sp-field.error .sp-input { border-color:#c62828; }
-.sp-field.error .sp-error { display:block; }
-.sp-urg {
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:.25rem;
-  padding:.75rem .5rem;
-  border-radius:12px;
-  border:1.5px solid var(--gris-300);
-  background:var(--gris-50);
-  cursor:pointer;
-  font-family:inherit;
-  transition:all .15s;
-}
-.sp-urg:hover { border-color:var(--azul); }
-.sp-urg-label { font-size:.75rem; font-weight:800; color:var(--gris-700); }
-.sp-urg-sub   { font-size:.65rem; color:var(--gris-500); }
-.sp-urg.activo-baja  { border-color:#2E7D32; background:#e8f5e9; }
-.sp-urg.activo-baja  .sp-urg-label { color:#2E7D32; }
-.sp-urg.activo-media { border-color:#e65100; background:#fff3e0; }
-.sp-urg.activo-media .sp-urg-label { color:#e65100; }
-.sp-urg.activo-alta  { border-color:#c62828; background:#fce4e4; }
-.sp-urg.activo-alta  .sp-urg-label { color:#c62828; }
-.sp-chip {
-  display:inline-flex;
-  align-items:center;
-  gap:.35rem;
-  padding:.35rem .9rem;
-  border-radius:50px;
-  border:1.5px solid var(--gris-300);
-  font-size:.75rem;
-  font-weight:700;
-  color:var(--gris-700);
-  background:var(--gris-50);
-  cursor:pointer;
-  transition:all .15s;
-  user-select:none;
-}
-.sp-chip:hover { border-color:var(--azul); color:var(--azul); }
-.sp-chip.activo { background:var(--azul); border-color:var(--azul); color:#fff; }
-@media(max-width:600px){
-  #solicitar-producto .container > div:nth-child(4) > div:first-child,
-  #solicitar-producto .container > div:nth-child(6) > div {
-    grid-template-columns:1fr !important;
-  }
-}
-</style>
+  <!-- Estilos migrados a css/estilos.css (sección 8: PÁGINA PRODUCTOS.HTML) -->
 
 <script>
 /* ── Solicitud de producto ── */
-var SP_WA  = '573124213986';
+var SP_WA  = '573118719476';
 var spUrg  = '';
 
 function spSelUrg(nivel) {
@@ -567,7 +390,7 @@ function spLimpiar() {
     <div class="footer-grid">
       <div class="footer-marca">
         <h3>Droguerías Económicas</h3>
-        <p>Tu salud, nuestro compromiso. Domicilio 24/7 en Mosquera y Facatativá.</p>
+        <p>Tu salud, nuestro compromiso. Domicilio 24/7 en Mosquera y Funza.</p>
         <div style="margin-top:.9rem">
           <p style="font-size:.72rem;font-weight:800;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem">Aceptamos</p>
           <div style="display:flex;flex-wrap:wrap;gap:.4rem">
@@ -601,9 +424,9 @@ function spLimpiar() {
       <div class="footer-col">
         <h4>Contacto</h4>
         <div class="footer-contacto">
-          <div class="footer-contacto-item"><i class="fas fa-phone-alt"></i><span><a href="tel:+573124213986" style="color:inherit">312 421 3986</a></span></div>
+          <div class="footer-contacto-item"><i class="fas fa-phone-alt"></i><span><a href="tel:+573118719476" style="color:inherit">311 871 94 76</a></span></div>
           <div class="footer-contacto-item"><i class="fas fa-envelope"></i><span>contacto@drogeriaseconomicas.com</span></div>
-          <div class="footer-contacto-item"><i class="fas fa-map-marker-alt"></i><span>Facatativá, Cundinamarca</span></div>
+          <div class="footer-contacto-item"><i class="fas fa-map-marker-alt"></i><span>Mosquera, Cundinamarca</span></div>
           <div class="footer-contacto-item"><i class="fas fa-clock"></i><span>Lun – Dom: 7 am – 10 pm</span></div>
         </div>
       </div>
@@ -613,7 +436,7 @@ function spLimpiar() {
       <div class="footer-redes">
         <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
         <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://wa.me/573124213986" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://wa.me/573118719476" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
       </div>
     </div>
   </div>
@@ -634,7 +457,7 @@ function spLimpiar() {
       <div class="domicilio-info">
         <i class="fas fa-motorcycle"></i>
         <div>
-          <strong>🛵 Domicilio: $3.000</strong> · Mosquera &amp; Facatativá<br>
+          <strong>🛵 domicilio GRATIS</strong> · Mosquera y Funza<br>
           <span style="font-weight:600;font-size:.73rem">⏱️ Entrega estimada: 30–40 minutos</span>
         </div>
       </div>
@@ -664,7 +487,7 @@ function spLimpiar() {
 <!-- WhatsApp flotante -->
 <div class="whatsapp-float">
   <div class="whatsapp-tooltip">¡Escríbenos!</div>
-  <a href="https://wa.me/573124213986?text=Hola%2C+quiero+información+sobre+sus+productos"
+  <a href="https://wa.me/573118719476?text=Hola%2C+quiero+información+sobre+sus+productos"
      target="_blank" rel="noopener" class="whatsapp-btn" aria-label="WhatsApp">
     <i class="fab fa-whatsapp"></i>
   </a>
@@ -684,11 +507,12 @@ function spLimpiar() {
       </div>
       <span>Carrito</span>
     </button>
-    <a href="https://wa.me/573124213986?text=Hola" target="_blank" rel="noopener" class="bn-item">
+    <a href="https://wa.me/573118719476?text=Hola" target="_blank" rel="noopener" class="bn-item">
       <i class="fab fa-whatsapp"></i><span>WhatsApp</span>
     </a>
   </div>
 </nav>
+<script src="js/theme.js"></script>
 <script src="js/wa-config.js"></script>
 <script src="js/productos-data.js"></script>
 <script src="js/laboratorio-precios.js"></script>

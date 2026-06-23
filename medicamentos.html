@@ -4,46 +4,257 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Medicamentos | Droguerías Económicas</title>
-  <meta name="description" content="Medicamentos analgésicos, antibióticos, antigripales, vitaminas y más. Precios económicos en Mosquera–Facatativá.">
-  <!-- Redirect automático al catálogo con filtro preactivado -->
-  <meta http-equiv="refresh" content="0;url=productos.html?cat=Medicamentos">
-
+  <meta name="description" content="Analgésicos, antigripales, antibióticos y medicamentos de venta libre al mejor precio. Domicilio 24/7 en Mosquera y Facatativá, Cundinamarca.">
+  <meta property="og:title" content="Medicamentos — Droguerías Económicas">
+  <meta property="og:description" content="Analgésicos, antigripales, vitaminas y más. Los mejores precios con domicilio 24/7.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="img/icono.jpg">
   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="css/estilos.css">
-  <style>
-    body { display:flex; align-items:center; justify-content:center; min-height:100vh; background:#e3f2fd; }
-    .redir-box {
-      background: #fff; border-radius: 20px; padding: 3rem 2.5rem;
-      text-align: center; box-shadow: 0 8px 32px rgba(21,101,192,.15);
-      max-width: 400px;
-    }
-    .redir-box i { font-size: 3rem; color: #1565C0; margin-bottom: 1rem; display: block; }
-    .redir-box h1 { font-size: 1.3rem; font-weight: 900; color: #1a1a2e; margin-bottom: .5rem; }
-    .redir-box p  { color: #666; font-size: .9rem; margin-bottom: 1.5rem; }
-    .redir-box a  {
-      display: inline-flex; align-items: center; gap: .5rem;
-      background: #1565C0; color: #fff; border-radius: 12px;
-      padding: .75rem 1.5rem; font-weight: 800; font-size: .95rem;
-      text-decoration: none; transition: background .2s;
-    }
-    .redir-box a:hover { background: #0d47a1; }
-  </style>
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-  <div class="redir-box">
-    <i class="fas fa-pills"></i>
-    <h1>Medicamentos</h1>
-    <p>Te llevamos al catálogo completo con todos los medicamentos disponibles...</p>
-    <a href="productos.html?cat=Medicamentos">
-      <i class="fas fa-arrow-right"></i> Ver Medicamentos
+<div class="top-bar">
+  <span>🛵 <strong>Domicilio: $3.000</strong> · Gratis en pedidos +$50.000</span>
+  <span class="top-bar-sep">|</span>
+  <a href="tel:+573124213986">📞 312 421 3986</a>
+  <span class="top-bar-sep">|</span>
+  <span>🕐 Lun–Dom: 7 am – 10 pm</span>
+</div>
+<nav class="navbar" role="navigation" aria-label="Navegación principal">
+  <a class="navbar-logo" href="index.html">
+    <img src="img/icono.jpg" alt="Logo Droguerías Económicas" onerror="this.style.display='none'">
+    <span>Droguerías <em>Económicas</em></span>
+  </a>
+  <ul class="navbar-links" id="navLinks">
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="productos.html" class="activo">Productos</a></li>
+    <li><a href="promociones.html">Promociones</a></li>
+    <li><a href="contacto.html">Contacto</a></li>
+  </ul>
+  <div class="navbar-actions">
+    <button class="btn-dark-mode" id="btnDarkMode" aria-label="Activar modo oscuro" title="Modo oscuro">
+      <i class="fas fa-moon"></i>
+    </button>
+    <button class="btn-carrito" id="btnAbrirCarrito" aria-label="Abrir carrito">
+      <i class="fas fa-shopping-cart"></i> Carrito
+      <span class="carrito-badge oculto">0</span>
+    </button>
+    <button class="navbar-toggle" id="navToggle" aria-label="Menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<header class="page-hero" role="banner">
+  <div class="breadcrumb">
+    <a href="index.html">Inicio</a> - <a href="productos.html">Productos</a> - Medicamentos
+  </div>
+  <h1><i class="fas fa-pills"></i> Medicamentos</h1>
+  <p>Analgésicos, antigripales, vitaminas y medicamentos de venta libre</p>
+</header>
+
+<section aria-label="Catálogo de medicamentos">
+  <div class="container">
+    <h2 class="titulo-seccion" style="margin-bottom:1.5rem">Medicamentos</h2>
+    <div class="categorias-grid" id="categoriasGrid" role="group" aria-label="Filtrar categoría"></div>
+    <div class="filtros-avanzados" style="margin-top:1.5rem">
+      <div class="filtro-grupo">
+        <label>💰 Precio máximo: <span id="precioMaxLabel">$200.000</span></label>
+        <div class="filtro-rango">
+          <span style="font-size:.72rem;color:var(--gris-500)">$0</span>
+          <input type="range" id="filtroPrecio" min="1000" max="200000" step="1000" value="200000">
+          <span style="font-size:.72rem;color:var(--gris-500)">$200k</span>
+        </div>
+      </div>
+      <div class="filtro-grupo">
+        <label>🏷️ Filtrar por</label>
+        <div class="filtro-tag-wrap">
+          <button class="filtro-tag" data-tag="Oferta">🔴 Ofertas</button>
+          <button class="filtro-tag" data-tag="Más vendido">🔥 Más vendido</button>
+          <button class="filtro-tag" data-tag="Nuevo">🟢 Nuevo</button>
+        </div>
+      </div>
+      <button class="btn-limpiar-filtros" id="btnLimpiarFiltros"><i class="fas fa-redo"></i> Limpiar</button>
+    </div>
+    <div class="productos-header">
+      <span class="productos-count" id="productosCount"></span>
+      <input type="search" class="busqueda-input" id="busquedaInput" placeholder="🔍 Buscar medicamentos..." aria-label="Buscar producto">
+    </div>
+    <div class="productos-grid" id="productosGrid" role="list" aria-live="polite"></div>
+  </div>
+</section>
+
+<section style="background:var(--gris-100);padding:3rem 0">
+  <div class="container" style="max-width:640px;text-align:center">
+    <div style="background:linear-gradient(135deg,#0d47a1,#1565C0 60%,#e65100);border-radius:20px;padding:2rem;color:#fff">
+      <p style="font-size:.72rem;font-weight:800;opacity:.65;text-transform:uppercase;letter-spacing:.1em;margin:0 0 .4rem">Droguerías Económicas</p>
+      <h2 style="font-size:1.5rem;font-weight:900;margin:0 0 .5rem">¿No encontraste tu medicamento?</h2>
+      <p style="opacity:.88;margin:0 0 1.2rem;line-height:1.6;font-size:.9rem">Solicítalo y te lo conseguimos <strong style="color:#FFD54F">sin costo adicional</strong>.</p>
+      <a href="productos.html#solicitar-producto" style="background:#fff;color:#0d47a1;font-weight:800;padding:.8rem 2rem;border-radius:50px;display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;font-size:.9rem">
+        <i class="fas fa-search-plus"></i> Solicitar un medicamento
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-marca">
+        <h3>Droguerías Económicas</h3>
+        <p>Tu salud, nuestro compromiso. Domicilio 24/7 en Mosquera y Facatativá.</p>
+        <div style="margin-top:.9rem">
+          <p style="font-size:.72rem;font-weight:800;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem">Aceptamos</p>
+          <div style="display:flex;flex-wrap:wrap;gap:.4rem">
+            <span style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:8px;padding:.25rem .65rem;font-size:.72rem;font-weight:700;color:rgba(255,255,255,.8)">🟢 Nequi</span>
+            <span style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:8px;padding:.25rem .65rem;font-size:.72rem;font-weight:700;color:rgba(255,255,255,.8)">🔵 Daviplata</span>
+            <span style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:8px;padding:.25rem .65rem;font-size:.72rem;font-weight:700;color:rgba(255,255,255,.8)">💰 Contraentrega</span>
+            <span style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:8px;padding:.25rem .65rem;font-size:.72rem;font-weight:700;color:rgba(255,255,255,.8)">💵 Efectivo</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="productos.html">Todos los productos</a></li>
+          <li><a href="promociones.html">Promociones</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Categorías</h4>
+        <ul>
+          <li><a href="medicamentos.html">Medicamentos</a></li>
+          <li><a href="belleza.html">Belleza</a></li>
+          <li><a href="cuidado-personal.html">Cuidado Personal</a></li>
+          <li><a href="cuidadobebe-mama.html">Bebé y Mamá</a></li>
+          <li><a href="mercado.html">Mercado y Hogar</a></li>
+          <li><a href="marcas.html">Marcas DE</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <div class="footer-contacto">
+          <div class="footer-contacto-item"><i class="fas fa-phone-alt"></i><span><a href="tel:+573124213986" style="color:inherit">312 421 3986</a></span></div>
+          <div class="footer-contacto-item"><i class="fas fa-envelope"></i><span>contacto@drogeriaseconomicas.com</span></div>
+          <div class="footer-contacto-item"><i class="fas fa-map-marker-alt"></i><span>Facatativá, Cundinamarca</span></div>
+          <div class="footer-contacto-item"><i class="fas fa-clock"></i><span>Lun – Dom: 7 am – 10 pm</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Droguerías Económicas. Todos los derechos reservados.</p>
+      <div class="footer-redes">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/573124213986" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="modal-overlay" id="carritoModal" role="dialog" aria-modal="true" aria-label="Carrito">
+  <div class="carrito-panel">
+    <div class="carrito-header">
+      <h2><i class="fas fa-shopping-cart"></i> Mi Carrito</h2>
+      <button class="btn-cerrar-carrito" id="btnCerrarCarrito" aria-label="Cerrar">✕</button>
+    </div>
+    <div class="carrito-items" id="carritoItems">
+      <div class="carrito-vacio"><i class="fas fa-shopping-basket"></i><p>Tu carrito está vacío</p></div>
+    </div>
+    <div class="carrito-footer">
+      <div class="domicilio-info">
+        <i class="fas fa-motorcycle"></i>
+        <div><strong>🛵 Domicilio: $3.000</strong> · Mosquera &amp; Facatativá<br><span style="font-weight:600;font-size:.73rem">⏱️ Entrega estimada: 30–40 minutos</span></div>
+      </div>
+      <div class="carrito-resumen">
+        <div class="carrito-resumen-fila"><span>Subtotal</span><span id="carritoSubtotal">$0</span></div>
+        <div class="carrito-resumen-fila"><span>Envío</span><span id="carritoEnvio">$0</span></div>
+        <div id="carritoEnvioMsg">✅ Envío gratis en compras mayores a $50.000</div>
+      </div>
+      <div class="carrito-total-fila"><span>Total</span><span id="carritoTotal">$0</span></div>
+      <div>
+        <div class="pagos-carrito-title">💳 Aceptamos:</div>
+        <div class="pagos-carrito">
+          <span class="pago-mini">🟢 Nequi</span><span class="pago-mini">🔵 Daviplata</span>
+          <span class="pago-mini">💰 Contraentrega</span><span class="pago-mini">🏦 Bancolombia</span><span class="pago-mini">💵 Efectivo</span>
+        </div>
+      </div>
+      <button class="btn-checkout" id="btnCheckout"><i class="fab fa-whatsapp"></i> Pedir por WhatsApp</button>
+      <button class="btn-vaciar" id="btnVaciarCarrito"><i class="fas fa-trash"></i> Vaciar carrito</button>
+    </div>
+  </div>
+</div>
+
+<div class="whatsapp-float">
+  <div class="whatsapp-tooltip">¡Escríbenos!</div>
+  <a href="https://wa.me/573124213986?text=Hola%2C+quiero+información+sobre+medicamentos" target="_blank" rel="noopener" class="whatsapp-btn" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+</div>
+<div id="toast" class="toast" aria-live="assertive"></div>
+
+<nav class="bottom-nav" aria-label="Navegación rápida móvil">
+  <div class="bottom-nav-inner">
+    <a href="index.html" class="bn-item"><i class="fas fa-home"></i><span>Inicio</span></a>
+    <a href="productos.html" class="bn-item activo"><i class="fas fa-store"></i><span>Productos</span></a>
+    <button class="bn-item" id="btnAbrirCarritoMobile">
+      <div class="bn-badge"><i class="fas fa-shopping-cart"></i><span class="bn-count oculto" id="bnCount">0</span></div>
+      <span>Carrito</span>
+    </button>
+    <a href="https://wa.me/573124213986?text=Hola" target="_blank" rel="noopener" class="bn-item">
+      <i class="fab fa-whatsapp"></i><span>WhatsApp</span>
     </a>
   </div>
-  <script>
-    // Redirect inmediato por JS como respaldo
-    window.location.replace('productos.html?cat=Medicamentos');
-  </script>
+</nav>
+
+<script src="js/wa-config.js"></script>
+<script src="js/productos-data.js"></script>
+<script src="js/laboratorio-precios.js"></script>
+<script src="js/catalogo.js"></script>
+<script src="js/carrito.js"></script>
+<script src="js/pago.js"></script>
+<script>
+var _CAT = 'Medicamentos';
+document.addEventListener('DOMContentLoaded', function() {
+  setTimeout(function() { if (typeof filtrarCategoria === 'function') filtrarCategoria(_CAT); }, 150);
+});
+document.addEventListener('DOMContentLoaded', function() {
+  var sl = document.getElementById('filtroPrecio'), lb = document.getElementById('precioMaxLabel');
+  if (sl) sl.addEventListener('input', function() { lb.textContent = '$' + parseInt(sl.value).toLocaleString('es-CO'); _filtrar(); });
+  document.querySelectorAll('.filtro-tag').forEach(function(b) { b.addEventListener('click', function() { b.classList.toggle('activo'); _filtrar(); }); });
+  var btn = document.getElementById('btnLimpiarFiltros');
+  if (btn) btn.addEventListener('click', function() {
+    if (sl) { sl.value = 200000; lb.textContent = '$200.000'; }
+    document.querySelectorAll('.filtro-tag.activo').forEach(function(b) { b.classList.remove('activo'); });
+    if (typeof limpiarFiltros === 'function') limpiarFiltros();
+    setTimeout(function() { if (typeof filtrarCategoria === 'function') filtrarCategoria(_CAT); }, 100);
+  });
+});
+function _filtrar() {
+  if (typeof CATALOGO === 'undefined' || typeof ESTADO === 'undefined') return;
+  var pm = parseInt(document.getElementById('filtroPrecio')?.value || 200000);
+  var ta = Array.from(document.querySelectorAll('.filtro-tag.activo')).map(function(b) { return b.dataset.tag; });
+  ESTADO.filtros.precioMax = pm; ESTADO.filtros.tagsActivos = ta;
+  var r = CATALOGO.filter(function(p) {
+    if (p.categoria !== _CAT) return false;
+    if (p.variantes[0].precio > pm) return false;
+    if (ta.length && !ta.some(function(t) { return p.tags?.some(function(pt) { return pt.label === t; }); })) return false;
+    var q = (ESTADO.filtros.busqueda || '').toLowerCase();
+    return !q || p.nombre.toLowerCase().includes(q);
+  });
+  ESTADO.resultados = r; ESTADO.pagina = 1;
+  if (typeof renderGrilla === 'function') renderGrilla();
+  var c = document.getElementById('productosCount');
+  if (c) c.textContent = r.length + ' producto' + (r.length !== 1 ? 's' : '') + ' encontrado' + (r.length !== 1 ? 's' : '');
+}
+</script>
+<script src="assets/js/app.js"></script>
 </body>
 </html>

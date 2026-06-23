@@ -260,13 +260,13 @@ function vaciarCarrito() {
 /* ─── Totales ─── */
 function calcularTotales() {
   var subtotal = carrito.reduce(function(acc, i) { return acc + i.precio * i.cantidad; }, 0);
-  var envio    = subtotal > 50000 ? 0 : subtotal > 0 ? 3000 : 0;
+  var envio    = 0; /* Domicilio siempre GRATIS — política comercial actualizada */
   return { subtotal: subtotal, envio: envio, total: subtotal + envio };
 }
 
 /* ─── Barra de progreso envío gratis ─── */
 function renderBarraEnvio(subtotal) {
-  var META   = 50000;
+  var META   = 0; /* Domicilio siempre gratis — sin mínimo */
   var pct    = Math.min(100, Math.round((subtotal / META) * 100));
   var falta  = META - subtotal;
 
@@ -526,7 +526,7 @@ function checkoutWhatsApp() {
   msg += '━━━━━━━━━━━━━━━━\n';
   msg += '💳 *TOTAL: ' + _cop(totales.total) + '*\n\n';
   msg += '¿Confirman disponibilidad? ✅';
-  window.open('https://wa.me/573124213986?text=' + encodeURIComponent(msg), '_blank');
+  window.open('https://wa.me/573118719476?text=' + encodeURIComponent(msg), '_blank');
 }
 
 
@@ -557,18 +557,20 @@ function inyectarModalCarrito() {
           '<div class="domicilio-info">' +
             '<i class="fas fa-motorcycle"></i>' +
             '<div>' +
-              '<strong>&#x1F6F5; Domicilio: $3.000</strong> &middot; Mosquera &amp; Funza\u00e1<br>' +
+              '<strong>🚚 Domicilio GRATIS</strong> &middot; Mosquera &amp; Funza<br>' +
               '<span style="font-weight:600;font-size:.73rem">&#x23F1;&#xFE0F; Entrega estimada: 30\u201340 min</span>' +
             '</div>' +
           '</div>' +
           '<div class="carrito-resumen">' +
             '<div class="carrito-resumen-fila"><span>Subtotal</span><span id="carritoSubtotal">$0</span></div>' +
-            '<div class="carrito-resumen-fila"><span>Env\u00edo</span><span id="carritoEnvio">$3.000</span></div>' +
+            '<div class="carrito-resumen-fila"><span>Envío</span><span id="carritoEnvio">GRATIS 🎉</span></div>' +
             '<div id="carritoEnvioMsg" style="font-size:.75rem;font-weight:700;color:#2E7D32;margin-top:.2rem">&#x2705; Env\u00edo gratis en compras mayores a $50.000</div>' +
           '</div>' +
           '<div class="carrito-total-fila"><span>Total</span><span id="carritoTotal">$0</span></div>' +
           '<div style="background:#E3F2FD;border:1.5px solid #BBDEFB;border-radius:10px;padding:.7rem .9rem;font-size:.75rem;margin:.2rem 0">' +
-            '<div style="font-weight:900;color:#0d47a1;margin-bottom:.35rem">&#x1F3E6; Datos para transferencia / consignaci\u00f3n:</div>' +
+            '<div style="font-weight:900;color:#0d47a1;margin-bottom:.35rem">💳 Datos para pago / transferencia:</div>' +
+              '<div style="background:#E8F5E9;border-radius:8px;padding:.45rem .7rem;margin-bottom:.3rem;font-size:.74rem;color:#1B5E20;font-weight:700">📲 Nequi · Daviplata: <strong>323 249 7559</strong></div>' +
+              '<div style="font-size:.7rem;color:#555;margin-bottom:.25rem">Realiza tu pago al número 3232497559 y envía el comprobante por WhatsApp.</div>' +
             '<div style="display:flex;flex-direction:column;gap:.18rem;color:#1565C0;font-weight:700">' +
               '<span>&#x1F4CC; Bancolombia &middot; Cuenta de Ahorros</span>' +
               '<span>N&deg; cuenta: <strong>123-456789-00</strong></span>' +

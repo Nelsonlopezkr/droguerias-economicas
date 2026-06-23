@@ -1,0 +1,914 @@
+/* ══════════════════════════════════════════════════════════
+   Droguerías Económicas — assets/css/style.css  v5.0
+   Archivo complementario consolidado.
+   CARGA DESPUÉS de css/estilos.css y css/mejoras.css.
+
+   Contiene:
+   ✅ Variables Dark Mode
+   ✅ Overrides completos para Dark Mode
+   ✅ Estilos Top Ventas (TV cards) — antes solo inline
+   ✅ Sección Categorías Hero (tarjetas visuales)
+   ✅ Botón toggle Dark Mode en navbar
+   ✅ Badge fórmula médica
+   ✅ Mejoras de scroll y animaciones
+   ✅ Mejoras responsive adicionales
+   ══════════════════════════════════════════════════════════ */
+
+/* ──────────────────────────────────────────────────────────
+   1. DARK MODE — Variables
+   ────────────────────────────────────────────────────────── */
+[data-theme="dark"] {
+  color-scheme: dark;
+  --azul:       #4fc3f7;
+  --azul-dark:  #0288d1;
+  --azul-light: #81d4fa;
+  --azul-50:    #0a1e35;
+  --naranja:    #ff8c42;
+  --naranja-50: #1e0e04;
+  --verde:      #66bb6a;
+  --verde-wa:   #25D366;
+  --gris-50:    #12121e;
+  --gris-100:   #1a1a2e;
+  --gris-200:   #22223a;
+  --gris-300:   #2e2e48;
+  --gris-500:   #6b6b90;
+  --gris-700:   #9a9ac0;
+  --texto:      #dde3f0;
+  --texto-2:    #a8b0c8;
+  --sombra-xs:  0 1px 4px rgba(0,0,0,.5);
+  --sombra-sm:  0 2px 8px rgba(0,0,0,.6);
+  --sombra-md:  0 4px 20px rgba(0,0,0,.7);
+  --sombra-lg:  0 8px 32px rgba(0,0,0,.8);
+  --sombra-xl:  0 16px 48px rgba(0,0,0,.9);
+}
+
+/* ──────────────────────────────────────────────────────────
+   2. DARK MODE — Overrides generales
+   ────────────────────────────────────────────────────────── */
+[data-theme="dark"] body {
+  background: #0f0f1a;
+  color: var(--texto);
+}
+
+[data-theme="dark"] .navbar {
+  background: rgba(12, 12, 22, 0.97);
+  box-shadow: 0 1px 0 rgba(255,255,255,.05), 0 4px 16px rgba(0,0,0,.5);
+}
+
+[data-theme="dark"] .navbar-links li a {
+  color: var(--gris-700);
+}
+
+[data-theme="dark"] .navbar-links li a:hover {
+  background: var(--gris-200);
+  color: var(--azul);
+}
+
+[data-theme="dark"] .navbar-links li a.activo {
+  background: var(--azul-dark);
+  color: #fff;
+}
+
+[data-theme="dark"] .navbar-links {
+  background: rgba(12, 12, 22, 0.98);
+}
+
+/* Sections con background inline usando variables — se actualizan solas */
+[data-theme="dark"] #testimonios,
+[data-theme="dark"] #nosotros,
+[data-theme="dark"] .servicios-bg {
+  background: var(--gris-100) !important;
+}
+
+/* Cards */
+[data-theme="dark"] .producto-card,
+[data-theme="dark"] .servicio-card,
+[data-theme="dark"] .testimonio-card,
+[data-theme="dark"] .garantia-card,
+[data-theme="dark"] .tv-card,
+[data-theme="dark"] .promo-card,
+[data-theme="dark"] .nosotros-item,
+[data-theme="dark"] .resena-card {
+  background: var(--gris-100);
+  border-color: var(--gris-200);
+}
+
+[data-theme="dark"] .producto-card:hover,
+[data-theme="dark"] .tv-card:hover {
+  border-color: var(--azul-dark);
+  box-shadow: 0 10px 30px rgba(0,0,0,.6);
+}
+
+/* Imágenes en tarjetas */
+[data-theme="dark"] .prod-img-wrap {
+  background: var(--gris-200);
+}
+
+/* Buscador */
+[data-theme="dark"] .productos-header {
+  background: var(--gris-100);
+  border-color: var(--gris-200);
+}
+
+[data-theme="dark"] .busqueda-input {
+  background: var(--gris-200);
+  color: var(--texto);
+  border-color: var(--gris-300);
+}
+
+[data-theme="dark"] .busqueda-input::placeholder {
+  color: var(--gris-500);
+}
+
+[data-theme="dark"] .busqueda-dropdown {
+  background: var(--gris-100);
+  border-color: var(--gris-200);
+}
+
+[data-theme="dark"] .ac-item {
+  border-bottom-color: var(--gris-200);
+}
+
+[data-theme="dark"] .ac-item:hover {
+  background: var(--gris-200);
+}
+
+[data-theme="dark"] .ac-nombre {
+  color: var(--texto);
+}
+
+/* Categorías */
+[data-theme="dark"] .cat-btn {
+  background: var(--gris-100);
+  border-color: var(--gris-200);
+  color: var(--gris-700);
+}
+
+[data-theme="dark"] .cat-btn:hover {
+  border-color: var(--azul);
+  color: var(--azul);
+}
+
+[data-theme="dark"] .cat-btn.activo {
+  background: var(--azul-dark);
+  border-color: var(--azul-dark);
+  color: #fff;
+}
+
+/* Filtros avanzados */
+[data-theme="dark"] .filtros-avanzados {
+  background: var(--gris-100);
+  border-color: var(--gris-200);
+}
+
+[data-theme="dark"] .filtro-tag {
+  background: var(--gris-200);
+  border-color: var(--gris-300);
+  color: var(--gris-700);
+}
+
+[data-theme="dark"] .filtro-tag.activo {
+  background: var(--azul-dark);
+  border-color: var(--azul-dark);
+  color: #fff;
+}
+
+/* Carrito */
+[data-theme="dark"] .carrito-panel {
+  background: #141420;
+}
+
+[data-theme="dark"] .carrito-footer {
+  background: var(--gris-100);
+}
+
+[data-theme="dark"] .carrito-item {
+  background: var(--gris-200);
+  border-color: var(--gris-300);
+}
+
+[data-theme="dark"] .pago-mini {
+  background: var(--gris-200);
+  border-color: var(--gris-300);
+  color: var(--gris-700);
+}
+
+[data-theme="dark"] .carrito-vacio {
+  color: var(--gris-500);
+}
+
+[data-theme="dark"] .btn-cant {
+  background: var(--gris-200);
+  border-color: var(--gris-300);
+  color: var(--texto);
+}
+
+[data-theme="dark"] .btn-cant:hover {
+  border-color: var(--azul);
+  background: var(--azul-50);
+  color: var(--azul);
+}
+
+/* Modal producto */
+[data-theme="dark"] .modal-producto {
+  background: #141420;
+}
+
+[data-theme="dark"] .modal-prod-img-side {
+  background: var(--gris-100);
+}
+
+[data-theme="dark"] .modal-prod-desc {
+  background: var(--gris-200);
+  border-left-color: var(--azul-50);
+}
+
+[data-theme="dark"] .modal-var-btn {
+  background: var(--gris-200);
+  border-color: var(--gris-300);
+  color: var(--texto);
+}
+
+[data-theme="dark"] .modal-var-btn:hover {
+  border-color: var(--azul);
+}
+
+[data-theme="dark"] .modal-var-btn.activo {
+  background: var(--azul-dark);
+  border-color: var(--azul-dark);
+}
+
+[data-theme="dark"] .modal-close {
+  background: rgba(255,255,255,.08);
+  color: var(--texto);
+}
+
+[data-theme="dark"] .modal-close:hover {
+  background: rgba(255,255,255,.15);
+}
+
+/* Bottom nav */
+[data-theme="dark"] .bottom-nav {
+  background: #141420;
+  border-top-color: var(--gris-200);
+}
+
+[data-theme="dark"] .bn-item {
+  color: var(--gris-500);
+}
+
+[data-theme="dark"] .bn-item.activo,
+[data-theme="dark"] .bn-item:hover {
+  color: var(--azul);
+}
+
+/* Inputs y formularios */
+[data-theme="dark"] .formulario input,
+[data-theme="dark"] .formulario textarea,
+[data-theme="dark"] .form-control {
+  background: var(--gris-200);
+  border-color: var(--gris-300);
+  color: var(--texto);
+}
+
+[data-theme="dark"] .variante-select {
+  background: var(--gris-200);
+  color: var(--texto);
+  border-color: var(--gris-300);
+}
+
+/* Nosotros texto */
+[data-theme="dark"] .nosotros-texto > p {
+  color: var(--gris-700);
+}
+
+/* Promo card body */
+[data-theme="dark"] .promo-card-body p,
+[data-theme="dark"] .promo-card-full .promo-card-body p {
+  color: var(--gris-700);
+}
+
+/* Newsletter */
+[data-theme="dark"] .newsletter-box {
+  background: var(--gris-100);
+  border-color: var(--gris-200);
+}
+
+[data-theme="dark"] .newsletter-form input {
+  background: var(--gris-200);
+  border-color: var(--gris-300);
+  color: var(--texto);
+}
+
+/* Mobile cart bar */
+[data-theme="dark"] .mobile-cart-bar {
+  background: var(--azul-dark);
+}
+
+/* Autocomplete */
+[data-theme="dark"] .sug-item {
+  background: var(--gris-200);
+  border-color: var(--gris-300);
+}
+
+[data-theme="dark"] .sug-item:hover {
+  background: var(--gris-300);
+  border-color: var(--azul-50);
+}
+
+[data-theme="dark"] .sug-nombre {
+  color: var(--texto);
+}
+
+/* Category cards */
+[data-theme="dark"] .cat-hero-card {
+  background: var(--gris-100);
+  border-color: var(--gris-200);
+}
+
+[data-theme="dark"] .cat-hero-card:hover {
+  border-color: var(--azul);
+  background: var(--gris-200);
+}
+
+[data-theme="dark"] .cat-hero-card .cat-hero-label {
+  color: var(--texto);
+}
+
+/* Envio progreso */
+[data-theme="dark"] .envio-progreso-wrap {
+  background: var(--gris-200);
+  border-color: var(--gris-300);
+}
+
+/* Countdown */
+[data-theme="dark"] .countdown-unit {
+  background: var(--gris-200);
+}
+
+[data-theme="dark"] .countdown-inner {
+  background: var(--gris-100);
+  border-color: var(--gris-200);
+}
+
+/* Promo featured */
+[data-theme="dark"] .promo-featured {
+  background: var(--gris-100);
+  border-color: var(--gris-200);
+}
+
+/* ──────────────────────────────────────────────────────────
+   3. BOTÓN DARK MODE TOGGLE
+   ────────────────────────────────────────────────────────── */
+.btn-dark-mode {
+  width: 38px;
+  height: 38px;
+  border: 2px solid var(--gris-200);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--gris-700);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: .95rem;
+  transition: background .2s, color .2s, border-color .2s, transform .2s;
+  flex-shrink: 0;
+}
+
+.btn-dark-mode:hover {
+  background: var(--gris-100);
+  color: var(--azul);
+  border-color: var(--azul);
+  transform: rotate(15deg);
+}
+
+[data-theme="dark"] .btn-dark-mode {
+  background: var(--gris-200);
+  border-color: var(--gris-300);
+  color: #FFD54F;
+}
+
+[data-theme="dark"] .btn-dark-mode:hover {
+  background: var(--gris-300);
+  border-color: #FFD54F;
+}
+
+/* ──────────────────────────────────────────────────────────
+   4. TOP VENTAS — Estilos (antes solo en inline index.html)
+   ────────────────────────────────────────────────────────── */
+.tv-subtitulo {
+  font-size: .85rem;
+  color: var(--gris-500);
+  font-weight: 600;
+  margin-top: .2rem;
+  text-align: center;
+}
+
+.tv-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.1rem 1rem;
+  margin-top: 1.4rem;
+}
+
+.tv-card {
+  position: relative;
+  background: #fff;
+  border: 1.5px solid var(--gris-200);
+  border-radius: 14px;
+  padding: 1.1rem 1rem 1rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,.05);
+  transition: transform .2s, box-shadow .2s, border-color .2s;
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+}
+
+.tv-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 22px rgba(0,0,0,.09);
+  border-color: var(--azul);
+}
+
+.tv-rank {
+  position: absolute;
+  top: -11px;
+  left: 14px;
+  font-size: .66rem;
+  font-weight: 900;
+  color: #fff;
+  padding: .2rem .6rem;
+  border-radius: 50px;
+  background: var(--gris-500);
+  box-shadow: 0 2px 6px rgba(0,0,0,.18);
+  white-space: nowrap;
+}
+
+.tv-rank.oro    { background: linear-gradient(135deg, #FFD54F, #FF8F00); }
+.tv-rank.plata  { background: linear-gradient(135deg, #E0E0E0, #9E9E9E); color: #333; }
+.tv-rank.bronce { background: linear-gradient(135deg, #D7A86E, #8D5524); }
+.tv-rank.top10  { background: #e65100; }
+
+.tv-icono { font-size: 1.5rem; margin-top: .35rem; }
+
+.tv-nombre {
+  font-size: .87rem;
+  font-weight: 800;
+  color: var(--texto);
+  line-height: 1.3;
+  min-height: 2.3em;
+}
+
+.tv-presentacion {
+  font-size: .7rem;
+  color: var(--gris-500);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+}
+
+.tv-precio {
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: var(--azul);
+}
+
+.tv-vendidos {
+  font-size: .72rem;
+  color: var(--verde);
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: .3rem;
+}
+
+.tv-btn-wsp {
+  margin-top: .3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .4rem;
+  background: #25D366;
+  color: #fff;
+  font-weight: 800;
+  font-size: .8rem;
+  padding: .55rem .8rem;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: filter .2s;
+}
+
+.tv-btn-wsp:hover { filter: brightness(1.08); }
+
+.tv-card[hidden] { display: none; }
+
+.tv-ver-mas {
+  background: #fff;
+  border: 1.5px solid var(--azul);
+  color: var(--azul);
+  font-weight: 800;
+  font-size: .85rem;
+  padding: .65rem 1.5rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background .2s, color .2s;
+  font-family: inherit;
+}
+
+.tv-ver-mas:hover {
+  background: var(--azul);
+  color: #fff;
+}
+
+[data-theme="dark"] .tv-ver-mas {
+  background: var(--gris-100);
+  border-color: var(--azul);
+  color: var(--azul);
+}
+
+[data-theme="dark"] .tv-ver-mas:hover {
+  background: var(--azul-dark);
+  color: #fff;
+}
+
+@media (max-width: 600px) {
+  .tv-grid { grid-template-columns: repeat(auto-fill, minmax(148px, 1fr)); gap: .7rem; }
+  .tv-nombre { font-size: .79rem; }
+}
+
+/* ──────────────────────────────────────────────────────────
+   5. CATEGORÍAS HERO — Sección visual de categorías
+   ────────────────────────────────────────────────────────── */
+.categorias-hero {
+  padding: 2.5rem 0 2rem;
+  background: linear-gradient(180deg, #fff 0%, var(--gris-50) 100%);
+}
+
+[data-theme="dark"] .categorias-hero {
+  background: linear-gradient(180deg, #0f0f1a 0%, var(--gris-100) 100%);
+}
+
+.cat-hero-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.cat-hero-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .65rem;
+  padding: 1.4rem .8rem 1.1rem;
+  background: #fff;
+  border: 1.5px solid var(--gris-200);
+  border-radius: 18px;
+  text-decoration: none;
+  color: var(--texto);
+  box-shadow: var(--sombra-xs);
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.cat-hero-card::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--azul), var(--naranja));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .25s ease;
+}
+
+.cat-hero-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--sombra-md);
+  border-color: var(--azul);
+}
+
+.cat-hero-card:hover::before {
+  transform: scaleX(1);
+}
+
+.cat-hero-icon {
+  width: 58px;
+  height: 58px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  transition: transform .22s ease;
+}
+
+.cat-hero-card:hover .cat-hero-icon {
+  transform: scale(1.1) rotate(-5deg);
+}
+
+.cat-hero-label {
+  font-size: .82rem;
+  font-weight: 800;
+  color: var(--texto);
+  text-align: center;
+  line-height: 1.25;
+}
+
+.cat-hero-count {
+  font-size: .68rem;
+  color: var(--gris-500);
+  font-weight: 700;
+}
+
+/* Colores por categoría */
+.cat-hero-card[data-cat="Medicamentos"] .cat-hero-icon {
+  background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+  color: #1565C0;
+}
+.cat-hero-card[data-cat="Belleza"] .cat-hero-icon {
+  background: linear-gradient(135deg, #fce4ec, #f8bbd9);
+  color: #c2185b;
+}
+.cat-hero-card[data-cat="Cuidado Personal"] .cat-hero-icon {
+  background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+  color: #2e7d32;
+}
+.cat-hero-card[data-cat="Bebé y Mamá"] .cat-hero-icon {
+  background: linear-gradient(135deg, #fff8e1, #ffecb3);
+  color: #f57f17;
+}
+.cat-hero-card[data-cat="Mercado y Hogar"] .cat-hero-icon {
+  background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+  color: #6a1b9a;
+}
+.cat-hero-card[data-cat="Marcas Propias"] .cat-hero-icon {
+  background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
+  color: #00838f;
+}
+
+@media (max-width: 900px) {
+  .cat-hero-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 540px) {
+  .cat-hero-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: .7rem;
+  }
+  .cat-hero-card {
+    padding: 1rem .7rem .85rem;
+  }
+  .cat-hero-icon {
+    width: 46px;
+    height: 46px;
+    font-size: 1.2rem;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────
+   6. BADGES ADICIONALES
+   ────────────────────────────────────────────────────────── */
+.badge-formula {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  background: #FFF3E0;
+  color: #e65100;
+  border: 1px solid #FFB74D;
+  border-radius: 6px;
+  font-size: .66rem;
+  font-weight: 800;
+  padding: .15rem .5rem;
+  margin-top: .3rem;
+}
+
+.prod-promo-badge {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  background: linear-gradient(90deg, #e65100, #ff6d00);
+  color: #fff;
+  font-size: .62rem;
+  font-weight: 900;
+  text-align: center;
+  padding: .2rem;
+  z-index: 4;
+  letter-spacing: .05em;
+}
+
+/* ──────────────────────────────────────────────────────────
+   7. NAVBAR SCROLL EFFECT — JS lo agrega la clase .scrolled
+   ────────────────────────────────────────────────────────── */
+.navbar.scrolled {
+  box-shadow: 0 2px 0 rgba(0,0,0,.06), 0 8px 24px rgba(0,0,0,.1);
+}
+
+[data-theme="dark"] .navbar.scrolled {
+  box-shadow: 0 2px 0 rgba(255,255,255,.04), 0 8px 24px rgba(0,0,0,.6);
+}
+
+/* ──────────────────────────────────────────────────────────
+   8. SCROLL REVEAL — Animación suave al hacer scroll
+   ────────────────────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .55s ease, transform .55s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: .1s; }
+.reveal-delay-2 { transition-delay: .2s; }
+.reveal-delay-3 { transition-delay: .3s; }
+
+/* ──────────────────────────────────────────────────────────
+   9. HERO MEJORADO — Partículas decorativas
+   ────────────────────────────────────────────────────────── */
+.hero-particle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,.07);
+  pointer-events: none;
+  animation: floatParticle linear infinite;
+}
+
+@keyframes floatParticle {
+  0%   { transform: translateY(0) rotate(0deg); opacity: .7; }
+  50%  { opacity: .15; }
+  100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+}
+
+/* ──────────────────────────────────────────────────────────
+   10. GARANTÍAS SECCIÓN — Asegurar estilos corrects
+   ────────────────────────────────────────────────────────── */
+.garantias-compra {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+[data-theme="dark"] .garantia-card p {
+  color: var(--gris-700);
+}
+
+/* ──────────────────────────────────────────────────────────
+   11. TOP BAR — Ajuste Dark Mode
+   ────────────────────────────────────────────────────────── */
+[data-theme="dark"] .promo-dia-bar {
+  background: linear-gradient(90deg, #bf360c, #e64a19);
+}
+
+/* ──────────────────────────────────────────────────────────
+   12. SERVICIOS CARD — Dark mode
+   ────────────────────────────────────────────────────────── */
+[data-theme="dark"] .servicio-card h3 {
+  color: var(--texto);
+}
+
+[data-theme="dark"] .servicio-card p {
+  color: var(--gris-700);
+}
+
+/* ──────────────────────────────────────────────────────────
+   13. TESTIMONIOS — Dark mode
+   ────────────────────────────────────────────────────────── */
+[data-theme="dark"] .testimonio-card::before {
+  color: var(--gris-200);
+}
+
+[data-theme="dark"] .test-texto {
+  color: var(--gris-700);
+}
+
+/* ──────────────────────────────────────────────────────────
+   14. MEJORAS ADICIONALES UI
+   ────────────────────────────────────────────────────────── */
+
+/* Focus visible mejorado para accesibilidad */
+*:focus-visible {
+  outline: 3px solid var(--azul);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Selection color */
+::selection {
+  background: var(--azul);
+  color: #fff;
+}
+
+[data-theme="dark"] ::selection {
+  background: var(--azul-dark);
+}
+
+/* Lazy loading fade in */
+img.lazy-loaded {
+  animation: imgFadeIn .3s ease;
+}
+
+@keyframes imgFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ──────────────────────────────────────────────────────────
+   15. SCROLLBAR PERSONALIZADO — Dark mode
+   ────────────────────────────────────────────────────────── */
+[data-theme="dark"] ::-webkit-scrollbar-track {
+  background: var(--gris-100);
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: var(--gris-300);
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: var(--gris-500);
+}
+
+/* ──────────────────────────────────────────────────────────
+   16. PROD CARD — Mejorar visibilidad existencias
+   ────────────────────────────────────────────────────────── */
+.prod-existencias-badge {
+  font-size: .6rem;
+  font-weight: 700;
+  color: var(--verde);
+  background: #e8f5e9;
+  border: 1px solid #a5d6a7;
+  border-radius: 4px;
+  padding: .1rem .4rem;
+  display: inline-block;
+  margin-top: .2rem;
+}
+
+.prod-existencias-badge.agotado {
+  color: #c62828;
+  background: #ffebee;
+  border-color: #ef9a9a;
+}
+
+[data-theme="dark"] .prod-existencias-badge {
+  background: rgba(102, 187, 106, .15);
+  border-color: rgba(102, 187, 106, .3);
+  color: var(--verde);
+}
+
+/* ──────────────────────────────────────────────────────────
+   17. COOKIE CONSENT BANNER (si se implementa)
+   ────────────────────────────────────────────────────────── */
+.cookie-banner {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 9998;
+  background: #1a1a2e;
+  color: rgba(255,255,255,.85);
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-size: .85rem;
+  box-shadow: 0 -4px 24px rgba(0,0,0,.25);
+  transform: translateY(100%);
+  transition: transform .4s ease;
+}
+
+.cookie-banner.visible {
+  transform: translateY(0);
+}
+
+.cookie-banner a {
+  color: var(--azul);
+  text-decoration: underline;
+}
+
+.cookie-banner-btns {
+  display: flex;
+  gap: .5rem;
+}
+
+.cookie-accept {
+  padding: .45rem 1rem;
+  background: var(--azul);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: .82rem;
+  cursor: pointer;
+  transition: background .2s;
+}
+
+.cookie-accept:hover { background: var(--azul-dark); }
