@@ -63,8 +63,7 @@ var modalProductoId = null;
 var IMG_BASE = 'img/productos/';
 var IMG_CATS = {
   'Medicamentos':     'img/categorias/medicamentos.svg',
-  'Belleza':          'img/categorias/belleza.svg',
-  'Cuidado Personal': 'img/categorias/cuidado-personal.svg',
+  'Cuidado Personal y Belleza': 'img/categorias/cuidado-personal.svg',
   'Bebé y Mamá':      'img/categorias/bebe-mama.svg',
   'Mercado y Hogar':  'img/categorias/mercado-hogar.svg',
   'Marcas Propias':   'img/categorias/marcas-propias.svg',
@@ -150,12 +149,14 @@ var cop = function(n) {
 
 /* ─── Metadatos visuales de categoría ─── */
 var CAT_VISUAL = {
-  'Medicamentos':     { emoji: '💊', accent: '#1565C0', bg: 'linear-gradient(135deg,#E3F2FD,#BBDEFB)', icon: 'fas fa-pills',         desc: 'Analgésicos, antibióticos y más' },
-  'Belleza':          { emoji: '💄', accent: '#AD1457', bg: 'linear-gradient(135deg,#FCE4EC,#F8BBD0)', icon: 'fas fa-spa',           desc: 'Maquillaje, cremas y cuidado facial' },
+  'Medicamentos':              { emoji: '💊', accent: '#1565C0', bg: 'linear-gradient(135deg,#E3F2FD,#BBDEFB)', icon: 'fas fa-pills',         desc: 'Analgésicos, antibióticos y más' },
+  'Cuidado Personal y Belleza':{ emoji: '🧴', accent: '#880E4F', bg: 'linear-gradient(135deg,#FCE4EC,#E1BEE7)', icon: 'fas fa-spa',           desc: 'Higiene, belleza y bienestar diario' },
+  'Bebé y Mamá':               { emoji: '👶', accent: '#E65100', bg: 'linear-gradient(135deg,#FFF8E1,#FFECB3)', icon: 'fas fa-baby',          desc: 'Pañales, leches y cuidado infantil' },
+  'Mercado y Hogar':           { emoji: '🏠', accent: '#6A1B9A', bg: 'linear-gradient(135deg,#F3E5F5,#E1BEE7)', icon: 'fas fa-home',          desc: 'Alimentos, limpieza y más' },
+  'Marcas Propias':            { emoji: '⭐', accent: '#1B5E20', bg: 'linear-gradient(135deg,#E8F5E9,#C8E6C9)', icon: 'fas fa-star',          desc: 'Calidad DE al mejor precio' },
+  /* Mantener retrocompatibilidad — no mostrar como categoría separada */
+  'Belleza':          { emoji: '💄', accent: '#880E4F', bg: 'linear-gradient(135deg,#FCE4EC,#F8BBD0)', icon: 'fas fa-spa',           desc: 'Maquillaje, cremas y cuidado facial' },
   'Cuidado Personal': { emoji: '🧴', accent: '#00695C', bg: 'linear-gradient(135deg,#E0F2F1,#B2DFDB)', icon: 'fas fa-hand-sparkles', desc: 'Higiene y bienestar diario' },
-  'Bebé y Mamá':      { emoji: '👶', accent: '#E65100', bg: 'linear-gradient(135deg,#FFF8E1,#FFECB3)', icon: 'fas fa-baby',          desc: 'Pañales, leches y cuidado infantil' },
-  'Mercado y Hogar':  { emoji: '🏠', accent: '#6A1B9A', bg: 'linear-gradient(135deg,#F3E5F5,#E1BEE7)', icon: 'fas fa-home',          desc: 'Alimentos, limpieza y más' },
-  'Marcas Propias':   { emoji: '⭐', accent: '#1B5E20', bg: 'linear-gradient(135deg,#E8F5E9,#C8E6C9)', icon: 'fas fa-star',          desc: 'Calidad DE al mejor precio' },
 };
 
 /* ════════════════════════════════════════════════════════
@@ -1454,11 +1455,25 @@ function inyectarEstilosModal() {
    que no esté en CAT_VISUAL se agrega al final, por seguridad).
    ════════════════════════════════════════════════════════ */
 function getCategorias() {
+  /* Categorías fusionadas: Belleza + Cuidado Personal → Cuidado Personal y Belleza */
+  var FUSIONADAS = ['Belleza', 'Cuidado Personal'];
+  var NOMBRE_FUSIONADO = 'Cuidado Personal y Belleza';
+
   var presentes = {};
+  var tieneFusionadas = false;
   CATALOGO.forEach(function(p) {
-    if (p.categoria) presentes[p.categoria] = true;
+    if (!p.categoria) return;
+    if (FUSIONADAS.indexOf(p.categoria) !== -1) {
+      tieneFusionadas = true;
+    } else {
+      presentes[p.categoria] = true;
+    }
   });
-  var ordenadas = Object.keys(CAT_VISUAL).filter(function(c) { return presentes[c]; });
+  if (tieneFusionadas) presentes[NOMBRE_FUSIONADO] = true;
+
+  /* Orden según CAT_VISUAL (excluir las entradas de retrocompatibilidad) */
+  var ordenPrincipal = ['Medicamentos', NOMBRE_FUSIONADO, 'Bebé y Mamá', 'Mercado y Hogar', 'Marcas Propias'];
+  var ordenadas = ordenPrincipal.filter(function(c) { return presentes[c]; });
   Object.keys(presentes).forEach(function(c) {
     if (ordenadas.indexOf(c) === -1) ordenadas.push(c);
   });
@@ -1479,7 +1494,14 @@ function renderCategorias() {
     '</button>';
     cats.forEach(function(cat) {
       var m   = CAT_VISUAL[cat] || { emoji: '📦', accent: '#1565C0' };
-      var cnt = CATALOGO.filter(function(p) { return p.categoria === cat; }).length;
+      var cnt;
+      if (cat === 'Cuidado Personal y Belleza') {
+        cnt = CATALOGO.filter(function(p) {
+          return p.categoria === 'Belleza' || p.categoria === 'Cuidado Personal' || p.categoria === 'Cuidado Personal y Belleza';
+        }).length;
+      } else {
+        cnt = CATALOGO.filter(function(p) { return p.categoria === cat; }).length;
+      }
       var act = ESTADO.filtros.categoria === cat;
       html += '<button class="cat-btn' + (act ? ' activo' : '') + '" onclick="filtrarCategoria(\'' + cat + '\')"' +
         (act ? ' style="background:' + m.accent + ';color:#fff;border-color:' + m.accent + '"' : '') + '>' +
@@ -1503,7 +1525,14 @@ function renderCategorias() {
     '</button>';
     cats.forEach(function(cat) {
       var m2   = CAT_VISUAL[cat] || { emoji: '📦', accent: '#1565C0', bg: '#f5f5f5', icon: 'fas fa-box', desc: '' };
-      var cnt2 = CATALOGO.filter(function(p) { return p.categoria === cat; }).length;
+      var cnt2;
+      if (cat === 'Cuidado Personal y Belleza') {
+        cnt2 = CATALOGO.filter(function(p) {
+          return p.categoria === 'Belleza' || p.categoria === 'Cuidado Personal' || p.categoria === 'Cuidado Personal y Belleza';
+        }).length;
+      } else {
+        cnt2 = CATALOGO.filter(function(p) { return p.categoria === cat; }).length;
+      }
       var act2 = ESTADO.filtros.categoria === cat;
       html2 += '<button class="cat-card' + (act2 ? ' activo' : '') + '"' +
         ' onclick="filtrarCategoria(\'' + cat + '\')"' +
@@ -1541,7 +1570,16 @@ function aplicarFiltros() {
              !p.categoria.toLowerCase().includes(q) &&
              !p.marca.toLowerCase().includes(q) &&
              !p.descripcion.toLowerCase().includes(q)) return false;
-    if (ESTADO.filtros.categoria && p.categoria !== ESTADO.filtros.categoria) return false;
+    /* Filtro de categoría con soporte para fusión */
+    if (ESTADO.filtros.categoria) {
+      var catFiltro = ESTADO.filtros.categoria;
+      if (catFiltro === 'Cuidado Personal y Belleza') {
+        /* Incluir productos de Belleza, Cuidado Personal y la categoría fusionada */
+        if (p.categoria !== 'Belleza' && p.categoria !== 'Cuidado Personal' && p.categoria !== 'Cuidado Personal y Belleza') return false;
+      } else {
+        if (p.categoria !== catFiltro) return false;
+      }
+    }
     return true;
   });
 
@@ -1568,8 +1606,12 @@ function renderGrilla(append) {
                p.marca.toLowerCase().includes(q);
       }).slice(0, CFG.DESTACADOS);
     } else if (ESTADO.filtros.categoria) {
+      var catSel = ESTADO.filtros.categoria;
       lista = CATALOGO.filter(function(p) {
-        return p.categoria === ESTADO.filtros.categoria;
+        if (catSel === 'Cuidado Personal y Belleza') {
+          return p.categoria === 'Belleza' || p.categoria === 'Cuidado Personal' || p.categoria === 'Cuidado Personal y Belleza';
+        }
+        return p.categoria === catSel;
       }).slice(0, CFG.DESTACADOS);
     } else {
       var prio  = CATALOGO.filter(function(p) {

@@ -264,22 +264,12 @@ function calcularTotales() {
   return { subtotal: subtotal, envio: envio, total: subtotal + envio };
 }
 
-/* ─── Barra de progreso envío gratis ─── */
+/* ─── Barra de progreso envío — domicilio siempre gratis ─── */
 function renderBarraEnvio(subtotal) {
-  var META   = 0; /* Domicilio siempre gratis — sin mínimo */
-  var pct    = Math.min(100, Math.round((subtotal / META) * 100));
-  var falta  = META - subtotal;
-
   if (subtotal === 0) return '';
-  if (subtotal >= META) {
-    return '<div class="envio-progreso-wrap">' +
-      '<div class="envio-progreso-msg envio-libre">🎉 ¡Envío gratis desbloqueado!</div>' +
-      '<div class="envio-progreso-bar"><div class="envio-progreso-fill" style="width:100%"></div></div>' +
-    '</div>';
-  }
   return '<div class="envio-progreso-wrap">' +
-    '<div class="envio-progreso-msg">Te faltan <strong>' + _cop(falta) + '</strong> para <strong>envío gratis</strong></div>' +
-    '<div class="envio-progreso-bar"><div class="envio-progreso-fill" style="width:' + pct + '%"></div></div>' +
+    '<div class="envio-progreso-msg envio-libre">🎉 ¡Domicilio gratuito en Mosquera y Funza!</div>' +
+    '<div class="envio-progreso-bar"><div class="envio-progreso-fill" style="width:100%"></div></div>' +
   '</div>';
 }
 
@@ -344,7 +334,7 @@ function actualizarUI() {
   var envioEl    = document.getElementById('carritoEnvio');
   var totalEl    = document.getElementById('carritoTotal');
   if (subtotalEl) subtotalEl.textContent = _cop(t.subtotal);
-  if (envioEl)    envioEl.textContent = t.envio === 0 && t.subtotal ? '🎉 Gratis' : _cop(t.envio);
+  if (envioEl)    envioEl.textContent = '🚚 GRATIS';
   if (totalEl)    totalEl.textContent = _cop(t.total);
 
   /* Barra progreso envío */
@@ -564,7 +554,7 @@ function inyectarModalCarrito() {
           '<div class="carrito-resumen">' +
             '<div class="carrito-resumen-fila"><span>Subtotal</span><span id="carritoSubtotal">$0</span></div>' +
             '<div class="carrito-resumen-fila"><span>Envío</span><span id="carritoEnvio">GRATIS 🎉</span></div>' +
-            '<div id="carritoEnvioMsg" style="font-size:.75rem;font-weight:700;color:#2E7D32;margin-top:.2rem">&#x2705; Env\u00edo gratis en compras mayores a $50.000</div>' +
+            '<div id="carritoEnvioMsg" style="font-size:.75rem;font-weight:700;color:#2E7D32;margin-top:.2rem">&#x1F6F5; Servicio de domicilio gratuito en Mosquera y Funza</div>' +
           '</div>' +
           '<div class="carrito-total-fila"><span>Total</span><span id="carritoTotal">$0</span></div>' +
           '<div style="background:#E3F2FD;border:1.5px solid #BBDEFB;border-radius:10px;padding:.7rem .9rem;font-size:.75rem;margin:.2rem 0">' +
@@ -640,28 +630,12 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  /* Mensaje dinámico envío gratis — funciona en todas las páginas */
+  /* Mensaje envío gratis — domicilio siempre gratuito sin mínimo */
   (function() {
-    var subtotalEl = document.getElementById('carritoSubtotal');
-    var msgEl      = document.getElementById('carritoEnvioMsg');
-    if (!subtotalEl || !msgEl) return;
-    function actualizarMsgEnvio() {
-      var subtotal = parseInt(subtotalEl.textContent.replace(/[^0-9]/g, ''), 10) || 0;
-      var umbral   = 50000;
-      if (subtotal === 0) {
-        msgEl.textContent = '✅ Envío gratis en compras mayores a $50.000';
-        msgEl.style.color = '#2E7D32';
-      } else if (subtotal >= umbral) {
-        msgEl.textContent = '🎉 ¡Envío gratis aplicado!';
-        msgEl.style.color = '#2E7D32';
-      } else {
-        var falta = (umbral - subtotal).toLocaleString('es-CO');
-        msgEl.textContent = '🎁 ¡Solo te faltan $' + falta + ' para envío gratis!';
-        msgEl.style.color = '#e65100';
-      }
-    }
-    new MutationObserver(actualizarMsgEnvio).observe(subtotalEl, { childList: true });
-    actualizarMsgEnvio();
+    var msgEl = document.getElementById('carritoEnvioMsg');
+    if (!msgEl) return;
+    msgEl.textContent = '🚚 Servicio de domicilio gratuito en Mosquera y Funza';
+    msgEl.style.color = '#2E7D32';
   })();
 
   /* Sincronizar badge del bottom nav */
