@@ -260,16 +260,24 @@ function vaciarCarrito() {
 /* ─── Totales ─── */
 function calcularTotales() {
   var subtotal = carrito.reduce(function(acc, i) { return acc + i.precio * i.cantidad; }, 0);
-  var envio    = 0; /* Domicilio siempre GRATIS — política comercial actualizada */
+  var envio = (subtotal > 0 && subtotal < 20000) ? 3000 : 0; /* GRATIS en pedidos +$20.000 */
   return { subtotal: subtotal, envio: envio, total: subtotal + envio };
 }
 
-/* ─── Barra de progreso envío — domicilio siempre gratis ─── */
+/* ─── Barra de progreso envío — gratis en pedidos +$20.000 ─── */
 function renderBarraEnvio(subtotal) {
   if (subtotal === 0) return '';
+  if (subtotal >= 20000) {
+    return '<div class="envio-progreso-wrap">' +
+      '<div class="envio-progreso-msg envio-libre">🎉 ¡Domicilio GRATIS activado!</div>' +
+      '<div class="envio-progreso-bar"><div class="envio-progreso-fill" style="width:100%"></div></div>' +
+    '</div>';
+  }
+  var pct   = Math.min(Math.round(subtotal / 20000 * 100), 100);
+  var falta = (20000 - subtotal).toLocaleString('es-CO');
   return '<div class="envio-progreso-wrap">' +
-    '<div class="envio-progreso-msg envio-libre">🎉 ¡Domicilio gratuito en Mosquera y Funza!</div>' +
-    '<div class="envio-progreso-bar"><div class="envio-progreso-fill" style="width:100%"></div></div>' +
+    '<div class="envio-progreso-msg">🛵 Te faltan <strong>$' + falta + '</strong> para domicilio GRATIS</div>' +
+    '<div class="envio-progreso-bar"><div class="envio-progreso-fill" style="width:' + pct + '%"></div></div>' +
   '</div>';
 }
 
@@ -334,7 +342,18 @@ function actualizarUI() {
   var envioEl    = document.getElementById('carritoEnvio');
   var totalEl    = document.getElementById('carritoTotal');
   if (subtotalEl) subtotalEl.textContent = _cop(t.subtotal);
-  if (envioEl)    envioEl.textContent = '🚚 GRATIS';
+  if (envioEl) {
+    if (t.subtotal === 0) {
+      envioEl.textContent = '—';
+      envioEl.style.color = 'var(--gris-500,#9e9e9e)';
+    } else if (t.envio === 0) {
+      envioEl.textContent = '🚚 GRATIS';
+      envioEl.style.color = '#2E7D32';
+    } else {
+      envioEl.textContent = '$' + t.envio.toLocaleString('es-CO');
+      envioEl.style.color = '#E65100';
+    }
+  }
   if (totalEl)    totalEl.textContent = _cop(t.total);
 
   /* Barra progreso envío */
@@ -515,6 +534,11 @@ function checkoutWhatsApp() {
   msg += '🚚 Envío: ' + (totales.envio === 0 ? 'Gratis 🎉' : _cop(totales.envio)) + '\n';
   msg += '━━━━━━━━━━━━━━━━\n';
   msg += '💳 *TOTAL: ' + _cop(totales.total) + '*\n\n';
+  msg += '📍 *Dirección de entrega:* (por favor indíquela)\n';
+  msg += '\n💳 *Pago:* Nequi · Transferencia · Otros electrónicos\n';
+  msg += '   Número de pagos: *323 249 7559*\n\n';
+  msg += '🚚 Domicilio: ' + (totales.subtotal >= 20000 ? 'GRATIS ✅' : '$3.000 (gratis en pedidos +$20.000)') + '\n';
+  msg += '⏱️ Entrega estimada: 30–40 minutos\n\n';
   msg += '¿Confirman disponibilidad? ✅';
   window.open('https://wa.me/573118719476?text=' + encodeURIComponent(msg), '_blank');
 }
@@ -547,36 +571,28 @@ function inyectarModalCarrito() {
           '<div class="domicilio-info">' +
             '<i class="fas fa-motorcycle"></i>' +
             '<div>' +
-              '<strong>🚚 Domicilio GRATIS</strong> &middot; Mosquera &amp; Funza<br>' +
-              '<span style="font-weight:600;font-size:.73rem">&#x23F1;&#xFE0F; Entrega estimada: 30\u201340 min</span>' +
+              '<strong>🚚 Domicilio GRATIS en pedidos +$20.000</strong><br>' +
+              '<span style="font-weight:600;font-size:.73rem;color:#E65100">$3.000 en pedidos menores · ⏱️ 30–40 min</span>' +
             '</div>' +
           '</div>' +
           '<div class="carrito-resumen">' +
             '<div class="carrito-resumen-fila"><span>Subtotal</span><span id="carritoSubtotal">$0</span></div>' +
-            '<div class="carrito-resumen-fila"><span>Envío</span><span id="carritoEnvio">GRATIS 🎉</span></div>' +
-            '<div id="carritoEnvioMsg" style="font-size:.75rem;font-weight:700;color:#2E7D32;margin-top:.2rem">&#x1F6F5; Servicio de domicilio gratuito en Mosquera y Funza</div>' +
+            '<div class="carrito-resumen-fila"><span>Domicilio</span><span id="carritoEnvio" style="font-weight:700">—</span></div>' +
+            '<div id="carritoEnvioMsg" style="font-size:.75rem;font-weight:700;color:#1565C0;margin-top:.2rem">🚚 Domicilio GRATIS en pedidos +$20.000</div>' +
           '</div>' +
           '<div class="carrito-total-fila"><span>Total</span><span id="carritoTotal">$0</span></div>' +
-          '<div style="background:#E3F2FD;border:1.5px solid #BBDEFB;border-radius:10px;padding:.7rem .9rem;font-size:.75rem;margin:.2rem 0">' +
-            '<div style="font-weight:900;color:#0d47a1;margin-bottom:.35rem">💳 Datos para pago / transferencia:</div>' +
-              '<div style="background:#E8F5E9;border-radius:8px;padding:.45rem .7rem;margin-bottom:.3rem;font-size:.74rem;color:#1B5E20;font-weight:700">📲 Nequi · Daviplata: <strong>323 249 7559</strong></div>' +
-              '<div style="font-size:.7rem;color:#555;margin-bottom:.25rem">Realiza tu pago al número 3232497559 y envía el comprobante por WhatsApp.</div>' +
-            '<div style="display:flex;flex-direction:column;gap:.18rem;color:#1565C0;font-weight:700">' +
-              '<span>&#x1F4CC; Bancolombia &middot; Cuenta de Ahorros</span>' +
-              '<span>N&deg; cuenta: <strong>123-456789-00</strong></span>' +
-              '<span>A nombre de: <strong>Droguer\u00edas Econ\u00f3micas</strong></span>' +
-              '<span>NIT / CC: <strong>1.234.567.890</strong></span>' +
-            '</div>' +
-            '<div style="margin-top:.4rem;font-size:.7rem;color:#1976D2;font-weight:600">&#x1F4F2; Env\u00eda el comprobante por WhatsApp al confirmar.</div>' +
+          '<div style="background:#E8F5E9;border:1.5px solid #C8E6C9;border-radius:10px;padding:.7rem .9rem;font-size:.75rem;margin:.2rem 0">' +
+            '<div style="font-weight:900;color:#1B5E20;margin-bottom:.35rem">💳 Datos para pago:</div>' +
+            '<div style="font-size:.73rem;color:#2E7D32;font-weight:700;margin-bottom:.2rem">📲 Nequi · Transferencia: <strong>323 249 7559</strong></div>' +
+            '<div style="font-size:.68rem;color:#555">Realiza tu pago y envía el comprobante por WhatsApp al confirmar el pedido.</div>' +
           '</div>' +
           '<div>' +
             '<div class="pagos-carrito-title">&#x1F4B3; Aceptamos:</div>' +
             '<div class="pagos-carrito">' +
-              '<span class="pago-mini">&#x1F7E2; Nequi</span>' +
-              '<span class="pago-mini">&#x1F535; Daviplata</span>' +
-              '<span class="pago-mini">&#x1F3E6; Bancolombia</span>' +
-              '<span class="pago-mini">&#x1F4B0; Contraentrega</span>' +
-              '<span class="pago-mini">&#x1F4B5; Efectivo</span>' +
+              '<span class="pago-mini">🟢 Nequi</span>' +
+              '<span class="pago-mini">🏦 Transferencia</span>' +
+              '<span class="pago-mini">📱 Otros electrónicos</span>' +
+              '<div style="font-size:.66rem;color:#6b7280;margin-top:.25rem">Pagos al: <strong>323 249 7559</strong></div>' +
             '</div>' +
           '</div>' +
           '<button class="btn-checkout" id="btnCheckout"><i class="fab fa-whatsapp"></i> Pedir por WhatsApp</button>' +
@@ -630,12 +646,12 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  /* Mensaje envío gratis — domicilio siempre gratuito sin mínimo */
+  /* Mensaje domicilio — GRATIS en pedidos +$20.000 */
   (function() {
     var msgEl = document.getElementById('carritoEnvioMsg');
     if (!msgEl) return;
-    msgEl.textContent = '🚚 Servicio de domicilio gratuito en Mosquera y Funza';
-    msgEl.style.color = '#2E7D32';
+    msgEl.textContent = '🚚 Domicilio GRATIS en pedidos +$20.000';
+    msgEl.style.color = '#1565C0';
   })();
 
   /* Sincronizar badge del bottom nav */

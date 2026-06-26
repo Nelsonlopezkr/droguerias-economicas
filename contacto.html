@@ -17,17 +17,27 @@
 
   <!-- Open Graph -->
   <meta property="og:title" content="Contacto — Droguerías Económicas">
-  <meta property="og:description" content="Estamos para atenderte. WhatsApp, teléfono y domicilios 24/7.">
+  <meta property="og:description" content="Contáctanos por WhatsApp, teléfono o formulario. 🚚 Domicilio GRATIS en pedidos +$20.000.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="img/icono.jpg">
+  <meta property="og:image" content="https://drogeriaseconomicas.com/img/og-banner.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
 
   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&h0;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="css/estilos.css">
   <!-- Estilos migrados a css/estilos.css (sección 9: PÁGINA CONTACTO.HTML) -->
+  <!-- Estilos adicionales Fase 1 — additive only -->
+  <style>
+    .hero-ac-img { width:44px;height:44px;flex-shrink:0;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:var(--azul-50,#e3f0ff) }
+    .hero-ac-img img { width:100%;height:100%;object-fit:cover }
+    .hero-ac-placeholder { width:44px;height:44px;border-radius:8px;background:var(--azul,#1a56db);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:800;font-family:'Nunito',sans-serif;flex-shrink:0 }
+    .whatsapp-tooltip { max-width:200px;text-align:left;line-height:1.4;font-size:.78rem }
+    .bottom-nav-inner { grid-template-columns:repeat(5,1fr) }
+  </style>
 </head>
 <body>
 
@@ -36,7 +46,7 @@
 
 <!-- ══ TOP BAR ══ -->
 <div class="top-bar">
-  <span>🛵 <strong>🚚 Domicilio GRATIS</strong> · Mosquera y Funza</span>
+  <span>🛵 <strong>🚚 Domicilio GRATIS en pedidos +$20.000</strong> · Mosquera y Funza</span>
   <span class="top-bar-sep">|</span>
   <span>🕐 Lun–Dom: 7 am – 10 pm</span>
   <span class="top-bar-sep">|</span>
@@ -153,10 +163,8 @@
           <h4>Aceptamos</h4>
           <div class="pagos-chips">
             <span class="pago-ch">🟢 Nequi</span>
-            <span class="pago-ch">🔵 Daviplata</span>
-            <span class="pago-ch">🏦 Bancolombia</span>
-            <span class="pago-ch">💵 Efectivo</span>
-            <span class="pago-ch">💰 Contraentrega</span>
+            <span class="pago-ch">🏦 Transferencia</span>
+            <span class="pago-ch">📱 Otros electrónicos</span>
           </div>
         </div>
       </div>
@@ -314,7 +322,7 @@
             <i class="fas fa-chevron-down"></i>
           </button>
           <div class="faq-respuesta">
-            ¡El domicilio es completamente <strong>GRATIS</strong> en Mosquera y Funza! Sin mínimos ni condiciones.
+            El domicilio es <strong>GRATIS</strong> en pedidos de +$20.000 en Mosquera y Funza. En pedidos menores aplica un costo de $3.000.
           </div>
         </div>
 
@@ -324,7 +332,7 @@
             <i class="fas fa-chevron-down"></i>
           </button>
           <div class="faq-respuesta">
-            Aceptamos <strong>Nequi, Daviplata, Bancolombia, transferencia bancaria, efectivo y pago contra entrega</strong>. El pago contra entrega está disponible en todo el área de cobertura.
+            Aceptamos <strong>Nequi, transferencia bancaria y otros medios electrónicos</strong>. El pago contra entrega está disponible en todo el área de cobertura.
           </div>
         </div>
 
@@ -374,10 +382,8 @@
           <p style="font-size:.72rem;font-weight:800;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem">Aceptamos</p>
           <div class="pagos-strip">
             <span class="pago-chip"><span>🟢</span> Nequi</span>
-            <span class="pago-chip"><span>🔵</span> Daviplata</span>
-            <span class="pago-chip"><span>💰</span> Contraentrega</span>
-            <span class="pago-chip"><span>🏦</span> Bancolombia</span>
-            <span class="pago-chip"><span>💵</span> Efectivo</span>
+            <span class="pago-chip"><span>🏦</span> Transferencia</span>
+            <span class="pago-chip"><span>📱</span> Otros electrónicos</span>
           </div>
         </div>
       </div>
@@ -395,11 +401,10 @@
         <h4>Categorías</h4>
         <ul>
           <li><a href="productos.html?cat=Medicamentos">Medicamentos</a></li>
-          <li><a href="productos.html?cat=Belleza">Belleza</a></li>
-          <li><a href="productos.html?cat=Cuidado%20Personal">Cuidado Personal</a></li>
-          <li><a href="productos.html?cat=Beb%C3%A9%20y%20Mam%C3%A1">Bebé &amp; Mamá</a></li>
+          <li><a href="productos.html?cat=Cuidado%20Personal%20y%20Belleza">Cuidado Personal y Belleza</a></li>
+          <li><a href="productos.html?cat=Beb%C3%A9%20y%20Mam%C3%A1">Bebé y Mamá</a></li>
           <li><a href="productos.html?cat=Mercado%20y%20Hogar">Mercado y Hogar</a></li>
-          <li><a href="productos.html?cat=Marcas%20Propias">Marcas DE</a></li>
+          <li><a href="politica-datos.html">Política de Datos</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -442,18 +447,16 @@
       </div>
       <div class="carrito-resumen">
         <div class="carrito-resumen-fila"><span>Subtotal</span><span id="carritoSubtotal">$0</span></div>
-        <div class="carrito-resumen-fila"><span>Envío</span><span id="carritoEnvio">$0</span></div>
-        <div id="carritoEnvioMsg">✅ Envío gratis en compras mayores a $50.000</div>
+        <div class="carrito-resumen-fila"><span>Domicilio</span><span id="carritoEnvio" style="color:var(--verde,#1B5E20);font-weight:700">GRATIS</span></div>
+        <div id="carritoEnvioMsg">🚚 Domicilio GRATIS en pedidos +$20.000</div>
       </div>
       <div class="carrito-total-fila"><span>Total</span><span id="carritoTotal">$0</span></div>
       <div>
         <div class="pagos-carrito-title">💳 Aceptamos:</div>
         <div class="pagos-carrito">
           <span class="pago-mini">🟢 Nequi</span>
-          <span class="pago-mini">🔵 Daviplata</span>
-          <span class="pago-mini">💰 Contraentrega</span>
-          <span class="pago-mini">🏦 Bancolombia</span>
-          <span class="pago-mini">💵 Efectivo</span>
+          <span class="pago-mini">🏦 Transferencia</span>
+          <span class="pago-mini">📱 Otros electrónicos</span>
         </div>
       </div>
       <button class="btn-checkout" id="btnCheckout"><i class="fab fa-whatsapp"></i> Pedir por WhatsApp</button>
@@ -462,9 +465,27 @@
   </div>
 </div>
 
-<!-- WhatsApp flotante -->
-<div class="whatsapp-float">
-  <div class="whatsapp-tooltip">¡Escríbenos por WhatsApp!</div>
+<!-- WhatsApp flotante con estado dinámico según hora Colombia (UTC-5) -->
+<div class="whatsapp-float" id="waFloat">
+  <div class="whatsapp-tooltip" id="waTooltip">¡Escríbenos por WhatsApp!</div>
+  <a href="https://wa.me/573118719476?text=Hola%2C+quiero+información+sobre+sus+productos"
+     target="_blank" rel="noopener noreferrer"
+     class="whatsapp-btn" aria-label="Contactar por WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+</div>
+<script>
+(function () {
+  var ahora = new Date();
+  var horaCol = (ahora.getUTCHours() - 5 + 24) % 24;
+  var abierto = horaCol >= 7 && horaCol < 22;
+  var tooltip = document.getElementById('waTooltip');
+  if (!tooltip) return;
+  tooltip.innerHTML = abierto
+    ? '🟢 <strong>¡Estamos en línea!</strong> · 7am–10pm'
+    : '🔴 Respondemos a las <strong>7am</strong><br><span style="font-size:.72rem">Horario: Lun–Dom 7am–10pm</span>';
+})();
+</script>
   <a href="https://wa.me/573118719476?text=Hola%2C+quiero+información+sobre+sus+productos"
      target="_blank" rel="noopener noreferrer" class="whatsapp-btn" aria-label="Contactar por WhatsApp">
     <i class="fab fa-whatsapp"></i>
@@ -476,24 +497,28 @@
 <!-- ══ BOTTOM NAV ══ -->
 <nav class="bottom-nav" aria-label="Navegación rápida móvil">
   <div class="bottom-nav-inner">
-    <a href="index.html" class="bn-item"><i class="fas fa-home"></i><span>Inicio</span></a>
+    <a href="index.html" class="bn-item activo"><i class="fas fa-home"></i><span>Inicio</span></a>
     <a href="productos.html" class="bn-item"><i class="fas fa-store"></i><span>Productos</span></a>
-    <button class="bn-item" id="btnAbrirCarritoMobile">
-      <div class="bn-badge"><i class="fas fa-shopping-cart"></i><span class="bn-count oculto" id="bnCount">0</span></div>
+    <a href="promociones.html" class="bn-item"><i class="fas fa-fire"></i><span>Promos</span></a>
+    <button class="bn-item" id="btnAbrirCarritoMobile" aria-label="Carrito">
+      <div class="bn-badge">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="bn-count oculto" id="bnCount">0</span>
+      </div>
       <span>Carrito</span>
     </button>
-    <a href="https://wa.me/573118719476" target="_blank" rel="noopener" class="bn-item">
+    <a href="https://wa.me/573118719476?text=Hola%2C+quiero+información" target="_blank" rel="noopener" class="bn-item">
       <i class="fab fa-whatsapp"></i><span>WhatsApp</span>
     </a>
   </div>
 </nav>
 
 <!-- Scripts -->
- <script src="js/theme.js"></script>
-<script src="js/wa-config.js"></script>
-<script src="js/productos-data.js"></script>
-<script src="js/carrito.js"></script>
-<script src="js/pago.js"></script>
+ <script defer src="js/theme.js"></script>
+<script defer src="js/wa-config.js"></script>
+<script defer src="js/productos-data.js"></script>
+<script defer src="js/carrito.js"></script>
+<script defer src="js/pago.js"></script>
 
 <script>
 /* ── Navbar toggle ── */

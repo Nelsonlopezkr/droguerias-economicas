@@ -1,48 +1,101 @@
 /**
- * promo-dia.js — Barra de promoción diaria
+ * promo-dia.js v3.0 — Promociones diarias con datos reales
  * Droguerías Económicas
- *
- * Uso: incluir ANTES del </body> en todas las páginas.
- * Crea e inyecta automáticamente el div#promoDiaBar si no existe,
- * y lo inserta como PRIMER elemento del <body>.
- *
- * Estilos: definidos en estilos.css (.promo-dia-bar)
+ * Productos seleccionados por: volumen de ventas real + margen verificado
+ * Actualizado: Junio 2026
  */
 (function () {
   'use strict';
+  var WA = '573118719476';
 
-  /* ── Promociones por día de la semana ─────────────────────────
-     getDay() → 0=Dom, 1=Lun, 2=Mar, 3=Mié, 4=Jue, 5=Vie, 6=Sáb
-  ──────────────────────────────────────────────────────────────── */
+  function horaCol() {
+    var ahora = new Date();
+    var utc = ahora.getTime() + ahora.getTimezoneOffset() * 60000;
+    return new Date(utc - 5 * 3600000);
+  }
+
+  function tiempoRestante() {
+    var col = horaCol();
+    var medianoche = new Date(col);
+    medianoche.setHours(24, 0, 0, 0);
+    var diff = Math.floor((medianoche - col) / 1000);
+    var h = Math.floor(diff / 3600);
+    var m = Math.floor((diff % 3600) / 60);
+    return h > 0 ? h + 'h ' + m + 'm' : m + ' min';
+  }
+
+  /* Promos basadas en datos reales de ventas e inventario */
   var PROMOS = [
-    /* 0 Dom */ '☀️ HOY DOMINGO — Electrolit 3 por el precio de 2 · <strong>¡Solo hoy!</strong> · <a href="https://wa.me/573118719476?text=Hola%2C+quiero+aprovechar+la+promo+del+día+domingo" target="_blank" rel="noopener">Pedir ya →</a>',
-    /* 1 Lun */ '🌟 HOY LUNES — Acetaminofén MK 100 tab a <strong>$16.000</strong> · <a href="https://wa.me/573118719476?text=Hola%2C+quiero+el+Acetaminofén+MK+100+tab+a+%2416.000" target="_blank" rel="noopener">Pedir ya →</a>',
-    /* 2 Mar */ '🌟 HOY MARTES — Loratadina 10mg 2×1 · <strong>¡Anti-alergia!</strong> · <a href="https://wa.me/573118719476?text=Hola%2C+quiero+la+promo+Loratadina+2x1+del+martes" target="_blank" rel="noopener">Pedir ya →</a>',
-    /* 3 Mié */ '🌟 HOY MIÉRCOLES — Vitamina C efervescente x10 a <strong>$4.500</strong> · <a href="https://wa.me/573118719476?text=Hola%2C+quiero+la+Vitamina+C+efervescente+x10+a+%244.500" target="_blank" rel="noopener">Pedir ya →</a>',
-    /* 4 Jue */ '🌟 HOY JUEVES — Omeprazol 20mg x30 cáps a <strong>$9.800</strong> · <a href="https://wa.me/573118719476?text=Hola%2C+quiero+el+Omeprazol+20mg+x30+a+%249.800" target="_blank" rel="noopener">Pedir ya →</a>',
-    /* 5 Vie */ '🌟 HOY VIERNES — Crema Bepanthen 30g a <strong>$15.000</strong> · <a href="https://wa.me/573118719476?text=Hola%2C+quiero+la+Crema+Bepanthen+30g+a+%2415.000" target="_blank" rel="noopener">Pedir ya →</a>',
-    /* 6 Sáb */ '🌟 HOY SÁBADO — Pañales Pampers talla 2 x40 a <strong>$24.500</strong> · <a href="https://wa.me/573118719476?text=Hola%2C+quiero+los+Pañales+Pampers+talla+2+x40+a+%2424.500" target="_blank" rel="noopener">Pedir ya →</a>'
+    /* Dom — Tripleviral: ranking #1, 1973 vendidos, margen 95% */
+    {
+      txt: '🔥 DOMINGO — Tripleviral Proomo <strong>3×$2.500</strong> — el más vendido de la semana',
+      wa:  'Hola%2C+quiero+aprovechar+la+promo+Tripleviral+Proomo+3x%242.500+del+domingo'
+    },
+    /* Lun — Curas Hansaplast: #6 en ventas, margen 75%, 1035 en stock */
+    {
+      txt: '🩹 LUNES — Curas Hansaplast 100 unds <strong>$490</strong> — ¡Stock amplio!',
+      wa:  'Hola%2C+quiero+las+Curas+Hansaplast+100+unds+a+%24490+del+lunes'
+    },
+    /* Mar — Vitamina E: margen 99%, 200 en stock */
+    {
+      txt: '💊 MARTES — Vitamina E 400UI x100 cáps <strong>$4.332</strong> — oferta del día',
+      wa:  'Hola%2C+quiero+la+Vitamina+E+400UI+x100+a+%244.332+del+martes'
+    },
+    /* Mié — Loratadina: #98 top ventas, margen 72%, 640 en stock */
+    {
+      txt: '🤧 MIÉRCOLES — Loratadina 10mg <strong>$2.000</strong> — anti-alergia al mejor precio',
+      wa:  'Hola%2C+quiero+la+Loratadina+10mg+a+%242.000+del+miércoles'
+    },
+    /* Jue — Aceclofenaco: margen 66%, 42 en stock */
+    {
+      txt: '💙 JUEVES — Ainedix Aceclofenaco 100mg x10 <strong>$4.368</strong> — anti-inflamatorio',
+      wa:  'Hola%2C+quiero+el+Ainedix+Aceclofenaco+x10+a+%244.368+del+jueves'
+    },
+    /* Vie — Crema Pods Aclarant B3: margen 90%, 21 en stock */
+    {
+      txt: '✨ VIERNES — Crema Pods Aclarant B3 sachet <strong>$1.800</strong> — belleza al precio justo',
+      wa:  'Hola%2C+quiero+la+Crema+Pods+Aclarant+B3+a+%241.800+del+viernes'
+    },
+    /* Sáb — X Ray Dol: margen 37%, top ventas */
+    {
+      txt: '⚡ SÁBADO — X Ray Dol 48 tabletas <strong>$3.327</strong> — alivio rápido',
+      wa:  'Hola%2C+quiero+el+X+Ray+Dol+48+tab+a+%243.327+del+sábado'
+    },
   ];
 
-  /* ── Obtener o crear el contenedor ─────────────────────────── */
   var bar = document.getElementById('promoDiaBar');
-
   if (!bar) {
     bar = document.createElement('div');
     bar.id = 'promoDiaBar';
+    bar.className = 'promo-dia-bar';
     bar.setAttribute('aria-label', 'Promoción del día');
     bar.setAttribute('role', 'banner');
-    /* Insertar como primer hijo del body */
     var body = document.body || document.getElementsByTagName('body')[0];
-    if (body.firstChild) {
-      body.insertBefore(bar, body.firstChild);
-    } else {
-      body.appendChild(bar);
-    }
+    if (body.firstChild) body.insertBefore(bar, body.firstChild);
+    else body.appendChild(bar);
   }
 
-  /* ── Rellenar con la promo del día ──────────────────────────── */
-  var dia = new Date().getDay();
-  bar.innerHTML = PROMOS[dia];
+  var col  = horaCol();
+  var hora = col.getHours();
+  var dia  = col.getDay();
+  var promo = PROMOS[dia];
+  var resto = tiempoRestante();
+
+  if (hora < 7 || hora >= 22) {
+    bar.innerHTML =
+      '🕐 Abrimos a las <strong>7am</strong> · Lun–Dom 7am–10pm · ' +
+      '<a href="https://wa.me/' + WA + '?text=Hola%2C+tengo+una+consulta" target="_blank" rel="noopener">Dejar mensaje →</a>';
+    return;
+  }
+
+  bar.innerHTML =
+    promo.txt +
+    ' · <span class="promo-timer" title="Tiempo restante hoy">⏳ ' + resto + ' restantes</span>' +
+    ' · <a href="https://wa.me/' + WA + '?text=' + promo.wa + '" target="_blank" rel="noopener">Pedir ya →</a>';
+
+  setInterval(function () {
+    var t = bar.querySelector('.promo-timer');
+    if (t) t.textContent = '⏳ ' + tiempoRestante() + ' restantes';
+  }, 60000);
 
 })();

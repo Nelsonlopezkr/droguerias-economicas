@@ -1,13 +1,18 @@
-# robots.txt — Droguerías Económicas
-# https://drogeriaseconomicas.com/
+# Droguerías Económicas — robots.txt
+# https://drogeriaseconomicas.com
 
 User-agent: *
 Allow: /
 
-# Evitar indexar páginas de error o auxiliares
-Disallow: /pagina_404.html
-Disallow: /cgi-bin/
-Disallow: /tmp/
+# Evitar que los crawlers indexen archivos de datos JS del catálogo
+# (son muy pesados y no aportan valor SEO directamente)
+Disallow: /js/productos-data.js
+Disallow: /js/top-ventas-data.js
+Disallow: /js/laboratorio-precios.js
+
+# Evitar indexación de archivos de administración y scripts internos
+Disallow: /js/wa-config.js
+Disallow: /REPORTE_ESTRATEGIA.py
 
 # Sitemap
 Sitemap: https://drogeriaseconomicas.com/sitemap.xml

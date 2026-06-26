@@ -17,25 +17,161 @@
 
   <!-- Open Graph -->
   <meta property="og:title" content="Catálogo — Droguerías Económicas">
-  <meta property="og:description" content="+300 productos. Nequi · Daviplata · Contraentrega. Domicilio 24/7.">
+  <meta property="og:description" content="+2.000 productos. 🚚 Domicilio GRATIS en pedidos +$20.000. Nequi · Transferencia · Medios electrónicos.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="img/icono.jpg">
+  <meta property="og:image" content="https://drogeriaseconomicas.com/img/og-banner.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
 
   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&h0;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <!-- Estilos (archivo único unificado, reemplaza estilos.css + mejoras.css + laboratorios-modal-premium.css + imagenes-fix.css) -->
   <link rel="stylesheet" href="css/estilos.css">
   <!-- Estilos migrados a css/estilos.css (sección 8: PÁGINA PRODUCTOS.HTML) -->
+  <!-- Estilos adicionales Fase 1 — additive only -->
+  <style>
+    .hero-ac-img { width:44px;height:44px;flex-shrink:0;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:var(--azul-50,#e3f0ff) }
+    .hero-ac-img img { width:100%;height:100%;object-fit:cover }
+    .hero-ac-placeholder { width:44px;height:44px;border-radius:8px;background:var(--azul,#1a56db);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:800;font-family:'Nunito',sans-serif;flex-shrink:0 }
+    .whatsapp-tooltip { max-width:200px;text-align:left;line-height:1.4;font-size:.78rem }
+    .bottom-nav-inner { grid-template-columns:repeat(5,1fr) }
+  </style>
+
+  <!-- Estilos Fase 3 — additive only -->
+  <style>
+    /* ── Barra de ordenamiento ── */
+    .sort-bar {
+      display:flex; align-items:center; gap:.45rem; flex-wrap:wrap;
+      margin-bottom:.9rem;
+    }
+    .sort-label {
+      font-size:.75rem; font-weight:800; color:var(--gris-700,#616161);
+      text-transform:uppercase; letter-spacing:.05em; margin-right:.2rem;
+    }
+    .sort-btn {
+      padding:.28rem .8rem; border-radius:50px; border:1.5px solid var(--gris-200,#eee);
+      background:#fff; color:var(--gris-700,#616161);
+      font-size:.73rem; font-weight:700; font-family:inherit;
+      cursor:pointer; transition:all .15s;
+    }
+    .sort-btn:hover { border-color:var(--azul,#1565C0); color:var(--azul,#1565C0); }
+    .sort-btn.activo {
+      background:var(--azul,#1565C0); color:#fff; border-color:var(--azul,#1565C0);
+    }
+    [data-theme="dark"] .sort-btn { background:var(--bg-dark,#1e2130); border-color:#333; color:#ccc }
+    [data-theme="dark"] .sort-btn.activo { background:var(--azul,#1565C0); color:#fff }
+
+    /* ── Cross-sell en modal ── */
+    .cross-sell-wrap {
+      margin-top:1.2rem; padding-top:1rem;
+      border-top:1px solid var(--gris-200,#eee);
+    }
+    .cross-sell-titulo {
+      font-size:.72rem; font-weight:800; color:var(--azul,#1565C0);
+      text-transform:uppercase; letter-spacing:.06em;
+      margin-bottom:.65rem; display:flex; align-items:center; gap:.35rem;
+    }
+    .cross-sell-titulo i { font-size:.8rem }
+    .cross-sell-grid {
+      display:grid; grid-template-columns:repeat(2,1fr); gap:.5rem;
+    }
+    .cs-item {
+      display:flex; align-items:center; gap:.5rem;
+      background:var(--gris-50,#fafafa); border:1px solid var(--gris-200,#eee);
+      border-radius:10px; padding:.5rem .6rem;
+      cursor:pointer; text-align:left;
+      transition:border-color .15s, background .15s;
+      font-family:inherit; width:100%;
+    }
+    .cs-item:hover { border-color:var(--azul,#1565C0); background:var(--azul-50,#e3f2fd) }
+    .cs-item img { width:38px; height:38px; object-fit:cover; border-radius:6px; flex-shrink:0 }
+    .cs-info { display:flex; flex-direction:column; gap:1px; min-width:0 }
+    .cs-nombre {
+      font-size:.68rem; font-weight:700; color:var(--texto,#1a1a2e);
+      display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
+    }
+    .cs-precio { font-size:.73rem; font-weight:900; color:var(--azul,#1565C0) }
+    [data-theme="dark"] .cs-item { background:#1e2130; border-color:#333 }
+    [data-theme="dark"] .cs-item:hover { border-color:var(--azul); background:#1a2540 }
+    [data-theme="dark"] .cs-nombre { color:#e0e0e0 }
+  </style>
+
+  <!-- Schema.org ItemList para categorías — mejora rich snippets -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Catálogo Droguerías Económicas",
+    "description": "Más de 2.000 productos en Mosquera y Funza, Cundinamarca",
+    "numberOfItems": 2028,
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Medicamentos",
+        "url": "https://drogeriaseconomicas.com/productos.html?cat=Medicamentos"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Cuidado Personal y Belleza",
+        "url": "https://drogeriaseconomicas.com/productos.html?cat=Cuidado%20Personal%20y%20Belleza"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Bebé y Mamá",
+        "url": "https://drogeriaseconomicas.com/productos.html?cat=Beb%C3%A9%20y%20Mam%C3%A1"
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "name": "Mercado y Hogar",
+        "url": "https://drogeriaseconomicas.com/productos.html?cat=Mercado%20y%20Hogar"
+      }
+    ]
+  }
+  </script>
+
+  <!-- SEO Fase 5: meta description dinámica + preload imagen crítica -->
+  <link rel="preload" as="image" href="img/icono.jpg">
+  <script>
+  (function() {
+    var params = new URLSearchParams(window.location.search);
+    var cat    = params.get('cat') || '';
+    var buscar = params.get('buscar') || '';
+    var metas  = {
+      'Medicamentos':               'Compra medicamentos genéricos y de marca en Mosquera y Funza. +500 medicamentos disponibles. 🚚 Domicilio GRATIS en pedidos +$20.000.',
+      'Cuidado Personal y Belleza': 'Shampoos, cremas, protectores solares y cuidado personal al mejor precio. 🚚 Domicilio GRATIS en pedidos +$20.000.',
+      'Bebé y Mamá':                'Pañales, teteros, cremas y todo para tu bebé en Mosquera y Funza. Marcas Pampers, Huggies. 🚚 Domicilio GRATIS en pedidos +$20.000.',
+      'Mercado y Hogar':            'Productos de aseo, limpieza y hogar en Mosquera y Funza. 🚚 Domicilio GRATIS en pedidos +$20.000.',
+    };
+    var desc = metas[cat] || (buscar
+      ? 'Resultados para "' + buscar + '" en Droguerías Económicas Mosquera. 🚚 Domicilio GRATIS en pedidos +$20.000.'
+      : '+2.000 productos en Droguerías Económicas. Mosquera y Funza. 🚚 Domicilio GRATIS en pedidos +$20.000.'
+    );
+    var el = document.querySelector('meta[name="description"]');
+    if (el) el.setAttribute('content', desc);
+    var titles = {
+      'Medicamentos':               'Medicamentos | Droguerías Económicas — Mosquera y Funza',
+      'Cuidado Personal y Belleza': 'Cuidado Personal y Belleza | Droguerías Económicas',
+      'Bebé y Mamá':                'Bebé y Mamá | Droguerías Económicas',
+      'Mercado y Hogar':            'Mercado y Hogar | Droguerías Económicas',
+    };
+    if (titles[cat]) document.title = titles[cat];
+    else if (buscar) document.title = '"' + buscar + '" — Droguerías Económicas';
+  })();
+  </script>
 </head>
 
 <body>
 
 <!-- TOP BAR -->
 <div class="top-bar">
-  <span>🛵 <strong>🚚 Domicilio GRATIS</strong> · Mosquera y Funza</span>
+  <span>🛵 <strong>🚚 Domicilio GRATIS en pedidos +$20.000</strong> · Mosquera y Funza</span>
   <span class="top-bar-sep">|</span>
   <a href="tel:+573118719476">📞 311 871 94 76</a>
   <span class="top-bar-sep">|</span>
@@ -193,6 +329,16 @@ document.addEventListener('DOMContentLoaded', function() {
       <button class="btn-limpiar-filtros" id="btnLimpiarFiltros">
         <i class="fas fa-redo"></i> Limpiar
       </button>
+    </div>
+
+
+    <!-- BARRA DE ORDENAMIENTO -->
+    <div class="sort-bar" role="group" aria-label="Ordenar productos">
+      <span class="sort-label"><i class="fas fa-sort-amount-down"></i> Ordenar:</span>
+      <button class="sort-btn activo" data-orden="relevancia" onclick="ordenarResultados('relevancia')">Relevancia</button>
+      <button class="sort-btn" data-orden="precio-asc"    onclick="ordenarResultados('precio-asc')">Precio ↑</button>
+      <button class="sort-btn" data-orden="precio-desc"   onclick="ordenarResultados('precio-desc')">Precio ↓</button>
+      <button class="sort-btn" data-orden="nombre-asc"    onclick="ordenarResultados('nombre-asc')">Nombre A–Z</button>
     </div>
 
     <!-- BUSCADOR + CONTADOR -->
@@ -481,8 +627,7 @@ function spLimpiar() {
           <p style="font-size:.72rem;font-weight:800;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem">Aceptamos</p>
           <div style="display:flex;flex-wrap:wrap;gap:.4rem">
             <span style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:8px;padding:.25rem .65rem;font-size:.72rem;font-weight:700;color:rgba(255,255,255,.8)">🟢 Nequi</span>
-            <span style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:8px;padding:.25rem .65rem;font-size:.72rem;font-weight:700;color:rgba(255,255,255,.8)">🔵 Daviplata</span>
-            <span style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:8px;padding:.25rem .65rem;font-size:.72rem;font-weight:700;color:rgba(255,255,255,.8)">💰 Contraentrega</span>
+            
             <span style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:8px;padding:.25rem .65rem;font-size:.72rem;font-weight:700;color:rgba(255,255,255,.8)">💵 Efectivo</span>
           </div>
         </div>
@@ -500,11 +645,10 @@ function spLimpiar() {
         <h4>Categorías</h4>
         <ul>
           <li><a href="productos.html?cat=Medicamentos">Medicamentos</a></li>
-          <li><a href="productos.html?cat=Belleza">Belleza</a></li>
-          <li><a href="productos.html?cat=Cuidado%20Personal">Cuidado Personal</a></li>
-          <li><a href="productos.html?cat=Beb%C3%A9%20y%20Mam%C3%A1">Bebé &amp; Mamá</a></li>
+          <li><a href="productos.html?cat=Cuidado%20Personal%20y%20Belleza">Cuidado Personal y Belleza</a></li>
+          <li><a href="productos.html?cat=Beb%C3%A9%20y%20Mam%C3%A1">Bebé y Mamá</a></li>
           <li><a href="productos.html?cat=Mercado%20y%20Hogar">Mercado y Hogar</a></li>
-          <li><a href="productos.html?cat=Marcas%20Propias">Marcas DE</a></li>
+          <li><a href="politica-datos.html">Política de Datos</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -543,14 +687,14 @@ function spLimpiar() {
       <div class="domicilio-info">
         <i class="fas fa-motorcycle"></i>
         <div>
-          <strong>🛵 domicilio GRATIS</strong> · Mosquera y Funza<br>
+          <strong>🚚 Domicilio GRATIS en pedidos +$20.000</strong><br>
           <span style="font-weight:600;font-size:.73rem">⏱️ Entrega estimada: 30–40 minutos</span>
         </div>
       </div>
       <div class="carrito-resumen">
         <div class="carrito-resumen-fila"><span>Subtotal</span><span id="carritoSubtotal">$0</span></div>
-        <div class="carrito-resumen-fila"><span>Envío</span><span id="carritoEnvio">$0</span></div>
-        <div id="carritoEnvioMsg">✅ Envío gratis en compras mayores a $50.000</div>
+        <div class="carrito-resumen-fila"><span>Domicilio</span><span id="carritoEnvio" style="color:var(--verde,#1B5E20);font-weight:700">GRATIS</span></div>
+        <div id="carritoEnvioMsg">🚚 Domicilio GRATIS en pedidos +$20.000</div>
       </div>
       <div class="carrito-total-fila"><span>Total</span><span id="carritoTotal">$0</span></div>
       <!-- MÉTODOS PAGO -->
@@ -558,10 +702,8 @@ function spLimpiar() {
         <div class="pagos-carrito-title">💳 Aceptamos:</div>
         <div class="pagos-carrito">
           <span class="pago-mini">🟢 Nequi</span>
-          <span class="pago-mini">🔵 Daviplata</span>
-          <span class="pago-mini">💰 Contraentrega</span>
-          <span class="pago-mini">🏦 Bancolombia</span>
-          <span class="pago-mini">💵 Efectivo</span>
+          <span class="pago-mini">🏦 Transferencia</span>
+          <span class="pago-mini">📱 Otros electrónicos</span>
         </div>
       </div>
       <button class="btn-checkout" id="btnCheckout"><i class="fab fa-whatsapp"></i> Pedir por WhatsApp</button>
@@ -570,9 +712,27 @@ function spLimpiar() {
   </div>
 </div>
 
-<!-- WhatsApp flotante -->
-<div class="whatsapp-float">
-  <div class="whatsapp-tooltip">¡Escríbenos!</div>
+<!-- WhatsApp flotante con estado dinámico según hora Colombia (UTC-5) -->
+<div class="whatsapp-float" id="waFloat">
+  <div class="whatsapp-tooltip" id="waTooltip">¡Escríbenos por WhatsApp!</div>
+  <a href="https://wa.me/573118719476?text=Hola%2C+quiero+información+sobre+sus+productos"
+     target="_blank" rel="noopener noreferrer"
+     class="whatsapp-btn" aria-label="Contactar por WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+</div>
+<script>
+(function () {
+  var ahora = new Date();
+  var horaCol = (ahora.getUTCHours() - 5 + 24) % 24;
+  var abierto = horaCol >= 7 && horaCol < 22;
+  var tooltip = document.getElementById('waTooltip');
+  if (!tooltip) return;
+  tooltip.innerHTML = abierto
+    ? '🟢 <strong>¡Estamos en línea!</strong> · 7am–10pm'
+    : '🔴 Respondemos a las <strong>7am</strong><br><span style="font-size:.72rem">Horario: Lun–Dom 7am–10pm</span>';
+})();
+</script>
   <a href="https://wa.me/573118719476?text=Hola%2C+quiero+información+sobre+sus+productos"
      target="_blank" rel="noopener" class="whatsapp-btn" aria-label="WhatsApp">
     <i class="fab fa-whatsapp"></i>
@@ -586,25 +746,26 @@ function spLimpiar() {
   <div class="bottom-nav-inner">
     <a href="index.html" class="bn-item"><i class="fas fa-home"></i><span>Inicio</span></a>
     <a href="productos.html" class="bn-item activo"><i class="fas fa-store"></i><span>Productos</span></a>
-    <button class="bn-item" id="btnAbrirCarritoMobile">
+    <a href="promociones.html" class="bn-item"><i class="fas fa-fire"></i><span>Promos</span></a>
+    <button class="bn-item" id="btnAbrirCarritoMobile" aria-label="Carrito">
       <div class="bn-badge">
         <i class="fas fa-shopping-cart"></i>
         <span class="bn-count oculto" id="bnCount">0</span>
       </div>
       <span>Carrito</span>
     </button>
-    <a href="https://wa.me/573118719476?text=Hola" target="_blank" rel="noopener" class="bn-item">
+    <a href="https://wa.me/573118719476?text=Hola%2C+quiero+información" target="_blank" rel="noopener" class="bn-item">
       <i class="fab fa-whatsapp"></i><span>WhatsApp</span>
     </a>
   </div>
 </nav>
-<script src="js/theme.js"></script>
-<script src="js/wa-config.js"></script>
-<script src="js/productos-data.js"></script>
-<script src="js/laboratorio-precios.js"></script>
-<script src="js/catalogo.js"></script>
-<script src="js/carrito.js"></script>
-<script src="js/pago.js"></script>
+<script defer src="js/theme.js"></script>
+<script defer src="js/wa-config.js"></script>
+<script defer src="js/productos-data.js"></script>
+<script defer src="js/laboratorio-precios.js"></script>
+<script defer src="js/catalogo.js"></script>
+<script defer src="js/carrito.js"></script>
+<script defer src="js/pago.js"></script>
 
 <script>
 /* NAVBAR TOGGLE */
@@ -642,6 +803,6 @@ actualizarMensajeEnvio();
 
 /* ── ?cat= y filtros avanzados manejados por catalogo.js ── */
 </script>
-<script src="js/promo-dia.js"></script>
+<script defer src="js/promo-dia.js"></script>
 </body>
 </html>

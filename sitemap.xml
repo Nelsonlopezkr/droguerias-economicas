@@ -1,87 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+          http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
+  <!-- Página principal — máxima prioridad -->
   <url>
     <loc>https://drogeriaseconomicas.com/</loc>
-    <lastmod>2026-01-01</lastmod>
+    <lastmod>2026-06-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
+  <!-- Catálogo de productos -->
   <url>
     <loc>https://drogeriaseconomicas.com/productos.html</loc>
-    <lastmod>2026-01-01</lastmod>
+    <lastmod>2026-06-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
 
-  <url>
-    <loc>https://drogeriaseconomicas.com/productos.html?cat=Medicamentos</loc>
-    <lastmod>2026-01-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://drogeriaseconomicas.com/productos.html?cat=Belleza</loc>
-    <lastmod>2026-01-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://drogeriaseconomicas.com/productos.html?cat=Cuidado%20Personal</loc>
-    <lastmod>2026-01-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://drogeriaseconomicas.com/productos.html?cat=Beb%C3%A9%20y%20Mam%C3%A1</loc>
-    <lastmod>2026-01-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://drogeriaseconomicas.com/productos.html?cat=Mercado%20y%20Hogar</loc>
-    <lastmod>2026-01-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://drogeriaseconomicas.com/productos.html?cat=Marcas%20Propias</loc>
-    <lastmod>2026-01-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
+  <!-- Promociones — actualización frecuente -->
   <url>
     <loc>https://drogeriaseconomicas.com/promociones.html</loc>
-    <lastmod>2026-01-01</lastmod>
+    <lastmod>2026-06-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
+  <!-- Afiliaciones -->
   <url>
     <loc>https://drogeriaseconomicas.com/afiliaciones.html</loc>
-    <lastmod>2026-01-01</lastmod>
+    <lastmod>2026-06-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
+  <!-- Contacto -->
   <url>
     <loc>https://drogeriaseconomicas.com/contacto.html</loc>
-    <lastmod>2026-01-01</lastmod>
+    <lastmod>2026-06-26</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
 
+  <!-- Política de datos -->
   <url>
-    <loc>https://drogeriaseconomicas.com/politica_privacidad.html</loc>
-    <lastmod>2026-01-01</lastmod>
+    <loc>https://drogeriaseconomicas.com/politica-datos.html</loc>
+    <lastmod>2026-06-26</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

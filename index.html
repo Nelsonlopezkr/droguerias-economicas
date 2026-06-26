@@ -6,16 +6,21 @@
   <title>Droguerías Económicas | Tu salud, nuestro compromiso – Mosquera, Cundinamarca</title>
 
   <!-- SEO -->
-  <meta name="description" content="Droguerías Económicas en Mosquera y Funza. 🚚 Domicilio GRATIS. Medicamentos al mejor precio. WhatsApp: 311 871 94 76.">
+  <meta name="description" content="Droguerías Económicas en Mosquera y Funza. 🚚 Domicilio GRATIS en pedidos +$20.000. Medicamentos al mejor precio. WhatsApp: 311 871 94 76.">
   <meta name="keywords" content="droguería Mosquera, droguería Funza, medicamentos, belleza, cuidado personal, domicilio farmacia Cundinamarca">
 
   <!-- Open Graph (WhatsApp, Facebook) -->
-  <meta property="og:title" content="Droguerías Económicas | Mosquera – cundinamarca">
-  <meta property="og:description" content="Tu salud, nuestro compromiso. Domicilio 24/7, +300 productos. Nequi · Daviplata · Contraentrega.">
+  <meta property="og:title" content="Droguerías Económicas | Mosquera y Funza, Cundinamarca">
+  <meta property="og:description" content="Tu salud, nuestro compromiso. 🚚 Domicilio GRATIS · +2.000 productos · Pedidos por WhatsApp · Nequi · Transferencia · Medios electrónicos.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="img/icono.jpg">
+  <meta property="og:image" content="https://drogeriaseconomicas.com/img/og-banner.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta property="og:url" content="https://drogeriaseconomicas.com/">
   <meta property="og:locale" content="es_CO">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Droguerías Económicas | Mosquera y Funza">
+  <meta name="twitter:description" content="🚚 Domicilio GRATIS · +2.000 productos · Pedidos por WhatsApp 311 871 94 76">
 
   <!-- Schema.org Pharmacy -->
   <script type="application/ld+json">
@@ -27,6 +32,13 @@
     "openingHours": "Mo-Su 07:00-22:00",
     "priceRange": "$",
     "url": "https://drogeriaseconomicas.com/",
+    "image": "https://drogeriaseconomicas.com/img/og-banner.jpg",
+    "currenciesAccepted": "COP",
+    "paymentAccepted": "Nequi, Transferencia bancaria, Medios electrónicos",
+    "areaServed": [
+      {"@type": "City", "name": "Mosquera", "addressRegion": "Cundinamarca"},
+      {"@type": "City", "name": "Funza",    "addressRegion": "Cundinamarca"}
+    ],
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Calle 10 #16b 21",
@@ -39,8 +51,7 @@
       "latitude": 4.8143,
       "longitude": -74.3557
     },
-    "servesCuisine": "Pharmacy",
-    "hasMap": "https://maps.google.com/?q=Droguerías+Económicas+Mosquera"
+    "hasMap": "https://maps.google.com/?q=Droguer%C3%ADas+Econ%C3%B3micas+Mosquera+Cundinamarca"
   }
   </script>
 
@@ -51,7 +62,7 @@
   <!-- Fuentes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Anti-FOUC: aplica tema ANTES de pintar — evita parpadeo claro→oscuro -->
   <script>
@@ -74,6 +85,65 @@
   <!-- Estilos — un solo archivo unificado -->
   <link rel="stylesheet" href="css/estilos.css">
   <link rel="canonical" href="https://drogeriaseconomicas.com/">
+  <!-- Estilos adicionales Fase 1 — additive only, no modifica estilos.css -->
+  <style>
+    /* Placeholder buscador hero — inicial sobre fondo azul */
+    .hero-ac-img { width:44px;height:44px;flex-shrink:0;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:var(--azul-50,#e3f0ff) }
+    .hero-ac-img img { width:100%;height:100%;object-fit:cover }
+    .hero-ac-placeholder { width:44px;height:44px;border-radius:8px;background:var(--azul,#1a56db);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:800;font-family:'Nunito',sans-serif;flex-shrink:0 }
+    /* Badge "Cliente verificado" en testimonios */
+    .test-verificado { font-size:.65rem;font-weight:700;color:var(--azul,#1a56db);background:var(--azul-50,#e3f0ff);border-radius:20px;padding:1px 6px;margin-left:4px;white-space:nowrap;vertical-align:middle }
+    .test-barrio time { color:var(--color-texto-sec,#6b7280);font-style:normal }
+    /* Tooltip WhatsApp dinámico — multilinea */
+    .whatsapp-tooltip { max-width:200px;text-align:left;line-height:1.4;font-size:.78rem }
+    .whatsapp-tooltip strong { display:block }
+    /* Bottom nav con 5 ítems */
+    .bottom-nav-inner { grid-template-columns:repeat(5,1fr) }
+
+    /* ── Fase 2: Top Ventas mejorado ── */
+    /* Contenedor de los dos botones por tarjeta */
+    .tv-btns {
+      display:flex; gap:.4rem; width:100%; margin-top:auto; flex-wrap:wrap;
+    }
+    /* Botón agregar al carrito en tv-card */
+    .tv-btn-carrito {
+      flex:1; min-width:80px;
+      display:flex; align-items:center; justify-content:center; gap:.3rem;
+      padding:.5rem .4rem;
+      background:var(--azul,#1565C0); color:#fff;
+      border:none; border-radius:50px;
+      font-size:.72rem; font-weight:800; font-family:inherit;
+      cursor:pointer; transition:filter .18s, transform .18s;
+      white-space:nowrap;
+    }
+    .tv-btn-carrito:hover { filter:brightness(1.1); transform:translateY(-1px) }
+    .tv-btn-carrito i { font-size:.8rem }
+    /* Botón WhatsApp más compacto cuando comparte fila con carrito */
+    .tv-btns .tv-btn-wsp {
+      flex:1; min-width:80px; margin-top:0; padding:.5rem .4rem; font-size:.72rem;
+    }
+    /* Indicador de popularidad */
+    .tv-popular {
+      font-size:.62rem; font-weight:800;
+      background:#FFF3E0; color:#E65100;
+      border-radius:20px; padding:1px 7px;
+      align-self:center; white-space:nowrap;
+    }
+    .tv-popular.tv-popular-med {
+      background:var(--azul-50,#e3f2fd); color:var(--azul,#1565C0);
+    }
+
+    /* ── Fase 2: imágenes lazy nativas ── */
+    img:not([loading]) { loading:lazy }
+    /* Excepciones: hero y logo siempre eager */
+    .hero img, .navbar-logo img, .hero-brand-logo img { loading:eager }
+
+    /* ── Fase 2: sección Top Ventas — subtítulo ── */
+    .tv-subtitulo {
+      text-align:center; font-size:.88rem; color:var(--gris-700,#616161);
+      margin-top:-.5rem; margin-bottom:1.2rem; font-weight:600;
+    }
+  </style>
 </head>
 
 
@@ -88,7 +158,7 @@
      ║  TOP BAR — DOMICILIO + TELÉFONO         ║
      ╚══════════════════════════════════════════╝ -->
 <div class="top-bar" role="banner">
-  <span>🚚 <strong>Domicilio GRATIS</strong> · Mosquera y Funza</span>
+  <span>🚚 <strong>Domicilio GRATIS en pedidos +$20.000</strong> · Mosquera y Funza</span>
   <span class="top-bar-sep">|</span>
   <span>🕐 Lun–Dom: 7 am – 10 pm</span>
   <span class="top-bar-sep">|</span>
@@ -102,7 +172,7 @@
      ╚══════════════════════════════════════════╝ -->
 <nav class="navbar" role="navigation" aria-label="Navegación principal">
   <a class="navbar-logo" href="index.html">
-    <img src="img/icono.jpg" alt="Logo Droguerías Económicas" onerror="this.style.display='none'">
+    <img src="img/icono.jpg" alt="Logo Droguerías Económicas" loading="eager" fetchpriority="high" onerror="this.style.display='none'">
     <span>Droguerías <em>Económicas</em></span>
   </a>
 
@@ -173,7 +243,7 @@
       </div>
       <div class="hero-float-card hero-float-der">
         <i class="fas fa-motorcycle"></i>
-        <div><strong>GRATIS</strong><span>Domicilio</span></div>
+        <div><strong>GRATIS</strong><span>+$20.000</span></div>
       </div>
       <div class="hero-pill hero-pill-1">
         <div class="pill-half pill-a"></div><div class="pill-half pill-b"></div>
@@ -190,7 +260,7 @@
     <div class="hero-content">
       <div class="hero-badge">🏥 Mosquera · Funza, Cundinamarca</div>
       <h1>Medicamentos<br><span>al mejor precio</span></h1>
-      <p>🚚 <strong>Domicilio GRATIS</strong> en Mosquera y Funza. Calidad, confianza y ahorro para ti y tu familia.</p>
+      <p>🚚 <strong>Domicilio GRATIS en pedidos +$20.000</strong> en Mosquera y Funza. Calidad, confianza y ahorro para ti y tu familia.</p>
 
       <div class="hero-benefits">
         <div class="hero-benefit">
@@ -260,7 +330,7 @@
 <section class="confianza-strip" aria-label="Por qué elegirnos">
   <div class="container">
     <div class="confianza-items">
-      <div class="confianza-item"><i class="fas fa-shipping-fast confianza-icon"></i><div><strong>Domicilio Gratis</strong><span>Mosquera y Funza</span></div></div>
+      <div class="confianza-item"><i class="fas fa-shipping-fast confianza-icon"></i><div><strong>Domicilio GRATIS</strong><span>en pedidos +$20.000</span></div></div>
       <div class="confianza-sep"></div>
       <div class="confianza-item"><i class="fab fa-whatsapp confianza-icon" style="color:#25D366"></i><div><strong>Pedidos WhatsApp</strong><span>311 871 94 76</span></div></div>
       <div class="confianza-sep"></div>
@@ -287,15 +357,9 @@
         <span class="cat-hero-count"></span>
       </a>
 
-      <a href="productos.html?cat=Belleza" class="cat-hero-card" data-cat="Belleza">
+      <a href="productos.html?cat=Cuidado%20Personal%20y%20Belleza" class="cat-hero-card" data-cat="Cuidado Personal y Belleza">
         <div class="cat-hero-icon"><i class="fas fa-spa"></i></div>
-        <span class="cat-hero-label">Belleza</span>
-        <span class="cat-hero-count"></span>
-      </a>
-
-      <a href="productos.html?cat=Cuidado%20Personal" class="cat-hero-card" data-cat="Cuidado Personal">
-        <div class="cat-hero-icon"><i class="fas fa-hand-holding-heart"></i></div>
-        <span class="cat-hero-label">Cuidado Personal</span>
+        <span class="cat-hero-label">Cuidado Personal y Belleza</span>
         <span class="cat-hero-count"></span>
       </a>
 
@@ -308,12 +372,6 @@
       <a href="productos.html?cat=Mercado%20y%20Hogar" class="cat-hero-card" data-cat="Mercado y Hogar">
         <div class="cat-hero-icon"><i class="fas fa-shopping-basket"></i></div>
         <span class="cat-hero-label">Mercado y Hogar</span>
-        <span class="cat-hero-count"></span>
-      </a>
-
-      <a href="productos.html?cat=Marcas%20Propias" class="cat-hero-card" data-cat="Marcas Propias">
-        <div class="cat-hero-icon"><i class="fas fa-star"></i></div>
-        <span class="cat-hero-label">Marcas DE</span>
         <span class="cat-hero-count"></span>
       </a>
 
@@ -380,7 +438,10 @@
         <p class="test-texto">Pedí a domicilio y llegó en menos de 30 minutos. El acetaminofén estaba completo y el precio es el más económico del sector.</p>
         <div class="test-autor">
           <div class="test-avatar">M</div>
-          <div><div class="test-nombre">María C.</div><div class="test-barrio">📍 Mosquera centro</div></div>
+          <div>
+            <div class="test-nombre">María C. <span class="test-verificado">✓ Cliente verificada</span></div>
+            <div class="test-barrio">📍 Mosquera centro · <time>hace 2 semanas</time></div>
+          </div>
         </div>
       </article>
 
@@ -389,7 +450,10 @@
         <p class="test-texto">Los medicamentos son originales y de buena calidad. Me ayudaron a conseguir el Enalapril que necesitaba mi papá al mejor precio.</p>
         <div class="test-autor">
           <div class="test-avatar">C</div>
-          <div><div class="test-nombre">Carlos R.</div><div class="test-barrio">📍 Funza</div></div>
+          <div>
+            <div class="test-nombre">Carlos R. <span class="test-verificado">✓ Cliente verificado</span></div>
+            <div class="test-barrio">📍 Funza · <time>hace 1 mes</time></div>
+          </div>
         </div>
       </article>
 
@@ -398,7 +462,10 @@
         <p class="test-texto">Excelente asesoría farmacéutica. El personal es muy profesional y me ayudaron con mis medicamentos. Vuelvo cada mes con confianza.</p>
         <div class="test-autor">
           <div class="test-avatar">L</div>
-          <div><div class="test-nombre">Lorena M.</div><div class="test-barrio">📍 Mosquera occidental</div></div>
+          <div>
+            <div class="test-nombre">Lorena M. <span class="test-verificado">✓ Cliente verificada</span></div>
+            <div class="test-barrio">📍 Mosquera occidental · <time>hace 3 semanas</time></div>
+          </div>
         </div>
       </article>
 
@@ -407,7 +474,10 @@
         <p class="test-texto">Me solucionaron un pañal de emergencia a las 9 PM y pagué con Nequi desde la app. Rapidísimo y sin complicaciones.</p>
         <div class="test-autor">
           <div class="test-avatar">A</div>
-          <div><div class="test-nombre">Andrés P.</div><div class="test-barrio">📍 Funza</div></div>
+          <div>
+            <div class="test-nombre">Andrés P. <span class="test-verificado">✓ Cliente verificado</span></div>
+            <div class="test-barrio">📍 Funza · <time>hace 5 días</time></div>
+          </div>
         </div>
       </article>
 
@@ -416,7 +486,10 @@
         <p class="test-texto">Muy buena variedad de productos de belleza. Me recomendaron la crema Cetaphil para mi piel sensible y funcionó perfecto.</p>
         <div class="test-autor">
           <div class="test-avatar">S</div>
-          <div><div class="test-nombre">Sofía V.</div><div class="test-barrio">📍 Mosquera sur</div></div>
+          <div>
+            <div class="test-nombre">Sofía V. <span class="test-verificado">✓ Cliente verificada</span></div>
+            <div class="test-barrio">📍 Mosquera sur · <time>hace 2 semanas</time></div>
+          </div>
         </div>
       </article>
 
@@ -425,7 +498,10 @@
         <p class="test-texto">Llevo 3 años comprando mis medicamentos aquí. La atención farmacéutica es excelente y siempre tienen el genérico más barato disponible.</p>
         <div class="test-autor">
           <div class="test-avatar">R</div>
-          <div><div class="test-nombre">Roberto H.</div><div class="test-barrio">📍 Mosquera</div></div>
+          <div>
+            <div class="test-nombre">Roberto H. <span class="test-verificado">✓ Cliente verificado</span></div>
+            <div class="test-barrio">📍 Mosquera · <time>hace 1 semana</time></div>
+          </div>
         </div>
       </article>
 
@@ -445,7 +521,7 @@
         <div class="garantia-icon">🛵</div>
         <div>
           <h4>Domicilio rápido 24/7</h4>
-          <p>Entrega en 30–40 min. Domicilio GRATIS en Mosquera y Funza.</p>
+          <p>Entrega en 30–40 min. Domicilio GRATIS en pedidos +$20.000 · Mosquera y Funza.</p>
         </div>
       </div>
 
@@ -469,7 +545,7 @@
         <div class="garantia-icon">💳</div>
         <div>
           <h4>Múltiples formas de pago</h4>
-          <p>Nequi · Daviplata · Contraentrega · Bancolombia · Efectivo. Elige la que más te convenga.</p>
+          <p>Nequi · Transferencia bancaria · Otros medios electrónicos. Pagos al <a href="tel:+573232497559" style="color:var(--azul)">323 249 7559</a>.</p>
         </div>
       </div>
 
@@ -484,7 +560,7 @@
   <div class="container">
     <div class="nosotros-grid">
       <div class="nosotros-img">
-        <img src="img/img1.jpg" alt="Equipo de Droguerías Económicas"
+        <img loading="lazy" src="img/img1.jpg" alt="Equipo de Droguerías Económicas"
              onerror="this.src='https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&q=80'">
       </div>
       <div class="nosotros-texto">
@@ -529,7 +605,7 @@
       <article class="servicio-card">
         <div class="servicio-icono"><i class="fas fa-motorcycle"></i></div>
         <h3>Domicilio 24/7</h3>
-        <p>Entrega en 30–40 min. <strong>Domicilio GRATIS</strong> en Mosquera y Funza. Llámanos: <a href="tel:+573118719476" style="color:var(--azul);font-weight:800">311 871 94 76</a></p>
+        <p>Entrega en 30–40 min. <strong>Domicilio GRATIS en pedidos +$20.000</strong> en Mosquera y Funza. Llámanos: <a href="tel:+573118719476" style="color:var(--azul);font-weight:800">311 871 94 76</a></p>
       </article>
 
       <article class="servicio-card">
@@ -563,7 +639,7 @@
     <div class="promos-grid">
 
       <article class="promo-card">
-        <img src="img/promo1.jpg" alt="Descuento en vitaminas"
+        <img loading="lazy" src="img/promo1.jpg" alt="Descuento en vitaminas"
              onerror="this.src='https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=600&q=80'">
         <div class="promo-body">
           <span class="promo-descuento">30% OFF</span>
@@ -573,7 +649,7 @@
       </article>
 
       <article class="promo-card">
-        <img src="img/promo2.jpg" alt="Descuento medicamentos"
+        <img loading="lazy" src="img/promo2.jpg" alt="Descuento medicamentos"
              onerror="this.src='https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&q=80'">
         <div class="promo-body">
           <span class="promo-descuento">20% en compras +$50.000</span>
@@ -583,7 +659,7 @@
       </article>
 
       <article class="promo-card">
-        <img src="img/promo3.jpg" alt="Paga 1 lleva 2"
+        <img loading="lazy" src="img/promo3.jpg" alt="Paga 1 lleva 2"
              onerror="this.src='https://images.unsplash.com/photo-1622484212850-eb596d769edc?w=600&q=80'">
         <div class="promo-body">
           <span class="promo-descuento">2×1</span>
@@ -616,11 +692,10 @@
           <p style="font-size:.72rem;font-weight:800;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem">Aceptamos</p>
           <div class="pagos-strip">
             <span class="pago-chip"><span>🟢</span> Nequi</span>
-            <span class="pago-chip"><span>🔵</span> Daviplata</span>
-            <span class="pago-chip"><span>💰</span> Contraentrega</span>
-            <span class="pago-chip"><span>🏦</span> Bancolombia</span>
-            <span class="pago-chip"><span>💵</span> Efectivo</span>
+            <span class="pago-chip"><span>🏦</span> Transferencia</span>
+            <span class="pago-chip"><span>📱</span> Otros electrónicos</span>
           </div>
+          <p style="font-size:.68rem;color:rgba(255,255,255,.45);margin-top:.45rem">Pagos: <strong style="color:rgba(255,255,255,.7)">323 249 7559</strong></p>
         </div>
         <!-- GARANTÍAS -->
         <div class="garantias-strip" style="justify-content:flex-start;margin-top:.8rem">
@@ -645,12 +720,10 @@
         <h4>Categorías</h4>
         <ul>
           <li><a href="productos.html?cat=Medicamentos">Medicamentos</a></li>
-          <li><a href="productos.html?cat=Belleza">Belleza</a></li>
-          <li><a href="productos.html?cat=Cuidado%20Personal">Cuidado Personal</a></li>
-          <li><a href="productos.html?cat=Beb%C3%A9%20y%20Mam%C3%A1">Bebé &amp; Mamá</a></li>
+          <li><a href="productos.html?cat=Cuidado%20Personal%20y%20Belleza">Cuidado Personal y Belleza</a></li>
+          <li><a href="productos.html?cat=Beb%C3%A9%20y%20Mam%C3%A1">Bebé y Mamá</a></li>
           <li><a href="productos.html?cat=Mercado%20y%20Hogar">Mercado y Hogar</a></li>
-          <li><a href="productos.html?cat=Marcas%20Propias">Marcas DE (Económicas)</a></li>
-          <a href="politica-datos.html">Política de Datos</a>
+          <li><a href="politica-datos.html">Política de Datos</a></li>
         </ul>
       </div>
 
@@ -659,8 +732,7 @@
         <div class="footer-contacto">
           <div class="footer-contacto-item">
             <i class="fas fa-phone-alt"></i>
-
-            <span><a href="tel:+573118719476" style="color:inherit">311 871 94 76</a> · <a href="tel:+573118719476" style="color:inherit"></a></span>
+            <span><a href="tel:+573118719476" style="color:inherit">311 871 94 76</a></span>
           </div>
           <div class="footer-contacto-item">
             <i class="fab fa-whatsapp"></i>
@@ -715,7 +787,7 @@
       <div class="domicilio-info">
         <i class="fas fa-motorcycle"></i>
         <div>
-          <strong>🚚 Domicilio GRATIS</strong> · Mosquera &amp; Funza<br>
+          <strong>🚚 Domicilio GRATIS en pedidos +$20.000</strong><br>
           <span style="font-weight:600;font-size:.73rem">⏱️ Entrega estimada: 30–40 minutos</span>
         </div>
       </div>
@@ -726,10 +798,10 @@
           <span>Subtotal</span><span id="carritoSubtotal">$0</span>
         </div>
         <div class="carrito-resumen-fila">
-          <span>Envío</span><span id="carritoEnvio">$0</span>
+          <span>Domicilio</span><span id="carritoEnvio" style="color:var(--verde,#1B5E20);font-weight:700">GRATIS</span>
         </div>
-        <!-- MENSAJE DINÁMICO ENVÍO GRATIS -->
-        <div id="carritoEnvioMsg">✅ Envío gratis en compras mayores a $50.000</div>
+        <!-- MENSAJE DOMICILIO — GRATIS en pedidos +$20.000 -->
+        <div id="carritoEnvioMsg">🚚 Domicilio GRATIS en pedidos +$20.000</div>
       </div>
 
       <div class="carrito-total-fila">
@@ -740,11 +812,12 @@
       <div>
         <div class="pagos-carrito-title">💳 Aceptamos:</div>
         <div class="pagos-carrito">
-          <span class="pago-mini">🟢 Nequi  </span>
-          <span class="pago-mini">🔵 Daviplata</span>
-          <span class="pago-mini">💰 Contraentrega</span>
-          <span class="pago-mini">🏦 Bancolombia</span>
-          <span class="pago-mini">💵 Efectivo</span>
+          <span class="pago-mini">🟢 Nequi</span>
+          <span class="pago-mini">🏦 Transferencia</span>
+          <span class="pago-mini">📱 Otros electrónicos</span>
+        </div>
+        <div style="font-size:.68rem;color:var(--color-texto-sec,#6b7280);margin-top:.35rem;text-align:center">
+          Pagos al: <strong>323 249 7559</strong>
         </div>
       </div>
 
@@ -758,15 +831,33 @@
   </div>
 </div>
 
-<!-- WhatsApp flotante -->
-<div class="whatsapp-float">
-  <div class="whatsapp-tooltip">¡Escríbenos por WhatsApp!</div>
+<!-- WhatsApp flotante con estado dinámico según hora Colombia (UTC-5) -->
+<div class="whatsapp-float" id="waFloat">
+  <div class="whatsapp-tooltip" id="waTooltip">¡Escríbenos por WhatsApp!</div>
   <a href="https://wa.me/573118719476?text=Hola%2C+quiero+información+sobre+sus+productos"
      target="_blank" rel="noopener noreferrer"
-     class="whatsapp-btn" aria-label="Contactar por WhatsApp">
+     class="whatsapp-btn" aria-label="Contactar por WhatsApp" id="waBtn">
     <i class="fab fa-whatsapp"></i>
   </a>
 </div>
+<script>
+/* Estado dinámico WhatsApp — horario 7am–10pm Colombia (UTC-5) */
+(function () {
+  var ahora = new Date();
+  /* Hora actual en Colombia: UTC-5 */
+  var horaCol = (ahora.getUTCHours() - 5 + 24) % 24;
+  var abierto = horaCol >= 7 && horaCol < 22;
+  var tooltip = document.getElementById('waTooltip');
+  if (!tooltip) return;
+  if (abierto) {
+    tooltip.innerHTML = '🟢 <strong>¡Estamos en línea!</strong> · 7am–10pm';
+  } else {
+    /* Calcular cuántas horas faltan para las 7am */
+    var horasFalta = horaCol < 7 ? (7 - horaCol) : (31 - horaCol);
+    tooltip.innerHTML = '🔴 Respondemos a las <strong>7am</strong><br><span style="font-size:.72rem">Horario: Lun–Dom 7am–10pm</span>';
+  }
+})();
+</script>
 
 <!-- Toast -->
 <div id="toast" class="toast" aria-live="assertive"></div>
@@ -784,6 +875,10 @@
       <i class="fas fa-store"></i>
       <span>Productos</span>
     </a>
+    <a href="promociones.html" class="bn-item">
+      <i class="fas fa-fire"></i>
+      <span>Promos</span>
+    </a>
     <button class="bn-item" id="btnAbrirCarritoMobile" aria-label="Carrito">
       <div class="bn-badge">
         <i class="fas fa-shopping-cart"></i>
@@ -798,13 +893,13 @@
   </div>
 </nav>
 
-<!-- Scripts de datos y lógica (no modificar) -->
-<script src="js/wa-config.js"></script>
-<script src="js/productos-data.js"></script>
-<script src="js/top-ventas-data.js"></script>
-<script src="js/laboratorio-precios.js"></script>
-<script src="js/catalogo.js"></script>
-<script src="js/carrito.js"></script>
+<!-- Scripts de datos y lógica -->
+<script defer src="js/wa-config.js"></script>
+<script defer src="js/productos-data.js"></script>
+<script defer src="js/top-ventas-data.js"></script>
+<script defer src="js/laboratorio-precios.js"></script>
+<script defer src="js/catalogo.js"></script>
+<script defer src="js/carrito.js"></script>
 
 <!-- Top Ventas — render con paginación -->
 <script>
@@ -838,25 +933,50 @@
       : TOP_VENTAS.slice((paginaActual - 1) * POR_PAGINA, paginaActual * POR_PAGINA);
 
     grid.innerHTML = lista.map(function(p) {
-      var msg  = encodeURIComponent('Hola! Vi que ' + p.nombre + ' es de los más vendidos 🔥 ¿Tienen disponibilidad?');
+      var msgWa = encodeURIComponent('Hola! Vi que *' + p.nombre + '* es de los más vendidos 🔥\n¿Tienen disponibilidad? Precio: $' + p.precio.toLocaleString('es-CO'));
       var badge = p.ranking <= 3
         ? '<span class="tv-badge-top">TOP ' + p.ranking + '</span>'
         : (p.ranking <= 10 ? '<span class="tv-badge-10">Top 10</span>' : '');
+      /* Buscar el producto en CATALOGO para agregar al carrito */
+      var prodCat = null;
+      if (typeof CATALOGO !== 'undefined') {
+        var nom = p.nombre.toLowerCase();
+        prodCat = CATALOGO.find(function(c) {
+          return c.nombre && c.nombre.toLowerCase().indexOf(nom.substring(0, 15)) !== -1;
+        }) || null;
+      }
+      var btnCarrito = prodCat
+        ? '<button class="tv-btn-carrito" onclick="agregarAlCarrito(window.__tvCat' + p.ranking + ',0,this)" aria-label="Agregar al carrito">' +
+            '<i class="fas fa-cart-plus"></i> Al carrito' +
+          '</button>'
+        : '';
+      /* Guardar referencia global para el onclick */
+      if (prodCat) window['__tvCat' + p.ranking] = prodCat;
+
+      /* Indicador de popularidad */
+      var popularidad = p.vendidos >= 100
+        ? '<span class="tv-popular">🔥 Muy popular</span>'
+        : (p.vendidos >= 50 ? '<span class="tv-popular tv-popular-med">⭐ Popular</span>' : '');
+
       return '<div class="tv-card" role="listitem">' +
         '<div class="tv-card-head">' +
           '<span class="tv-rank ' + medalla(p.ranking) + '">' + rankLabel(p.ranking) + '</span>' +
           badge +
         '</div>' +
+        popularidad +
         '<span class="tv-icono">' + p.icono + '</span>' +
         '<span class="tv-nombre">' + p.nombre + '</span>' +
         '<span class="tv-presentacion">' + p.presentacion + '</span>' +
         '<div class="tv-precio-row">' +
           '<span class="tv-precio">$' + p.precio.toLocaleString('es-CO') + '</span>' +
-          '<span class="tv-vendidos"><i class="fas fa-fire"></i> ' + p.vendidos.toLocaleString() + ' vend.</span>' +
+          '<span class="tv-vendidos"><i class="fas fa-fire"></i> ' + p.vendidos.toLocaleString('es-CO') + ' vendidos</span>' +
         '</div>' +
-        '<a class="tv-btn-wsp" href="https://wa.me/' + num + '?text=' + msg + '" target="_blank" rel="noopener">' +
-          '<i class="fab fa-whatsapp"></i> Pedir — 🚚 GRATIS' +
-        '</a>' +
+        '<div class="tv-btns">' +
+          btnCarrito +
+          '<a class="tv-btn-wsp" href="https://wa.me/' + num + '?text=' + msgWa + '" target="_blank" rel="noopener">' +
+            '<i class="fab fa-whatsapp"></i> Pedir ya' +
+          '</a>' +
+        '</div>' +
       '</div>';
     }).join('');
 
@@ -980,17 +1100,21 @@
     dd.innerHTML = res.map(function (p) {
       var v0     = (p.variantes && p.variantes[0]) || {};
       var precio = v0.precio || 0;
-      var slug   = encodeURIComponent(p.nombre);
-      var img    = v0.imagen || p.imagen || ('https://picsum.photos/seed/' + slug + '/60/60');
+      var img    = v0.imagen || p.imagen || '';
       var nombre = p.nombre.replace(re, '<mark>$1</mark>');
       var meta   = (p.categoria || '') + (precio ? ' · $' + precio.toLocaleString('es-CO') : '');
       var destino = encodeURIComponent(p.nombre);
+      /* SVG placeholder inline — inicial del producto sobre fondo azul institucional */
+      var inicial = (p.nombre || '?').charAt(0).toUpperCase();
+      var imgTag = img
+        ? '<img src="' + img + '" alt="" loading="lazy" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">' +
+          '<span class="hero-ac-placeholder" style="display:none">' + inicial + '</span>'
+        : '<span class="hero-ac-placeholder">' + inicial + '</span>';
 
       return '<button class="hero-ac-item"' +
                ' onclick="window.location.href=\'productos.html?buscar=' + destino + '\'"' +
                ' role="option">' +
-               '<img src="' + img + '" alt=""' +
-                 ' onerror="this.src=\'https://picsum.photos/seed/' + slug + '/60/60\'">' +
+               '<div class="hero-ac-img">' + imgTag + '</div>' +
                '<span class="hero-ac-info">' +
                  '<span class="hero-ac-nombre">' + nombre + '</span>' +
                  '<span class="hero-ac-meta">' + meta + '</span>' +

@@ -25,6 +25,40 @@ var CFG = {
   DEBOUNCE:   260,
 };
 
+
+/* ── Ordenamiento del catálogo ── */
+var ESTADO_ORDEN = 'relevancia'; /* relevancia | precio-asc | precio-desc | nombre-asc */
+
+function ordenarResultados(criterio) {
+  ESTADO_ORDEN = criterio || 'relevancia';
+  /* Actualizar botones activos */
+  document.querySelectorAll('.sort-btn').forEach(function(b) {
+    b.classList.toggle('activo', b.dataset.orden === ESTADO_ORDEN);
+  });
+  aplicarFiltros();
+}
+window.ordenarResultados = ordenarResultados;
+
+function _aplicarOrden(lista) {
+  if (ESTADO_ORDEN === 'precio-asc') {
+    return lista.slice().sort(function(a, b) {
+      return _precioCard(a, 0) - _precioCard(b, 0);
+    });
+  }
+  if (ESTADO_ORDEN === 'precio-desc') {
+    return lista.slice().sort(function(a, b) {
+      return _precioCard(b, 0) - _precioCard(a, 0);
+    });
+  }
+  if (ESTADO_ORDEN === 'nombre-asc') {
+    return lista.slice().sort(function(a, b) {
+      return a.nombre.localeCompare(b.nombre, 'es');
+    });
+  }
+  /* relevancia: mantener orden original (índice en CATALOGO) */
+  return lista;
+}
+
 var ESTADO = {
   filtros:    { categoria: null, busqueda: '', precioMax: 200000, tagsActivos: [] },
   pagina:     1,
@@ -1091,10 +1125,13 @@ function _construirHTMLModal(p, meta) {
         '</a>' +
       '</div>' +
 
+      /* 7b. Productos relacionados */
+      renderRelacionados(p) +
+
       /* 8. Info extra */
       '<div class="modal-info-extra">' +
-        '<div class="modal-info-item"><i class="fas fa-motorcycle"></i><span>🚚 <strong>Domicilio GRATIS</strong> en Mosquera y Funza</span></div>' +
-        '<div class="modal-info-item"><i class="fas fa-mobile-alt"></i><span>💳 Pagos: Nequi/Daviplata al <strong>323 249 7559</strong></span></div>' +
+        '<div class="modal-info-item"><i class="fas fa-motorcycle"></i><span>🚚 <strong>Domicilio GRATIS en pedidos +$20.000 · Mosquera y Funza</strong></span></div>' +
+        '<div class="modal-info-item"><i class="fas fa-mobile-alt"></i><span>💳 Pagos: Nequi · Transferencia al <strong>323 249 7559</strong></span></div>' +
         '<div class="modal-info-item"><i class="fas fa-shield-alt"></i><span>Productos 100% originales y verificados</span></div>' +
         '<div class="modal-info-item"><i class="fas fa-clock"></i><span>Entrega estimada <strong>30–40 min</strong></span></div>' +
       '</div>' +
@@ -1375,6 +1412,59 @@ function agregarDesdeModal(prodId) {
 window.agregarDesdeModal = agregarDesdeModal;
 
 /* ─── Cerrar modal ─── */
+
+/* ══════════════════════════════════════════════════════════
+   CROSS-SELL — productos relacionados por categoría
+   Muestra hasta 4 productos de la misma categoría
+   excluyendo el producto actual.
+   ══════════════════════════════════════════════════════════ */
+function renderRelacionados(p) {
+  if (typeof CATALOGO === 'undefined') return '';
+  var mismaCategoria = CATALOGO.filter(function(c) {
+    if (c.id === p.id) return false;
+    /* Soporte para fusión Cuidado Personal y Belleza */
+    var catP = p.categoria;
+    var catC = c.categoria;
+    if (catP === 'Cuidado Personal y Belleza' || catP === 'Belleza' || catP === 'Cuidado Personal') {
+      return catC === 'Cuidado Personal y Belleza' || catC === 'Belleza' || catC === 'Cuidado Personal';
+    }
+    return catC === catP;
+  });
+  if (!mismaCategoria.length) return '';
+
+  /* Priorizar productos con tag "Más vendido", luego orden original */
+  mismaCategoria.sort(function(a, b) {
+    var aMv = a.tags && a.tags.some(function(t) { return t.label === 'Más vendido'; }) ? 0 : 1;
+    var bMv = b.tags && b.tags.some(function(t) { return t.label === 'Más vendido'; }) ? 0 : 1;
+    return aMv - bMv;
+  });
+
+  var items = mismaCategoria.slice(0, 4);
+  var num = WA_NUM;
+
+  var html = '<div class="cross-sell-wrap">' +
+    '<p class="cross-sell-titulo"><i class="fas fa-star"></i> También te puede interesar</p>' +
+    '<div class="cross-sell-grid">';
+
+  items.forEach(function(rel) {
+    var precio = _precioCard(rel, 0);
+    var seed   = encodeURIComponent(rel.nombre);
+    var img    = (rel.variantes[0] && rel.variantes[0].imagen) || resolverImagen(rel, seed);
+    var msg    = encodeURIComponent('Hola, me interesa: ' + rel.nombre + ' — ¿tienen disponible?');
+    html +=
+      '<button class="cs-item" onclick="cerrarModalProducto();setTimeout(function(){abrirModalProducto(' + rel.id + ')},180)">' +
+        '<img src="' + img + '" alt="' + rel.nombre + '" loading="lazy" onerror="this.style.display=&quot;none&quot;">' +
+        '<div class="cs-info">' +
+          '<span class="cs-nombre">' + rel.nombre + '</span>' +
+          '<span class="cs-precio">' + cop(precio) + '</span>' +
+        '</div>' +
+      '</button>';
+  });
+
+  html += '</div></div>';
+  return html;
+}
+
 function cerrarModalProducto() {
   var overlay = document.getElementById('modalProductoOverlay');
   if (!overlay) return;
@@ -1583,6 +1673,7 @@ function aplicarFiltros() {
     return true;
   });
 
+  ESTADO.resultados = _aplicarOrden(ESTADO.resultados);
   ESTADO.pagina = 1;
   renderGrilla();
   actualizarContador();
@@ -1636,7 +1727,7 @@ function renderGrilla(append) {
     grid.innerHTML = '<div class="empty-state">' +
       '<div class="empty-icon">🔍</div>' +
       '<h3>Sin resultados</h3>' +
-      '<p>Intenta con otros filtros o palabras clave.</p>' +
+      '<p>No encontramos <strong>' + (ESTADO.filtros.busqueda ? '&ldquo;' + ESTADO.filtros.busqueda + '&rdquo;' : 'productos') + '</strong> con esos filtros.</p>' +
       '<div style="display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem">' +
         '<button onclick="limpiarFiltros()" class="btn-primario"><i class="fas fa-redo"></i> Limpiar filtros</button>' +
         '<a href="https://wa.me/' + WA_NUM + '?text=Hola%2C+busco+un+producto+específico" target="_blank" class="btn-primario" style="background:#25D366"><i class="fab fa-whatsapp"></i> Pedir por WhatsApp</a>' +
