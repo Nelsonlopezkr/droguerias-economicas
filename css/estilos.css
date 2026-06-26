@@ -2518,6 +2518,15 @@ textarea.form-control { resize: vertical; min-height: 120px; }
   .footer-grid   { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 768px) {
+  /* FIX MÓVIL: navbar azul para eliminar franja blanca entre top-bar y hero */
+  .navbar { background: #0d47a1; box-shadow: none; }
+  .navbar-logo { color: #fff; }
+  .navbar-logo em { color: #FFD54F; }
+  .navbar-toggle span { background: #fff; }
+  .btn-carrito { background: rgba(255,255,255,.15); color: #fff; }
+  .btn-carrito:hover { background: rgba(255,255,255,.25); }
+  .btn-modo { color: #fff; }
+
   .navbar-links {
     position: fixed;
     top: 64px; left: 0; right: 0;
