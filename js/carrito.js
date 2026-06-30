@@ -536,7 +536,7 @@ function checkoutWhatsApp() {
   msg += '💳 *TOTAL: ' + _cop(totales.total) + '*\n\n';
   msg += '📍 *Dirección de entrega:* (por favor indíquela)\n';
   msg += '\n💳 *Pago:* Nequi · Transferencia · Otros electrónicos\n';
-  msg += '   Número de pagos: *323 249 7559*\n\n';
+  msg += '   Número de pagos: *312 421 39 86*\n\n';
   msg += '🚚 Domicilio: ' + (totales.subtotal >= 20000 ? 'GRATIS ✅' : '$3.000 (gratis en pedidos +$20.000)') + '\n';
   msg += '⏱️ Entrega estimada: 30–40 minutos\n\n';
   msg += '¿Confirman disponibilidad? ✅';
@@ -583,7 +583,7 @@ function inyectarModalCarrito() {
           '<div class="carrito-total-fila"><span>Total</span><span id="carritoTotal">$0</span></div>' +
           '<div style="background:#E8F5E9;border:1.5px solid #C8E6C9;border-radius:10px;padding:.7rem .9rem;font-size:.75rem;margin:.2rem 0">' +
             '<div style="font-weight:900;color:#1B5E20;margin-bottom:.35rem">💳 Datos para pago:</div>' +
-            '<div style="font-size:.73rem;color:#2E7D32;font-weight:700;margin-bottom:.2rem">📲 Nequi · Transferencia: <strong>323 249 7559</strong></div>' +
+            '<div style="font-size:.73rem;color:#2E7D32;font-weight:700;margin-bottom:.2rem">📲 Nequi · Transferencia: <strong>312 421 39 86</strong></div>' +
             '<div style="font-size:.68rem;color:#555">Realiza tu pago y envía el comprobante por WhatsApp al confirmar el pedido.</div>' +
           '</div>' +
           '<div>' +
@@ -592,7 +592,7 @@ function inyectarModalCarrito() {
               '<span class="pago-mini">🟢 Nequi</span>' +
               '<span class="pago-mini">🏦 Transferencia</span>' +
               '<span class="pago-mini">📱 Otros electrónicos</span>' +
-              '<div style="font-size:.66rem;color:#6b7280;margin-top:.25rem">Pagos al: <strong>323 249 7559</strong></div>' +
+              '<div style="font-size:.66rem;color:#6b7280;margin-top:.25rem">Pagos al: <strong>312 421 39 86</strong></div>' +
             '</div>' +
           '</div>' +
           '<button class="btn-checkout" id="btnCheckout"><i class="fab fa-whatsapp"></i> Pedir por WhatsApp</button>' +

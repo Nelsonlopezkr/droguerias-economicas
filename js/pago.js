@@ -41,11 +41,11 @@ var PAGO_CONFIG = {
   },
 
   nequi: {
-    numero: '3224395198',                  /* ← número Nequi de la droguería      */
+    numero: '3124213986',                  /* ← número Nequi de la droguería      */
     nombre: 'Droguerías Económicas'
   },
 
-  whatsapp: '573124213986'                 /* ← ya existente en carrito.js        */
+  whatsapp: '573118719476'                 /* ← ya existente en carrito.js        */
 };
 
 /* ─── Estado del módulo de pago ─────────────────────────── */

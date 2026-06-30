@@ -16,7 +16,7 @@
   <meta name="description" content="Las mejores promociones en medicamentos, vitaminas, belleza, bebé y hogar. Descuentos reales hasta 50% OFF. Domicilio GRATIS en Mosquera y Funza. Mosquera y Funza, Cundinamarca.">
   <meta name="keywords" content="promociones droguería Mosquera, ofertas farmacia Cundinamarca, descuentos medicamentos, vitaminas oferta, belleza descuento">
   <meta property="og:title" content="Promociones | Droguerías Económicas">
-  <meta property="og:description" content="Descuentos reales hasta 50% OFF en medicamentos, vitaminas y más. Domicilio gratis +$50.000.">
+  <meta property="og:description" content="Descuentos reales hasta 50% OFF en medicamentos, vitaminas y más. Domicilio GRATIS en pedidos +$20.000.">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_CO">
 
@@ -1446,7 +1446,7 @@ body.pagina-promociones .promo-hero-btns { display: none !important; }
       </div>
       <div class="pf-info">
         <h3>Gran Descuento en Toda la Tienda</h3>
-        <p>Por compras mayores a $50.000 obtienes el 20% de descuento en tu compra total + envío gratis a domicilio. ¡No dejes pasar esta oportunidad única!</p>
+        <p>Por compras mayores a $50.000 obtienes el 20% de descuento en tu compra total. (Domicilio GRATIS en pedidos +$20.000). ¡No dejes pasar esta oportunidad única!</p>
         <div class="pf-btns">
           <a href="productos.html" class="btn-pf-blanco">
             <i class="fas fa-store"></i> Ir al catálogo
@@ -1787,7 +1787,7 @@ body.pagina-promociones .promo-hero-btns { display: none !important; }
         </div>
         <div class="cupon-wa-body">
           <div class="cupon-wa-titulo">Compra Grande, Premio Grande</div>
-          <div class="cupon-wa-desc">Por compras superiores a $50.000 domicilio GRATIS + un detalle especial de regalo de nuestra droguería.</div>
+          <div class="cupon-wa-desc">Por compras superiores a $50.000 recibe un detalle especial de regalo de nuestra droguería. ¡Domicilio GRATIS en pedidos +$20.000!</div>
           <div class="cupon-wa-condicion"><i class="fas fa-info-circle"></i> Aplica en Mosquera y Funza · 30–40 min</div>
           <a href="https://wa.me/573118719476?text=Hola%2C+quiero+hacer+un+pedido+de+m%C3%A1s+de+%2450.000+%F0%9F%8E%81" target="_blank" rel="noopener" class="btn-cupon-wa">
             <i class="fab fa-whatsapp"></i> Hacer pedido
@@ -2073,13 +2073,13 @@ body.pagina-promociones .promo-hero-btns { display: none !important; }
     <div class="carrito-footer">
       <div class="domicilio-info">
         <i class="fas fa-motorcycle"></i>
-        <div><strong>🛵 domicilio GRATIS</strong> · Mosquera y Funza<br>
+        <div><strong>🛵 Domicilio GRATIS en pedidos +$20.000</strong> · Mosquera y Funza<br>
         <span style="font-weight:600;font-size:.73rem">⏱️ Entrega estimada: 30–40 minutos</span></div>
       </div>
       <div class="carrito-resumen">
         <div class="carrito-resumen-fila"><span>Subtotal</span><span id="carritoSubtotal">$0</span></div>
         <div class="carrito-resumen-fila"><span>Envío</span><span id="carritoEnvio">$0</span></div>
-        <div id="carritoEnvioMsg">✅ Envío gratis en compras mayores a $50.000</div>
+        <div id="carritoEnvioMsg">🛵 Agrega $20.000 para obtener domicilio GRATIS</div>
       </div>
       <div class="carrito-total-fila"><span>Total</span><span id="carritoTotal">$0</span></div>
       <div>
@@ -2344,9 +2344,9 @@ function actualizarEnvio() {
   const msg = document.getElementById('carritoEnvioMsg');
   if (!el || !msg) return;
   const s = parseInt(el.textContent.replace(/\D/g,''), 10) || 0;
-  if (!s)         { msg.textContent = '✅ Envío gratis en compras mayores a $50.000'; msg.style.color = 'var(--verde)'; }
-  else if (s >= 50000) { msg.textContent = '🎉 ¡Envío gratis aplicado!'; msg.style.color = 'var(--verde)'; }
-  else            { const f = (50000 - s).toLocaleString('es-CO'); msg.textContent = `🎁 ¡Solo te faltan $${f} para envío gratis!`; msg.style.color = 'var(--naranja)'; }
+  if (!s)         { msg.textContent = '🛵 Agrega $20.000 para obtener domicilio GRATIS'; msg.style.color = 'var(--azul, #1565C0)'; }
+  else if (s >= 20000) { msg.textContent = '🎉 ¡Felicidades! Tu domicilio es GRATIS'; msg.style.color = 'var(--verde)'; }
+  else            { const f = (20000 - s).toLocaleString('es-CO'); msg.textContent = `🛵 Te faltan $${f} para domicilio GRATIS`; msg.style.color = 'var(--naranja)'; }
 }
 const subtotalEl = document.getElementById('carritoSubtotal');
 if (subtotalEl) new MutationObserver(actualizarEnvio).observe(subtotalEl, { childList: true });

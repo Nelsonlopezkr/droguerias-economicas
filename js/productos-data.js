@@ -15,7 +15,8 @@ var CATALOGO = [
     "variantes": [
       {
         "tipo": "Unidad",
-        "precio": 6500
+        "precio": 6500 ,
+        "imagen": "img/productos/Esmalte Masglo Surt.jpg"
       }
     ],
     "existencias": 2,
@@ -32,7 +33,8 @@ var CATALOGO = [
     "variantes": [
       {
         "tipo": "Unidad",
-        "precio": 44900
+        "precio": 44900 ,
+        "imagen": "img/productos/Benzirin Verde Spray 120 ML.jpg"
       }
     ],
     "existencias": 1,
@@ -49,7 +51,8 @@ var CATALOGO = [
     "variantes": [
       {
         "tipo": "Unidad",
-        "precio": 31800
+        "precio": 31800 ,
+        "imagen": "img/productos/Fluoftal Fluorometolona 0,1% X 5ML.jpg"
       }
     ],
     "existencias": 1,
@@ -66,7 +69,8 @@ var CATALOGO = [
     "variantes": [
       {
         "tipo": "Unidad",
-        "precio": 4600
+        "precio": 4600 ,
+        "imagen": "img/productos/Oft Oxigenta Igora Vital 30 Volumenes 50ML X 2 Und.jpg"
       }
     ],
     "existencias": 4,
@@ -75,7 +79,8 @@ var CATALOGO = [
     "presentaciones": [
       {
         "tipo": "Par",
-        "precio": 8300
+        "precio": 8300,
+        "imagen": "img/productos/Oft Oxigenta Igora Vital 30 Volumenes 50ML X 3 Und.jpg"
       },
       {
         "tipo": "Unidad",
@@ -93,7 +98,8 @@ var CATALOGO = [
     "variantes": [
       {
         "tipo": "Unidad",
-        "precio": 35500
+        "precio": 35500 ,
+        "imagen": "img/productos/Igora Vital D. Tubo 6-1 Rubio Oscuro Cenizo.jpg"
       }
     ],
     "existencias": 1,
@@ -110,7 +116,8 @@ var CATALOGO = [
     "variantes": [
       {
         "tipo": "Unidad",
-        "precio": 32300
+        "precio": 32300 ,
+        "imagen": "img/productos/Igora Vital D. Tubo 5-88 Claro Rojizo.jpg"
       }
     ],
     "existencias": 1,
@@ -127,7 +134,8 @@ var CATALOGO = [
     "variantes": [
       {
         "tipo": "Unidad",
-        "precio": 32300
+        "precio": 32300 ,
+        "imagen": "img/productos/Igora Vital D. Tubo 3-0 Castaño Oscuro.jpg"
       }
     ],
     "existencias": 1,
@@ -144,7 +152,8 @@ var CATALOGO = [
     "variantes": [
       {
         "tipo": "Caja",
-        "precio": 36500
+        "precio": 36500 ,
+        "imagen": "img/productos/Igora Vital D. Tubo 9-1 Rubio Extraclaro Cenizo.jpg"
       }
     ],
     "existencias": 1,
@@ -161,7 +170,8 @@ var CATALOGO = [
     "variantes": [
       {
         "tipo": "Caja",
-        "precio": 35500
+        "precio": 35500,
+        "imagen": "img/productos/Igora Vital D. Tubo 6-88 Rubi.jpg"
       }
     ],
     "existencias": 1,
@@ -178,7 +188,8 @@ var CATALOGO = [
     "variantes": [
       {
         "tipo": "Caja",
-        "precio": 32300
+        "precio": 32300 ,
+        "imagen": "img/productos/Igora Vital D. Tubo 6-888 Rubi Apasionado.jpg"
       }
     ],
     "existencias": 1,

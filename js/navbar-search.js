@@ -99,10 +99,11 @@
     var ql = q.toLowerCase().trim();
 
     var resultados = catalogo.filter(function (p) {
-      return (p.nombre    && p.nombre.toLowerCase().includes(ql))
-          || (p.categoria && p.categoria.toLowerCase().includes(ql))
-          || (p.marca     && p.marca.toLowerCase().includes(ql))
-          || (p.descripcion && p.descripcion.toLowerCase().includes(ql));
+      return (p.nombre       && p.nombre.toLowerCase().includes(ql))
+          || (p.categoria    && p.categoria.toLowerCase().includes(ql))
+          || (p.marca        && p.marca.toLowerCase().includes(ql))
+          || (p.descripcion  && p.descripcion.toLowerCase().includes(ql))
+          || (p.codigoBarras && p.codigoBarras.includes(ql));
     }).slice(0, 8);
 
     if (!resultados.length) {

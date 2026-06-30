@@ -17,7 +17,7 @@
 
   <!-- Open Graph -->
   <meta property="og:title" content="Catálogo — Droguerías Económicas">
-  <meta property="og:description" content="+2.000 productos. 🚚 Domicilio siempre GRATIS. Nequi · Transferencia · Medios electrónicos.">
+  <meta property="og:description" content="+2.000 productos. 🚚 Domicilio GRATIS en pedidos +$20.000. Nequi · Transferencia · Medios electrónicos.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://drogeriaseconomicas.com/img/og-banner.jpg">
   <meta property="og:image:width" content="1200">
@@ -144,14 +144,14 @@
     var cat    = params.get('cat') || '';
     var buscar = params.get('buscar') || '';
     var metas  = {
-      'Medicamentos':               'Compra medicamentos genéricos y de marca en Mosquera y Funza. +500 medicamentos disponibles. 🚚 Domicilio siempre GRATIS.',
-      'Cuidado Personal y Belleza': 'Shampoos, cremas, protectores solares y cuidado personal al mejor precio. 🚚 Domicilio siempre GRATIS.',
-      'Bebé y Mamá':                'Pañales, teteros, cremas y todo para tu bebé en Mosquera y Funza. Marcas Pampers, Huggies. 🚚 Domicilio siempre GRATIS.',
-      'Mercado y Hogar':            'Productos de aseo, limpieza y hogar en Mosquera y Funza. 🚚 Domicilio siempre GRATIS.',
+      'Medicamentos':               'Compra medicamentos genéricos y de marca en Mosquera y Funza. +500 medicamentos disponibles. 🚚 Domicilio GRATIS en pedidos +$20.000.',
+      'Cuidado Personal y Belleza': 'Shampoos, cremas, protectores solares y cuidado personal al mejor precio. 🚚 Domicilio GRATIS en pedidos +$20.000.',
+      'Bebé y Mamá':                'Pañales, teteros, cremas y todo para tu bebé en Mosquera y Funza. Marcas Pampers, Huggies. 🚚 Domicilio GRATIS en pedidos +$20.000.',
+      'Mercado y Hogar':            'Productos de aseo, limpieza y hogar en Mosquera y Funza. 🚚 Domicilio GRATIS en pedidos +$20.000.',
     };
     var desc = metas[cat] || (buscar
-      ? 'Resultados para "' + buscar + '" en Droguerías Económicas Mosquera. 🚚 Domicilio siempre GRATIS.'
-      : '+2.000 productos en Droguerías Económicas. Mosquera y Funza. 🚚 Domicilio siempre GRATIS.'
+      ? 'Resultados para "' + buscar + '" en Droguerías Económicas Mosquera. 🚚 Domicilio GRATIS en pedidos +$20.000.'
+      : '+2.000 productos en Droguerías Económicas. Mosquera y Funza. 🚚 Domicilio GRATIS en pedidos +$20.000.'
     );
     var el = document.querySelector('meta[name="description"]');
     if (el) el.setAttribute('content', desc);
@@ -693,14 +693,14 @@ function spLimpiar() {
       <div class="domicilio-info">
         <i class="fas fa-motorcycle"></i>
         <div>
-          <strong>🚚 Domicilio siempre GRATIS</strong><br>
+          <strong>🚚 Domicilio GRATIS en pedidos +$20.000</strong><br>
           <span style="font-weight:600;font-size:.73rem">⏱️ Entrega estimada: 30–40 minutos</span>
         </div>
       </div>
       <div class="carrito-resumen">
         <div class="carrito-resumen-fila"><span>Subtotal</span><span id="carritoSubtotal">$0</span></div>
         <div class="carrito-resumen-fila"><span>Domicilio</span><span id="carritoEnvio" style="color:var(--verde,#1B5E20);font-weight:700">GRATIS</span></div>
-        <div id="carritoEnvioMsg">🚚 Domicilio siempre GRATIS</div>
+        <div id="carritoEnvioMsg">🛵 Agrega $20.000 para obtener domicilio GRATIS</div>
       </div>
       <div class="carrito-total-fila"><span>Total</span><span id="carritoTotal">$0</span></div>
       <!-- MÉTODOS PAGO -->
@@ -798,14 +798,31 @@ function syncBnBadge() {
 const mainBadge = document.querySelector('.carrito-badge');
 if (mainBadge) new MutationObserver(syncBnBadge).observe(mainBadge, { childList: true, attributes: true });
 
-/* ENVÍO GRATIS siempre */
+/* DOMICILIO: GRATIS en pedidos +$20.000, $3.000 en pedidos menores */
 function actualizarMensajeEnvio() {
-  const msgEl = document.getElementById('carritoEnvioMsg');
+  const msgEl  = document.getElementById('carritoEnvioMsg');
+  const envioEl = document.getElementById('carritoEnvio');
   if (!msgEl) return;
-  msgEl.textContent = '✅ ¡Domicilio GRATIS siempre!';
-  msgEl.style.color = 'var(--verde)';
+  const subEl = document.getElementById('carritoSubtotal');
+  const s = subEl ? (parseInt(subEl.textContent.replace(/\D/g,''), 10) || 0) : 0;
+  if (s === 0) {
+    msgEl.textContent = '🛵 Agrega $20.000 para obtener domicilio GRATIS';
+    msgEl.style.color = 'var(--azul, #1565C0)';
+    if (envioEl) { envioEl.textContent = '$3.000'; envioEl.style.color = '#E65100'; }
+  } else if (s >= 20000) {
+    msgEl.textContent = '🎉 ¡Felicidades! Tu domicilio es GRATIS';
+    msgEl.style.color = 'var(--verde, #1B5E20)';
+    if (envioEl) { envioEl.textContent = '🚚 GRATIS'; envioEl.style.color = '#1B5E20'; }
+  } else {
+    const falta = (20000 - s).toLocaleString('es-CO');
+    msgEl.textContent = `🛵 Te faltan $${falta} para domicilio GRATIS`;
+    msgEl.style.color = '#E65100';
+    if (envioEl) { envioEl.textContent = '$3.000'; envioEl.style.color = '#E65100'; }
+  }
 }
 actualizarMensajeEnvio();
+const _subtotalObserverP = document.getElementById('carritoSubtotal');
+if (_subtotalObserverP) new MutationObserver(actualizarMensajeEnvio).observe(_subtotalObserverP, { childList: true });
 
 /* ── ?cat= y filtros avanzados manejados por catalogo.js ── */
 </script>

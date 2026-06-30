@@ -210,7 +210,7 @@ window.suscribirWhatsapp = function () {
   var msg = encodeURIComponent(
     'Hola, quiero recibir las promociones de Droguerías Económicas. Mi número es ' + num
   );
-  window.open('https://wa.me/573124213986?text=' + msg, '_blank', 'noopener');
+  window.open('https://wa.me/573118719476?text=' + msg, '_blank', 'noopener');
 };
 
 /* ══════════════════════════════════════════════════════════
