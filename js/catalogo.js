@@ -988,10 +988,18 @@ function _construirHTMLModal(p, meta) {
     labsHTML += '</div>';
 
   } else if (p.variantes && p.variantes.length > 0) {
-    /* ─── FALLBACK: variantes originales ─── */
+    /* ─── FALLBACK: variantes originales (sabores, aromas, colores, referencias) ───
+       Soporta título/ícono personalizado vía el campo opcional p.selector.
+       Si no existe, mantiene el comportamiento anterior (100% compatible
+       con los productos que no lo usan). ─── */
     var conLab = tieneLabels(p);
-    var titulo = conLab ? 'Laboratorio disponible' + (p.variantes.length > 1 ? 's' : '') : 'Referencias disponibles';
-    var icono  = conLab ? 'fas fa-flask' : 'fas fa-tags';
+    var selectorMeta = p.selector || null;
+    var titulo = (selectorMeta && selectorMeta.titulo)
+      ? selectorMeta.titulo
+      : (conLab ? 'Laboratorio disponible' + (p.variantes.length > 1 ? 's' : '') : 'Referencias disponibles');
+    var icono = (selectorMeta && selectorMeta.icono)
+      ? selectorMeta.icono
+      : (conLab ? 'fas fa-flask' : 'fas fa-tags');
 
     labsHTML = '<div class="modal-seccion-titulo"><i class="' + icono + '"></i> ' + titulo + '</div>' +
       '<div class="modal-labs-grid">';
@@ -1069,7 +1077,11 @@ function _construirHTMLModal(p, meta) {
     /* ── Imagen lado izquierdo ── */
     '<div class="modal-prod-img-side">' +
       '<img id="modalProdImg" src="' + imagenSrc + '" alt="' + p.nombre + '"' +
+        ' onclick="abrirImagenAmpliada(this)"' +
         ' onerror=\"onImgError(this,p,1)\">' +
+      '<button class="modal-img-zoom-hint" onclick="abrirImagenAmpliada(document.getElementById(\'modalProdImg\'))" aria-label="Ampliar imagen" title="Ampliar imagen">' +
+        '<i class="fas fa-search-plus"></i>' +
+      '</button>' +
     '</div>' +
 
     /* ── Información lado derecho ── */
@@ -1096,6 +1108,11 @@ function _construirHTMLModal(p, meta) {
       '<h2 class="modal-prod-nombre">' + p.nombre + '</h2>' +
       invimaHTML +
       recetaHTML +
+
+      /* 2b. Código de barras — refleja la variante activa si tiene uno propio */
+      '<p class="modal-prod-codigo"><i class="fas fa-barcode"></i> ' +
+        '<span id="modalCodigoBarras">' + ((vari && vari.codigoBarras) || p.codigoBarras || 'No registrado') + '</span>' +
+      '</p>' +
 
       /* 3. Descripción */
       '<p class="modal-prod-desc">' + p.descripcion + '</p>' +
@@ -1131,7 +1148,7 @@ function _construirHTMLModal(p, meta) {
       /* 8. Info extra */
       '<div class="modal-info-extra">' +
         '<div class="modal-info-item"><i class="fas fa-motorcycle"></i><span>🚚 <strong>Domicilio GRATIS en pedidos +$20.000 · Mosquera y Funza</strong></span></div>' +
-        '<div class="modal-info-item"><i class="fas fa-mobile-alt"></i><span>💳 Pagos: Nequi · Transferencia al <strong>312 421 39 86</strong></span></div>' +
+        '<div class="modal-info-item"><i class="fas fa-mobile-alt"></i><span>💳 Pagos: Nequi · Transferencia al <strong>323 249 7559</strong></span></div>' +
         '<div class="modal-info-item"><i class="fas fa-shield-alt"></i><span>Productos 100% originales y verificados</span></div>' +
         '<div class="modal-info-item"><i class="fas fa-clock"></i><span>Entrega estimada <strong>30–40 min</strong></span></div>' +
       '</div>' +
@@ -1172,10 +1189,16 @@ function selVarianteModal(prodId, vi) {
   /* Imagen con transición */
   var imgEl = document.getElementById('modalProdImg');
   if (imgEl) {
-    var nuevaSrc = v.imagen || p.imagen || (resolverImagen(p, seed));
+    /* CORRECCIÓN: 'seed' no existía en este scope; se reemplaza por un
+       fallback seguro basado en el nombre del producto. */
+    var nuevaSrc = v.imagen || p.imagen || resolverImagen(p, encodeURIComponent(p.nombre));
     imgEl.style.opacity = '0';
     setTimeout(function() { imgEl.src = nuevaSrc; imgEl.style.opacity = '1'; }, 150);
   }
+
+  /* Código de barras — usa el de la variante si existe, si no el del producto */
+  var codEl = document.getElementById('modalCodigoBarras');
+  if (codEl) codEl.textContent = v.codigoBarras || p.codigoBarras || 'No registrado';
 
   /* Botones activos en el modal */
   document.querySelectorAll('.modal-labs-grid .modal-lab-card').forEach(function(btn) {
@@ -1478,6 +1501,54 @@ function cerrarModalProducto() {
 }
 window.cerrarModalProducto = cerrarModalProducto;
 window.abrirModalProducto  = abrirModalProducto;
+
+/* ════════════════════════════════════════════════════════
+   LIGHTBOX — Ampliar imagen del producto (tap para zoom)
+   ════════════════════════════════════════════════════════ */
+function abrirImagenAmpliada(imgEl) {
+  if (!imgEl || !imgEl.src) return;
+
+  var overlay = document.getElementById('lightboxImgOverlay');
+  if (!overlay) {
+    overlay = document.createElement('div');
+    overlay.id = 'lightboxImgOverlay';
+    overlay.className = 'lightbox-img-overlay';
+    overlay.innerHTML =
+      '<button class="lightbox-close-btn" aria-label="Cerrar imagen ampliada" onclick="cerrarImagenAmpliada()">' +
+        '<i class="fas fa-times"></i>' +
+      '</button>' +
+      '<img id="lightboxImg" src="" alt="">';
+    document.body.appendChild(overlay);
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) cerrarImagenAmpliada();
+    });
+  }
+
+  var lbImg = document.getElementById('lightboxImg');
+  lbImg.src = imgEl.src;
+  lbImg.alt = imgEl.alt || '';
+
+  overlay.classList.add('activo');
+  document.body.style.overflow = 'hidden';
+
+  overlay._escHandler = function(e) { if (e.key === 'Escape') cerrarImagenAmpliada(); };
+  document.addEventListener('keydown', overlay._escHandler);
+}
+window.abrirImagenAmpliada = abrirImagenAmpliada;
+
+function cerrarImagenAmpliada() {
+  var overlay = document.getElementById('lightboxImgOverlay');
+  if (!overlay) return;
+  overlay.classList.remove('activo');
+
+  /* Restaurar scroll solo si el modal de producto también está cerrado */
+  var modalProducto = document.getElementById('modalProductoOverlay');
+  if (!modalProducto || !modalProducto.classList.contains('activo')) {
+    document.body.style.overflow = '';
+  }
+  if (overlay._escHandler) document.removeEventListener('keydown', overlay._escHandler);
+}
+window.cerrarImagenAmpliada = cerrarImagenAmpliada;
 
 /* ════════════════════════════════════════════════════════
    ESTILOS INYECTADOS POR JS

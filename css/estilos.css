@@ -12057,3 +12057,21 @@ textarea:valid:not(:placeholder-shown) {
   .lightbox-img-overlay { padding: 0 !important; }
   .lightbox-close-btn { top: 14px !important; right: 14px !important; width: 40px !important; height: 40px !important; }
 }
+/* ══════════════════════════════════════════════════════════
+   CÓDIGO DE BARRAS — visible en el modal de detalle de producto
+   ══════════════════════════════════════════════════════════ */
+.modal-prod-codigo {
+  display: flex !important;
+  align-items: center !important;
+  gap: .4rem !important;
+  font-family: 'Courier New', monospace !important;
+  font-size: .74rem !important;
+  color: var(--gris-500, #8a94a6) !important;
+  letter-spacing: .5px !important;
+  margin: .1rem 0 .35rem !important;
+  user-select: all !important; /* permite seleccionar/copiar el código con un toque largo */
+}
+.modal-prod-codigo i {
+  font-size: .8rem !important;
+  color: var(--gris-500, #8a94a6) !important;
+}
